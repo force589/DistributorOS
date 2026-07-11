@@ -1,0 +1,29 @@
+{
+  "name": "distributoros",
+  "private": true,
+  "version": "0.8.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "api:generate": "npm run generate --workspace @distributoros/api-client",
+    "mobile:start": "npm run start --workspace @distributoros/mobile",
+    "mobile:android": "npm run android --workspace @distributoros/mobile",
+    "mobile:ios": "npm run ios --workspace @distributoros/mobile",
+    "mobile:web": "npm run web --workspace @distributoros/mobile",
+    "lint": "npm run lint --workspace @distributoros/api-client && npm run lint --workspace @distributoros/mobile",
+    "typecheck": "npm run typecheck --workspace @distributoros/api-client && npm run typecheck --workspace @distributoros/mobile",
+    "test": "npm run test --workspace @distributoros/api-client && npm run test --workspace @distributoros/mobile"
+  },
+  "engines": {
+    "node": ">=24"
+  },
+  "overrides": {
+    "react-native": "0.85.3",
+    "react-native-gesture-handler": "2.31.2",
+    "react-native-reanimated": "4.3.1",
+    "react-native-safe-area-context": "5.7.0",
+    "react-native-worklets": "0.8.3"
+  }
+}

@@ -1,0 +1,50 @@
+
+> @distributoros/mobile@0.8.0 web
+> expo start --web --port 8081 --host localhost
+
+env: load .env
+env: export EXPO_PUBLIC_ANDROID_API_URL EXPO_PUBLIC_APP_ENV EXPO_PUBLIC_IOS_API_URL EXPO_PUBLIC_WEB_API_URL
+Starting project at C:\Users\firas\Documents\Codex\2026-06-27\distributoros-prompt-0-architecture-planning-important\apps\mobile
+Expo Autolinking module resolution enabled
+Starting Metro Bundler
+
+Waiting on http://localhost:8081
+An update for expo is available: 56.0.12 → ~56.0.15
+4 other packages may need updating. Run npx expo install --check for details.
+Logs for your project will appear below.
+λ Bundled 25950ms node_modules\@expo\cli\node_modules\@expo\router-server\node\render.js (1 module)
+Web Bundled 28453ms node_modules\expo-router\entry.js (1060 modules)
+λ Bundled 7712ms node_modules\@expo\cli\node_modules\@expo\router-server\node\render.js (1 module)
+Web Bundled 8071ms node_modules\expo-router\entry.js (1 module)
+λ Bundled 75ms node_modules\@expo\cli\node_modules\@expo\router-server\node\render.js (1 module)
+Web Bundled 664ms node_modules\expo-router\entry.js (1 module)
+Web Bundled 9069ms node_modules\expo-router\entry.js (1065 modules)
+Web  INFO  %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+Web  LOG  Running application "main" with appParams:
+ {"hydrate": undefined, "rootTag": "#root"} 
+Development-level warnings: ON.
+Performance optimizations: OFF.
+λ Bundled 132ms node_modules\@expo\cli\node_modules\@expo\router-server\node\render.js (1 module)
+Web Bundled 1780ms node_modules\expo-router\entry.js (1 module)
+Web Bundled 50ms node_modules\expo-router\entry.js (1 module)
+Web  INFO  %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+Web  LOG  Running application "main" with appParams:
+ {"hydrate": undefined, "rootTag": "#root"} 
+Development-level warnings: ON.
+Performance optimizations: OFF.
+λ Bundled 1722ms node_modules\@expo\cli\node_modules\@expo\router-server\node\render.js (1 module)
+Web Bundled 2127ms node_modules\expo-router\entry.js (1 module)
+Web Bundled 63ms node_modules\expo-router\entry.js (1 module)
+Web  INFO  %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+Web  LOG  Running application "main" with appParams:
+ {"hydrate": undefined, "rootTag": "#root"} 
+Development-level warnings: ON.
+Performance optimizations: OFF.
+λ Bundled 2062ms node_modules\@expo\cli\node_modules\@expo\router-server\node\render.js (1 module)
+Web Bundled 2689ms node_modules\expo-router\entry.js (1 module)
+Web Bundled 209ms node_modules\expo-router\entry.js (1 module)
+Web  INFO  %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+Web  LOG  Running application "main" with appParams:
+ {"hydrate": undefined, "rootTag": "#root"} 
+Development-level warnings: ON.
+Performance optimizations: OFF.

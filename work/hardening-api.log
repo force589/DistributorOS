@@ -1,0 +1,68 @@
+2026-06-28T04:56:44.959119Z [info     ] request_completed              duration_ms=73.7 method=GET path=/health/live request_id=a62f6d05-728c-484e-bcaa-c6cc7e75e7a2 status_code=200
+INFO:     127.0.0.1:60908 - "GET /health/live HTTP/1.1" 200 OK
+2026-06-28T05:00:33.583272Z [info     ] signup_succeeded               business_id=89910f75-b70f-454e-a463-f229a1738036 request_id=c9dfb54a-5407-4537-b377-349add41fc6d session_id=efbd2d85-12a8-4d5e-a952-53a1d87bb90f user_id=e8361edd-284c-440c-aefa-4051c0ee34c3
+2026-06-28T05:00:33.583272Z [info     ] request_completed              duration_ms=565.79 method=POST path=/api/v1/auth/signup request_id=c9dfb54a-5407-4537-b377-349add41fc6d status_code=201
+INFO:     127.0.0.1:63019 - "POST /api/v1/auth/signup HTTP/1.1" 201 Created
+2026-06-28T05:00:33.858790Z [info     ] signup_succeeded               business_id=71a85f3c-8009-437b-99f4-dcf54f838901 request_id=7cbe4277-ad2b-4278-aebf-f5b49cc96662 session_id=e4b83eb2-1977-404e-b36f-9c42ee1f0263 user_id=7f847107-53d2-455b-8e60-fc514d93b963
+2026-06-28T05:00:33.861023Z [info     ] request_completed              duration_ms=262.56 method=POST path=/api/v1/auth/signup request_id=7cbe4277-ad2b-4278-aebf-f5b49cc96662 status_code=201
+INFO:     127.0.0.1:63019 - "POST /api/v1/auth/signup HTTP/1.1" 201 Created
+2026-06-28T05:00:34.129950Z [info     ] login_succeeded                business_id=89910f75-b70f-454e-a463-f229a1738036 request_id=3f1ba674-a5a9-4277-8697-42a358fc190a session_id=da820a37-48d1-4e7c-aa62-db9cf2718da1 user_id=e8361edd-284c-440c-aefa-4051c0ee34c3
+2026-06-28T05:00:34.132924Z [info     ] request_completed              duration_ms=265.56 method=POST path=/api/v1/auth/login request_id=3f1ba674-a5a9-4277-8697-42a358fc190a status_code=200
+INFO:     127.0.0.1:63019 - "POST /api/v1/auth/login HTTP/1.1" 200 OK
+2026-06-28T05:00:34.357430Z [warning  ] login_failed                   reason=invalid_credentials request_id=d39d6cbe-93a8-4cd4-a6a7-b5bcec3875b9
+2026-06-28T05:00:34.383663Z [warning  ] request_completed              duration_ms=244.06 method=POST path=/api/v1/auth/login request_id=d39d6cbe-93a8-4cd4-a6a7-b5bcec3875b9 status_code=401
+INFO:     127.0.0.1:63019 - "POST /api/v1/auth/login HTTP/1.1" 401 Unauthorized
+2026-06-28T05:00:34.610112Z [warning  ] login_failed                   reason=invalid_credentials request_id=082d19cf-bfe9-4f68-b030-6f50e82d766b
+2026-06-28T05:00:34.610574Z [warning  ] request_completed              duration_ms=226.41 method=POST path=/api/v1/auth/login request_id=082d19cf-bfe9-4f68-b030-6f50e82d766b status_code=401
+INFO:     127.0.0.1:63019 - "POST /api/v1/auth/login HTTP/1.1" 401 Unauthorized
+2026-06-28T05:00:34.632834Z [warning  ] request_completed              duration_ms=8.13 method=POST path=/api/v1/auth/login request_id=ac9e34ad-0d9d-487f-838a-43bb59104cbf status_code=422
+INFO:     127.0.0.1:63019 - "POST /api/v1/auth/login HTTP/1.1" 422 Unprocessable Entity
+2026-06-28T05:00:34.645944Z [warning  ] request_completed              duration_ms=5.37 method=POST path=/api/v1/auth/login request_id=81fcb24e-be50-44f2-bd58-7deaa8e5a38e status_code=422
+INFO:     127.0.0.1:63019 - "POST /api/v1/auth/login HTTP/1.1" 422 Unprocessable Entity
+2026-06-28T05:00:34.659856Z [warning  ] request_completed              duration_ms=6.47 method=POST path=/api/v1/auth/login request_id=b0957e53-1679-4eff-8efc-0d000f0157a1 status_code=422
+INFO:     127.0.0.1:63019 - "POST /api/v1/auth/login HTTP/1.1" 422 Unprocessable Entity
+2026-06-28T05:00:34.669607Z [warning  ] request_completed              duration_ms=6.11 method=POST path=/api/v1/auth/login request_id=31ce1f4a-c187-4ac9-901b-d8ce9ad8092f status_code=422
+INFO:     127.0.0.1:63019 - "POST /api/v1/auth/login HTTP/1.1" 422 Unprocessable Entity
+2026-06-28T05:00:34.736633Z [info     ] request_completed              duration_ms=55.4 method=GET path=/api/v1/auth/me request_id=ab42061f-02fd-49c2-bedf-1acfde31a214 status_code=200
+INFO:     127.0.0.1:63019 - "GET /api/v1/auth/me HTTP/1.1" 200 OK
+2026-06-28T05:00:34.753185Z [warning  ] request_completed              duration_ms=10.89 method=GET path=/api/v1/auth/me request_id=9dea73f5-6b25-4af3-b101-d553a246497f status_code=401
+INFO:     127.0.0.1:63019 - "GET /api/v1/auth/me HTTP/1.1" 401 Unauthorized
+2026-06-28T05:00:34.765083Z [warning  ] request_completed              duration_ms=6.0 method=GET path=/api/v1/auth/me request_id=770984f9-706c-45eb-9866-5af58dcf361b status_code=401
+INFO:     127.0.0.1:63019 - "GET /api/v1/auth/me HTTP/1.1" 401 Unauthorized
+2026-06-28T05:00:34.779040Z [warning  ] request_completed              duration_ms=5.56 method=GET path=/api/v1/auth/me request_id=39a7a497-9b07-4316-9a37-b1247ad824ec status_code=401
+INFO:     127.0.0.1:63019 - "GET /api/v1/auth/me HTTP/1.1" 401 Unauthorized
+2026-06-28T05:00:34.789523Z [warning  ] request_completed              duration_ms=6.37 method=GET path=/api/v1/auth/me request_id=1ce5c042-fdd3-4ef8-9508-c9c444758f00 status_code=401
+INFO:     127.0.0.1:63019 - "GET /api/v1/auth/me HTTP/1.1" 401 Unauthorized
+2026-06-28T05:00:34.822446Z [warning  ] request_completed              duration_ms=22.11 method=GET path=/api/v1/auth/me request_id=c9b28d3a-91f3-4439-89a1-bf85d47a3293 status_code=401
+INFO:     127.0.0.1:63019 - "GET /api/v1/auth/me HTTP/1.1" 401 Unauthorized
+2026-06-28T05:00:34.835022Z [warning  ] request_completed              duration_ms=7.04 method=POST path=/api/v1/auth/signup request_id=d44b6576-081f-4b40-8e63-15b52baf6aa1 status_code=422
+INFO:     127.0.0.1:63019 - "POST /api/v1/auth/signup HTTP/1.1" 422 Unprocessable Entity
+2026-06-28T05:00:34.890238Z [info     ] session_refreshed              business_id=89910f75-b70f-454e-a463-f229a1738036 request_id=a129686b-b6c9-4466-afb3-76b06b6d870f session_id=efbd2d85-12a8-4d5e-a952-53a1d87bb90f user_id=e8361edd-284c-440c-aefa-4051c0ee34c3
+2026-06-28T05:00:34.894267Z [info     ] request_completed              duration_ms=52.23 method=POST path=/api/v1/auth/refresh request_id=a129686b-b6c9-4466-afb3-76b06b6d870f status_code=200
+INFO:     127.0.0.1:63019 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:00:34.920801Z [warning  ] refresh_failed                 request_id=7e955a13-e85b-4b8a-9a9f-878d6c3c19f4 session_id=efbd2d85-12a8-4d5e-a952-53a1d87bb90f user_id=e8361edd-284c-440c-aefa-4051c0ee34c3
+2026-06-28T05:00:34.920801Z [warning  ] request_completed              duration_ms=23.29 method=POST path=/api/v1/auth/refresh request_id=7e955a13-e85b-4b8a-9a9f-878d6c3c19f4 status_code=401
+INFO:     127.0.0.1:63019 - "POST /api/v1/auth/refresh HTTP/1.1" 401 Unauthorized
+2026-06-28T05:00:35.160103Z [info     ] login_succeeded                business_id=89910f75-b70f-454e-a463-f229a1738036 request_id=eb0cd5f8-b9a8-4fb0-adb2-325cef432ac7 session_id=7380a7ea-9657-4fb6-8562-4724b5c182e4 user_id=e8361edd-284c-440c-aefa-4051c0ee34c3
+2026-06-28T05:00:35.166402Z [info     ] request_completed              duration_ms=234.77 method=POST path=/api/v1/auth/login request_id=eb0cd5f8-b9a8-4fb0-adb2-325cef432ac7 status_code=200
+INFO:     127.0.0.1:63019 - "POST /api/v1/auth/login HTTP/1.1" 200 OK
+2026-06-28T05:00:35.313572Z [info     ] session_refreshed              business_id=89910f75-b70f-454e-a463-f229a1738036 request_id=833a8ff7-63be-4ca3-9ad5-40c3df65eafa session_id=7380a7ea-9657-4fb6-8562-4724b5c182e4 user_id=e8361edd-284c-440c-aefa-4051c0ee34c3
+2026-06-28T05:00:35.317345Z [info     ] request_completed              duration_ms=49.16 method=POST path=/api/v1/auth/refresh request_id=833a8ff7-63be-4ca3-9ad5-40c3df65eafa status_code=200
+INFO:     127.0.0.1:63021 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:00:35.502361Z [warning  ] refresh_failed                 request_id=ba40fec2-1df9-449d-bbb6-b2be195b10f7 session_id=7380a7ea-9657-4fb6-8562-4724b5c182e4 user_id=e8361edd-284c-440c-aefa-4051c0ee34c3
+2026-06-28T05:00:35.508481Z [warning  ] request_completed              duration_ms=221.08 method=POST path=/api/v1/auth/refresh request_id=ba40fec2-1df9-449d-bbb6-b2be195b10f7 status_code=401
+INFO:     127.0.0.1:63022 - "POST /api/v1/auth/refresh HTTP/1.1" 401 Unauthorized
+2026-06-28T05:00:35.549467Z [info     ] logout_succeeded               business_id=89910f75-b70f-454e-a463-f229a1738036 request_id=92327ceb-553c-42c6-bdc6-83422b29c6eb session_id=efbd2d85-12a8-4d5e-a952-53a1d87bb90f user_id=e8361edd-284c-440c-aefa-4051c0ee34c3
+2026-06-28T05:00:35.549467Z [info     ] request_completed              duration_ms=38.4 method=POST path=/api/v1/auth/logout request_id=92327ceb-553c-42c6-bdc6-83422b29c6eb status_code=200
+INFO:     127.0.0.1:63019 - "POST /api/v1/auth/logout HTTP/1.1" 200 OK
+2026-06-28T05:00:35.584641Z [warning  ] request_completed              duration_ms=24.99 method=GET path=/api/v1/auth/me request_id=88d2a627-7c92-44e4-9275-55437aa76e6d status_code=401
+INFO:     127.0.0.1:63019 - "GET /api/v1/auth/me HTTP/1.1" 401 Unauthorized
+2026-06-28T05:00:35.607484Z [warning  ] refresh_failed                 request_id=240070a0-dbea-4730-b20d-b168d16c7efa session_id=efbd2d85-12a8-4d5e-a952-53a1d87bb90f user_id=e8361edd-284c-440c-aefa-4051c0ee34c3
+2026-06-28T05:00:35.607484Z [warning  ] request_completed              duration_ms=20.76 method=POST path=/api/v1/auth/refresh request_id=240070a0-dbea-4730-b20d-b168d16c7efa status_code=401
+INFO:     127.0.0.1:63019 - "POST /api/v1/auth/refresh HTTP/1.1" 401 Unauthorized
+2026-06-28T05:00:35.952918Z [info     ] signup_succeeded               business_id=627aec7e-591b-45d0-a55e-907df863b351 request_id=09a2c3ef-41c0-441c-b7fc-f1774d121b37 session_id=abdea139-849c-437f-9c61-27d8554739d9 user_id=5fa32178-119f-4bef-9429-8435d0a58686
+2026-06-28T05:00:35.961403Z [info     ] request_completed              duration_ms=268.63 method=POST path=/api/v1/auth/signup request_id=09a2c3ef-41c0-441c-b7fc-f1774d121b37 status_code=201
+INFO:     127.0.0.1:63024 - "POST /api/v1/auth/signup HTTP/1.1" 201 Created
+2026-06-28T05:00:36.002110Z [info     ] session_refreshed              business_id=627aec7e-591b-45d0-a55e-907df863b351 request_id=8ad2c51e-8d95-4fc8-b85b-2524aac6d438 session_id=abdea139-849c-437f-9c61-27d8554739d9 user_id=5fa32178-119f-4bef-9429-8435d0a58686
+2026-06-28T05:00:36.010944Z [info     ] request_completed              duration_ms=39.56 method=POST path=/api/v1/auth/refresh request_id=8ad2c51e-8d95-4fc8-b85b-2524aac6d438 status_code=200
+INFO:     127.0.0.1:63024 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK

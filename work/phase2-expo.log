@@ -1,0 +1,12 @@
+Starting project at C:\Users\firas\Documents\Codex\2026-06-27\distributoros-prompt-0-architecture-planning-important\apps\mobile
+Expo Autolinking module resolution enabled
+Starting Metro Bundler
+
+Waiting on http://localhost:19006
+Logs for your project will appear below.
+Web Bundled 32234ms node_modules\expo-router\entry.js (976 modules)
+Web  INFO  %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+Web  LOG  Running application "main" with appParams:
+ {"hydrate": undefined, "rootTag": "#root"} 
+Development-level warnings: ON.
+Performance optimizations: OFF.

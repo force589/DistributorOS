@@ -1,0 +1,1 @@
+"""Immutable customer receivables ledger."""

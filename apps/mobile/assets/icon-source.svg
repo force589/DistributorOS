@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="DistributorOS app mark">
+  <rect width="1024" height="1024" rx="224" fill="#155EEF"/>
+  <path d="M286 248h222c153 0 276 119 276 264S661 776 508 776H286V248Z" fill="#fff"/>
+  <path d="M402 364h106c86 0 156 66 156 148s-70 148-156 148H402V364Z" fill="#155EEF"/>
+  <rect x="446" y="410" width="98" height="82" rx="18" fill="#fff"/>
+  <rect x="544" y="508" width="98" height="82" rx="18" fill="#fff"/>
+  <path d="M446 451h98M495 410v82M544 549h98M593 508v82" stroke="#155EEF" stroke-width="12"/>
+</svg>

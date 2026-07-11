@@ -1,0 +1,760 @@
+2026-06-28T05:08:00.995126Z [info     ] request_completed              duration_ms=25.02 method=GET path=/health/live request_id=e246fe80-e520-461b-9a51-2aeda9e64295 status_code=200
+INFO:     127.0.0.1:55548 - "GET /health/live HTTP/1.1" 200 OK
+2026-06-28T05:08:29.155607Z [info     ] signup_succeeded               business_id=90677902-8d48-4efa-bbfb-b6bd690eed22 request_id=9491b177-8bcc-4150-bffc-4ca028c4063b session_id=ed55561a-a9e9-4f3f-8b9a-0d6252517353 user_id=67d987a0-49c2-426c-b68d-ca9e6be53428
+2026-06-28T05:08:29.165611Z [info     ] request_completed              duration_ms=519.15 method=POST path=/api/v1/auth/signup request_id=9491b177-8bcc-4150-bffc-4ca028c4063b status_code=201
+INFO:     127.0.0.1:55551 - "POST /api/v1/auth/signup HTTP/1.1" 201 Created
+2026-06-28T05:08:29.320017Z [warning  ] request_completed              duration_ms=8.13 method=POST path=/api/v1/auth/signup request_id=c3a13fce-1b6e-482f-843b-0e50b776be53 status_code=422
+INFO:     127.0.0.1:55551 - "POST /api/v1/auth/signup HTTP/1.1" 422 Unprocessable Entity
+2026-06-28T05:11:37.999403Z [info     ] signup_succeeded               business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=f0882009-e15c-4ab8-aff7-45998c85137f session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:38.001173Z [info     ] request_completed              duration_ms=225.56 method=POST path=/api/v1/auth/signup request_id=f0882009-e15c-4ab8-aff7-45998c85137f status_code=201
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/signup HTTP/1.1" 201 Created
+2026-06-28T05:11:38.075778Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=292bb386-9541-4660-8a2b-b2c68422aa8e session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:38.075778Z [info     ] request_completed              duration_ms=68.86 method=POST path=/api/v1/auth/refresh request_id=292bb386-9541-4660-8a2b-b2c68422aa8e status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:38.125416Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=3deffe1a-eaa7-41da-9e8d-da87a7e62763 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:38.128211Z [info     ] request_completed              duration_ms=43.76 method=POST path=/api/v1/auth/refresh request_id=3deffe1a-eaa7-41da-9e8d-da87a7e62763 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:38.169995Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=eb3e40d2-4aad-4419-ac7b-a1ad2b63b0f8 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:38.169995Z [info     ] request_completed              duration_ms=38.77 method=POST path=/api/v1/auth/refresh request_id=eb3e40d2-4aad-4419-ac7b-a1ad2b63b0f8 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:38.213786Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=b3a96b7a-f40f-431d-bec0-0f15b93ef71c session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:38.216200Z [info     ] request_completed              duration_ms=37.97 method=POST path=/api/v1/auth/refresh request_id=b3a96b7a-f40f-431d-bec0-0f15b93ef71c status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:38.248543Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=7501d4c0-c54d-4ddb-a961-d7a81dffabfc session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:38.255086Z [info     ] request_completed              duration_ms=33.24 method=POST path=/api/v1/auth/refresh request_id=7501d4c0-c54d-4ddb-a961-d7a81dffabfc status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:38.279510Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=320aea67-8f98-44bf-b098-1d185d84a749 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:38.279510Z [info     ] request_completed              duration_ms=31.74 method=POST path=/api/v1/auth/refresh request_id=320aea67-8f98-44bf-b098-1d185d84a749 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:38.327624Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=ca9368e0-141d-4a83-8a28-ec61ee30f5f3 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:38.327624Z [info     ] request_completed              duration_ms=31.57 method=POST path=/api/v1/auth/refresh request_id=ca9368e0-141d-4a83-8a28-ec61ee30f5f3 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:38.358916Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=2ddacf3e-a2d2-4a2d-b0cf-93a8c696be87 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:38.358916Z [info     ] request_completed              duration_ms=28.03 method=POST path=/api/v1/auth/refresh request_id=2ddacf3e-a2d2-4a2d-b0cf-93a8c696be87 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:38.389861Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=ffc7ffd1-a202-4f19-a328-3030a9932080 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:38.389861Z [info     ] request_completed              duration_ms=28.95 method=POST path=/api/v1/auth/refresh request_id=ffc7ffd1-a202-4f19-a328-3030a9932080 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:38.421535Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=62776211-39e1-4a70-9643-d599dc710cbb session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:38.432162Z [info     ] request_completed              duration_ms=28.59 method=POST path=/api/v1/auth/refresh request_id=62776211-39e1-4a70-9643-d599dc710cbb status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:38.459596Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=daedc50d-1ca9-43f4-a1e1-63ec808513cb session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:38.464267Z [info     ] request_completed              duration_ms=29.32 method=POST path=/api/v1/auth/refresh request_id=daedc50d-1ca9-43f4-a1e1-63ec808513cb status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:38.495859Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=48d5367a-29ac-4f15-a219-2bbef8da8016 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:38.500861Z [info     ] request_completed              duration_ms=28.97 method=POST path=/api/v1/auth/refresh request_id=48d5367a-29ac-4f15-a219-2bbef8da8016 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:38.517447Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=38b810bf-5e73-4f9d-a499-e5d66b27261a session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:38.534706Z [info     ] request_completed              duration_ms=29.4 method=POST path=/api/v1/auth/refresh request_id=38b810bf-5e73-4f9d-a499-e5d66b27261a status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:38.564565Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=d0eb2e29-fb5d-41c0-b9f8-3bd143ea3ab1 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:38.564565Z [info     ] request_completed              duration_ms=28.84 method=POST path=/api/v1/auth/refresh request_id=d0eb2e29-fb5d-41c0-b9f8-3bd143ea3ab1 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:38.595450Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=b39669b2-e3f5-495c-bb14-53cbb443c34d session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:38.595450Z [info     ] request_completed              duration_ms=29.0 method=POST path=/api/v1/auth/refresh request_id=b39669b2-e3f5-495c-bb14-53cbb443c34d status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:38.626729Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=6e95d0bf-d302-4d05-95f0-dfef41819829 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:38.626729Z [info     ] request_completed              duration_ms=30.09 method=POST path=/api/v1/auth/refresh request_id=6e95d0bf-d302-4d05-95f0-dfef41819829 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:38.670127Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=54e5de23-20be-4106-b93c-073a2b284200 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:38.674623Z [info     ] request_completed              duration_ms=32.05 method=POST path=/api/v1/auth/refresh request_id=54e5de23-20be-4106-b93c-073a2b284200 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:38.707080Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=85b4c7e9-4cab-4c39-b8e9-029ef64497b2 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:38.707955Z [info     ] request_completed              duration_ms=30.44 method=POST path=/api/v1/auth/refresh request_id=85b4c7e9-4cab-4c39-b8e9-029ef64497b2 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:38.737217Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=61dd25a2-5619-43a8-9a96-a361397b8a19 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:38.737217Z [info     ] request_completed              duration_ms=28.79 method=POST path=/api/v1/auth/refresh request_id=61dd25a2-5619-43a8-9a96-a361397b8a19 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:38.772997Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=49ab9b1b-1a4e-4e78-a126-735b0e3a7246 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:38.777883Z [info     ] request_completed              duration_ms=28.25 method=POST path=/api/v1/auth/refresh request_id=49ab9b1b-1a4e-4e78-a126-735b0e3a7246 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:38.803885Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=733fa44f-9976-41e8-a428-40ded82eb833 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:38.810776Z [info     ] request_completed              duration_ms=28.45 method=POST path=/api/v1/auth/refresh request_id=733fa44f-9976-41e8-a428-40ded82eb833 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:38.842505Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=c76b4045-ac19-4021-bdb5-2430e8a71a52 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:38.842505Z [info     ] request_completed              duration_ms=30.79 method=POST path=/api/v1/auth/refresh request_id=c76b4045-ac19-4021-bdb5-2430e8a71a52 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:38.875982Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=b39b596b-80de-4a1e-8bc7-a4576eed4a3a session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:38.879905Z [info     ] request_completed              duration_ms=29.13 method=POST path=/api/v1/auth/refresh request_id=b39b596b-80de-4a1e-8bc7-a4576eed4a3a status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:38.911937Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=3668de5d-0f4f-4beb-9064-85aaae8aad4f session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:38.911937Z [info     ] request_completed              duration_ms=27.87 method=POST path=/api/v1/auth/refresh request_id=3668de5d-0f4f-4beb-9064-85aaae8aad4f status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:38.947013Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=cbde4716-d121-4f12-8e5c-b85ffd04191b session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:38.949036Z [info     ] request_completed              duration_ms=31.03 method=POST path=/api/v1/auth/refresh request_id=cbde4716-d121-4f12-8e5c-b85ffd04191b status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:38.978195Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=2aa5dbbb-8180-46f8-a179-eff100d3eac6 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:38.981981Z [info     ] request_completed              duration_ms=27.75 method=POST path=/api/v1/auth/refresh request_id=2aa5dbbb-8180-46f8-a179-eff100d3eac6 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:39.014994Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=bcf17456-a9c2-4dc7-b6f7-e79e35c76973 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:39.014994Z [info     ] request_completed              duration_ms=29.05 method=POST path=/api/v1/auth/refresh request_id=bcf17456-a9c2-4dc7-b6f7-e79e35c76973 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:39.049315Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=1623ab84-bd3f-4180-b466-fa9614e7a9e7 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:39.052462Z [info     ] request_completed              duration_ms=31.84 method=POST path=/api/v1/auth/refresh request_id=1623ab84-bd3f-4180-b466-fa9614e7a9e7 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:39.086673Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=a455fb81-03ba-4057-98bc-240a67299122 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:39.091714Z [info     ] request_completed              duration_ms=33.45 method=POST path=/api/v1/auth/refresh request_id=a455fb81-03ba-4057-98bc-240a67299122 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:39.133552Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=15ee46d2-99e2-419e-8cc0-a0d680258d2b session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:39.135914Z [info     ] request_completed              duration_ms=38.58 method=POST path=/api/v1/auth/refresh request_id=15ee46d2-99e2-419e-8cc0-a0d680258d2b status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:39.163835Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=ba1de8e6-a553-4ee5-9522-853787b5ed20 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:39.163835Z [info     ] request_completed              duration_ms=30.82 method=POST path=/api/v1/auth/refresh request_id=ba1de8e6-a553-4ee5-9522-853787b5ed20 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:39.211304Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=215ad638-eb30-48eb-9961-eff0b1ec683d session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:39.211304Z [info     ] request_completed              duration_ms=34.68 method=POST path=/api/v1/auth/refresh request_id=215ad638-eb30-48eb-9961-eff0b1ec683d status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:39.250548Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=0e2720c5-18b1-4887-a29d-ed78ebc0c3cb session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:39.250548Z [info     ] request_completed              duration_ms=33.25 method=POST path=/api/v1/auth/refresh request_id=0e2720c5-18b1-4887-a29d-ed78ebc0c3cb status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:39.286010Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=72addaa4-a522-4151-88a5-20051ea54f43 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:39.288033Z [info     ] request_completed              duration_ms=31.03 method=POST path=/api/v1/auth/refresh request_id=72addaa4-a522-4151-88a5-20051ea54f43 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:39.321649Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=97d8ec56-e9c4-4f9b-bd1d-bc9a6a4ad069 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:39.322291Z [info     ] request_completed              duration_ms=30.1 method=POST path=/api/v1/auth/refresh request_id=97d8ec56-e9c4-4f9b-bd1d-bc9a6a4ad069 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:39.358393Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=4d4ff8a4-54d6-4c46-babe-7caf27084839 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:39.358393Z [info     ] request_completed              duration_ms=30.7 method=POST path=/api/v1/auth/refresh request_id=4d4ff8a4-54d6-4c46-babe-7caf27084839 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:39.400359Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=b9e9e817-e0d1-4b03-bf5f-dbb74bde9cb7 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:39.400359Z [info     ] request_completed              duration_ms=32.59 method=POST path=/api/v1/auth/refresh request_id=b9e9e817-e0d1-4b03-bf5f-dbb74bde9cb7 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:39.437904Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=e637ea31-31e3-4fae-b6fd-98aca40d9993 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:39.437904Z [info     ] request_completed              duration_ms=32.99 method=POST path=/api/v1/auth/refresh request_id=e637ea31-31e3-4fae-b6fd-98aca40d9993 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:39.470508Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=5c223c73-6955-453f-a2d4-d229db82dc4c session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:39.479504Z [info     ] request_completed              duration_ms=34.4 method=POST path=/api/v1/auth/refresh request_id=5c223c73-6955-453f-a2d4-d229db82dc4c status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:39.515254Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=b57650f4-711c-4193-ab88-f00c7f5be282 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:39.515254Z [info     ] request_completed              duration_ms=35.43 method=POST path=/api/v1/auth/refresh request_id=b57650f4-711c-4193-ab88-f00c7f5be282 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:39.543112Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=ce701152-f68d-443c-a85c-3b034ddd96c1 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:39.543112Z [info     ] request_completed              duration_ms=30.69 method=POST path=/api/v1/auth/refresh request_id=ce701152-f68d-443c-a85c-3b034ddd96c1 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:39.590469Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=d065b0c9-a93b-4aee-9aed-f9049f1163e4 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:39.590469Z [info     ] request_completed              duration_ms=35.64 method=POST path=/api/v1/auth/refresh request_id=d065b0c9-a93b-4aee-9aed-f9049f1163e4 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:39.622143Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=39c67412-8494-44e6-aa25-1e63fa246206 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:39.638177Z [info     ] request_completed              duration_ms=31.51 method=POST path=/api/v1/auth/refresh request_id=39c67412-8494-44e6-aa25-1e63fa246206 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:39.670331Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=e0f8f19d-6231-49c0-887e-f679216dbe56 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:39.670331Z [info     ] request_completed              duration_ms=29.96 method=POST path=/api/v1/auth/refresh request_id=e0f8f19d-6231-49c0-887e-f679216dbe56 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:39.701625Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=4152dc1b-bb0f-4ce9-b1fe-5ec0bbf88e16 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:39.701625Z [info     ] request_completed              duration_ms=29.58 method=POST path=/api/v1/auth/refresh request_id=4152dc1b-bb0f-4ce9-b1fe-5ec0bbf88e16 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:39.735581Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=db03860a-3aa4-46c4-9ab3-73a4236d3c09 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:39.742982Z [info     ] request_completed              duration_ms=29.48 method=POST path=/api/v1/auth/refresh request_id=db03860a-3aa4-46c4-9ab3-73a4236d3c09 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:39.767514Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=6409df58-7b16-4eac-9fee-2f4182aebc1a session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:39.767514Z [info     ] request_completed              duration_ms=25.91 method=POST path=/api/v1/auth/refresh request_id=6409df58-7b16-4eac-9fee-2f4182aebc1a status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:39.799819Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=0e679d66-f58c-4679-85eb-6efefe199804 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:39.799819Z [info     ] request_completed              duration_ms=27.71 method=POST path=/api/v1/auth/refresh request_id=0e679d66-f58c-4679-85eb-6efefe199804 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:39.831748Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=35fc7880-7d32-4548-a97d-8fc906af2684 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:39.831748Z [info     ] request_completed              duration_ms=27.54 method=POST path=/api/v1/auth/refresh request_id=35fc7880-7d32-4548-a97d-8fc906af2684 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:39.864909Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=a804131f-f9c1-4fa5-b1e9-c20e6138666e session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:39.864909Z [info     ] request_completed              duration_ms=26.94 method=POST path=/api/v1/auth/refresh request_id=a804131f-f9c1-4fa5-b1e9-c20e6138666e status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:39.896157Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=1206bc63-ed8a-492b-a189-8b4cce771590 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:39.896157Z [info     ] request_completed              duration_ms=28.3 method=POST path=/api/v1/auth/refresh request_id=1206bc63-ed8a-492b-a189-8b4cce771590 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:39.933832Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=6f4495e4-2cc6-4fd1-8df0-f840a273cade session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:39.938890Z [info     ] request_completed              duration_ms=30.62 method=POST path=/api/v1/auth/refresh request_id=6f4495e4-2cc6-4fd1-8df0-f840a273cade status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:39.967746Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=bef76f7d-ee33-4241-a06d-ca330c5f3988 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:39.972602Z [info     ] request_completed              duration_ms=29.04 method=POST path=/api/v1/auth/refresh request_id=bef76f7d-ee33-4241-a06d-ca330c5f3988 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:39.996912Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=a597681f-945f-43c5-8587-140895ee2c1c session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:40.003742Z [info     ] request_completed              duration_ms=26.77 method=POST path=/api/v1/auth/refresh request_id=a597681f-945f-43c5-8587-140895ee2c1c status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:40.033288Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=c5b291c4-cfa1-4b1c-9831-fa06b23fc9c8 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:40.035603Z [info     ] request_completed              duration_ms=27.22 method=POST path=/api/v1/auth/refresh request_id=c5b291c4-cfa1-4b1c-9831-fa06b23fc9c8 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:40.067700Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=22746cae-d11a-48ce-b6e2-ed1ce7caf17d session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:40.067700Z [info     ] request_completed              duration_ms=28.68 method=POST path=/api/v1/auth/refresh request_id=22746cae-d11a-48ce-b6e2-ed1ce7caf17d status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:40.099751Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=dd9b1f19-3b2f-4dd2-bf05-332e4992ef5c session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:40.099751Z [info     ] request_completed              duration_ms=28.24 method=POST path=/api/v1/auth/refresh request_id=dd9b1f19-3b2f-4dd2-bf05-332e4992ef5c status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:40.137641Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=c905844a-3632-4f50-beda-64495e52719d session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:40.139665Z [info     ] request_completed              duration_ms=30.09 method=POST path=/api/v1/auth/refresh request_id=c905844a-3632-4f50-beda-64495e52719d status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:40.168377Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=6e6bda05-7368-4786-93be-3d20837905e6 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:40.168377Z [info     ] request_completed              duration_ms=29.71 method=POST path=/api/v1/auth/refresh request_id=6e6bda05-7368-4786-93be-3d20837905e6 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:40.208974Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=0c80a0d8-25c7-473e-a411-c31a021df3ac session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:40.210981Z [info     ] request_completed              duration_ms=31.95 method=POST path=/api/v1/auth/refresh request_id=0c80a0d8-25c7-473e-a411-c31a021df3ac status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:40.242405Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=8ac43a29-27d4-40cc-ac33-4d886df8f524 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:40.245614Z [info     ] request_completed              duration_ms=30.46 method=POST path=/api/v1/auth/refresh request_id=8ac43a29-27d4-40cc-ac33-4d886df8f524 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:40.274611Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=c79ad6db-c1ec-4ca7-8f35-7509ece23184 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:40.281178Z [info     ] request_completed              duration_ms=29.16 method=POST path=/api/v1/auth/refresh request_id=c79ad6db-c1ec-4ca7-8f35-7509ece23184 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:40.313021Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=277d7eff-520f-433b-adec-f35838e9187f session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:40.313021Z [info     ] request_completed              duration_ms=30.38 method=POST path=/api/v1/auth/refresh request_id=277d7eff-520f-433b-adec-f35838e9187f status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:40.345645Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=b046bad5-1e11-48ff-a441-9b774bad381d session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:40.345645Z [info     ] request_completed              duration_ms=28.74 method=POST path=/api/v1/auth/refresh request_id=b046bad5-1e11-48ff-a441-9b774bad381d status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:40.380102Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=aea98e18-5d66-4515-9f29-7fca1d47d799 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:40.383191Z [info     ] request_completed              duration_ms=28.75 method=POST path=/api/v1/auth/refresh request_id=aea98e18-5d66-4515-9f29-7fca1d47d799 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:40.412987Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=3cd38e91-f61f-43c7-890f-556440b907d2 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:40.416059Z [info     ] request_completed              duration_ms=27.05 method=POST path=/api/v1/auth/refresh request_id=3cd38e91-f61f-43c7-890f-556440b907d2 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:40.448378Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=584833a9-ee52-4fec-8da8-372ef54eeb02 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:40.448378Z [info     ] request_completed              duration_ms=28.67 method=POST path=/api/v1/auth/refresh request_id=584833a9-ee52-4fec-8da8-372ef54eeb02 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:40.479246Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=2270c9dc-70fa-4186-8607-c368578ff13d session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:40.479246Z [info     ] request_completed              duration_ms=28.2 method=POST path=/api/v1/auth/refresh request_id=2270c9dc-70fa-4186-8607-c368578ff13d status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:40.517643Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=ebbda6a2-d7a4-4bbb-b203-73b0ad4050f5 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:40.519665Z [info     ] request_completed              duration_ms=28.58 method=POST path=/api/v1/auth/refresh request_id=ebbda6a2-d7a4-4bbb-b203-73b0ad4050f5 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:40.547681Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=2af6fd62-9e09-495e-af3c-f48a50e85d00 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:40.547681Z [info     ] request_completed              duration_ms=29.99 method=POST path=/api/v1/auth/refresh request_id=2af6fd62-9e09-495e-af3c-f48a50e85d00 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:40.578835Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=e79f74e8-810f-48b2-b2e8-a327b2c53f84 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:40.578835Z [info     ] request_completed              duration_ms=29.38 method=POST path=/api/v1/auth/refresh request_id=e79f74e8-810f-48b2-b2e8-a327b2c53f84 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:40.621172Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=f202a99b-7a8a-4f96-8b68-8c42a96f884a session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:40.621688Z [info     ] request_completed              duration_ms=28.15 method=POST path=/api/v1/auth/refresh request_id=f202a99b-7a8a-4f96-8b68-8c42a96f884a status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:40.653208Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=1861b025-8e57-4ee6-9539-de7043409c77 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:40.654339Z [info     ] request_completed              duration_ms=28.82 method=POST path=/api/v1/auth/refresh request_id=1861b025-8e57-4ee6-9539-de7043409c77 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:40.686337Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=5f8ddc75-f013-4687-8ca2-c51933d29469 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:40.688351Z [info     ] request_completed              duration_ms=28.68 method=POST path=/api/v1/auth/refresh request_id=5f8ddc75-f013-4687-8ca2-c51933d29469 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:40.720682Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=5be12b4c-5eb3-4750-ba8d-c40ad409030e session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:40.720682Z [info     ] request_completed              duration_ms=30.64 method=POST path=/api/v1/auth/refresh request_id=5be12b4c-5eb3-4750-ba8d-c40ad409030e status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:40.756238Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=101a7e67-b157-468f-811a-cd5815aadfc0 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:40.756238Z [info     ] request_completed              duration_ms=29.36 method=POST path=/api/v1/auth/refresh request_id=101a7e67-b157-468f-811a-cd5815aadfc0 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:40.786773Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=fff524b9-214a-4b45-b74e-f818e09f8352 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:40.792576Z [info     ] request_completed              duration_ms=29.12 method=POST path=/api/v1/auth/refresh request_id=fff524b9-214a-4b45-b74e-f818e09f8352 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:40.825678Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=8417e9e4-cb31-4777-8991-7705fd34b9c8 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:40.827434Z [info     ] request_completed              duration_ms=29.77 method=POST path=/api/v1/auth/refresh request_id=8417e9e4-cb31-4777-8991-7705fd34b9c8 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:40.859408Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=91b95eb6-68c5-4e05-b385-8d43da47f6f3 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:40.859408Z [info     ] request_completed              duration_ms=30.86 method=POST path=/api/v1/auth/refresh request_id=91b95eb6-68c5-4e05-b385-8d43da47f6f3 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:40.898794Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=a432dd11-330b-424d-b4d0-7a200ece122d session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:40.900815Z [info     ] request_completed              duration_ms=31.71 method=POST path=/api/v1/auth/refresh request_id=a432dd11-330b-424d-b4d0-7a200ece122d status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:40.935717Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=0dc8d5c3-cc4a-450f-a071-f9a20d40e92d session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:40.938461Z [info     ] request_completed              duration_ms=31.95 method=POST path=/api/v1/auth/refresh request_id=0dc8d5c3-cc4a-450f-a071-f9a20d40e92d status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:40.970036Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=67b246a6-e2d9-41d7-b7ec-657556882797 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:40.974696Z [info     ] request_completed              duration_ms=31.17 method=POST path=/api/v1/auth/refresh request_id=67b246a6-e2d9-41d7-b7ec-657556882797 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:41.007895Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=fa6129b9-8053-40e1-ae9a-a498e49bf20f session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:41.009587Z [info     ] request_completed              duration_ms=30.73 method=POST path=/api/v1/auth/refresh request_id=fa6129b9-8053-40e1-ae9a-a498e49bf20f status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:41.044764Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=0023f487-253a-4142-aba1-52428181dd31 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:41.047300Z [info     ] request_completed              duration_ms=31.76 method=POST path=/api/v1/auth/refresh request_id=0023f487-253a-4142-aba1-52428181dd31 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:41.082369Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=c3f5c99b-3ac7-433f-aba1-eb792d69d400 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:41.084389Z [info     ] request_completed              duration_ms=31.79 method=POST path=/api/v1/auth/refresh request_id=c3f5c99b-3ac7-433f-aba1-eb792d69d400 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:41.112525Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=3b1fd309-84c5-4c27-b50a-c7c73fd73735 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:41.112525Z [info     ] request_completed              duration_ms=31.93 method=POST path=/api/v1/auth/refresh request_id=3b1fd309-84c5-4c27-b50a-c7c73fd73735 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:41.152794Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=e7872710-ec2a-4ae2-8ed8-9fa68eaa0122 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:41.152794Z [info     ] request_completed              duration_ms=29.5 method=POST path=/api/v1/auth/refresh request_id=e7872710-ec2a-4ae2-8ed8-9fa68eaa0122 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:41.178733Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=c20d799f-355f-4ecc-a5f5-e7c8e22c4a29 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:41.191053Z [info     ] request_completed              duration_ms=29.71 method=POST path=/api/v1/auth/refresh request_id=c20d799f-355f-4ecc-a5f5-e7c8e22c4a29 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:41.225083Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=488c60ec-1a00-41ae-aa6e-56628b51f35b session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:41.227094Z [info     ] request_completed              duration_ms=29.32 method=POST path=/api/v1/auth/refresh request_id=488c60ec-1a00-41ae-aa6e-56628b51f35b status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:41.261249Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=0342b378-35a4-4da5-9929-222f33abb382 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:41.261249Z [info     ] request_completed              duration_ms=30.99 method=POST path=/api/v1/auth/refresh request_id=0342b378-35a4-4da5-9929-222f33abb382 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:41.297996Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=fcbc7b79-fb8a-46ac-92e2-9ee25848fabc session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:41.297996Z [info     ] request_completed              duration_ms=29.55 method=POST path=/api/v1/auth/refresh request_id=fcbc7b79-fb8a-46ac-92e2-9ee25848fabc status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:41.327990Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=f11da782-f395-40eb-b6c4-33789879bbcc session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:41.327990Z [info     ] request_completed              duration_ms=28.63 method=POST path=/api/v1/auth/refresh request_id=f11da782-f395-40eb-b6c4-33789879bbcc status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:41.365566Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=31f13b33-bed2-43e1-909a-a85044869efb session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:41.368570Z [info     ] request_completed              duration_ms=29.73 method=POST path=/api/v1/auth/refresh request_id=31f13b33-bed2-43e1-909a-a85044869efb status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:41.397695Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=4c2b5bd6-76bf-4eb7-ba2f-86af0a65dc27 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:41.397695Z [info     ] request_completed              duration_ms=32.55 method=POST path=/api/v1/auth/refresh request_id=4c2b5bd6-76bf-4eb7-ba2f-86af0a65dc27 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:41.619867Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=3390947e-d50c-4808-83ce-354b9f098d6b session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:41.619867Z [info     ] request_completed              duration_ms=213.75 method=POST path=/api/v1/auth/refresh request_id=3390947e-d50c-4808-83ce-354b9f098d6b status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:41.656618Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=524c0b88-911d-4f89-a029-a36fcd1117b4 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:41.656618Z [info     ] request_completed              duration_ms=29.72 method=POST path=/api/v1/auth/refresh request_id=524c0b88-911d-4f89-a029-a36fcd1117b4 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:41.694216Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=68807190-2929-48a8-9be2-60331c3d7a94 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:41.694216Z [info     ] request_completed              duration_ms=32.07 method=POST path=/api/v1/auth/refresh request_id=68807190-2929-48a8-9be2-60331c3d7a94 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:41.733496Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=9a463cbf-bada-480a-b768-e75300750644 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:41.735511Z [info     ] request_completed              duration_ms=32.18 method=POST path=/api/v1/auth/refresh request_id=9a463cbf-bada-480a-b768-e75300750644 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:41.767899Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=9b3d92ab-aba9-49cf-b686-f6fa374b9329 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:41.767899Z [info     ] request_completed              duration_ms=34.38 method=POST path=/api/v1/auth/refresh request_id=9b3d92ab-aba9-49cf-b686-f6fa374b9329 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:41.809985Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=4676ae02-d631-48de-aaa3-80de29653b21 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:41.809985Z [info     ] request_completed              duration_ms=33.04 method=POST path=/api/v1/auth/refresh request_id=4676ae02-d631-48de-aaa3-80de29653b21 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:41.848734Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=8004bdf9-777e-4eb5-a561-65a570bd7f6d session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:41.848734Z [info     ] request_completed              duration_ms=34.45 method=POST path=/api/v1/auth/refresh request_id=8004bdf9-777e-4eb5-a561-65a570bd7f6d status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:41.889286Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=6711c238-1f76-412a-88b2-396d31386658 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:41.889286Z [info     ] request_completed              duration_ms=33.78 method=POST path=/api/v1/auth/refresh request_id=6711c238-1f76-412a-88b2-396d31386658 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:41.924686Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=6ce67be6-028c-4d43-8082-ea82ec7104e7 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:41.924686Z [info     ] request_completed              duration_ms=32.92 method=POST path=/api/v1/auth/refresh request_id=6ce67be6-028c-4d43-8082-ea82ec7104e7 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:41.969442Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=f0c4f117-2191-496d-8b5d-801e86d4d8c0 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:41.970082Z [info     ] request_completed              duration_ms=33.55 method=POST path=/api/v1/auth/refresh request_id=f0c4f117-2191-496d-8b5d-801e86d4d8c0 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:42.001196Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=862f9cd0-3c83-4c5b-9cdc-b7d503c91cf5 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:42.001196Z [info     ] request_completed              duration_ms=31.67 method=POST path=/api/v1/auth/refresh request_id=862f9cd0-3c83-4c5b-9cdc-b7d503c91cf5 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:42.032694Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=db812825-1bf3-47b7-9c54-bb07bbcb3271 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:42.032694Z [info     ] request_completed              duration_ms=29.57 method=POST path=/api/v1/auth/refresh request_id=db812825-1bf3-47b7-9c54-bb07bbcb3271 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:42.080174Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=5496bf82-02ce-412f-9952-8812c2f022af session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:42.080174Z [info     ] request_completed              duration_ms=33.06 method=POST path=/api/v1/auth/refresh request_id=5496bf82-02ce-412f-9952-8812c2f022af status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:42.114036Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=212bf034-7ecd-43b9-aa4d-160e2d8b580c session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:42.114036Z [info     ] request_completed              duration_ms=30.43 method=POST path=/api/v1/auth/refresh request_id=212bf034-7ecd-43b9-aa4d-160e2d8b580c status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:42.143712Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=de0dfe48-7aba-40a4-96b5-5ac92e5e71e9 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:42.143712Z [info     ] request_completed              duration_ms=30.72 method=POST path=/api/v1/auth/refresh request_id=de0dfe48-7aba-40a4-96b5-5ac92e5e71e9 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:42.176061Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=e446100f-af76-4597-98d4-baf20e681e39 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:42.191550Z [info     ] request_completed              duration_ms=29.57 method=POST path=/api/v1/auth/refresh request_id=e446100f-af76-4597-98d4-baf20e681e39 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:42.226799Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=4b37c329-fd69-4e6e-afde-f8f8ee9eeef7 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:42.226799Z [info     ] request_completed              duration_ms=32.83 method=POST path=/api/v1/auth/refresh request_id=4b37c329-fd69-4e6e-afde-f8f8ee9eeef7 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:42.260633Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=790e5c2d-352d-4a6c-a24d-54c724784795 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:42.264677Z [info     ] request_completed              duration_ms=28.66 method=POST path=/api/v1/auth/refresh request_id=790e5c2d-352d-4a6c-a24d-54c724784795 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:42.292102Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=9599414a-7f65-4200-806f-05f9f2a55390 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:42.292102Z [info     ] request_completed              duration_ms=29.58 method=POST path=/api/v1/auth/refresh request_id=9599414a-7f65-4200-806f-05f9f2a55390 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:42.328533Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=6aba96f0-4c88-478e-94e1-ae7d368cd281 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:42.328533Z [info     ] request_completed              duration_ms=26.22 method=POST path=/api/v1/auth/refresh request_id=6aba96f0-4c88-478e-94e1-ae7d368cd281 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:42.366690Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=590fda9e-d69a-497e-88b7-6960490f06a8 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:42.369048Z [info     ] request_completed              duration_ms=32.14 method=POST path=/api/v1/auth/refresh request_id=590fda9e-d69a-497e-88b7-6960490f06a8 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:42.397830Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=d775af7b-d774-4cce-8b35-cf38cf7834f7 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:42.402702Z [info     ] request_completed              duration_ms=28.97 method=POST path=/api/v1/auth/refresh request_id=d775af7b-d774-4cce-8b35-cf38cf7834f7 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:42.434526Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=95fc92f7-2fd1-4618-9d7b-cb1a4a3708bb session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:42.434526Z [info     ] request_completed              duration_ms=28.2 method=POST path=/api/v1/auth/refresh request_id=95fc92f7-2fd1-4618-9d7b-cb1a4a3708bb status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:42.472726Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=4f8b57eb-a472-4fcd-8f79-269d6f70fd6e session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:42.472726Z [info     ] request_completed              duration_ms=33.01 method=POST path=/api/v1/auth/refresh request_id=4f8b57eb-a472-4fcd-8f79-269d6f70fd6e status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:42.506554Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=e23477a4-ae86-4245-ae6c-35f5c40444c9 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:42.508300Z [info     ] request_completed              duration_ms=28.49 method=POST path=/api/v1/auth/refresh request_id=e23477a4-ae86-4245-ae6c-35f5c40444c9 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:42.539950Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=67e5e492-6ed2-4197-afb1-a82d1b9f7a85 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:42.539950Z [info     ] request_completed              duration_ms=26.57 method=POST path=/api/v1/auth/refresh request_id=67e5e492-6ed2-4197-afb1-a82d1b9f7a85 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:42.572041Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=fe17f807-40ce-409b-941c-cc6a2ed2c33b session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:42.572041Z [info     ] request_completed              duration_ms=31.08 method=POST path=/api/v1/auth/refresh request_id=fe17f807-40ce-409b-941c-cc6a2ed2c33b status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:42.610702Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=a574cf1b-dbcb-469c-afec-d99ce3f580c7 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:42.612714Z [info     ] request_completed              duration_ms=29.23 method=POST path=/api/v1/auth/refresh request_id=a574cf1b-dbcb-469c-afec-d99ce3f580c7 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:42.650587Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=20daa177-ee94-4da3-bfc4-ae9091603a90 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:42.650587Z [info     ] request_completed              duration_ms=32.42 method=POST path=/api/v1/auth/refresh request_id=20daa177-ee94-4da3-bfc4-ae9091603a90 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:42.681549Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=876fa76c-6499-4b09-9fcf-f42f22b0f136 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:42.692557Z [info     ] request_completed              duration_ms=34.73 method=POST path=/api/v1/auth/refresh request_id=876fa76c-6499-4b09-9fcf-f42f22b0f136 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:42.729820Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=5d24596a-3460-4397-9f04-dd24288c34c2 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:42.729820Z [info     ] request_completed              duration_ms=33.94 method=POST path=/api/v1/auth/refresh request_id=5d24596a-3460-4397-9f04-dd24288c34c2 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:42.767994Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=22278283-681b-472c-983e-326ddc865bf6 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:42.767994Z [info     ] request_completed              duration_ms=35.93 method=POST path=/api/v1/auth/refresh request_id=22278283-681b-472c-983e-326ddc865bf6 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:42.814555Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=62a33990-b8e8-4aa1-a39f-3dba5d56ac6d session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:42.816576Z [info     ] request_completed              duration_ms=35.53 method=POST path=/api/v1/auth/refresh request_id=62a33990-b8e8-4aa1-a39f-3dba5d56ac6d status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:42.847427Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=50e0a403-242d-443e-a8f2-78573e0daaef session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:42.850406Z [info     ] request_completed              duration_ms=29.7 method=POST path=/api/v1/auth/refresh request_id=50e0a403-242d-443e-a8f2-78573e0daaef status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:42.881190Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=75c8890d-c7ef-4601-9833-37ce4a04efa4 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:42.881190Z [info     ] request_completed              duration_ms=27.86 method=POST path=/api/v1/auth/refresh request_id=75c8890d-c7ef-4601-9833-37ce4a04efa4 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:42.917901Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=0ecbcd92-6e26-4a3f-b9a5-ed0433fcd6cb session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:42.920664Z [info     ] request_completed              duration_ms=29.97 method=POST path=/api/v1/auth/refresh request_id=0ecbcd92-6e26-4a3f-b9a5-ed0433fcd6cb status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:42.951386Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=bb458dea-1ff2-40b6-a416-fc7b6a7814cc session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:42.951386Z [info     ] request_completed              duration_ms=31.48 method=POST path=/api/v1/auth/refresh request_id=bb458dea-1ff2-40b6-a416-fc7b6a7814cc status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:42.989133Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=4922e6e8-61a9-45fe-b532-bff5e270085c session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:42.989133Z [info     ] request_completed              duration_ms=30.9 method=POST path=/api/v1/auth/refresh request_id=4922e6e8-61a9-45fe-b532-bff5e270085c status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:43.025782Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=12cfad7d-1f86-43f9-a496-dc030aa3b86f session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:43.029703Z [info     ] request_completed              duration_ms=30.88 method=POST path=/api/v1/auth/refresh request_id=12cfad7d-1f86-43f9-a496-dc030aa3b86f status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:43.061850Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=4e64bdf9-609d-447c-aeaf-171e41fa19e5 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:43.063871Z [info     ] request_completed              duration_ms=28.62 method=POST path=/api/v1/auth/refresh request_id=4e64bdf9-609d-447c-aeaf-171e41fa19e5 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:43.096630Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=988bc4bd-eab7-4aa2-a1be-ae712ef59f53 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:43.096630Z [info     ] request_completed              duration_ms=28.86 method=POST path=/api/v1/auth/refresh request_id=988bc4bd-eab7-4aa2-a1be-ae712ef59f53 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:43.124747Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=fcae2cc0-203f-45db-9879-6d458d8408e9 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:43.124747Z [info     ] request_completed              duration_ms=29.06 method=POST path=/api/v1/auth/refresh request_id=fcae2cc0-203f-45db-9879-6d458d8408e9 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:43.159695Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=86f300e3-dfb3-4f77-8ff5-93af028edc45 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:43.166819Z [info     ] request_completed              duration_ms=29.97 method=POST path=/api/v1/auth/refresh request_id=86f300e3-dfb3-4f77-8ff5-93af028edc45 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:43.202489Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=d3be8f17-7ee6-412a-97f7-9a65e1c02371 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:43.202489Z [info     ] request_completed              duration_ms=32.59 method=POST path=/api/v1/auth/refresh request_id=d3be8f17-7ee6-412a-97f7-9a65e1c02371 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:43.240373Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=b1dc8cbc-1c11-42d3-939c-632f253566bf session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:43.240373Z [info     ] request_completed              duration_ms=34.35 method=POST path=/api/v1/auth/refresh request_id=b1dc8cbc-1c11-42d3-939c-632f253566bf status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:43.276747Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=12771232-0b04-46af-a22e-0080671469f0 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:43.276747Z [info     ] request_completed              duration_ms=26.86 method=POST path=/api/v1/auth/refresh request_id=12771232-0b04-46af-a22e-0080671469f0 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:43.308524Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=9a8fa17a-7dca-4e43-8d49-d9d3dc87efcb session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:43.313333Z [info     ] request_completed              duration_ms=29.9 method=POST path=/api/v1/auth/refresh request_id=9a8fa17a-7dca-4e43-8d49-d9d3dc87efcb status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:43.344733Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=f686d40f-9502-4d17-b8ad-5cbc876d2682 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:43.344733Z [info     ] request_completed              duration_ms=30.24 method=POST path=/api/v1/auth/refresh request_id=f686d40f-9502-4d17-b8ad-5cbc876d2682 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:43.377424Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=cd94fcad-8bbe-4274-a4cc-4c2fe03148c2 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:43.377424Z [info     ] request_completed              duration_ms=29.07 method=POST path=/api/v1/auth/refresh request_id=cd94fcad-8bbe-4274-a4cc-4c2fe03148c2 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:43.408225Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=b4ad13e6-647f-49a9-894d-5d7c101ed269 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:43.408225Z [info     ] request_completed              duration_ms=29.67 method=POST path=/api/v1/auth/refresh request_id=b4ad13e6-647f-49a9-894d-5d7c101ed269 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:43.443338Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=621031f8-4871-49bd-a517-402d6f9a0baf session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:43.451763Z [info     ] request_completed              duration_ms=29.73 method=POST path=/api/v1/auth/refresh request_id=621031f8-4871-49bd-a517-402d6f9a0baf status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:43.487881Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=705e0b78-9dd8-473f-af58-5c1966f6e867 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:43.487881Z [info     ] request_completed              duration_ms=32.97 method=POST path=/api/v1/auth/refresh request_id=705e0b78-9dd8-473f-af58-5c1966f6e867 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:43.524492Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=54348f56-2151-4381-ae39-a385613bf56a session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:43.527153Z [info     ] request_completed              duration_ms=32.26 method=POST path=/api/v1/auth/refresh request_id=54348f56-2151-4381-ae39-a385613bf56a status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:43.559721Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=d269c7a5-78ca-48e9-abb8-dbbfd126a357 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:43.559721Z [info     ] request_completed              duration_ms=32.44 method=POST path=/api/v1/auth/refresh request_id=d269c7a5-78ca-48e9-abb8-dbbfd126a357 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:43.599816Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=8c5b0f74-ef05-4322-8bdf-4d97c9aa14fd session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:43.599816Z [info     ] request_completed              duration_ms=32.65 method=POST path=/api/v1/auth/refresh request_id=8c5b0f74-ef05-4322-8bdf-4d97c9aa14fd status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:43.637865Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=9cba5784-51f2-43ff-b501-b244a206a139 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:43.642088Z [info     ] request_completed              duration_ms=34.28 method=POST path=/api/v1/auth/refresh request_id=9cba5784-51f2-43ff-b501-b244a206a139 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:43.674788Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=4dc13531-925b-48a0-ae70-b3f4b5187a26 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:43.676570Z [info     ] request_completed              duration_ms=30.84 method=POST path=/api/v1/auth/refresh request_id=4dc13531-925b-48a0-ae70-b3f4b5187a26 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:43.708632Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=bfb743ff-9c73-4b0a-b3ff-74c1bca9f7fd session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:43.708632Z [info     ] request_completed              duration_ms=33.57 method=POST path=/api/v1/auth/refresh request_id=bfb743ff-9c73-4b0a-b3ff-74c1bca9f7fd status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:43.754463Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=44131c59-56fe-46c3-99be-34b4c4b1656c session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:43.756201Z [info     ] request_completed              duration_ms=36.13 method=POST path=/api/v1/auth/refresh request_id=44131c59-56fe-46c3-99be-34b4c4b1656c status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:43.787920Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=576eccfe-5ada-4b89-a7ef-f3169ccfdc0f session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:43.787920Z [info     ] request_completed              duration_ms=35.25 method=POST path=/api/v1/auth/refresh request_id=576eccfe-5ada-4b89-a7ef-f3169ccfdc0f status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:43.835806Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=22be1cd1-e76a-4665-96ba-65ca61ee6d3c session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:43.835806Z [info     ] request_completed              duration_ms=34.77 method=POST path=/api/v1/auth/refresh request_id=22be1cd1-e76a-4665-96ba-65ca61ee6d3c status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:43.871862Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=37f38da7-28ac-4381-a574-226c4d8d4c46 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:43.871862Z [info     ] request_completed              duration_ms=35.28 method=POST path=/api/v1/auth/refresh request_id=37f38da7-28ac-4381-a574-226c4d8d4c46 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:43.911217Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=977538b9-a656-4582-9a72-a9911da2ffb7 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:43.915257Z [info     ] request_completed              duration_ms=30.87 method=POST path=/api/v1/auth/refresh request_id=977538b9-a656-4582-9a72-a9911da2ffb7 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:43.946805Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=ba9eb494-af25-4917-a4ee-d77945b59f89 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:43.949338Z [info     ] request_completed              duration_ms=29.64 method=POST path=/api/v1/auth/refresh request_id=ba9eb494-af25-4917-a4ee-d77945b59f89 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:43.979079Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=29ea54a4-f25c-4a37-9840-60ffa021f033 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:43.984483Z [info     ] request_completed              duration_ms=28.88 method=POST path=/api/v1/auth/refresh request_id=29ea54a4-f25c-4a37-9840-60ffa021f033 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:44.016781Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=54aa2815-8d2e-4d59-b108-36c7997d8d25 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:44.018767Z [info     ] request_completed              duration_ms=29.23 method=POST path=/api/v1/auth/refresh request_id=54aa2815-8d2e-4d59-b108-36c7997d8d25 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:44.052843Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=acb34f61-57d6-42a1-a556-b65782827c07 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:44.058740Z [info     ] request_completed              duration_ms=33.93 method=POST path=/api/v1/auth/refresh request_id=acb34f61-57d6-42a1-a556-b65782827c07 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:44.091595Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=715b69f5-e60d-4e4b-a0c7-7c0ffac39846 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:44.091595Z [info     ] request_completed              duration_ms=32.28 method=POST path=/api/v1/auth/refresh request_id=715b69f5-e60d-4e4b-a0c7-7c0ffac39846 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:44.126876Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=67c967a8-2bb9-4dd2-9283-7042d35320ae session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:44.130375Z [info     ] request_completed              duration_ms=29.55 method=POST path=/api/v1/auth/refresh request_id=67c967a8-2bb9-4dd2-9283-7042d35320ae status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:44.154097Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=b27051d2-95c0-4789-a0d7-2fe4bbcf6f64 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:44.154097Z [info     ] request_completed              duration_ms=31.45 method=POST path=/api/v1/auth/refresh request_id=b27051d2-95c0-4789-a0d7-2fe4bbcf6f64 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:44.201364Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=7f449c4e-0f50-4285-9a74-c7a710d98e53 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:44.201364Z [info     ] request_completed              duration_ms=33.35 method=POST path=/api/v1/auth/refresh request_id=7f449c4e-0f50-4285-9a74-c7a710d98e53 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:44.233120Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=9cfe58ea-f1bf-41b1-92d3-4ede6d3f0efb session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:44.233120Z [info     ] request_completed              duration_ms=34.75 method=POST path=/api/v1/auth/refresh request_id=9cfe58ea-f1bf-41b1-92d3-4ede6d3f0efb status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:44.280368Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=58abe1cc-c20d-4d87-a263-1680127a54bc session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:44.284765Z [info     ] request_completed              duration_ms=33.77 method=POST path=/api/v1/auth/refresh request_id=58abe1cc-c20d-4d87-a263-1680127a54bc status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:44.322806Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=123c679e-2a13-4109-bf19-f33a5cb5ce5d session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:44.325770Z [info     ] request_completed              duration_ms=33.05 method=POST path=/api/v1/auth/refresh request_id=123c679e-2a13-4109-bf19-f33a5cb5ce5d status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:44.359208Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=d0458b3e-d0ec-4766-9b56-3f4d3a0a2549 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:44.361236Z [info     ] request_completed              duration_ms=30.79 method=POST path=/api/v1/auth/refresh request_id=d0458b3e-d0ec-4766-9b56-3f4d3a0a2549 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:44.392777Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=562f0127-50c6-4630-ac6a-e39998f356bb session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:44.392777Z [info     ] request_completed              duration_ms=28.55 method=POST path=/api/v1/auth/refresh request_id=562f0127-50c6-4630-ac6a-e39998f356bb status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:44.421831Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=f9ab4157-adfc-43fa-b6ee-b6df89d4c9a2 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:44.421831Z [info     ] request_completed              duration_ms=27.38 method=POST path=/api/v1/auth/refresh request_id=f9ab4157-adfc-43fa-b6ee-b6df89d4c9a2 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:44.454734Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=b7606e17-7313-42f6-b897-bcfd75784112 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:44.454734Z [info     ] request_completed              duration_ms=27.54 method=POST path=/api/v1/auth/refresh request_id=b7606e17-7313-42f6-b897-bcfd75784112 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:44.486047Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=9288be2e-b068-4929-9d94-c3c4f2a1d430 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:44.486047Z [info     ] request_completed              duration_ms=30.37 method=POST path=/api/v1/auth/refresh request_id=9288be2e-b068-4929-9d94-c3c4f2a1d430 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:44.527198Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=e80add2c-5b32-4df4-b9af-92a7dce41111 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:44.527198Z [info     ] request_completed              duration_ms=29.86 method=POST path=/api/v1/auth/refresh request_id=e80add2c-5b32-4df4-b9af-92a7dce41111 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:44.564928Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=d2f8b4b6-342e-4273-8e22-a9aa346d9db9 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:44.564928Z [info     ] request_completed              duration_ms=30.41 method=POST path=/api/v1/auth/refresh request_id=d2f8b4b6-342e-4273-8e22-a9aa346d9db9 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:44.596374Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=cfda0c43-1c11-42c5-ac63-bb487089a75c session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:44.596374Z [info     ] request_completed              duration_ms=28.75 method=POST path=/api/v1/auth/refresh request_id=cfda0c43-1c11-42c5-ac63-bb487089a75c status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:44.628007Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=5a205f32-db29-47e3-a223-ba3e07ba2cfa session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:44.628007Z [info     ] request_completed              duration_ms=29.4 method=POST path=/api/v1/auth/refresh request_id=5a205f32-db29-47e3-a223-ba3e07ba2cfa status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:44.670344Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=f6e75093-24b8-408c-8ff3-777861fe141a session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:44.672364Z [info     ] request_completed              duration_ms=30.2 method=POST path=/api/v1/auth/refresh request_id=f6e75093-24b8-408c-8ff3-777861fe141a status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:44.709101Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=f07b4f2f-3258-45d7-b8e6-55a1f0fdadad session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:44.711117Z [info     ] request_completed              duration_ms=31.76 method=POST path=/api/v1/auth/refresh request_id=f07b4f2f-3258-45d7-b8e6-55a1f0fdadad status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:44.746928Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=224c3dc9-8947-44e4-8521-9060fef6a1be session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:44.750968Z [info     ] request_completed              duration_ms=34.68 method=POST path=/api/v1/auth/refresh request_id=224c3dc9-8947-44e4-8521-9060fef6a1be status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:44.787034Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=1a56f510-5e72-43dd-ba23-8cf4c6bd0316 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:44.790628Z [info     ] request_completed              duration_ms=35.97 method=POST path=/api/v1/auth/refresh request_id=1a56f510-5e72-43dd-ba23-8cf4c6bd0316 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:44.828627Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=0262c01c-27db-489b-8098-25ae4c080fd6 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:44.830641Z [info     ] request_completed              duration_ms=34.19 method=POST path=/api/v1/auth/refresh request_id=0262c01c-27db-489b-8098-25ae4c080fd6 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:44.860339Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=0c998bd0-7124-4453-8e2b-56d0a8f1d1b3 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:44.860339Z [info     ] request_completed              duration_ms=29.31 method=POST path=/api/v1/auth/refresh request_id=0c998bd0-7124-4453-8e2b-56d0a8f1d1b3 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:44.892147Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=7238e497-65c7-4c2e-a2f2-a10b22ed4217 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:44.898240Z [info     ] request_completed              duration_ms=26.81 method=POST path=/api/v1/auth/refresh request_id=7238e497-65c7-4c2e-a2f2-a10b22ed4217 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:44.930431Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=78a0311e-8294-4360-8e09-7719622618c3 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:44.932445Z [info     ] request_completed              duration_ms=30.03 method=POST path=/api/v1/auth/refresh request_id=78a0311e-8294-4360-8e09-7719622618c3 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:44.961581Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=c63d9c53-af9d-4fe1-81ff-d33139abeabb session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:44.971435Z [info     ] request_completed              duration_ms=31.33 method=POST path=/api/v1/auth/refresh request_id=c63d9c53-af9d-4fe1-81ff-d33139abeabb status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:45.006447Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=067351c8-4635-4e67-9e7c-cfa8bb35adef session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:45.009243Z [info     ] request_completed              duration_ms=33.05 method=POST path=/api/v1/auth/refresh request_id=067351c8-4635-4e67-9e7c-cfa8bb35adef status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:45.041226Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=57ee9127-c878-41b5-8008-c6d87ffe2364 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:45.041226Z [info     ] request_completed              duration_ms=33.09 method=POST path=/api/v1/auth/refresh request_id=57ee9127-c878-41b5-8008-c6d87ffe2364 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:45.078042Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=4eccf346-69d8-41a3-abd8-43ecd1c60921 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:45.078042Z [info     ] request_completed              duration_ms=28.15 method=POST path=/api/v1/auth/refresh request_id=4eccf346-69d8-41a3-abd8-43ecd1c60921 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:45.104703Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=930f4166-f353-444b-a545-f95e01c693bd session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:45.104703Z [info     ] request_completed              duration_ms=26.48 method=POST path=/api/v1/auth/refresh request_id=930f4166-f353-444b-a545-f95e01c693bd status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:45.140096Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=86b403f3-5be9-489a-a789-5a07c1a98e0e session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:45.140096Z [info     ] request_completed              duration_ms=30.39 method=POST path=/api/v1/auth/refresh request_id=86b403f3-5be9-489a-a789-5a07c1a98e0e status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:45.179853Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=6bfd3b6d-a271-411b-8403-0ea70a31eee0 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:45.181868Z [info     ] request_completed              duration_ms=27.28 method=POST path=/api/v1/auth/refresh request_id=6bfd3b6d-a271-411b-8403-0ea70a31eee0 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:45.201341Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=7f9dc6fd-df10-4c44-9b39-398b3f41e260 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:45.201341Z [info     ] request_completed              duration_ms=25.97 method=POST path=/api/v1/auth/refresh request_id=7f9dc6fd-df10-4c44-9b39-398b3f41e260 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:45.241348Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=ca63ee59-2ed8-4d63-a5e1-737df8108dc2 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:45.247109Z [info     ] request_completed              duration_ms=30.83 method=POST path=/api/v1/auth/refresh request_id=ca63ee59-2ed8-4d63-a5e1-737df8108dc2 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:45.279033Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=aad91cf8-e8da-4626-9d61-e30f8d01914c session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:45.279033Z [info     ] request_completed              duration_ms=30.74 method=POST path=/api/v1/auth/refresh request_id=aad91cf8-e8da-4626-9d61-e30f8d01914c status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:45.313255Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=cc41de87-76d7-42d6-97da-ffcb6eee0fc1 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:45.320876Z [info     ] request_completed              duration_ms=32.1 method=POST path=/api/v1/auth/refresh request_id=cc41de87-76d7-42d6-97da-ffcb6eee0fc1 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:45.352255Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=489860c3-69eb-49eb-9bc4-69917fcf4076 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:45.358771Z [info     ] request_completed              duration_ms=31.91 method=POST path=/api/v1/auth/refresh request_id=489860c3-69eb-49eb-9bc4-69917fcf4076 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:45.393708Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=e05031e8-30fa-4012-a29f-3c61cfc667ab session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:45.393708Z [info     ] request_completed              duration_ms=33.5 method=POST path=/api/v1/auth/refresh request_id=e05031e8-30fa-4012-a29f-3c61cfc667ab status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:45.427621Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=e1f0e86e-fe62-4659-b42a-cf3e35e14056 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:45.427621Z [info     ] request_completed              duration_ms=32.05 method=POST path=/api/v1/auth/refresh request_id=e1f0e86e-fe62-4659-b42a-cf3e35e14056 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:45.465873Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=b83b1eb0-8ab1-432c-a9f7-4e516ebc9c20 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:45.469760Z [info     ] request_completed              duration_ms=28.87 method=POST path=/api/v1/auth/refresh request_id=b83b1eb0-8ab1-432c-a9f7-4e516ebc9c20 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:45.502100Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=52afedbd-920b-446c-9733-0b2efee8eedb session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:45.502100Z [info     ] request_completed              duration_ms=28.81 method=POST path=/api/v1/auth/refresh request_id=52afedbd-920b-446c-9733-0b2efee8eedb status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:45.532561Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=069e1c76-6544-4f5f-a9cd-259ed915c118 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:45.532561Z [info     ] request_completed              duration_ms=31.49 method=POST path=/api/v1/auth/refresh request_id=069e1c76-6544-4f5f-a9cd-259ed915c118 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:45.574732Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=6e32098c-1c88-48c7-9f8d-4815f2a3037c session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:45.576748Z [info     ] request_completed              duration_ms=31.19 method=POST path=/api/v1/auth/refresh request_id=6e32098c-1c88-48c7-9f8d-4815f2a3037c status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:45.610354Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=319da375-4f6a-4bab-8b73-03c75d55cedb session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:45.610354Z [info     ] request_completed              duration_ms=29.7 method=POST path=/api/v1/auth/refresh request_id=319da375-4f6a-4bab-8b73-03c75d55cedb status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:45.641816Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=71e9d3b1-4dda-4e47-9056-404b605c91d9 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:45.641816Z [info     ] request_completed              duration_ms=29.86 method=POST path=/api/v1/auth/refresh request_id=71e9d3b1-4dda-4e47-9056-404b605c91d9 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:45.679717Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=8c34149e-4394-4d7a-8f82-10483ad48b34 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:45.679717Z [info     ] request_completed              duration_ms=28.7 method=POST path=/api/v1/auth/refresh request_id=8c34149e-4394-4d7a-8f82-10483ad48b34 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:45.714334Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=3b679da0-33eb-4ec2-a883-5f736574862c session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:45.716357Z [info     ] request_completed              duration_ms=30.09 method=POST path=/api/v1/auth/refresh request_id=3b679da0-33eb-4ec2-a883-5f736574862c status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:45.756336Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=bbbec83f-e83e-4b23-9ba2-6ea1a8fc0c23 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:45.756336Z [info     ] request_completed              duration_ms=36.77 method=POST path=/api/v1/auth/refresh request_id=bbbec83f-e83e-4b23-9ba2-6ea1a8fc0c23 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:45.796654Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=ba1a4454-d74b-4ce2-9461-101c5f680790 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:45.798670Z [info     ] request_completed              duration_ms=32.62 method=POST path=/api/v1/auth/refresh request_id=ba1a4454-d74b-4ce2-9461-101c5f680790 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:45.837101Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=4fe17ef3-523a-4fc9-aa60-01826c5a9d50 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:45.837101Z [info     ] request_completed              duration_ms=34.05 method=POST path=/api/v1/auth/refresh request_id=4fe17ef3-523a-4fc9-aa60-01826c5a9d50 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:45.874415Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=3b7a7c6d-324b-43bc-81d9-83e598f12d60 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:45.874415Z [info     ] request_completed              duration_ms=32.48 method=POST path=/api/v1/auth/refresh request_id=3b7a7c6d-324b-43bc-81d9-83e598f12d60 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:45.911317Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=ac7dc99f-ab3e-4928-af81-8b57c04ed645 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:45.911317Z [info     ] request_completed              duration_ms=32.27 method=POST path=/api/v1/auth/refresh request_id=ac7dc99f-ab3e-4928-af81-8b57c04ed645 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:45.943194Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=f4a80c39-7623-4c7e-845b-e7c2a61c3020 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:45.943194Z [info     ] request_completed              duration_ms=27.59 method=POST path=/api/v1/auth/refresh request_id=f4a80c39-7623-4c7e-845b-e7c2a61c3020 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:45.973533Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=d2efc87d-4175-4071-9f79-8528ef6ab7c7 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:45.975057Z [info     ] request_completed              duration_ms=25.1 method=POST path=/api/v1/auth/refresh request_id=d2efc87d-4175-4071-9f79-8528ef6ab7c7 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:46.007336Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=698f0c76-7c0d-4a13-9d21-b77ac6777e39 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:46.012429Z [info     ] request_completed              duration_ms=31.95 method=POST path=/api/v1/auth/refresh request_id=698f0c76-7c0d-4a13-9d21-b77ac6777e39 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:46.117453Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=76166241-ea7e-422f-a6c3-ba0e9af95f9a session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:46.118447Z [info     ] request_completed              duration_ms=100.31 method=POST path=/api/v1/auth/refresh request_id=76166241-ea7e-422f-a6c3-ba0e9af95f9a status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:46.151341Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=c2b89579-a4c5-4a6c-9979-ecf147626107 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:46.151341Z [info     ] request_completed              duration_ms=29.42 method=POST path=/api/v1/auth/refresh request_id=c2b89579-a4c5-4a6c-9979-ecf147626107 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:46.183871Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=576b8f71-7d60-409e-a03c-11192ef7d160 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:46.183871Z [info     ] request_completed              duration_ms=28.51 method=POST path=/api/v1/auth/refresh request_id=576b8f71-7d60-409e-a03c-11192ef7d160 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:46.217792Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=09c8f0eb-6feb-4262-af56-dc0b4106b76f session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:46.221219Z [info     ] request_completed              duration_ms=29.61 method=POST path=/api/v1/auth/refresh request_id=09c8f0eb-6feb-4262-af56-dc0b4106b76f status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:46.254635Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=bcf16ea0-4051-47e9-bb18-dd3b8d4ccfa0 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:46.254635Z [info     ] request_completed              duration_ms=29.68 method=POST path=/api/v1/auth/refresh request_id=bcf16ea0-4051-47e9-bb18-dd3b8d4ccfa0 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:46.287650Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=976ba0ee-e918-478b-b2fe-9969b645e059 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:46.290682Z [info     ] request_completed              duration_ms=28.8 method=POST path=/api/v1/auth/refresh request_id=976ba0ee-e918-478b-b2fe-9969b645e059 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:46.327223Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=bd55cb7b-5d67-4c3f-9e5c-0f05b7ff9067 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:46.327223Z [info     ] request_completed              duration_ms=31.69 method=POST path=/api/v1/auth/refresh request_id=bd55cb7b-5d67-4c3f-9e5c-0f05b7ff9067 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:46.362403Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=8ca3a97c-587b-406d-9274-ece8191730fb session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:46.364335Z [info     ] request_completed              duration_ms=31.4 method=POST path=/api/v1/auth/refresh request_id=8ca3a97c-587b-406d-9274-ece8191730fb status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:46.405610Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=09805d3c-17ff-42c2-890f-8566690e8971 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:46.405610Z [info     ] request_completed              duration_ms=37.72 method=POST path=/api/v1/auth/refresh request_id=09805d3c-17ff-42c2-890f-8566690e8971 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:46.432914Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=7a82f590-413c-4eea-88c7-d28807c68cf6 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:46.446151Z [info     ] request_completed              duration_ms=32.15 method=POST path=/api/v1/auth/refresh request_id=7a82f590-413c-4eea-88c7-d28807c68cf6 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:46.479098Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=81a1d529-6a55-4b08-8bd6-4a92c7d5c60f session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:46.479098Z [info     ] request_completed              duration_ms=34.92 method=POST path=/api/v1/auth/refresh request_id=81a1d529-6a55-4b08-8bd6-4a92c7d5c60f status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:46.523187Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=0034767f-4df9-4d44-92be-5c9f1edc1cad session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:46.523187Z [info     ] request_completed              duration_ms=32.99 method=POST path=/api/v1/auth/refresh request_id=0034767f-4df9-4d44-92be-5c9f1edc1cad status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:46.546709Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=baf4d43e-3e8f-458c-9a52-cb2906ee1ee1 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:46.557712Z [info     ] request_completed              duration_ms=27.7 method=POST path=/api/v1/auth/refresh request_id=baf4d43e-3e8f-458c-9a52-cb2906ee1ee1 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:46.589921Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=f7f64e16-5754-4ac3-8489-ad88e0b8eab3 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:46.589921Z [info     ] request_completed              duration_ms=29.22 method=POST path=/api/v1/auth/refresh request_id=f7f64e16-5754-4ac3-8489-ad88e0b8eab3 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:46.620926Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=4c43e9dc-bf8d-4dca-ae31-5c3830190b4e session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:46.620926Z [info     ] request_completed              duration_ms=28.45 method=POST path=/api/v1/auth/refresh request_id=4c43e9dc-bf8d-4dca-ae31-5c3830190b4e status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:46.659153Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=9c1f852f-13f4-4286-b53c-ce4a97d202ca session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:46.659153Z [info     ] request_completed              duration_ms=30.35 method=POST path=/api/v1/auth/refresh request_id=9c1f852f-13f4-4286-b53c-ce4a97d202ca status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:46.683390Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=53c888bc-e721-4969-bc89-70ea0c7d974b session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:46.683390Z [info     ] request_completed              duration_ms=29.95 method=POST path=/api/v1/auth/refresh request_id=53c888bc-e721-4969-bc89-70ea0c7d974b status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:46.731620Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=f03c81f1-13d4-4100-a5e7-1b22b7ff79a1 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:46.733634Z [info     ] request_completed              duration_ms=31.58 method=POST path=/api/v1/auth/refresh request_id=f03c81f1-13d4-4100-a5e7-1b22b7ff79a1 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:46.764381Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=3169dd2f-3138-4779-a86c-f6616e7a265a session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:46.764381Z [info     ] request_completed              duration_ms=30.36 method=POST path=/api/v1/auth/refresh request_id=3169dd2f-3138-4779-a86c-f6616e7a265a status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:46.798647Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=d5a9bf05-4f2b-4783-a1eb-6cce753a9dd9 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:46.798647Z [info     ] request_completed              duration_ms=27.09 method=POST path=/api/v1/auth/refresh request_id=d5a9bf05-4f2b-4783-a1eb-6cce753a9dd9 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:46.831053Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=277f9577-7ae1-45b4-abb9-ad9bd00178fb session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:46.831053Z [info     ] request_completed              duration_ms=29.51 method=POST path=/api/v1/auth/refresh request_id=277f9577-7ae1-45b4-abb9-ad9bd00178fb status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:46.867941Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=ae7facbc-cccc-4f32-a2d6-668e1cdea60a session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:46.867941Z [info     ] request_completed              duration_ms=30.07 method=POST path=/api/v1/auth/refresh request_id=ae7facbc-cccc-4f32-a2d6-668e1cdea60a status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:46.907840Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=499b9d25-9dd3-4845-a313-24cf7086b8e8 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:46.907840Z [info     ] request_completed              duration_ms=35.24 method=POST path=/api/v1/auth/refresh request_id=499b9d25-9dd3-4845-a313-24cf7086b8e8 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:46.955462Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=0f97e357-cf07-4333-b9df-15f353bc63f6 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:46.958357Z [info     ] request_completed              duration_ms=38.11 method=POST path=/api/v1/auth/refresh request_id=0f97e357-cf07-4333-b9df-15f353bc63f6 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:46.999293Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=9413f34d-02be-4be4-a583-1ccd8e093c93 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:47.001476Z [info     ] request_completed              duration_ms=35.5 method=POST path=/api/v1/auth/refresh request_id=9413f34d-02be-4be4-a583-1ccd8e093c93 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:47.040434Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=9bfaa78a-f9ed-4c03-949a-8d60afeace97 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:47.042792Z [info     ] request_completed              duration_ms=35.8 method=POST path=/api/v1/auth/refresh request_id=9bfaa78a-f9ed-4c03-949a-8d60afeace97 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:47.080325Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=99d35e92-a528-43f0-b119-e33097ee3300 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:47.082012Z [info     ] request_completed              duration_ms=33.62 method=POST path=/api/v1/auth/refresh request_id=99d35e92-a528-43f0-b119-e33097ee3300 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:47.121409Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=8f0e9888-2715-450c-ab74-0f7c0bcffa00 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:47.124368Z [info     ] request_completed              duration_ms=35.15 method=POST path=/api/v1/auth/refresh request_id=8f0e9888-2715-450c-ab74-0f7c0bcffa00 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:47.154020Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=90f44416-91ef-4b71-a40e-81a54af067f0 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:47.154020Z [info     ] request_completed              duration_ms=29.36 method=POST path=/api/v1/auth/refresh request_id=90f44416-91ef-4b71-a40e-81a54af067f0 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:47.189969Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=992fe050-c0cd-4333-8ece-b595223da68e session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:47.197827Z [info     ] request_completed              duration_ms=34.21 method=POST path=/api/v1/auth/refresh request_id=992fe050-c0cd-4333-8ece-b595223da68e status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:47.238348Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=a1601fac-a9df-479c-8c7f-b02bb47959db session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:47.240375Z [info     ] request_completed              duration_ms=35.68 method=POST path=/api/v1/auth/refresh request_id=a1601fac-a9df-479c-8c7f-b02bb47959db status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:47.275979Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=0c9fcdcb-1110-4bb7-a1b4-b294f64d2d18 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:47.277678Z [info     ] request_completed              duration_ms=32.3 method=POST path=/api/v1/auth/refresh request_id=0c9fcdcb-1110-4bb7-a1b4-b294f64d2d18 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:47.307980Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=6870515d-b0f3-4ecd-9357-97e0fbcc2c3b session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:47.309159Z [info     ] request_completed              duration_ms=29.03 method=POST path=/api/v1/auth/refresh request_id=6870515d-b0f3-4ecd-9357-97e0fbcc2c3b status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:47.343936Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=33b7892e-6733-4eed-9180-e334477d6298 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:47.343936Z [info     ] request_completed              duration_ms=31.51 method=POST path=/api/v1/auth/refresh request_id=33b7892e-6733-4eed-9180-e334477d6298 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-06-28T05:11:47.382074Z [info     ] session_refreshed              business_id=27227297-e489-4b19-808e-75c723e6d8b9 request_id=ee6af831-a495-46eb-b7f1-507894a3c5c6 session_id=4744527b-f4a4-4db2-98bc-f82fcb81e59e user_id=d8fbc67b-e53f-4d62-b5c3-6c4475fd54c3
+2026-06-28T05:11:47.384113Z [info     ] request_completed              duration_ms=31.46 method=POST path=/api/v1/auth/refresh request_id=ee6af831-a495-46eb-b7f1-507894a3c5c6 status_code=200
+INFO:     127.0.0.1:52587 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK

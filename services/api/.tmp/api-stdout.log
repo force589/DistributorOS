@@ -1,0 +1,592 @@
+2026-07-11T05:24:04.816593Z [info     ] request_completed              duration_ms=1007.24 method=GET path=/health/ready request_id=19f3d217-139c-4462-a149-6a0189534b7a status_code=200
+INFO:     127.0.0.1:49674 - "GET /health/ready HTTP/1.1" 200 OK
+2026-07-11T05:39:50.887965Z [warning  ] request_completed              duration_ms=14.71 method=POST path=/api/v1/auth/login request_id=6445373f-1e69-4b38-8343-2fef3afd3a02 status_code=422
+INFO:     127.0.0.1:50769 - "POST /api/v1/auth/login HTTP/1.1" 422 Unprocessable Entity
+2026-07-11T05:39:50.911341Z [warning  ] request_completed              duration_ms=3.41 method=GET path=/api/v1/auth/me request_id=25552603-c3bc-4eb0-a349-d7b6c2521464 status_code=401
+INFO:     127.0.0.1:50769 - "GET /api/v1/auth/me HTTP/1.1" 401 Unauthorized
+2026-07-11T05:39:51.305263Z [info     ] signup_succeeded               business_id=291e7099-73dc-4658-ade3-49a2e8b96886 request_id=4b3bdaeb-7e49-4384-a14c-37d5a839b075 session_id=11b20a46-37b1-4c72-a43f-9678db5d6b10 user_id=bd65db08-4287-41d2-aa1d-cbd615e92404
+2026-07-11T05:39:51.305263Z [info     ] request_completed              duration_ms=385.82 method=POST path=/api/v1/auth/signup request_id=4b3bdaeb-7e49-4384-a14c-37d5a839b075 status_code=201
+INFO:     127.0.0.1:50769 - "POST /api/v1/auth/signup HTTP/1.1" 201 Created
+2026-07-11T05:39:51.378231Z [info     ] request_completed              duration_ms=55.84 method=GET path=/api/v1/auth/me request_id=58131cf3-b445-4594-804b-e04dd201004a status_code=200
+INFO:     127.0.0.1:50769 - "GET /api/v1/auth/me HTTP/1.1" 200 OK
+2026-07-11T05:40:43.911982Z [info     ] signup_succeeded               business_id=1a3f9b2c-5d5e-49cf-a1ae-5f3e05cd49ea request_id=bbe67750-79dd-4b26-94a8-c64427263993 session_id=415573b0-e13d-4505-bb9c-7884b9cf5f45 user_id=583289fb-69a7-47b6-9d0c-b337a9698d17
+2026-07-11T05:40:43.915100Z [info     ] request_completed              duration_ms=204.46 method=POST path=/api/v1/auth/signup request_id=bbe67750-79dd-4b26-94a8-c64427263993 status_code=201
+INFO:     127.0.0.1:65138 - "POST /api/v1/auth/signup HTTP/1.1" 201 Created
+2026-07-11T05:40:43.959063Z [info     ] request_completed              duration_ms=36.53 method=GET path=/api/v1/auth/me request_id=44583793-cedb-4a56-9060-a85b4a633d5c status_code=200
+INFO:     127.0.0.1:65138 - "GET /api/v1/auth/me HTTP/1.1" 200 OK
+2026-07-11T05:43:48.422855Z [warning  ] request_completed              duration_ms=7.65 method=POST path=/api/v1/auth/login request_id=bb8ffe94-6e31-441a-82f1-77ab31e8cc5e status_code=422
+INFO:     127.0.0.1:65163 - "POST /api/v1/auth/login HTTP/1.1" 422 Unprocessable Entity
+2026-07-11T05:43:48.435479Z [warning  ] request_completed              duration_ms=3.2 method=GET path=/api/v1/auth/me request_id=0505c44b-e489-4a46-be17-979d876cfdc5 status_code=401
+INFO:     127.0.0.1:65163 - "GET /api/v1/auth/me HTTP/1.1" 401 Unauthorized
+2026-07-11T05:43:48.638779Z [info     ] signup_succeeded               business_id=9f40282c-e1c7-46f0-8002-07dc988821a9 request_id=df6fbe4b-2913-4184-8985-9651e4518a64 session_id=09b66b96-c367-4777-8b6f-21a658c89b7c user_id=db842fb6-8032-4c3b-95b8-742d4fa463d0
+2026-07-11T05:43:48.638779Z [info     ] request_completed              duration_ms=190.85 method=POST path=/api/v1/auth/signup request_id=df6fbe4b-2913-4184-8985-9651e4518a64 status_code=201
+INFO:     127.0.0.1:65163 - "POST /api/v1/auth/signup HTTP/1.1" 201 Created
+2026-07-11T05:43:48.685436Z [info     ] request_completed              duration_ms=28.75 method=GET path=/api/v1/auth/me request_id=4c84ab73-f1bd-43f4-81a8-6ea11a79daa0 status_code=200
+INFO:     127.0.0.1:65163 - "GET /api/v1/auth/me HTTP/1.1" 200 OK
+2026-07-11T05:43:48.902111Z [info     ] login_succeeded                business_id=9f40282c-e1c7-46f0-8002-07dc988821a9 request_id=0e889d04-33fe-413c-b00f-7a510090fe61 session_id=15c451d7-d6be-4177-a4e5-8fd5433c6452 user_id=db842fb6-8032-4c3b-95b8-742d4fa463d0
+2026-07-11T05:43:48.902111Z [info     ] request_completed              duration_ms=215.73 method=POST path=/api/v1/auth/login request_id=0e889d04-33fe-413c-b00f-7a510090fe61 status_code=200
+INFO:     127.0.0.1:65163 - "POST /api/v1/auth/login HTTP/1.1" 200 OK
+2026-07-11T05:43:48.969616Z [info     ] session_refreshed              business_id=9f40282c-e1c7-46f0-8002-07dc988821a9 request_id=82f305a8-bf98-4aec-a05b-d219fb1f1aea session_id=09b66b96-c367-4777-8b6f-21a658c89b7c user_id=db842fb6-8032-4c3b-95b8-742d4fa463d0
+2026-07-11T05:43:48.979288Z [info     ] request_completed              duration_ms=55.83 method=POST path=/api/v1/auth/refresh request_id=82f305a8-bf98-4aec-a05b-d219fb1f1aea status_code=200
+INFO:     127.0.0.1:65163 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-07-11T05:43:49.018458Z [warning  ] refresh_failed                 reason=credential_rejected request_id=fb0cbde2-120e-4281-b84b-2977157ecfd7 session_id=09b66b96-c367-4777-8b6f-21a658c89b7c user_id=db842fb6-8032-4c3b-95b8-742d4fa463d0
+2026-07-11T05:43:49.018458Z [warning  ] request_completed              duration_ms=31.12 method=POST path=/api/v1/auth/refresh request_id=fb0cbde2-120e-4281-b84b-2977157ecfd7 status_code=401
+INFO:     127.0.0.1:65163 - "POST /api/v1/auth/refresh HTTP/1.1" 401 Unauthorized
+2026-07-11T05:43:49.036511Z [warning  ] request_completed              duration_ms=5.58 method=GET path=/api/v1/auth/me request_id=c43d59cd-dcde-4715-8a7d-49b867226ebc status_code=401
+INFO:     127.0.0.1:65163 - "GET /api/v1/auth/me HTTP/1.1" 401 Unauthorized
+2026-07-11T05:43:49.036511Z [warning  ] request_completed              duration_ms=2.86 method=GET path=/api/v1/auth/me request_id=0edd4603-4b51-4bb7-9dd1-3817e6512fb2 status_code=401
+INFO:     127.0.0.1:65163 - "GET /api/v1/auth/me HTTP/1.1" 401 Unauthorized
+2026-07-11T05:43:49.169057Z [info     ] request_completed              duration_ms=109.52 method=PATCH path=/api/v1/business/settings request_id=3ed5c0f3-baa5-4500-8c49-cdbcd4599817 status_code=200
+INFO:     127.0.0.1:65163 - "PATCH /api/v1/business/settings HTTP/1.1" 200 OK
+2026-07-11T05:43:49.268881Z [info     ] customer_created               customer_code=CUST-000001 customer_id=0b1c6f2b-99b5-4779-93d3-f35dddca7be1 request_id=2d35f965-ddf8-4e53-87f0-fbc14cf3aa15 tenant_id=9f40282c-e1c7-46f0-8002-07dc988821a9 user_id=db842fb6-8032-4c3b-95b8-742d4fa463d0
+2026-07-11T05:43:49.268881Z [info     ] request_completed              duration_ms=93.66 method=POST path=/api/v1/customers request_id=2d35f965-ddf8-4e53-87f0-fbc14cf3aa15 status_code=201
+INFO:     127.0.0.1:65163 - "POST /api/v1/customers HTTP/1.1" 201 Created
+2026-07-11T05:43:49.339786Z [warning  ] request_completed              duration_ms=61.94 method=POST path=/api/v1/customers request_id=d0b5b267-c151-4ae8-8268-5421faac0026 status_code=409
+INFO:     127.0.0.1:65163 - "POST /api/v1/customers HTTP/1.1" 409 Conflict
+2026-07-11T05:43:49.404020Z [warning  ] request_completed              duration_ms=37.52 method=POST path=/api/v1/customers request_id=1fe66676-9b17-4341-a828-cd5d93f11f9f status_code=422
+INFO:     127.0.0.1:65163 - "POST /api/v1/customers HTTP/1.1" 422 Unprocessable Entity
+2026-07-11T05:43:49.469668Z [info     ] customer_created               customer_code=CUST-000002 customer_id=a96df555-6ae8-4964-a2f1-31232d07c7b4 request_id=77333e64-23e7-446a-9459-e77fac5ed2e5 tenant_id=9f40282c-e1c7-46f0-8002-07dc988821a9 user_id=db842fb6-8032-4c3b-95b8-742d4fa463d0
+2026-07-11T05:43:49.471936Z [info     ] request_completed              duration_ms=48.55 method=POST path=/api/v1/customers request_id=77333e64-23e7-446a-9459-e77fac5ed2e5 status_code=201
+INFO:     127.0.0.1:65163 - "POST /api/v1/customers HTTP/1.1" 201 Created
+2026-07-11T05:43:49.692401Z [info     ] product_created                product_code=PROD-000001 product_id=850e37d4-4be5-40dd-8e22-7ba3afe17775 request_id=8104124a-195b-47a2-a93d-e3a292d2d56a tenant_id=9f40282c-e1c7-46f0-8002-07dc988821a9 user_id=db842fb6-8032-4c3b-95b8-742d4fa463d0
+2026-07-11T05:43:49.695191Z [info     ] request_completed              duration_ms=204.07 method=POST path=/api/v1/products request_id=8104124a-195b-47a2-a93d-e3a292d2d56a status_code=201
+INFO:     127.0.0.1:65163 - "POST /api/v1/products HTTP/1.1" 201 Created
+2026-07-11T05:43:49.781739Z [warning  ] request_completed              duration_ms=69.73 method=POST path=/api/v1/products request_id=755b05bc-8602-47cf-a95b-55bf5ada30fc status_code=409
+INFO:     127.0.0.1:65163 - "POST /api/v1/products HTTP/1.1" 409 Conflict
+2026-07-11T05:43:49.847704Z [warning  ] request_completed              duration_ms=44.2 method=POST path=/api/v1/products request_id=11dc96fe-96c6-4a24-8fc5-dd733c627522 status_code=422
+INFO:     127.0.0.1:65163 - "POST /api/v1/products HTTP/1.1" 422 Unprocessable Entity
+2026-07-11T05:43:49.927102Z [warning  ] request_completed              duration_ms=58.23 method=POST path=/api/v1/products request_id=2bb5981a-2c90-4ea2-b089-5b76c53f30a2 status_code=422
+INFO:     127.0.0.1:65163 - "POST /api/v1/products HTTP/1.1" 422 Unprocessable Entity
+2026-07-11T05:43:50.146252Z [info     ] stock_movement_posted          movement_id=5e557612-70e2-4e04-888a-9d1debc3c3fa movement_type=OPENING_STOCK product_id=850e37d4-4be5-40dd-8e22-7ba3afe17775 request_id=224dcfe7-1fd3-4bd7-9b90-220d7622605f tenant_id=9f40282c-e1c7-46f0-8002-07dc988821a9 user_id=db842fb6-8032-4c3b-95b8-742d4fa463d0 warehouse_id=e900ef74-49a4-468d-8b0e-1e3241e40c2d
+2026-07-11T05:43:50.146252Z [info     ] request_completed              duration_ms=202.16 method=POST path=/api/v1/inventory/opening-stock request_id=224dcfe7-1fd3-4bd7-9b90-220d7622605f status_code=201
+INFO:     127.0.0.1:65163 - "POST /api/v1/inventory/opening-stock HTTP/1.1" 201 Created
+2026-07-11T05:43:50.209200Z [warning  ] request_completed              duration_ms=49.07 method=POST path=/api/v1/inventory/opening-stock request_id=798886ff-d4c1-443d-9669-9c2d39ae78a3 status_code=409
+INFO:     127.0.0.1:65163 - "POST /api/v1/inventory/opening-stock HTTP/1.1" 409 Conflict
+2026-07-11T05:43:50.249689Z [warning  ] request_completed              duration_ms=29.22 method=POST path=/api/v1/inventory/damage request_id=e4d30314-86b4-4162-8cca-ffdbf6a922cf status_code=422
+INFO:     127.0.0.1:65163 - "POST /api/v1/inventory/damage HTTP/1.1" 422 Unprocessable Entity
+2026-07-11T05:43:50.318685Z [info     ] stock_movement_posted          movement_id=f9e3a55c-157b-49bf-ba73-f461c882e13a movement_type=DAMAGED product_id=850e37d4-4be5-40dd-8e22-7ba3afe17775 request_id=0d89b70a-6e88-4d50-93c6-ad60f251a919 tenant_id=9f40282c-e1c7-46f0-8002-07dc988821a9 user_id=db842fb6-8032-4c3b-95b8-742d4fa463d0 warehouse_id=e900ef74-49a4-468d-8b0e-1e3241e40c2d
+2026-07-11T05:43:50.318685Z [info     ] request_completed              duration_ms=66.53 method=POST path=/api/v1/inventory/damage request_id=0d89b70a-6e88-4d50-93c6-ad60f251a919 status_code=201
+INFO:     127.0.0.1:65163 - "POST /api/v1/inventory/damage HTTP/1.1" 201 Created
+2026-07-11T05:43:50.399941Z [info     ] stock_movement_posted          movement_id=98adba3a-02de-4a8b-bdc7-7c63235c4c78 movement_type=SPOILAGE product_id=850e37d4-4be5-40dd-8e22-7ba3afe17775 request_id=993589d4-df46-4022-888a-700167e85975 tenant_id=9f40282c-e1c7-46f0-8002-07dc988821a9 user_id=db842fb6-8032-4c3b-95b8-742d4fa463d0 warehouse_id=e900ef74-49a4-468d-8b0e-1e3241e40c2d
+2026-07-11T05:43:50.402542Z [info     ] request_completed              duration_ms=64.27 method=POST path=/api/v1/inventory/spoilage request_id=993589d4-df46-4022-888a-700167e85975 status_code=201
+INFO:     127.0.0.1:65163 - "POST /api/v1/inventory/spoilage HTTP/1.1" 201 Created
+2026-07-11T05:43:50.475336Z [info     ] stock_movement_posted          movement_id=1cb74b78-3f2d-4caf-901f-31afd33db81a movement_type=CUSTOMER_RETURN product_id=850e37d4-4be5-40dd-8e22-7ba3afe17775 request_id=8a967c6b-e986-4078-a79d-6a3a272771e0 tenant_id=9f40282c-e1c7-46f0-8002-07dc988821a9 user_id=db842fb6-8032-4c3b-95b8-742d4fa463d0 warehouse_id=e900ef74-49a4-468d-8b0e-1e3241e40c2d
+2026-07-11T05:43:50.475336Z [info     ] request_completed              duration_ms=64.9 method=POST path=/api/v1/inventory/customer-returns request_id=8a967c6b-e986-4078-a79d-6a3a272771e0 status_code=201
+INFO:     127.0.0.1:65163 - "POST /api/v1/inventory/customer-returns HTTP/1.1" 201 Created
+2026-07-11T05:43:50.518348Z [warning  ] request_completed              duration_ms=28.77 method=POST path=/api/v1/inventory/adjustments request_id=e010fc7b-e521-442e-bca0-60cb7ef97d73 status_code=422
+INFO:     127.0.0.1:65163 - "POST /api/v1/inventory/adjustments HTTP/1.1" 422 Unprocessable Entity
+2026-07-11T05:43:50.686954Z [info     ] sale_draft_created             request_id=b22f9992-8f50-41b3-8d28-cb59acf06eb4 sale_id=05c5549b-43f0-47d3-b72a-ca316524b1df sale_number=SALE-000001 tenant_id=9f40282c-e1c7-46f0-8002-07dc988821a9 user_id=db842fb6-8032-4c3b-95b8-742d4fa463d0
+2026-07-11T05:43:50.688972Z [info     ] request_completed              duration_ms=162.54 method=POST path=/api/v1/sales request_id=b22f9992-8f50-41b3-8d28-cb59acf06eb4 status_code=201
+INFO:     127.0.0.1:65163 - "POST /api/v1/sales HTTP/1.1" 201 Created
+2026-07-11T05:43:50.846517Z [info     ] sale_financially_posted        amount=40.00 customer_id=0b1c6f2b-99b5-4779-93d3-f35dddca7be1 request_id=f34c57b6-dc3d-4837-adcc-1ab33f6d44d3 sale_id=05c5549b-43f0-47d3-b72a-ca316524b1df tenant_id=9f40282c-e1c7-46f0-8002-07dc988821a9
+2026-07-11T05:43:50.864320Z [info     ] sale_posted                    request_id=f34c57b6-dc3d-4837-adcc-1ab33f6d44d3 sale_id=05c5549b-43f0-47d3-b72a-ca316524b1df sale_number=SALE-000001 tenant_id=9f40282c-e1c7-46f0-8002-07dc988821a9 user_id=db842fb6-8032-4c3b-95b8-742d4fa463d0
+2026-07-11T05:43:50.871325Z [info     ] request_completed              duration_ms=165.86 method=POST path=/api/v1/sales/05c5549b-43f0-47d3-b72a-ca316524b1df/post request_id=f34c57b6-dc3d-4837-adcc-1ab33f6d44d3 status_code=200
+INFO:     127.0.0.1:65163 - "POST /api/v1/sales/05c5549b-43f0-47d3-b72a-ca316524b1df/post HTTP/1.1" 200 OK
+2026-07-11T05:43:51.039522Z [info     ] request_completed              duration_ms=157.7 method=GET path=/api/v1/dashboard request_id=50430831-72d6-4d4e-817e-c1439156d4f8 status_code=200
+INFO:     127.0.0.1:65163 - "GET /api/v1/dashboard HTTP/1.1" 200 OK
+2026-07-11T05:43:51.088044Z [info     ] request_completed              duration_ms=46.74 method=GET path=/api/v1/inventory/stock/850e37d4-4be5-40dd-8e22-7ba3afe17775 request_id=15782dc9-972b-4fde-b204-f23ccf7c50f8 status_code=200
+INFO:     127.0.0.1:65163 - "GET /api/v1/inventory/stock/850e37d4-4be5-40dd-8e22-7ba3afe17775 HTTP/1.1" 200 OK
+2026-07-11T05:43:51.179945Z [info     ] sale_draft_created             request_id=99c67a9a-5bb9-4187-af03-eed363cece52 sale_id=c840f270-862b-48bd-bc68-27dc6a34288a sale_number=SALE-000002 tenant_id=9f40282c-e1c7-46f0-8002-07dc988821a9 user_id=db842fb6-8032-4c3b-95b8-742d4fa463d0
+2026-07-11T05:43:51.184032Z [info     ] request_completed              duration_ms=72.42 method=POST path=/api/v1/sales request_id=99c67a9a-5bb9-4187-af03-eed363cece52 status_code=201
+INFO:     127.0.0.1:65163 - "POST /api/v1/sales HTTP/1.1" 201 Created
+2026-07-11T05:43:51.283486Z [info     ] sale_financially_posted        amount=20.00 customer_id=0b1c6f2b-99b5-4779-93d3-f35dddca7be1 request_id=a509c9c5-37a8-4f8f-9159-e29b5b2f8339 sale_id=c840f270-862b-48bd-bc68-27dc6a34288a tenant_id=9f40282c-e1c7-46f0-8002-07dc988821a9
+2026-07-11T05:43:51.300088Z [info     ] sale_posted                    request_id=a509c9c5-37a8-4f8f-9159-e29b5b2f8339 sale_id=c840f270-862b-48bd-bc68-27dc6a34288a sale_number=SALE-000002 tenant_id=9f40282c-e1c7-46f0-8002-07dc988821a9 user_id=db842fb6-8032-4c3b-95b8-742d4fa463d0
+2026-07-11T05:43:51.304807Z [info     ] request_completed              duration_ms=110.08 method=POST path=/api/v1/sales/c840f270-862b-48bd-bc68-27dc6a34288a/post request_id=a509c9c5-37a8-4f8f-9159-e29b5b2f8339 status_code=200
+INFO:     127.0.0.1:65163 - "POST /api/v1/sales/c840f270-862b-48bd-bc68-27dc6a34288a/post HTTP/1.1" 200 OK
+2026-07-11T05:43:51.370571Z [info     ] request_completed              duration_ms=64.51 method=GET path=/api/v1/dashboard request_id=cefa76e6-bf7f-4bfc-85dd-1fc0b79ced6a status_code=200
+INFO:     127.0.0.1:65163 - "GET /api/v1/dashboard HTTP/1.1" 200 OK
+2026-07-11T05:43:51.434906Z [info     ] request_completed              duration_ms=43.41 method=GET path=/api/v1/inventory/stock/850e37d4-4be5-40dd-8e22-7ba3afe17775 request_id=01012454-dc5f-4124-8194-60e728ec51aa status_code=200
+INFO:     127.0.0.1:65163 - "GET /api/v1/inventory/stock/850e37d4-4be5-40dd-8e22-7ba3afe17775 HTTP/1.1" 200 OK
+2026-07-11T05:43:51.514537Z [info     ] sale_draft_created             request_id=c569510d-9df0-453e-8790-1132cb9ccb80 sale_id=3194b954-fa2d-4896-a03a-9b15d24b2845 sale_number=SALE-000003 tenant_id=9f40282c-e1c7-46f0-8002-07dc988821a9 user_id=db842fb6-8032-4c3b-95b8-742d4fa463d0
+2026-07-11T05:43:51.518587Z [info     ] request_completed              duration_ms=63.34 method=POST path=/api/v1/sales request_id=c569510d-9df0-453e-8790-1132cb9ccb80 status_code=201
+INFO:     127.0.0.1:65163 - "POST /api/v1/sales HTTP/1.1" 201 Created
+2026-07-11T05:43:51.609101Z [info     ] sale_financially_posted        amount=40.00 customer_id=0b1c6f2b-99b5-4779-93d3-f35dddca7be1 request_id=cc81be0b-77a7-4872-b8ee-2ce4f10a1623 sale_id=3194b954-fa2d-4896-a03a-9b15d24b2845 tenant_id=9f40282c-e1c7-46f0-8002-07dc988821a9
+2026-07-11T05:43:51.629128Z [info     ] sale_posted                    request_id=cc81be0b-77a7-4872-b8ee-2ce4f10a1623 sale_id=3194b954-fa2d-4896-a03a-9b15d24b2845 sale_number=SALE-000003 tenant_id=9f40282c-e1c7-46f0-8002-07dc988821a9 user_id=db842fb6-8032-4c3b-95b8-742d4fa463d0
+2026-07-11T05:43:51.634968Z [info     ] request_completed              duration_ms=105.5 method=POST path=/api/v1/sales/3194b954-fa2d-4896-a03a-9b15d24b2845/post request_id=cc81be0b-77a7-4872-b8ee-2ce4f10a1623 status_code=200
+INFO:     127.0.0.1:65163 - "POST /api/v1/sales/3194b954-fa2d-4896-a03a-9b15d24b2845/post HTTP/1.1" 200 OK
+2026-07-11T05:43:51.731275Z [info     ] request_completed              duration_ms=83.35 method=GET path=/api/v1/dashboard request_id=727e81f7-5845-4b08-9338-55b3eedf395c status_code=200
+INFO:     127.0.0.1:65163 - "GET /api/v1/dashboard HTTP/1.1" 200 OK
+2026-07-11T05:43:51.807146Z [info     ] request_completed              duration_ms=61.72 method=GET path=/api/v1/inventory/stock/850e37d4-4be5-40dd-8e22-7ba3afe17775 request_id=d67f5fde-4c1f-4bba-bf13-ffb1ed330c37 status_code=200
+INFO:     127.0.0.1:65163 - "GET /api/v1/inventory/stock/850e37d4-4be5-40dd-8e22-7ba3afe17775 HTTP/1.1" 200 OK
+2026-07-11T05:43:51.893625Z [info     ] sale_draft_created             request_id=66dd69f5-b0c6-4a43-974d-096e5663ca2b sale_id=1b68e61d-e661-42d7-85aa-3aadc5c09cb4 sale_number=SALE-000004 tenant_id=9f40282c-e1c7-46f0-8002-07dc988821a9 user_id=db842fb6-8032-4c3b-95b8-742d4fa463d0
+2026-07-11T05:43:51.893625Z [info     ] request_completed              duration_ms=72.6 method=POST path=/api/v1/sales request_id=66dd69f5-b0c6-4a43-974d-096e5663ca2b status_code=201
+INFO:     127.0.0.1:65163 - "POST /api/v1/sales HTTP/1.1" 201 Created
+2026-07-11T05:43:51.978627Z [warning  ] request_completed              duration_ms=72.14 method=POST path=/api/v1/sales/1b68e61d-e661-42d7-85aa-3aadc5c09cb4/post request_id=d57c44a3-b311-4ddd-a152-8dfff8f86568 status_code=409
+INFO:     127.0.0.1:65163 - "POST /api/v1/sales/1b68e61d-e661-42d7-85aa-3aadc5c09cb4/post HTTP/1.1" 409 Conflict
+2026-07-11T05:43:52.035205Z [warning  ] request_completed              duration_ms=40.2 method=POST path=/api/v1/sales request_id=40e2a5eb-122b-4c34-8bb6-37547166f81e status_code=422
+INFO:     127.0.0.1:65163 - "POST /api/v1/sales HTTP/1.1" 422 Unprocessable Entity
+2026-07-11T05:43:52.086826Z [warning  ] request_completed              duration_ms=40.92 method=POST path=/api/v1/sales request_id=37dcc5e0-0f3a-48bb-a2f4-50d29f727e96 status_code=422
+INFO:     127.0.0.1:65163 - "POST /api/v1/sales HTTP/1.1" 422 Unprocessable Entity
+2026-07-11T05:43:52.146508Z [info     ] product_created                product_code=PROD-000002 product_id=045a872c-b7d3-4ff8-8248-0eb342cf8119 request_id=16c74e90-4557-4f01-864a-e5c828468fee tenant_id=9f40282c-e1c7-46f0-8002-07dc988821a9 user_id=db842fb6-8032-4c3b-95b8-742d4fa463d0
+2026-07-11T05:43:52.149233Z [info     ] request_completed              duration_ms=47.44 method=POST path=/api/v1/products request_id=16c74e90-4557-4f01-864a-e5c828468fee status_code=201
+INFO:     127.0.0.1:65163 - "POST /api/v1/products HTTP/1.1" 201 Created
+2026-07-11T05:43:52.241633Z [info     ] stock_movement_posted          movement_id=5bc47ee1-eefd-43ba-b063-1edb11d3648e movement_type=OPENING_STOCK product_id=045a872c-b7d3-4ff8-8248-0eb342cf8119 request_id=c1e8584d-d7af-4269-ad41-35bea354fe1f tenant_id=9f40282c-e1c7-46f0-8002-07dc988821a9 user_id=db842fb6-8032-4c3b-95b8-742d4fa463d0 warehouse_id=e900ef74-49a4-468d-8b0e-1e3241e40c2d
+2026-07-11T05:43:52.243649Z [info     ] request_completed              duration_ms=79.46 method=POST path=/api/v1/inventory/opening-stock request_id=c1e8584d-d7af-4269-ad41-35bea354fe1f status_code=201
+INFO:     127.0.0.1:65163 - "POST /api/v1/inventory/opening-stock HTTP/1.1" 201 Created
+2026-07-11T05:43:52.305892Z [info     ] product_archived               product_id=045a872c-b7d3-4ff8-8248-0eb342cf8119 request_id=7a9fad42-c645-4885-b2e7-0486e1bc1caf tenant_id=9f40282c-e1c7-46f0-8002-07dc988821a9 user_id=db842fb6-8032-4c3b-95b8-742d4fa463d0
+2026-07-11T05:43:52.307918Z [info     ] request_completed              duration_ms=54.69 method=POST path=/api/v1/products/045a872c-b7d3-4ff8-8248-0eb342cf8119/archive request_id=7a9fad42-c645-4885-b2e7-0486e1bc1caf status_code=200
+INFO:     127.0.0.1:65163 - "POST /api/v1/products/045a872c-b7d3-4ff8-8248-0eb342cf8119/archive HTTP/1.1" 200 OK
+2026-07-11T05:43:52.378587Z [warning  ] request_completed              duration_ms=50.17 method=POST path=/api/v1/sales request_id=b5642f31-394e-4d9c-a1c2-1aafe31d0623 status_code=422
+INFO:     127.0.0.1:65163 - "POST /api/v1/sales HTTP/1.1" 422 Unprocessable Entity
+2026-07-11T05:43:52.430089Z [info     ] product_restored               product_id=045a872c-b7d3-4ff8-8248-0eb342cf8119 request_id=254521dd-f9ea-4d4d-8815-a64765eeced8 tenant_id=9f40282c-e1c7-46f0-8002-07dc988821a9 user_id=db842fb6-8032-4c3b-95b8-742d4fa463d0
+2026-07-11T05:43:52.435022Z [info     ] request_completed              duration_ms=41.65 method=POST path=/api/v1/products/045a872c-b7d3-4ff8-8248-0eb342cf8119/restore request_id=254521dd-f9ea-4d4d-8815-a64765eeced8 status_code=200
+INFO:     127.0.0.1:65163 - "POST /api/v1/products/045a872c-b7d3-4ff8-8248-0eb342cf8119/restore HTTP/1.1" 200 OK
+2026-07-11T05:43:52.494088Z [info     ] customer_created               customer_code=CUST-000003 customer_id=2d9f5fa6-e1ae-412b-be0f-812bff5ca7d9 request_id=326bcaaa-a195-4903-97cf-c4c861be253d tenant_id=9f40282c-e1c7-46f0-8002-07dc988821a9 user_id=db842fb6-8032-4c3b-95b8-742d4fa463d0
+2026-07-11T05:43:52.497615Z [info     ] request_completed              duration_ms=48.0 method=POST path=/api/v1/customers request_id=326bcaaa-a195-4903-97cf-c4c861be253d status_code=201
+INFO:     127.0.0.1:65163 - "POST /api/v1/customers HTTP/1.1" 201 Created
+2026-07-11T05:43:52.553483Z [info     ] customer_archived              customer_id=2d9f5fa6-e1ae-412b-be0f-812bff5ca7d9 request_id=0a594170-848a-4375-9fd9-dddb94c9ff8c tenant_id=9f40282c-e1c7-46f0-8002-07dc988821a9 user_id=db842fb6-8032-4c3b-95b8-742d4fa463d0
+2026-07-11T05:43:52.558131Z [info     ] request_completed              duration_ms=46.2 method=POST path=/api/v1/customers/2d9f5fa6-e1ae-412b-be0f-812bff5ca7d9/archive request_id=0a594170-848a-4375-9fd9-dddb94c9ff8c status_code=200
+INFO:     127.0.0.1:65163 - "POST /api/v1/customers/2d9f5fa6-e1ae-412b-be0f-812bff5ca7d9/archive HTTP/1.1" 200 OK
+2026-07-11T05:43:52.610489Z [warning  ] request_completed              duration_ms=40.82 method=POST path=/api/v1/sales request_id=7bf62ed1-e665-4fa6-b5bb-ad4a02311e35 status_code=422
+INFO:     127.0.0.1:65163 - "POST /api/v1/sales HTTP/1.1" 422 Unprocessable Entity
+2026-07-11T05:43:52.661852Z [info     ] customer_restored              customer_id=2d9f5fa6-e1ae-412b-be0f-812bff5ca7d9 request_id=ea1dfbb5-ff52-4cdb-8463-2ee6bb264320 tenant_id=9f40282c-e1c7-46f0-8002-07dc988821a9 user_id=db842fb6-8032-4c3b-95b8-742d4fa463d0
+2026-07-11T05:43:52.663621Z [info     ] request_completed              duration_ms=37.72 method=POST path=/api/v1/customers/2d9f5fa6-e1ae-412b-be0f-812bff5ca7d9/restore request_id=ea1dfbb5-ff52-4cdb-8463-2ee6bb264320 status_code=200
+INFO:     127.0.0.1:65163 - "POST /api/v1/customers/2d9f5fa6-e1ae-412b-be0f-812bff5ca7d9/restore HTTP/1.1" 200 OK
+2026-07-11T05:43:52.719690Z [info     ] request_completed              duration_ms=46.56 method=GET path=/api/v1/customers/search request_id=2207b4d1-49dd-456c-ac16-bce8e8274015 status_code=200
+INFO:     127.0.0.1:65163 - "GET /api/v1/customers/search?q=CUST-000003&status=active HTTP/1.1" 200 OK
+2026-07-11T05:43:52.787112Z [info     ] request_completed              duration_ms=53.7 method=GET path=/api/v1/customers/search request_id=589b6587-d0ea-4642-86d9-977394ac4933 status_code=200
+INFO:     127.0.0.1:65163 - "GET /api/v1/customers/search?q=CUST-000003&status=archived HTTP/1.1" 200 OK
+2026-07-11T05:43:52.840156Z [info     ] product_created                product_code=PROD-000003 product_id=cec899aa-4b80-4149-9838-67d000fbfc53 request_id=5c2e378e-b53a-4710-b05a-ddef5505906c tenant_id=9f40282c-e1c7-46f0-8002-07dc988821a9 user_id=db842fb6-8032-4c3b-95b8-742d4fa463d0
+2026-07-11T05:43:52.840156Z [info     ] request_completed              duration_ms=40.59 method=POST path=/api/v1/products request_id=5c2e378e-b53a-4710-b05a-ddef5505906c status_code=201
+INFO:     127.0.0.1:65163 - "POST /api/v1/products HTTP/1.1" 201 Created
+2026-07-11T05:43:52.919097Z [info     ] stock_movement_posted          movement_id=629a7bc4-ee1c-440a-b1ab-c1b47c26f754 movement_type=OPENING_STOCK product_id=cec899aa-4b80-4149-9838-67d000fbfc53 request_id=dcc610f1-9e52-4ffd-84b3-18e7a6c362d0 tenant_id=9f40282c-e1c7-46f0-8002-07dc988821a9 user_id=db842fb6-8032-4c3b-95b8-742d4fa463d0 warehouse_id=e900ef74-49a4-468d-8b0e-1e3241e40c2d
+2026-07-11T05:43:52.919097Z [info     ] request_completed              duration_ms=65.2 method=POST path=/api/v1/inventory/opening-stock request_id=dcc610f1-9e52-4ffd-84b3-18e7a6c362d0 status_code=201
+INFO:     127.0.0.1:65163 - "POST /api/v1/inventory/opening-stock HTTP/1.1" 201 Created
+2026-07-11T05:43:52.996547Z [info     ] sale_draft_created             request_id=12a56586-490f-4159-b656-c4e8e23ac188 sale_id=1aec1d33-3d17-47a1-b1fd-0cb1412b43df sale_number=SALE-000005 tenant_id=9f40282c-e1c7-46f0-8002-07dc988821a9 user_id=db842fb6-8032-4c3b-95b8-742d4fa463d0
+2026-07-11T05:43:53.001756Z [info     ] request_completed              duration_ms=65.42 method=POST path=/api/v1/sales request_id=12a56586-490f-4159-b656-c4e8e23ac188 status_code=201
+INFO:     127.0.0.1:65163 - "POST /api/v1/sales HTTP/1.1" 201 Created
+2026-07-11T05:43:53.086069Z [info     ] sale_financially_posted        amount=100.00 customer_id=0b1c6f2b-99b5-4779-93d3-f35dddca7be1 request_id=378bdf7d-c002-45bb-912e-e1d53580749f sale_id=1aec1d33-3d17-47a1-b1fd-0cb1412b43df tenant_id=9f40282c-e1c7-46f0-8002-07dc988821a9
+2026-07-11T05:43:53.102534Z [info     ] sale_posted                    request_id=378bdf7d-c002-45bb-912e-e1d53580749f sale_id=1aec1d33-3d17-47a1-b1fd-0cb1412b43df sale_number=SALE-000005 tenant_id=9f40282c-e1c7-46f0-8002-07dc988821a9 user_id=db842fb6-8032-4c3b-95b8-742d4fa463d0
+2026-07-11T05:43:53.110362Z [info     ] request_completed              duration_ms=98.25 method=POST path=/api/v1/sales/1aec1d33-3d17-47a1-b1fd-0cb1412b43df/post request_id=378bdf7d-c002-45bb-912e-e1d53580749f status_code=200
+INFO:     127.0.0.1:65163 - "POST /api/v1/sales/1aec1d33-3d17-47a1-b1fd-0cb1412b43df/post HTTP/1.1" 200 OK
+2026-07-11T05:43:53.326578Z [info     ] invoice_created                invoice_id=de06dab1-b5f6-4660-af08-f86ccacf1d0d invoice_number=INV-000001 request_id=0315ed60-d303-42cc-bbdc-fda1025d7362 sale_id=1aec1d33-3d17-47a1-b1fd-0cb1412b43df tenant_id=9f40282c-e1c7-46f0-8002-07dc988821a9 user_id=db842fb6-8032-4c3b-95b8-742d4fa463d0
+2026-07-11T05:43:53.328596Z [info     ] request_completed              duration_ms=201.97 method=POST path=/api/v1/invoices request_id=0315ed60-d303-42cc-bbdc-fda1025d7362 status_code=201
+INFO:     127.0.0.1:65163 - "POST /api/v1/invoices HTTP/1.1" 201 Created
+2026-07-11T05:43:53.460911Z [info     ] invoice_issued                 invoice_id=de06dab1-b5f6-4660-af08-f86ccacf1d0d invoice_number=INV-000001 request_id=10b7b0be-ac8e-44ac-af35-bff2e1298bce tenant_id=9f40282c-e1c7-46f0-8002-07dc988821a9 user_id=db842fb6-8032-4c3b-95b8-742d4fa463d0
+2026-07-11T05:43:53.462431Z [info     ] request_completed              duration_ms=120.24 method=POST path=/api/v1/invoices/de06dab1-b5f6-4660-af08-f86ccacf1d0d/issue request_id=10b7b0be-ac8e-44ac-af35-bff2e1298bce status_code=200
+INFO:     127.0.0.1:65163 - "POST /api/v1/invoices/de06dab1-b5f6-4660-af08-f86ccacf1d0d/issue HTTP/1.1" 200 OK
+2026-07-11T05:43:53.516092Z [warning  ] request_completed              duration_ms=39.4 method=POST path=/api/v1/invoices/de06dab1-b5f6-4660-af08-f86ccacf1d0d/issue request_id=ff2fd33e-408d-4d40-9831-d4ff8d756880 status_code=409
+INFO:     127.0.0.1:65163 - "POST /api/v1/invoices/de06dab1-b5f6-4660-af08-f86ccacf1d0d/issue HTTP/1.1" 409 Conflict
+2026-07-11T05:43:53.589878Z [warning  ] request_completed              duration_ms=63.14 method=POST path=/api/v1/invoices request_id=da98e3b7-21bb-4612-92d9-0d255ef5d01e status_code=409
+INFO:     127.0.0.1:65163 - "POST /api/v1/invoices HTTP/1.1" 409 Conflict
+2026-07-11T05:43:53.603672Z [warning  ] request_completed              duration_ms=1.65 method=PATCH path=/api/v1/invoices/de06dab1-b5f6-4660-af08-f86ccacf1d0d request_id=21e82523-2cc2-4245-b53f-969cbd2adff8 status_code=405
+INFO:     127.0.0.1:65163 - "PATCH /api/v1/invoices/de06dab1-b5f6-4660-af08-f86ccacf1d0d HTTP/1.1" 405 Method Not Allowed
+2026-07-11T05:43:53.612781Z [warning  ] request_completed              duration_ms=1.15 method=DELETE path=/api/v1/invoices/de06dab1-b5f6-4660-af08-f86ccacf1d0d request_id=6347a30a-5419-4479-acf0-ee92bf277e0d status_code=405
+INFO:     127.0.0.1:65163 - "DELETE /api/v1/invoices/de06dab1-b5f6-4660-af08-f86ccacf1d0d HTTP/1.1" 405 Method Not Allowed
+2026-07-11T05:43:53.684107Z [info     ] request_completed              duration_ms=58.77 method=GET path=/api/v1/invoices/de06dab1-b5f6-4660-af08-f86ccacf1d0d/pdf request_id=985f0b86-86de-408b-93ee-66f71f190ab5 status_code=200
+INFO:     127.0.0.1:65163 - "GET /api/v1/invoices/de06dab1-b5f6-4660-af08-f86ccacf1d0d/pdf HTTP/1.1" 200 OK
+2026-07-11T05:43:53.738043Z [info     ] customer_updated               customer_id=0b1c6f2b-99b5-4779-93d3-f35dddca7be1 request_id=660557f8-ce94-451a-a15b-11671253ee33 tenant_id=9f40282c-e1c7-46f0-8002-07dc988821a9 user_id=db842fb6-8032-4c3b-95b8-742d4fa463d0
+2026-07-11T05:43:53.738043Z [info     ] request_completed              duration_ms=42.21 method=PATCH path=/api/v1/customers/0b1c6f2b-99b5-4779-93d3-f35dddca7be1 request_id=660557f8-ce94-451a-a15b-11671253ee33 status_code=200
+INFO:     127.0.0.1:65163 - "PATCH /api/v1/customers/0b1c6f2b-99b5-4779-93d3-f35dddca7be1 HTTP/1.1" 200 OK
+2026-07-11T05:43:53.794040Z [warning  ] request_completed              duration_ms=46.88 method=PATCH path=/api/v1/products/cec899aa-4b80-4149-9838-67d000fbfc53 request_id=154ea669-0592-4341-bc3a-abd89092306a status_code=409
+INFO:     127.0.0.1:65163 - "PATCH /api/v1/products/cec899aa-4b80-4149-9838-67d000fbfc53 HTTP/1.1" 409 Conflict
+2026-07-11T05:43:53.851380Z [info     ] request_completed              duration_ms=44.48 method=GET path=/api/v1/invoices/de06dab1-b5f6-4660-af08-f86ccacf1d0d request_id=7f44b2ff-0e48-4c4d-96ff-4537d0cde506 status_code=200
+INFO:     127.0.0.1:65163 - "GET /api/v1/invoices/de06dab1-b5f6-4660-af08-f86ccacf1d0d HTTP/1.1" 200 OK
+2026-07-11T05:43:54.056158Z [info     ] payment_financially_posted     amount=40.00 customer_id=0b1c6f2b-99b5-4779-93d3-f35dddca7be1 payment_id=80b19262-97ef-4948-9c74-b9d1472635aa request_id=e60bc742-bed8-49d2-9ae5-7a8c92ddb371 tenant_id=9f40282c-e1c7-46f0-8002-07dc988821a9
+2026-07-11T05:43:54.099846Z [info     ] payment_posted                 payment_id=80b19262-97ef-4948-9c74-b9d1472635aa payment_number=PAY-000001 request_id=e60bc742-bed8-49d2-9ae5-7a8c92ddb371 tenant_id=9f40282c-e1c7-46f0-8002-07dc988821a9 user_id=db842fb6-8032-4c3b-95b8-742d4fa463d0
+2026-07-11T05:43:54.101453Z [info     ] request_completed              duration_ms=233.25 method=POST path=/api/v1/payments request_id=e60bc742-bed8-49d2-9ae5-7a8c92ddb371 status_code=201
+INFO:     127.0.0.1:65163 - "POST /api/v1/payments HTTP/1.1" 201 Created
+2026-07-11T05:43:54.151285Z [info     ] request_completed              duration_ms=48.49 method=GET path=/api/v1/invoices/de06dab1-b5f6-4660-af08-f86ccacf1d0d request_id=461895c8-f6e6-450a-af92-6f2bee6a966c status_code=200
+INFO:     127.0.0.1:65163 - "GET /api/v1/invoices/de06dab1-b5f6-4660-af08-f86ccacf1d0d HTTP/1.1" 200 OK
+2026-07-11T05:43:54.228459Z [info     ] request_completed              duration_ms=51.39 method=GET path=/api/v1/invoices/de06dab1-b5f6-4660-af08-f86ccacf1d0d/pdf request_id=3e23716f-1676-43ed-9988-7f61806c814f status_code=200
+INFO:     127.0.0.1:65163 - "GET /api/v1/invoices/de06dab1-b5f6-4660-af08-f86ccacf1d0d/pdf HTTP/1.1" 200 OK
+2026-07-11T05:43:54.361748Z [info     ] payment_financially_posted     amount=60.00 customer_id=0b1c6f2b-99b5-4779-93d3-f35dddca7be1 payment_id=a9803b4c-de88-4868-ae2f-0a1551f3cb2a request_id=92ece9fa-2214-42e5-9243-e2b2051db98e tenant_id=9f40282c-e1c7-46f0-8002-07dc988821a9
+2026-07-11T05:43:54.394181Z [info     ] payment_posted                 payment_id=a9803b4c-de88-4868-ae2f-0a1551f3cb2a payment_number=PAY-000002 request_id=92ece9fa-2214-42e5-9243-e2b2051db98e tenant_id=9f40282c-e1c7-46f0-8002-07dc988821a9 user_id=db842fb6-8032-4c3b-95b8-742d4fa463d0
+2026-07-11T05:43:54.394181Z [info     ] request_completed              duration_ms=150.13 method=POST path=/api/v1/payments request_id=92ece9fa-2214-42e5-9243-e2b2051db98e status_code=201
+INFO:     127.0.0.1:65163 - "POST /api/v1/payments HTTP/1.1" 201 Created
+2026-07-11T05:43:54.635522Z [warning  ] request_completed              duration_ms=230.95 method=POST path=/api/v1/payments request_id=d42bb534-6116-4800-bdf5-c44c5bbd53ea status_code=422
+INFO:     127.0.0.1:65163 - "POST /api/v1/payments HTTP/1.1" 422 Unprocessable Entity
+2026-07-11T05:43:54.719230Z [info     ] payment_financially_posted     amount=25.00 customer_id=0b1c6f2b-99b5-4779-93d3-f35dddca7be1 payment_id=b8771522-beee-4438-8927-d2eb333097a9 request_id=0bbfd6db-f10e-44ce-8d15-0199e964e8b0 tenant_id=9f40282c-e1c7-46f0-8002-07dc988821a9
+2026-07-11T05:43:54.734495Z [info     ] payment_posted                 payment_id=b8771522-beee-4438-8927-d2eb333097a9 payment_number=PAY-000003 request_id=0bbfd6db-f10e-44ce-8d15-0199e964e8b0 tenant_id=9f40282c-e1c7-46f0-8002-07dc988821a9 user_id=db842fb6-8032-4c3b-95b8-742d4fa463d0
+2026-07-11T05:43:54.747534Z [info     ] request_completed              duration_ms=95.34 method=POST path=/api/v1/payments request_id=0bbfd6db-f10e-44ce-8d15-0199e964e8b0 status_code=201
+INFO:     127.0.0.1:65163 - "POST /api/v1/payments HTTP/1.1" 201 Created
+2026-07-11T05:43:54.800512Z [info     ] request_completed              duration_ms=39.36 method=GET path=/api/v1/customers/0b1c6f2b-99b5-4779-93d3-f35dddca7be1/credit request_id=c92638d2-4d17-453b-a47b-4bc53cf0b32c status_code=200
+INFO:     127.0.0.1:65163 - "GET /api/v1/customers/0b1c6f2b-99b5-4779-93d3-f35dddca7be1/credit HTTP/1.1" 200 OK
+2026-07-11T05:43:54.878182Z [info     ] payment_financial_posting_reversed amount=25.00 customer_id=0b1c6f2b-99b5-4779-93d3-f35dddca7be1 payment_id=b8771522-beee-4438-8927-d2eb333097a9 request_id=8871d06f-53c8-4797-abbe-b7b59228c9bb tenant_id=9f40282c-e1c7-46f0-8002-07dc988821a9
+2026-07-11T05:43:54.897635Z [info     ] payment_voided                 payment_id=b8771522-beee-4438-8927-d2eb333097a9 payment_number=PAY-000003 request_id=8871d06f-53c8-4797-abbe-b7b59228c9bb tenant_id=9f40282c-e1c7-46f0-8002-07dc988821a9 user_id=db842fb6-8032-4c3b-95b8-742d4fa463d0
+2026-07-11T05:43:54.902943Z [info     ] request_completed              duration_ms=92.46 method=POST path=/api/v1/payments/b8771522-beee-4438-8927-d2eb333097a9/void request_id=8871d06f-53c8-4797-abbe-b7b59228c9bb status_code=200
+INFO:     127.0.0.1:65163 - "POST /api/v1/payments/b8771522-beee-4438-8927-d2eb333097a9/void HTTP/1.1" 200 OK
+2026-07-11T05:43:54.943205Z [info     ] request_completed              duration_ms=33.83 method=GET path=/api/v1/customers/0b1c6f2b-99b5-4779-93d3-f35dddca7be1/credit request_id=7c3305b2-2a06-48f6-b0f6-9deebb59ce45 status_code=200
+INFO:     127.0.0.1:65163 - "GET /api/v1/customers/0b1c6f2b-99b5-4779-93d3-f35dddca7be1/credit HTTP/1.1" 200 OK
+2026-07-11T05:43:55.000442Z [info     ] request_completed              duration_ms=38.8 method=GET path=/api/v1/customers/0b1c6f2b-99b5-4779-93d3-f35dddca7be1/balance request_id=91de8ef2-2670-4975-be5f-628f1e9006ff status_code=200
+INFO:     127.0.0.1:65163 - "GET /api/v1/customers/0b1c6f2b-99b5-4779-93d3-f35dddca7be1/balance HTTP/1.1" 200 OK
+2026-07-11T05:43:55.102167Z [info     ] request_completed              duration_ms=92.25 method=GET path=/api/v1/customers/0b1c6f2b-99b5-4779-93d3-f35dddca7be1/ledger request_id=df4957f7-f94b-476f-b4e1-1881cb7119a1 status_code=200
+INFO:     127.0.0.1:65163 - "GET /api/v1/customers/0b1c6f2b-99b5-4779-93d3-f35dddca7be1/ledger HTTP/1.1" 200 OK
+2026-07-11T05:43:55.157876Z [info     ] request_completed              duration_ms=37.54 method=GET path=/api/v1/customers/0b1c6f2b-99b5-4779-93d3-f35dddca7be1/financial-summary request_id=51ae2aed-6632-470b-ab86-f8c74d8c9930 status_code=200
+INFO:     127.0.0.1:65163 - "GET /api/v1/customers/0b1c6f2b-99b5-4779-93d3-f35dddca7be1/financial-summary HTTP/1.1" 200 OK
+2026-07-11T05:43:55.232363Z [info     ] request_completed              duration_ms=61.11 method=GET path=/api/v1/dashboard request_id=93831b5f-5d64-4a08-a1e7-4586a2d1dbdc status_code=200
+INFO:     127.0.0.1:65163 - "GET /api/v1/dashboard HTTP/1.1" 200 OK
+2026-07-11T05:43:55.291765Z [info     ] request_completed              duration_ms=46.69 method=GET path=/api/v1/reports/sales request_id=310bc786-a8e3-416e-9f41-708f0bd30379 status_code=200
+INFO:     127.0.0.1:65163 - "GET /api/v1/reports/sales HTTP/1.1" 200 OK
+2026-07-11T05:43:55.355654Z [info     ] request_completed              duration_ms=53.51 method=GET path=/api/v1/reports/payments request_id=5a64004c-a2f2-46d3-81ef-d533374c57e2 status_code=200
+INFO:     127.0.0.1:65163 - "GET /api/v1/reports/payments HTTP/1.1" 200 OK
+2026-07-11T05:43:55.404252Z [info     ] request_completed              duration_ms=39.2 method=GET path=/api/v1/reports/outstanding request_id=cb3af44e-d462-4145-95f1-0aa8c4a4aeb4 status_code=200
+INFO:     127.0.0.1:65163 - "GET /api/v1/reports/outstanding HTTP/1.1" 200 OK
+2026-07-11T05:43:55.456169Z [info     ] request_completed              duration_ms=43.06 method=GET path=/api/v1/reports/inventory request_id=7e199ec6-5b34-4879-805f-d3d0bdb9610b status_code=200
+INFO:     127.0.0.1:65163 - "GET /api/v1/reports/inventory HTTP/1.1" 200 OK
+2026-07-11T05:43:55.518586Z [info     ] request_completed              duration_ms=45.47 method=GET path=/api/v1/reports/low-stock request_id=e7ecbc2f-b6ce-4bb4-ae31-b34dc917ac97 status_code=200
+INFO:     127.0.0.1:65163 - "GET /api/v1/reports/low-stock HTTP/1.1" 200 OK
+2026-07-11T05:43:55.565371Z [warning  ] request_completed              duration_ms=32.98 method=GET path=/api/v1/reports/sales request_id=a870f292-2f1a-4aeb-af1b-ffffefe73032 status_code=422
+INFO:     127.0.0.1:65163 - "GET /api/v1/reports/sales?date_from=not-a-date HTTP/1.1" 422 Unprocessable Entity
+2026-07-11T05:43:55.627923Z [info     ] request_completed              duration_ms=49.13 method=GET path=/api/v1/reports/sales.csv request_id=ce4e15be-13db-4ed8-9481-b651c366667c status_code=200
+INFO:     127.0.0.1:65163 - "GET /api/v1/reports/sales.csv HTTP/1.1" 200 OK
+2026-07-11T05:43:55.680536Z [info     ] request_completed              duration_ms=40.33 method=GET path=/api/v1/reports/inventory.csv request_id=52510eaf-66a7-4189-95c8-166c8150b805 status_code=200
+INFO:     127.0.0.1:65163 - "GET /api/v1/reports/inventory.csv HTTP/1.1" 200 OK
+2026-07-11T05:43:55.728059Z [info     ] request_completed              duration_ms=37.61 method=GET path=/api/v1/reports/outstanding.csv request_id=c548ac14-97b5-4b85-b79e-46ad8855a47c status_code=200
+INFO:     127.0.0.1:65163 - "GET /api/v1/reports/outstanding.csv HTTP/1.1" 200 OK
+2026-07-11T05:43:55.967865Z [info     ] request_completed              duration_ms=225.41 method=GET path=/api/v1/search request_id=c562bda8-fe4b-42e2-9ba8-526631a6c9cc status_code=200
+INFO:     127.0.0.1:65163 - "GET /api/v1/search?q=CUST-000001&limit=10 HTTP/1.1" 200 OK
+2026-07-11T05:43:56.138160Z [info     ] request_completed              duration_ms=159.58 method=GET path=/api/v1/search request_id=1df735f8-486d-43c2-b0a3-71f096e34538 status_code=200
+INFO:     127.0.0.1:65163 - "GET /api/v1/search?q=PROD-000001&limit=10 HTTP/1.1" 200 OK
+2026-07-11T05:43:56.227533Z [info     ] request_completed              duration_ms=73.87 method=GET path=/api/v1/search request_id=1c9121a4-aeba-4a3b-8fe9-a09f69875cdb status_code=200
+INFO:     127.0.0.1:65163 - "GET /api/v1/search?q=SALE-000005&limit=10 HTTP/1.1" 200 OK
+2026-07-11T05:43:56.311884Z [info     ] request_completed              duration_ms=71.22 method=GET path=/api/v1/search request_id=681a0ffb-f858-4db7-b241-1a6a442a4775 status_code=200
+INFO:     127.0.0.1:65163 - "GET /api/v1/search?q=INV-000001&limit=10 HTTP/1.1" 200 OK
+2026-07-11T05:43:56.402059Z [info     ] request_completed              duration_ms=73.12 method=GET path=/api/v1/search request_id=3de55f64-8f8a-4b9f-8e4f-6dfcbe6a00f1 status_code=200
+INFO:     127.0.0.1:65163 - "GET /api/v1/search?q=PAY-000001&limit=10 HTTP/1.1" 200 OK
+2026-07-11T05:43:56.487297Z [info     ] request_completed              duration_ms=79.1 method=GET path=/api/v1/search request_id=52dd1748-7619-4fa8-b2e0-2e4bdad30c14 status_code=200
+INFO:     127.0.0.1:65163 - "GET /api/v1/search?q=8903748627&limit=10 HTTP/1.1" 200 OK
+2026-07-11T05:43:56.582681Z [info     ] request_completed              duration_ms=75.85 method=GET path=/api/v1/search request_id=845463fc-c3fc-456c-9278-57e79877dded status_code=200
+INFO:     127.0.0.1:65163 - "GET /api/v1/search?q=RC4-SKU-1783748627&limit=10 HTTP/1.1" 200 OK
+2026-07-11T05:43:56.677733Z [info     ] request_completed              duration_ms=82.9 method=GET path=/api/v1/search request_id=7bc0aa75-82c2-4646-8072-7cc7fea3457b status_code=200
+INFO:     127.0.0.1:65163 - "GET /api/v1/search?q=Malayalam&limit=10 HTTP/1.1" 200 OK
+2026-07-11T05:43:56.769954Z [info     ] request_completed              duration_ms=77.82 method=GET path=/api/v1/search request_id=6411fa49-120b-452b-ba5c-7faaeb49ce90 status_code=200
+INFO:     127.0.0.1:65163 - "GET /api/v1/search?q=Arabic&limit=10 HTTP/1.1" 200 OK
+2026-07-11T05:43:56.860430Z [info     ] request_completed              duration_ms=71.19 method=GET path=/api/v1/search request_id=97f147ff-6482-4e17-b140-c8bc787e0b3f status_code=200
+INFO:     127.0.0.1:65163 - "GET /api/v1/search?q=Hindi&limit=10 HTTP/1.1" 200 OK
+2026-07-11T05:43:56.953143Z [info     ] request_completed              duration_ms=81.5 method=GET path=/api/v1/search request_id=d7942199-716a-451c-b6d1-63862f9c5da0 status_code=200
+INFO:     127.0.0.1:65163 - "GET /api/v1/search?q=%3F%3F&limit=10 HTTP/1.1" 200 OK
+2026-07-11T05:43:57.050445Z [info     ] request_completed              duration_ms=76.77 method=GET path=/api/v1/search request_id=7d1b6cf7-1ebd-42d6-a26e-83d7bca8c989 status_code=200
+INFO:     127.0.0.1:65163 - "GET /api/v1/search?q=++rc4++&limit=10 HTTP/1.1" 200 OK
+2026-07-11T05:43:57.141160Z [info     ] request_completed              duration_ms=79.01 method=GET path=/api/v1/search request_id=04d8ed75-9924-4152-8bc8-1903022b7b57 status_code=200
+INFO:     127.0.0.1:65163 - "GET /api/v1/search?q=%27+OR+1%3D1+--&limit=10 HTTP/1.1" 200 OK
+2026-07-11T05:43:57.190854Z [warning  ] request_completed              duration_ms=33.15 method=GET path=/api/v1/search request_id=d23f0db8-d57f-42b4-93d1-f73dd9d6dc62 status_code=422
+INFO:     127.0.0.1:65163 - "GET /api/v1/search?q=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&limit=10 HTTP/1.1" 422 Unprocessable Entity
+2026-07-11T05:43:57.240533Z [warning  ] request_completed              duration_ms=37.19 method=PATCH path=/api/v1/business/settings request_id=acd662fb-66ec-41ac-a38c-de44a3726ba5 status_code=409
+INFO:     127.0.0.1:65163 - "PATCH /api/v1/business/settings HTTP/1.1" 409 Conflict
+2026-07-11T05:43:57.477451Z [info     ] signup_succeeded               business_id=8f132fea-7ed4-44ff-b899-ac8e813750fd request_id=70bc5c18-6cfd-4137-9e4c-aa0a38bed6ec session_id=4921c66d-40a6-47b7-887c-23c3c8119416 user_id=439b1809-90f1-46a2-b12d-029951c92fe6
+2026-07-11T05:43:57.481212Z [info     ] request_completed              duration_ms=228.41 method=POST path=/api/v1/auth/signup request_id=70bc5c18-6cfd-4137-9e4c-aa0a38bed6ec status_code=201
+INFO:     127.0.0.1:65163 - "POST /api/v1/auth/signup HTTP/1.1" 201 Created
+2026-07-11T05:43:57.526463Z [warning  ] request_completed              duration_ms=37.5 method=GET path=/api/v1/customers/0b1c6f2b-99b5-4779-93d3-f35dddca7be1 request_id=24ba00c7-f775-4b0b-8831-5e202799260a status_code=404
+INFO:     127.0.0.1:65163 - "GET /api/v1/customers/0b1c6f2b-99b5-4779-93d3-f35dddca7be1 HTTP/1.1" 404 Not Found
+2026-07-11T05:43:57.612036Z [info     ] request_completed              duration_ms=69.79 method=GET path=/api/v1/search request_id=983d8139-cb1a-4def-a5d8-39b19717c5df status_code=200
+INFO:     127.0.0.1:65163 - "GET /api/v1/search?q=RC4&limit=10 HTTP/1.1" 200 OK
+2026-07-11T05:47:06.164923Z [warning  ] request_completed              duration_ms=3.78 method=POST path=/api/v1/auth/login request_id=a973866e-0853-4bca-83a1-39b234931946 status_code=422
+INFO:     127.0.0.1:62970 - "POST /api/v1/auth/login HTTP/1.1" 422 Unprocessable Entity
+2026-07-11T05:47:06.189503Z [warning  ] request_completed              duration_ms=3.5 method=GET path=/api/v1/auth/me request_id=7b7153bf-7363-4dbf-9fe8-54155bc1146a status_code=401
+INFO:     127.0.0.1:62970 - "GET /api/v1/auth/me HTTP/1.1" 401 Unauthorized
+2026-07-11T05:47:06.398375Z [info     ] signup_succeeded               business_id=185fa257-1b19-4e56-b5f3-a2beff194b46 request_id=892c818b-0ede-433f-a97f-fa1b524c5d36 session_id=ed9801c7-fc3f-4adc-9e67-05159e8339aa user_id=d7ee42fe-6587-45d6-a4d2-7852b36fa9ee
+2026-07-11T05:47:06.408352Z [info     ] request_completed              duration_ms=207.26 method=POST path=/api/v1/auth/signup request_id=892c818b-0ede-433f-a97f-fa1b524c5d36 status_code=201
+INFO:     127.0.0.1:62970 - "POST /api/v1/auth/signup HTTP/1.1" 201 Created
+2026-07-11T05:47:06.450551Z [info     ] request_completed              duration_ms=29.6 method=GET path=/api/v1/auth/me request_id=a3b7de08-cff7-41b6-95b0-dc8ffca9782b status_code=200
+INFO:     127.0.0.1:62970 - "GET /api/v1/auth/me HTTP/1.1" 200 OK
+2026-07-11T05:47:06.672966Z [info     ] login_succeeded                business_id=185fa257-1b19-4e56-b5f3-a2beff194b46 request_id=4447c6b8-c3d9-42ca-a4cb-a75d2bf5b8fe session_id=f1e52d46-05ab-4c1a-93e5-1b80a8978f55 user_id=d7ee42fe-6587-45d6-a4d2-7852b36fa9ee
+2026-07-11T05:47:06.679893Z [info     ] request_completed              duration_ms=213.61 method=POST path=/api/v1/auth/login request_id=4447c6b8-c3d9-42ca-a4cb-a75d2bf5b8fe status_code=200
+INFO:     127.0.0.1:62970 - "POST /api/v1/auth/login HTTP/1.1" 200 OK
+2026-07-11T05:47:06.747775Z [info     ] session_refreshed              business_id=185fa257-1b19-4e56-b5f3-a2beff194b46 request_id=bf607953-5a81-48b1-bd2c-588e358a0ea5 session_id=ed9801c7-fc3f-4adc-9e67-05159e8339aa user_id=d7ee42fe-6587-45d6-a4d2-7852b36fa9ee
+2026-07-11T05:47:06.747775Z [info     ] request_completed              duration_ms=56.1 method=POST path=/api/v1/auth/refresh request_id=bf607953-5a81-48b1-bd2c-588e358a0ea5 status_code=200
+INFO:     127.0.0.1:62970 - "POST /api/v1/auth/refresh HTTP/1.1" 200 OK
+2026-07-11T05:47:06.788983Z [warning  ] refresh_failed                 reason=credential_rejected request_id=17327c64-ab7d-4d50-a9ca-2e423ef97a90 session_id=ed9801c7-fc3f-4adc-9e67-05159e8339aa user_id=d7ee42fe-6587-45d6-a4d2-7852b36fa9ee
+2026-07-11T05:47:06.794268Z [warning  ] request_completed              duration_ms=32.98 method=POST path=/api/v1/auth/refresh request_id=17327c64-ab7d-4d50-a9ca-2e423ef97a90 status_code=401
+INFO:     127.0.0.1:62970 - "POST /api/v1/auth/refresh HTTP/1.1" 401 Unauthorized
+2026-07-11T05:47:06.808217Z [warning  ] request_completed              duration_ms=3.84 method=GET path=/api/v1/auth/me request_id=11222676-3b68-4946-86f6-2185d783ca01 status_code=401
+INFO:     127.0.0.1:62970 - "GET /api/v1/auth/me HTTP/1.1" 401 Unauthorized
+2026-07-11T05:47:06.812788Z [warning  ] request_completed              duration_ms=3.89 method=GET path=/api/v1/auth/me request_id=efd5db4d-9d81-4b69-908e-982eb58c0d0e status_code=401
+INFO:     127.0.0.1:62970 - "GET /api/v1/auth/me HTTP/1.1" 401 Unauthorized
+2026-07-11T05:47:06.872378Z [info     ] request_completed              duration_ms=36.04 method=PATCH path=/api/v1/business/settings request_id=e380d2ba-acc6-4262-8b48-f3db3ef54ef8 status_code=200
+INFO:     127.0.0.1:62970 - "PATCH /api/v1/business/settings HTTP/1.1" 200 OK
+2026-07-11T05:47:06.930200Z [info     ] customer_created               customer_code=CUST-000001 customer_id=42fd336c-8e6a-46b6-9ccd-592cf6b41289 request_id=ddd169c6-6e90-4fc7-a408-eaf9c77ad24a tenant_id=185fa257-1b19-4e56-b5f3-a2beff194b46 user_id=d7ee42fe-6587-45d6-a4d2-7852b36fa9ee
+2026-07-11T05:47:06.930200Z [info     ] request_completed              duration_ms=52.69 method=POST path=/api/v1/customers request_id=ddd169c6-6e90-4fc7-a408-eaf9c77ad24a status_code=201
+INFO:     127.0.0.1:62970 - "POST /api/v1/customers HTTP/1.1" 201 Created
+2026-07-11T05:47:06.993079Z [warning  ] request_completed              duration_ms=40.56 method=POST path=/api/v1/customers request_id=cdd3ca51-e2b1-4740-bc4c-fa591ca7b127 status_code=409
+INFO:     127.0.0.1:62970 - "POST /api/v1/customers HTTP/1.1" 409 Conflict
+2026-07-11T05:47:07.032871Z [warning  ] request_completed              duration_ms=33.9 method=POST path=/api/v1/customers request_id=b85d31f8-1b97-414e-8438-f8f4e37d921c status_code=422
+INFO:     127.0.0.1:62970 - "POST /api/v1/customers HTTP/1.1" 422 Unprocessable Entity
+2026-07-11T05:47:07.080900Z [info     ] customer_created               customer_code=CUST-000002 customer_id=21b76291-d526-4282-8b0f-447cec3d2a89 request_id=4791c022-5331-453d-9fc7-c2d289dfbf08 tenant_id=185fa257-1b19-4e56-b5f3-a2beff194b46 user_id=d7ee42fe-6587-45d6-a4d2-7852b36fa9ee
+2026-07-11T05:47:07.080900Z [info     ] request_completed              duration_ms=37.2 method=POST path=/api/v1/customers request_id=4791c022-5331-453d-9fc7-c2d289dfbf08 status_code=201
+INFO:     127.0.0.1:62970 - "POST /api/v1/customers HTTP/1.1" 201 Created
+2026-07-11T05:47:07.146443Z [info     ] product_created                product_code=PROD-000001 product_id=ff61b115-6b6e-4465-a679-6e8ee7141fe3 request_id=7cba889f-cd8f-4d67-95bc-b35d251f42fc tenant_id=185fa257-1b19-4e56-b5f3-a2beff194b46 user_id=d7ee42fe-6587-45d6-a4d2-7852b36fa9ee
+2026-07-11T05:47:07.152289Z [info     ] request_completed              duration_ms=51.12 method=POST path=/api/v1/products request_id=7cba889f-cd8f-4d67-95bc-b35d251f42fc status_code=201
+INFO:     127.0.0.1:62970 - "POST /api/v1/products HTTP/1.1" 201 Created
+2026-07-11T05:47:07.204305Z [warning  ] request_completed              duration_ms=37.47 method=POST path=/api/v1/products request_id=f610365d-311e-4cff-a799-141f63918f06 status_code=409
+INFO:     127.0.0.1:62970 - "POST /api/v1/products HTTP/1.1" 409 Conflict
+2026-07-11T05:47:07.247476Z [warning  ] request_completed              duration_ms=31.43 method=POST path=/api/v1/products request_id=22146cd0-74b5-4273-872c-9d16645c307e status_code=422
+INFO:     127.0.0.1:62970 - "POST /api/v1/products HTTP/1.1" 422 Unprocessable Entity
+2026-07-11T05:47:07.281156Z [warning  ] request_completed              duration_ms=34.72 method=POST path=/api/v1/products request_id=6f76f22d-2929-42fc-a1cc-a7646cb21686 status_code=422
+INFO:     127.0.0.1:62970 - "POST /api/v1/products HTTP/1.1" 422 Unprocessable Entity
+2026-07-11T05:47:07.407100Z [info     ] stock_movement_posted          movement_id=91b4c3e0-d301-40d5-ac84-a6a30e24962a movement_type=OPENING_STOCK product_id=ff61b115-6b6e-4465-a679-6e8ee7141fe3 request_id=a27a91f8-12a3-4276-bd8f-4c94d27b96bb tenant_id=185fa257-1b19-4e56-b5f3-a2beff194b46 user_id=d7ee42fe-6587-45d6-a4d2-7852b36fa9ee warehouse_id=6299252a-c182-4233-beab-f51e61468c5f
+2026-07-11T05:47:07.413171Z [info     ] request_completed              duration_ms=109.8 method=POST path=/api/v1/inventory/opening-stock request_id=a27a91f8-12a3-4276-bd8f-4c94d27b96bb status_code=201
+INFO:     127.0.0.1:62970 - "POST /api/v1/inventory/opening-stock HTTP/1.1" 201 Created
+2026-07-11T05:47:07.475012Z [warning  ] request_completed              duration_ms=49.33 method=POST path=/api/v1/inventory/opening-stock request_id=c1d23fd6-2192-4dc1-a8d2-66f197f8bf20 status_code=409
+INFO:     127.0.0.1:62970 - "POST /api/v1/inventory/opening-stock HTTP/1.1" 409 Conflict
+2026-07-11T05:47:07.522609Z [warning  ] request_completed              duration_ms=36.04 method=POST path=/api/v1/inventory/damage request_id=b94e9102-de4b-42f5-962a-f3240d0ae76f status_code=422
+INFO:     127.0.0.1:62970 - "POST /api/v1/inventory/damage HTTP/1.1" 422 Unprocessable Entity
+2026-07-11T05:47:07.596817Z [info     ] stock_movement_posted          movement_id=fbaba175-ca29-4d23-a2f5-b3d2655b69c2 movement_type=DAMAGED product_id=ff61b115-6b6e-4465-a679-6e8ee7141fe3 request_id=5d04e478-40f6-4b1c-977f-413273277344 tenant_id=185fa257-1b19-4e56-b5f3-a2beff194b46 user_id=d7ee42fe-6587-45d6-a4d2-7852b36fa9ee warehouse_id=6299252a-c182-4233-beab-f51e61468c5f
+2026-07-11T05:47:07.596817Z [info     ] request_completed              duration_ms=62.02 method=POST path=/api/v1/inventory/damage request_id=5d04e478-40f6-4b1c-977f-413273277344 status_code=201
+INFO:     127.0.0.1:62970 - "POST /api/v1/inventory/damage HTTP/1.1" 201 Created
+2026-07-11T05:47:07.668114Z [info     ] stock_movement_posted          movement_id=f5160c2e-f939-4f71-9fa8-a23bf7602c7b movement_type=SPOILAGE product_id=ff61b115-6b6e-4465-a679-6e8ee7141fe3 request_id=10c85dce-f901-4915-b152-e0a30ab4cbfe tenant_id=185fa257-1b19-4e56-b5f3-a2beff194b46 user_id=d7ee42fe-6587-45d6-a4d2-7852b36fa9ee warehouse_id=6299252a-c182-4233-beab-f51e61468c5f
+2026-07-11T05:47:07.677571Z [info     ] request_completed              duration_ms=68.16 method=POST path=/api/v1/inventory/spoilage request_id=10c85dce-f901-4915-b152-e0a30ab4cbfe status_code=201
+INFO:     127.0.0.1:62970 - "POST /api/v1/inventory/spoilage HTTP/1.1" 201 Created
+2026-07-11T05:47:07.747992Z [info     ] stock_movement_posted          movement_id=7ac49d4f-0a55-499a-838a-7ad11882f3a7 movement_type=CUSTOMER_RETURN product_id=ff61b115-6b6e-4465-a679-6e8ee7141fe3 request_id=ada55d67-99ed-4082-8eac-cd3b474ea832 tenant_id=185fa257-1b19-4e56-b5f3-a2beff194b46 user_id=d7ee42fe-6587-45d6-a4d2-7852b36fa9ee warehouse_id=6299252a-c182-4233-beab-f51e61468c5f
+2026-07-11T05:47:07.752217Z [info     ] request_completed              duration_ms=60.06 method=POST path=/api/v1/inventory/customer-returns request_id=ada55d67-99ed-4082-8eac-cd3b474ea832 status_code=201
+INFO:     127.0.0.1:62970 - "POST /api/v1/inventory/customer-returns HTTP/1.1" 201 Created
+2026-07-11T05:47:07.792952Z [warning  ] request_completed              duration_ms=28.48 method=POST path=/api/v1/inventory/adjustments request_id=6bc7083d-ad09-4b76-bb70-bdae334fed9f status_code=422
+INFO:     127.0.0.1:62970 - "POST /api/v1/inventory/adjustments HTTP/1.1" 422 Unprocessable Entity
+2026-07-11T05:47:07.867843Z [info     ] sale_draft_created             request_id=299743c6-7e77-4361-9093-4f49d6becf70 sale_id=a506bd22-d85d-4615-a02f-22e2a897340b sale_number=SALE-000001 tenant_id=185fa257-1b19-4e56-b5f3-a2beff194b46 user_id=d7ee42fe-6587-45d6-a4d2-7852b36fa9ee
+2026-07-11T05:47:07.867843Z [info     ] request_completed              duration_ms=67.89 method=POST path=/api/v1/sales request_id=299743c6-7e77-4361-9093-4f49d6becf70 status_code=201
+INFO:     127.0.0.1:62970 - "POST /api/v1/sales HTTP/1.1" 201 Created
+2026-07-11T05:47:08.001229Z [info     ] sale_financially_posted        amount=40.00 customer_id=42fd336c-8e6a-46b6-9ccd-592cf6b41289 request_id=0a0c4ac4-1497-4819-b42c-579b536da09a sale_id=a506bd22-d85d-4615-a02f-22e2a897340b tenant_id=185fa257-1b19-4e56-b5f3-a2beff194b46
+2026-07-11T05:47:08.023208Z [info     ] sale_posted                    request_id=0a0c4ac4-1497-4819-b42c-579b536da09a sale_id=a506bd22-d85d-4615-a02f-22e2a897340b sale_number=SALE-000001 tenant_id=185fa257-1b19-4e56-b5f3-a2beff194b46 user_id=d7ee42fe-6587-45d6-a4d2-7852b36fa9ee
+2026-07-11T05:47:08.029453Z [info     ] request_completed              duration_ms=142.91 method=POST path=/api/v1/sales/a506bd22-d85d-4615-a02f-22e2a897340b/post request_id=0a0c4ac4-1497-4819-b42c-579b536da09a status_code=200
+INFO:     127.0.0.1:62970 - "POST /api/v1/sales/a506bd22-d85d-4615-a02f-22e2a897340b/post HTTP/1.1" 200 OK
+2026-07-11T05:47:08.096604Z [info     ] request_completed              duration_ms=62.83 method=GET path=/api/v1/dashboard request_id=c697fe9b-e5a3-4ed9-837e-6e21d559db28 status_code=200
+INFO:     127.0.0.1:62970 - "GET /api/v1/dashboard HTTP/1.1" 200 OK
+2026-07-11T05:47:08.160795Z [info     ] request_completed              duration_ms=42.56 method=GET path=/api/v1/inventory/stock/ff61b115-6b6e-4465-a679-6e8ee7141fe3 request_id=0b16f594-2d00-4e08-aa17-fdb9f55aa555 status_code=200
+INFO:     127.0.0.1:62970 - "GET /api/v1/inventory/stock/ff61b115-6b6e-4465-a679-6e8ee7141fe3 HTTP/1.1" 200 OK
+2026-07-11T05:47:08.229471Z [info     ] sale_draft_created             request_id=05c22904-f499-4e0a-ad49-b35f1e827d2b sale_id=b990d27a-37df-4e14-b506-7831e87ae903 sale_number=SALE-000002 tenant_id=185fa257-1b19-4e56-b5f3-a2beff194b46 user_id=d7ee42fe-6587-45d6-a4d2-7852b36fa9ee
+2026-07-11T05:47:08.231482Z [info     ] request_completed              duration_ms=60.57 method=POST path=/api/v1/sales request_id=05c22904-f499-4e0a-ad49-b35f1e827d2b status_code=201
+INFO:     127.0.0.1:62970 - "POST /api/v1/sales HTTP/1.1" 201 Created
+2026-07-11T05:47:08.333678Z [info     ] sale_financially_posted        amount=20.00 customer_id=42fd336c-8e6a-46b6-9ccd-592cf6b41289 request_id=e71f16ab-36ea-41a0-85cb-1a5d8e35a70d sale_id=b990d27a-37df-4e14-b506-7831e87ae903 tenant_id=185fa257-1b19-4e56-b5f3-a2beff194b46
+2026-07-11T05:47:08.348682Z [info     ] sale_posted                    request_id=e71f16ab-36ea-41a0-85cb-1a5d8e35a70d sale_id=b990d27a-37df-4e14-b506-7831e87ae903 sale_number=SALE-000002 tenant_id=185fa257-1b19-4e56-b5f3-a2beff194b46 user_id=d7ee42fe-6587-45d6-a4d2-7852b36fa9ee
+2026-07-11T05:47:08.356141Z [info     ] request_completed              duration_ms=111.5 method=POST path=/api/v1/sales/b990d27a-37df-4e14-b506-7831e87ae903/post request_id=e71f16ab-36ea-41a0-85cb-1a5d8e35a70d status_code=200
+INFO:     127.0.0.1:62970 - "POST /api/v1/sales/b990d27a-37df-4e14-b506-7831e87ae903/post HTTP/1.1" 200 OK
+2026-07-11T05:47:08.447488Z [info     ] request_completed              duration_ms=78.05 method=GET path=/api/v1/dashboard request_id=b7f91117-e2ed-4100-870a-4f68729f0301 status_code=200
+INFO:     127.0.0.1:62970 - "GET /api/v1/dashboard HTTP/1.1" 200 OK
+2026-07-11T05:47:08.497284Z [info     ] request_completed              duration_ms=42.5 method=GET path=/api/v1/inventory/stock/ff61b115-6b6e-4465-a679-6e8ee7141fe3 request_id=7bcb4e95-361f-47fb-9657-dc75d267859c status_code=200
+INFO:     127.0.0.1:62970 - "GET /api/v1/inventory/stock/ff61b115-6b6e-4465-a679-6e8ee7141fe3 HTTP/1.1" 200 OK
+2026-07-11T05:47:08.569869Z [info     ] sale_draft_created             request_id=46392d00-ea79-4e1a-b113-0da1c78b4e94 sale_id=c25c2067-478d-42d1-8701-d4543fd423d7 sale_number=SALE-000003 tenant_id=185fa257-1b19-4e56-b5f3-a2beff194b46 user_id=d7ee42fe-6587-45d6-a4d2-7852b36fa9ee
+2026-07-11T05:47:08.575904Z [info     ] request_completed              duration_ms=60.52 method=POST path=/api/v1/sales request_id=46392d00-ea79-4e1a-b113-0da1c78b4e94 status_code=201
+INFO:     127.0.0.1:62970 - "POST /api/v1/sales HTTP/1.1" 201 Created
+2026-07-11T05:47:08.678084Z [info     ] sale_financially_posted        amount=40.00 customer_id=42fd336c-8e6a-46b6-9ccd-592cf6b41289 request_id=09888f5a-15df-44ba-89c9-e556d5f90e62 sale_id=c25c2067-478d-42d1-8701-d4543fd423d7 tenant_id=185fa257-1b19-4e56-b5f3-a2beff194b46
+2026-07-11T05:47:08.708558Z [info     ] sale_posted                    request_id=09888f5a-15df-44ba-89c9-e556d5f90e62 sale_id=c25c2067-478d-42d1-8701-d4543fd423d7 sale_number=SALE-000003 tenant_id=185fa257-1b19-4e56-b5f3-a2beff194b46 user_id=d7ee42fe-6587-45d6-a4d2-7852b36fa9ee
+2026-07-11T05:47:08.713810Z [info     ] request_completed              duration_ms=127.52 method=POST path=/api/v1/sales/c25c2067-478d-42d1-8701-d4543fd423d7/post request_id=09888f5a-15df-44ba-89c9-e556d5f90e62 status_code=200
+INFO:     127.0.0.1:62970 - "POST /api/v1/sales/c25c2067-478d-42d1-8701-d4543fd423d7/post HTTP/1.1" 200 OK
+2026-07-11T05:47:08.784069Z [info     ] request_completed              duration_ms=58.28 method=GET path=/api/v1/dashboard request_id=c683e800-8718-497a-87d4-464368141ffe status_code=200
+INFO:     127.0.0.1:62970 - "GET /api/v1/dashboard HTTP/1.1" 200 OK
+2026-07-11T05:47:08.838356Z [info     ] request_completed              duration_ms=40.0 method=GET path=/api/v1/inventory/stock/ff61b115-6b6e-4465-a679-6e8ee7141fe3 request_id=09b8dab0-f8fc-46b0-807d-1439ea6a1f52 status_code=200
+INFO:     127.0.0.1:62970 - "GET /api/v1/inventory/stock/ff61b115-6b6e-4465-a679-6e8ee7141fe3 HTTP/1.1" 200 OK
+2026-07-11T05:47:08.914718Z [info     ] sale_draft_created             request_id=7001d48a-966d-4088-af3c-a298242959ae sale_id=1992d74a-d2fd-4911-ad29-ffbf62e2c514 sale_number=SALE-000004 tenant_id=185fa257-1b19-4e56-b5f3-a2beff194b46 user_id=d7ee42fe-6587-45d6-a4d2-7852b36fa9ee
+2026-07-11T05:47:08.914718Z [info     ] request_completed              duration_ms=63.14 method=POST path=/api/v1/sales request_id=7001d48a-966d-4088-af3c-a298242959ae status_code=201
+INFO:     127.0.0.1:62970 - "POST /api/v1/sales HTTP/1.1" 201 Created
+2026-07-11T05:47:09.018348Z [warning  ] request_completed              duration_ms=91.19 method=POST path=/api/v1/sales/1992d74a-d2fd-4911-ad29-ffbf62e2c514/post request_id=74eee722-1aa9-4bc1-9800-37295c5134b8 status_code=409
+INFO:     127.0.0.1:62970 - "POST /api/v1/sales/1992d74a-d2fd-4911-ad29-ffbf62e2c514/post HTTP/1.1" 409 Conflict
+2026-07-11T05:47:09.074536Z [warning  ] request_completed              duration_ms=34.91 method=POST path=/api/v1/sales request_id=65620dda-8754-4f0c-a144-eda80303f658 status_code=422
+INFO:     127.0.0.1:62970 - "POST /api/v1/sales HTTP/1.1" 422 Unprocessable Entity
+2026-07-11T05:47:09.114850Z [warning  ] request_completed              duration_ms=29.94 method=POST path=/api/v1/sales request_id=f24c995b-907a-49ef-b346-1452bb402324 status_code=422
+INFO:     127.0.0.1:62970 - "POST /api/v1/sales HTTP/1.1" 422 Unprocessable Entity
+2026-07-11T05:47:09.164424Z [info     ] product_created                product_code=PROD-000002 product_id=55f6d757-84da-4bfb-839f-92ecea593fa9 request_id=cb0e6193-a4a3-434b-ac46-c22f500ada74 tenant_id=185fa257-1b19-4e56-b5f3-a2beff194b46 user_id=d7ee42fe-6587-45d6-a4d2-7852b36fa9ee
+2026-07-11T05:47:09.164424Z [info     ] request_completed              duration_ms=37.78 method=POST path=/api/v1/products request_id=cb0e6193-a4a3-434b-ac46-c22f500ada74 status_code=201
+INFO:     127.0.0.1:62970 - "POST /api/v1/products HTTP/1.1" 201 Created
+2026-07-11T05:47:09.244153Z [info     ] stock_movement_posted          movement_id=949141ae-23d0-4df6-aa67-fcece68c97f2 movement_type=OPENING_STOCK product_id=55f6d757-84da-4bfb-839f-92ecea593fa9 request_id=3cc8ee27-2181-4aa6-9bda-dc5c0afb56df tenant_id=185fa257-1b19-4e56-b5f3-a2beff194b46 user_id=d7ee42fe-6587-45d6-a4d2-7852b36fa9ee warehouse_id=6299252a-c182-4233-beab-f51e61468c5f
+2026-07-11T05:47:09.246471Z [info     ] request_completed              duration_ms=69.42 method=POST path=/api/v1/inventory/opening-stock request_id=3cc8ee27-2181-4aa6-9bda-dc5c0afb56df status_code=201
+INFO:     127.0.0.1:62970 - "POST /api/v1/inventory/opening-stock HTTP/1.1" 201 Created
+2026-07-11T05:47:09.305406Z [info     ] product_archived               product_id=55f6d757-84da-4bfb-839f-92ecea593fa9 request_id=a012c012-2d2d-4cdc-956e-7318e1226914 tenant_id=185fa257-1b19-4e56-b5f3-a2beff194b46 user_id=d7ee42fe-6587-45d6-a4d2-7852b36fa9ee
+2026-07-11T05:47:09.306438Z [info     ] request_completed              duration_ms=45.77 method=POST path=/api/v1/products/55f6d757-84da-4bfb-839f-92ecea593fa9/archive request_id=a012c012-2d2d-4cdc-956e-7318e1226914 status_code=200
+INFO:     127.0.0.1:62970 - "POST /api/v1/products/55f6d757-84da-4bfb-839f-92ecea593fa9/archive HTTP/1.1" 200 OK
+2026-07-11T05:47:09.364344Z [warning  ] request_completed              duration_ms=46.09 method=POST path=/api/v1/sales request_id=1c15bb1f-9539-4e8c-8878-87c98cba2918 status_code=422
+INFO:     127.0.0.1:62970 - "POST /api/v1/sales HTTP/1.1" 422 Unprocessable Entity
+2026-07-11T05:47:09.422985Z [info     ] product_restored               product_id=55f6d757-84da-4bfb-839f-92ecea593fa9 request_id=7efc4aa0-5c3e-4b09-b3ff-6901e3617528 tenant_id=185fa257-1b19-4e56-b5f3-a2beff194b46 user_id=d7ee42fe-6587-45d6-a4d2-7852b36fa9ee
+2026-07-11T05:47:09.429553Z [info     ] request_completed              duration_ms=48.32 method=POST path=/api/v1/products/55f6d757-84da-4bfb-839f-92ecea593fa9/restore request_id=7efc4aa0-5c3e-4b09-b3ff-6901e3617528 status_code=200
+INFO:     127.0.0.1:62970 - "POST /api/v1/products/55f6d757-84da-4bfb-839f-92ecea593fa9/restore HTTP/1.1" 200 OK
+2026-07-11T05:47:09.493751Z [info     ] customer_created               customer_code=CUST-000003 customer_id=a8473e4f-9533-44fb-953a-32226c491f9f request_id=dee8de66-10f1-4e5d-b894-083be39621a4 tenant_id=185fa257-1b19-4e56-b5f3-a2beff194b46 user_id=d7ee42fe-6587-45d6-a4d2-7852b36fa9ee
+2026-07-11T05:47:09.495761Z [info     ] request_completed              duration_ms=50.68 method=POST path=/api/v1/customers request_id=dee8de66-10f1-4e5d-b894-083be39621a4 status_code=201
+INFO:     127.0.0.1:62970 - "POST /api/v1/customers HTTP/1.1" 201 Created
+2026-07-11T05:47:09.556405Z [info     ] customer_archived              customer_id=a8473e4f-9533-44fb-953a-32226c491f9f request_id=bedc3006-23b8-4808-bb81-8b94063ce45f tenant_id=185fa257-1b19-4e56-b5f3-a2beff194b46 user_id=d7ee42fe-6587-45d6-a4d2-7852b36fa9ee
+2026-07-11T05:47:09.561666Z [info     ] request_completed              duration_ms=49.93 method=POST path=/api/v1/customers/a8473e4f-9533-44fb-953a-32226c491f9f/archive request_id=bedc3006-23b8-4808-bb81-8b94063ce45f status_code=200
+INFO:     127.0.0.1:62970 - "POST /api/v1/customers/a8473e4f-9533-44fb-953a-32226c491f9f/archive HTTP/1.1" 200 OK
+2026-07-11T05:47:09.618567Z [warning  ] request_completed              duration_ms=41.74 method=POST path=/api/v1/sales request_id=2c75db37-2d7e-4dda-b033-bb604ae840e9 status_code=422
+INFO:     127.0.0.1:62970 - "POST /api/v1/sales HTTP/1.1" 422 Unprocessable Entity
+2026-07-11T05:47:09.682334Z [info     ] customer_restored              customer_id=a8473e4f-9533-44fb-953a-32226c491f9f request_id=c9a85a16-9c3b-41f2-aaae-276edce21faf tenant_id=185fa257-1b19-4e56-b5f3-a2beff194b46 user_id=d7ee42fe-6587-45d6-a4d2-7852b36fa9ee
+2026-07-11T05:47:09.685763Z [info     ] request_completed              duration_ms=50.3 method=POST path=/api/v1/customers/a8473e4f-9533-44fb-953a-32226c491f9f/restore request_id=c9a85a16-9c3b-41f2-aaae-276edce21faf status_code=200
+INFO:     127.0.0.1:62970 - "POST /api/v1/customers/a8473e4f-9533-44fb-953a-32226c491f9f/restore HTTP/1.1" 200 OK
+2026-07-11T05:47:09.760246Z [info     ] request_completed              duration_ms=52.1 method=GET path=/api/v1/customers/search request_id=5783c5e5-4016-4b51-bbd1-e4541c1f4cee status_code=200
+INFO:     127.0.0.1:62970 - "GET /api/v1/customers/search?q=CUST-000003&status=active HTTP/1.1" 200 OK
+2026-07-11T05:47:09.838083Z [info     ] request_completed              duration_ms=55.65 method=GET path=/api/v1/customers/search request_id=de0e91d6-0100-4b2b-85d1-6b37dd75958a status_code=200
+INFO:     127.0.0.1:62970 - "GET /api/v1/customers/search?q=CUST-000003&status=archived HTTP/1.1" 200 OK
+2026-07-11T05:47:10.226426Z [info     ] product_created                product_code=PROD-000003 product_id=eef09da4-a153-437f-bded-a00bac9709c9 request_id=ed12964b-90a2-45c1-8a48-00dacea051b0 tenant_id=185fa257-1b19-4e56-b5f3-a2beff194b46 user_id=d7ee42fe-6587-45d6-a4d2-7852b36fa9ee
+2026-07-11T05:47:10.231250Z [info     ] request_completed              duration_ms=67.01 method=POST path=/api/v1/products request_id=ed12964b-90a2-45c1-8a48-00dacea051b0 status_code=201
+INFO:     127.0.0.1:62970 - "POST /api/v1/products HTTP/1.1" 201 Created
+2026-07-11T05:47:10.318297Z [info     ] stock_movement_posted          movement_id=739dc136-a35d-422b-a6bb-ef4946648742 movement_type=OPENING_STOCK product_id=eef09da4-a153-437f-bded-a00bac9709c9 request_id=a17e25be-0d30-41dd-a0ee-51021cfbd9dd tenant_id=185fa257-1b19-4e56-b5f3-a2beff194b46 user_id=d7ee42fe-6587-45d6-a4d2-7852b36fa9ee warehouse_id=6299252a-c182-4233-beab-f51e61468c5f
+2026-07-11T05:47:10.325195Z [info     ] request_completed              duration_ms=72.31 method=POST path=/api/v1/inventory/opening-stock request_id=a17e25be-0d30-41dd-a0ee-51021cfbd9dd status_code=201
+INFO:     127.0.0.1:62970 - "POST /api/v1/inventory/opening-stock HTTP/1.1" 201 Created
+2026-07-11T05:47:10.413852Z [info     ] sale_draft_created             request_id=8325bf5d-7ae8-4827-8fac-d7651f06cb15 sale_id=dddb92bd-37bb-4bbd-963b-65f39759a00d sale_number=SALE-000005 tenant_id=185fa257-1b19-4e56-b5f3-a2beff194b46 user_id=d7ee42fe-6587-45d6-a4d2-7852b36fa9ee
+2026-07-11T05:47:10.422926Z [info     ] request_completed              duration_ms=83.38 method=POST path=/api/v1/sales request_id=8325bf5d-7ae8-4827-8fac-d7651f06cb15 status_code=201
+INFO:     127.0.0.1:62970 - "POST /api/v1/sales HTTP/1.1" 201 Created
+2026-07-11T05:47:10.513599Z [info     ] sale_financially_posted        amount=100.00 customer_id=42fd336c-8e6a-46b6-9ccd-592cf6b41289 request_id=c0e6de55-9990-4ccd-8cce-a22d707c3b2a sale_id=dddb92bd-37bb-4bbd-963b-65f39759a00d tenant_id=185fa257-1b19-4e56-b5f3-a2beff194b46
+2026-07-11T05:47:10.527363Z [info     ] sale_posted                    request_id=c0e6de55-9990-4ccd-8cce-a22d707c3b2a sale_id=dddb92bd-37bb-4bbd-963b-65f39759a00d sale_number=SALE-000005 tenant_id=185fa257-1b19-4e56-b5f3-a2beff194b46 user_id=d7ee42fe-6587-45d6-a4d2-7852b36fa9ee
+2026-07-11T05:47:10.530594Z [info     ] request_completed              duration_ms=96.91 method=POST path=/api/v1/sales/dddb92bd-37bb-4bbd-963b-65f39759a00d/post request_id=c0e6de55-9990-4ccd-8cce-a22d707c3b2a status_code=200
+INFO:     127.0.0.1:62970 - "POST /api/v1/sales/dddb92bd-37bb-4bbd-963b-65f39759a00d/post HTTP/1.1" 200 OK
+2026-07-11T05:47:10.675430Z [info     ] invoice_created                invoice_id=1a75c05b-d977-41ab-b9be-6bf902b90f69 invoice_number=INV-000001 request_id=60bba426-b74e-4770-a2cb-f239b919a1de sale_id=dddb92bd-37bb-4bbd-963b-65f39759a00d tenant_id=185fa257-1b19-4e56-b5f3-a2beff194b46 user_id=d7ee42fe-6587-45d6-a4d2-7852b36fa9ee
+2026-07-11T05:47:10.681220Z [info     ] request_completed              duration_ms=134.1 method=POST path=/api/v1/invoices request_id=60bba426-b74e-4770-a2cb-f239b919a1de status_code=201
+INFO:     127.0.0.1:62970 - "POST /api/v1/invoices HTTP/1.1" 201 Created
+2026-07-11T05:47:10.786022Z [info     ] invoice_issued                 invoice_id=1a75c05b-d977-41ab-b9be-6bf902b90f69 invoice_number=INV-000001 request_id=f6675d90-d02d-4cbe-8dbc-c2625c0257e3 tenant_id=185fa257-1b19-4e56-b5f3-a2beff194b46 user_id=d7ee42fe-6587-45d6-a4d2-7852b36fa9ee
+2026-07-11T05:47:10.786022Z [info     ] request_completed              duration_ms=98.08 method=POST path=/api/v1/invoices/1a75c05b-d977-41ab-b9be-6bf902b90f69/issue request_id=f6675d90-d02d-4cbe-8dbc-c2625c0257e3 status_code=200
+INFO:     127.0.0.1:62970 - "POST /api/v1/invoices/1a75c05b-d977-41ab-b9be-6bf902b90f69/issue HTTP/1.1" 200 OK
+2026-07-11T05:47:10.851582Z [warning  ] request_completed              duration_ms=46.09 method=POST path=/api/v1/invoices/1a75c05b-d977-41ab-b9be-6bf902b90f69/issue request_id=af2124ec-4956-4601-91c8-457247505a1e status_code=409
+INFO:     127.0.0.1:62970 - "POST /api/v1/invoices/1a75c05b-d977-41ab-b9be-6bf902b90f69/issue HTTP/1.1" 409 Conflict
+2026-07-11T05:47:10.933784Z [warning  ] request_completed              duration_ms=63.99 method=POST path=/api/v1/invoices request_id=c9a329a9-1452-4ffa-93d2-3a631d988d38 status_code=409
+INFO:     127.0.0.1:62970 - "POST /api/v1/invoices HTTP/1.1" 409 Conflict
+2026-07-11T05:47:10.946762Z [warning  ] request_completed              duration_ms=2.74 method=PATCH path=/api/v1/invoices/1a75c05b-d977-41ab-b9be-6bf902b90f69 request_id=905ec2b7-e324-496d-b2c7-bb0409f57c78 status_code=405
+INFO:     127.0.0.1:62970 - "PATCH /api/v1/invoices/1a75c05b-d977-41ab-b9be-6bf902b90f69 HTTP/1.1" 405 Method Not Allowed
+2026-07-11T05:47:10.963544Z [warning  ] request_completed              duration_ms=3.63 method=DELETE path=/api/v1/invoices/1a75c05b-d977-41ab-b9be-6bf902b90f69 request_id=6c83d6da-dfb7-4107-ad6e-777625df37c4 status_code=405
+INFO:     127.0.0.1:62970 - "DELETE /api/v1/invoices/1a75c05b-d977-41ab-b9be-6bf902b90f69 HTTP/1.1" 405 Method Not Allowed
+2026-07-11T05:47:11.032634Z [info     ] request_completed              duration_ms=58.43 method=GET path=/api/v1/invoices/1a75c05b-d977-41ab-b9be-6bf902b90f69/pdf request_id=7dde60dd-0da2-45a3-9b57-d515cff4df79 status_code=200
+INFO:     127.0.0.1:62970 - "GET /api/v1/invoices/1a75c05b-d977-41ab-b9be-6bf902b90f69/pdf HTTP/1.1" 200 OK
+2026-07-11T05:47:11.083214Z [info     ] customer_updated               customer_id=42fd336c-8e6a-46b6-9ccd-592cf6b41289 request_id=f5df56d9-ade1-435a-9dd1-0a83d9d58624 tenant_id=185fa257-1b19-4e56-b5f3-a2beff194b46 user_id=d7ee42fe-6587-45d6-a4d2-7852b36fa9ee
+2026-07-11T05:47:11.085235Z [info     ] request_completed              duration_ms=37.56 method=PATCH path=/api/v1/customers/42fd336c-8e6a-46b6-9ccd-592cf6b41289 request_id=f5df56d9-ade1-435a-9dd1-0a83d9d58624 status_code=200
+INFO:     127.0.0.1:62970 - "PATCH /api/v1/customers/42fd336c-8e6a-46b6-9ccd-592cf6b41289 HTTP/1.1" 200 OK
+2026-07-11T05:47:11.139862Z [warning  ] request_completed              duration_ms=40.95 method=PATCH path=/api/v1/products/eef09da4-a153-437f-bded-a00bac9709c9 request_id=b38ad7df-8929-4b94-9a67-cc71d5bdd716 status_code=409
+INFO:     127.0.0.1:62970 - "PATCH /api/v1/products/eef09da4-a153-437f-bded-a00bac9709c9 HTTP/1.1" 409 Conflict
+2026-07-11T05:47:11.197568Z [info     ] request_completed              duration_ms=45.31 method=GET path=/api/v1/invoices/1a75c05b-d977-41ab-b9be-6bf902b90f69 request_id=81a9e61b-4d2a-4803-a53d-42a3fb85c6a9 status_code=200
+INFO:     127.0.0.1:62970 - "GET /api/v1/invoices/1a75c05b-d977-41ab-b9be-6bf902b90f69 HTTP/1.1" 200 OK
+2026-07-11T05:47:11.355409Z [info     ] payment_financially_posted     amount=40.00 customer_id=42fd336c-8e6a-46b6-9ccd-592cf6b41289 payment_id=666334c2-193f-475d-aec0-8731a05bde88 request_id=cc83c9a7-037a-4e99-9884-5299b5b2cf77 tenant_id=185fa257-1b19-4e56-b5f3-a2beff194b46
+2026-07-11T05:47:11.389940Z [info     ] payment_posted                 payment_id=666334c2-193f-475d-aec0-8731a05bde88 payment_number=PAY-000001 request_id=cc83c9a7-037a-4e99-9884-5299b5b2cf77 tenant_id=185fa257-1b19-4e56-b5f3-a2beff194b46 user_id=d7ee42fe-6587-45d6-a4d2-7852b36fa9ee
+2026-07-11T05:47:11.391972Z [info     ] request_completed              duration_ms=183.3 method=POST path=/api/v1/payments request_id=cc83c9a7-037a-4e99-9884-5299b5b2cf77 status_code=201
+INFO:     127.0.0.1:62970 - "POST /api/v1/payments HTTP/1.1" 201 Created
+2026-07-11T05:47:11.449061Z [info     ] request_completed              duration_ms=43.82 method=GET path=/api/v1/invoices/1a75c05b-d977-41ab-b9be-6bf902b90f69 request_id=187d2b73-8335-4915-ae3d-9f240e6473d4 status_code=200
+INFO:     127.0.0.1:62970 - "GET /api/v1/invoices/1a75c05b-d977-41ab-b9be-6bf902b90f69 HTTP/1.1" 200 OK
+2026-07-11T05:47:11.512302Z [info     ] request_completed              duration_ms=52.51 method=GET path=/api/v1/invoices/1a75c05b-d977-41ab-b9be-6bf902b90f69/pdf request_id=c60b43b4-3616-4610-9adc-f2c581708a69 status_code=200
+INFO:     127.0.0.1:62970 - "GET /api/v1/invoices/1a75c05b-d977-41ab-b9be-6bf902b90f69/pdf HTTP/1.1" 200 OK
+2026-07-11T05:47:11.639904Z [info     ] payment_financially_posted     amount=60.00 customer_id=42fd336c-8e6a-46b6-9ccd-592cf6b41289 payment_id=bdc5596d-8138-47fd-9fdf-cdc4fe92777a request_id=878c716d-fc3a-4b6b-967c-5cd2cdf94d2c tenant_id=185fa257-1b19-4e56-b5f3-a2beff194b46
+2026-07-11T05:47:11.681163Z [info     ] payment_posted                 payment_id=bdc5596d-8138-47fd-9fdf-cdc4fe92777a payment_number=PAY-000002 request_id=878c716d-fc3a-4b6b-967c-5cd2cdf94d2c tenant_id=185fa257-1b19-4e56-b5f3-a2beff194b46 user_id=d7ee42fe-6587-45d6-a4d2-7852b36fa9ee
+2026-07-11T05:47:11.682012Z [info     ] request_completed              duration_ms=156.73 method=POST path=/api/v1/payments request_id=878c716d-fc3a-4b6b-967c-5cd2cdf94d2c status_code=201
+INFO:     127.0.0.1:62970 - "POST /api/v1/payments HTTP/1.1" 201 Created
+2026-07-11T05:47:11.823294Z [warning  ] request_completed              duration_ms=114.06 method=POST path=/api/v1/payments request_id=7a95fbfa-6aad-4737-83ff-816cdbae5034 status_code=422
+INFO:     127.0.0.1:62970 - "POST /api/v1/payments HTTP/1.1" 422 Unprocessable Entity
+2026-07-11T05:47:11.976222Z [info     ] payment_financially_posted     amount=25.00 customer_id=42fd336c-8e6a-46b6-9ccd-592cf6b41289 payment_id=04ffb368-1138-44a3-8271-217dd8adaf0d request_id=620c31a9-21e4-454f-a63a-2209704010a9 tenant_id=185fa257-1b19-4e56-b5f3-a2beff194b46
+2026-07-11T05:47:12.017336Z [info     ] payment_posted                 payment_id=04ffb368-1138-44a3-8271-217dd8adaf0d payment_number=PAY-000003 request_id=620c31a9-21e4-454f-a63a-2209704010a9 tenant_id=185fa257-1b19-4e56-b5f3-a2beff194b46 user_id=d7ee42fe-6587-45d6-a4d2-7852b36fa9ee
+2026-07-11T05:47:12.021902Z [info     ] request_completed              duration_ms=176.97 method=POST path=/api/v1/payments request_id=620c31a9-21e4-454f-a63a-2209704010a9 status_code=201
+INFO:     127.0.0.1:62970 - "POST /api/v1/payments HTTP/1.1" 201 Created
+2026-07-11T05:47:12.125244Z [info     ] request_completed              duration_ms=77.79 method=GET path=/api/v1/customers/42fd336c-8e6a-46b6-9ccd-592cf6b41289/credit request_id=7965ccc6-cf8b-40a3-8d6e-1b8a51111774 status_code=200
+INFO:     127.0.0.1:62970 - "GET /api/v1/customers/42fd336c-8e6a-46b6-9ccd-592cf6b41289/credit HTTP/1.1" 200 OK
+2026-07-11T05:47:12.265914Z [info     ] payment_financial_posting_reversed amount=25.00 customer_id=42fd336c-8e6a-46b6-9ccd-592cf6b41289 payment_id=04ffb368-1138-44a3-8271-217dd8adaf0d request_id=45244a13-041c-459b-9857-acb71ac2ebdb tenant_id=185fa257-1b19-4e56-b5f3-a2beff194b46
+2026-07-11T05:47:12.285515Z [info     ] payment_voided                 payment_id=04ffb368-1138-44a3-8271-217dd8adaf0d payment_number=PAY-000003 request_id=45244a13-041c-459b-9857-acb71ac2ebdb tenant_id=185fa257-1b19-4e56-b5f3-a2beff194b46 user_id=d7ee42fe-6587-45d6-a4d2-7852b36fa9ee
+2026-07-11T05:47:12.295819Z [info     ] request_completed              duration_ms=137.67 method=POST path=/api/v1/payments/04ffb368-1138-44a3-8271-217dd8adaf0d/void request_id=45244a13-041c-459b-9857-acb71ac2ebdb status_code=200
+INFO:     127.0.0.1:62970 - "POST /api/v1/payments/04ffb368-1138-44a3-8271-217dd8adaf0d/void HTTP/1.1" 200 OK
+2026-07-11T05:47:12.387094Z [info     ] request_completed              duration_ms=64.92 method=GET path=/api/v1/customers/42fd336c-8e6a-46b6-9ccd-592cf6b41289/credit request_id=e84d7233-167e-41bd-8517-25767745b02f status_code=200
+INFO:     127.0.0.1:62970 - "GET /api/v1/customers/42fd336c-8e6a-46b6-9ccd-592cf6b41289/credit HTTP/1.1" 200 OK
+2026-07-11T05:47:12.481286Z [info     ] request_completed              duration_ms=68.35 method=GET path=/api/v1/customers/42fd336c-8e6a-46b6-9ccd-592cf6b41289/balance request_id=555b41f2-3655-4c7c-a697-1e5822d01b6f status_code=200
+INFO:     127.0.0.1:62970 - "GET /api/v1/customers/42fd336c-8e6a-46b6-9ccd-592cf6b41289/balance HTTP/1.1" 200 OK
+2026-07-11T05:47:12.619639Z [info     ] request_completed              duration_ms=101.93 method=GET path=/api/v1/customers/42fd336c-8e6a-46b6-9ccd-592cf6b41289/ledger request_id=beafbd75-cd80-4176-b8b3-cb5a03c481f9 status_code=200
+INFO:     127.0.0.1:62970 - "GET /api/v1/customers/42fd336c-8e6a-46b6-9ccd-592cf6b41289/ledger HTTP/1.1" 200 OK
+2026-07-11T05:47:12.698390Z [info     ] request_completed              duration_ms=59.58 method=GET path=/api/v1/customers/42fd336c-8e6a-46b6-9ccd-592cf6b41289/financial-summary request_id=8b697495-c42d-4abd-9dc3-63e811a308f0 status_code=200
+INFO:     127.0.0.1:62970 - "GET /api/v1/customers/42fd336c-8e6a-46b6-9ccd-592cf6b41289/financial-summary HTTP/1.1" 200 OK
+2026-07-11T05:47:12.865946Z [info     ] request_completed              duration_ms=141.55 method=GET path=/api/v1/dashboard request_id=4899be40-7dca-4510-830b-705aa0cf5b10 status_code=200
+INFO:     127.0.0.1:62970 - "GET /api/v1/dashboard HTTP/1.1" 200 OK
+2026-07-11T05:47:12.961216Z [info     ] request_completed              duration_ms=72.59 method=GET path=/api/v1/reports/sales request_id=38e877a1-2b2f-4c98-b315-c8686732711a status_code=200
+INFO:     127.0.0.1:62970 - "GET /api/v1/reports/sales HTTP/1.1" 200 OK
+2026-07-11T05:47:13.115954Z [info     ] request_completed              duration_ms=118.41 method=GET path=/api/v1/reports/payments request_id=cdc3be53-1ade-4526-bf2f-76ecd0c90c0b status_code=200
+INFO:     127.0.0.1:62970 - "GET /api/v1/reports/payments HTTP/1.1" 200 OK
+2026-07-11T05:47:13.197571Z [info     ] request_completed              duration_ms=55.52 method=GET path=/api/v1/reports/outstanding request_id=0dc91388-a49d-4103-8485-7df22ff222fb status_code=200
+INFO:     127.0.0.1:62970 - "GET /api/v1/reports/outstanding HTTP/1.1" 200 OK
+2026-07-11T05:47:13.286543Z [info     ] request_completed              duration_ms=61.35 method=GET path=/api/v1/reports/inventory request_id=edd22a9a-3048-4b43-b05f-7037b12ddcd8 status_code=200
+INFO:     127.0.0.1:62970 - "GET /api/v1/reports/inventory HTTP/1.1" 200 OK
+2026-07-11T05:47:13.387177Z [info     ] request_completed              duration_ms=77.38 method=GET path=/api/v1/reports/low-stock request_id=9fd61a80-a497-4e9b-8ee9-7aaff0bfc6f5 status_code=200
+INFO:     127.0.0.1:62970 - "GET /api/v1/reports/low-stock HTTP/1.1" 200 OK
+2026-07-11T05:47:13.452884Z [warning  ] request_completed              duration_ms=47.44 method=GET path=/api/v1/reports/sales request_id=ae19e888-4f09-4793-9fb7-7bfbe066188e status_code=422
+INFO:     127.0.0.1:62970 - "GET /api/v1/reports/sales?date_from=not-a-date HTTP/1.1" 422 Unprocessable Entity
+2026-07-11T05:47:13.554132Z [info     ] request_completed              duration_ms=81.42 method=GET path=/api/v1/reports/sales.csv request_id=68eccfa6-a148-42c3-9d21-5ab5f46e0b1a status_code=200
+INFO:     127.0.0.1:62970 - "GET /api/v1/reports/sales.csv HTTP/1.1" 200 OK
+2026-07-11T05:47:13.658988Z [info     ] request_completed              duration_ms=78.57 method=GET path=/api/v1/reports/inventory.csv request_id=18f6e10d-ddbd-483a-8360-f86513164554 status_code=200
+INFO:     127.0.0.1:62970 - "GET /api/v1/reports/inventory.csv HTTP/1.1" 200 OK
+2026-07-11T05:47:13.766730Z [info     ] request_completed              duration_ms=62.67 method=GET path=/api/v1/reports/outstanding.csv request_id=90e6408d-ca1f-4017-b467-d4c72ca28202 status_code=200
+INFO:     127.0.0.1:62970 - "GET /api/v1/reports/outstanding.csv HTTP/1.1" 200 OK
+2026-07-11T05:47:13.909421Z [info     ] request_completed              duration_ms=115.04 method=GET path=/api/v1/search request_id=6d32364a-d3a3-4037-be77-1fbd5a60c895 status_code=200
+INFO:     127.0.0.1:62970 - "GET /api/v1/search?q=CUST-000001&limit=10 HTTP/1.1" 200 OK
+2026-07-11T05:47:14.067108Z [info     ] request_completed              duration_ms=134.17 method=GET path=/api/v1/search request_id=cf2c9e83-14ee-47d0-972e-c08507b2f860 status_code=200
+INFO:     127.0.0.1:62970 - "GET /api/v1/search?q=PROD-000001&limit=10 HTTP/1.1" 200 OK
+2026-07-11T05:47:14.323843Z [info     ] request_completed              duration_ms=208.66 method=GET path=/api/v1/search request_id=64f6db05-0f7c-4397-9981-1ca1c8d99f2e status_code=200
+INFO:     127.0.0.1:62970 - "GET /api/v1/search?q=SALE-000005&limit=10 HTTP/1.1" 200 OK
+2026-07-11T05:47:14.519566Z [info     ] request_completed              duration_ms=135.93 method=GET path=/api/v1/search request_id=77f038b0-2673-48c1-b430-be75e451732e status_code=200
+INFO:     127.0.0.1:62970 - "GET /api/v1/search?q=INV-000001&limit=10 HTTP/1.1" 200 OK
+2026-07-11T05:47:14.663238Z [info     ] request_completed              duration_ms=110.51 method=GET path=/api/v1/search request_id=1d1bf459-dc3d-4817-8dce-ea4d088dcc05 status_code=200
+INFO:     127.0.0.1:62970 - "GET /api/v1/search?q=PAY-000001&limit=10 HTTP/1.1" 200 OK
+2026-07-11T05:47:14.792001Z [info     ] request_completed              duration_ms=91.59 method=GET path=/api/v1/search request_id=669ab656-e8a6-4bfc-a6ab-9c3191b009fa status_code=200
+INFO:     127.0.0.1:62970 - "GET /api/v1/search?q=8903748825&limit=10 HTTP/1.1" 200 OK
+2026-07-11T05:47:14.909210Z [info     ] request_completed              duration_ms=83.11 method=GET path=/api/v1/search request_id=b59b6224-05bd-42a3-be0d-29320b97e9a4 status_code=200
+INFO:     127.0.0.1:62970 - "GET /api/v1/search?q=RC4-SKU-1783748825&limit=10 HTTP/1.1" 200 OK
+2026-07-11T05:47:15.031009Z [info     ] request_completed              duration_ms=88.65 method=GET path=/api/v1/search request_id=e4edd050-647b-4001-865f-5ddbbce69dc6 status_code=200
+INFO:     127.0.0.1:62970 - "GET /api/v1/search?q=Malayalam&limit=10 HTTP/1.1" 200 OK
+2026-07-11T05:47:15.183108Z [info     ] request_completed              duration_ms=97.28 method=GET path=/api/v1/search request_id=d90e556f-a192-416a-bc87-94a3493909fd status_code=200
+INFO:     127.0.0.1:62970 - "GET /api/v1/search?q=Arabic&limit=10 HTTP/1.1" 200 OK
+2026-07-11T05:47:15.365399Z [info     ] request_completed              duration_ms=149.94 method=GET path=/api/v1/search request_id=2c95f3dc-b9b0-45fc-bc01-0b809286da48 status_code=200
+INFO:     127.0.0.1:62970 - "GET /api/v1/search?q=Hindi&limit=10 HTTP/1.1" 200 OK
+2026-07-11T05:47:15.532187Z [info     ] request_completed              duration_ms=135.12 method=GET path=/api/v1/search request_id=7f3e0261-d3bb-43a7-acc8-43df7a0d57d7 status_code=200
+INFO:     127.0.0.1:62970 - "GET /api/v1/search?q=%3F%3F&limit=10 HTTP/1.1" 200 OK
+2026-07-11T05:47:15.665115Z [info     ] request_completed              duration_ms=108.98 method=GET path=/api/v1/search request_id=716416ba-6497-48e3-9768-846b77dd23f8 status_code=200
+INFO:     127.0.0.1:62970 - "GET /api/v1/search?q=++rc4++&limit=10 HTTP/1.1" 200 OK
+2026-07-11T05:47:15.787416Z [info     ] request_completed              duration_ms=102.61 method=GET path=/api/v1/search request_id=2a57d700-f5a1-46e7-a393-8a4cb8bbf504 status_code=200
+INFO:     127.0.0.1:62970 - "GET /api/v1/search?q=%27+OR+1%3D1+--&limit=10 HTTP/1.1" 200 OK
+2026-07-11T05:47:15.872022Z [warning  ] request_completed              duration_ms=53.97 method=GET path=/api/v1/search request_id=83fc2af3-dbeb-4567-a09d-e8c7ada20cda status_code=422
+INFO:     127.0.0.1:62970 - "GET /api/v1/search?q=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&limit=10 HTTP/1.1" 422 Unprocessable Entity
+2026-07-11T05:47:15.954078Z [warning  ] request_completed              duration_ms=54.53 method=PATCH path=/api/v1/business/settings request_id=a13c32e0-b2a2-4b0f-8078-0e6f56f00d94 status_code=409
+INFO:     127.0.0.1:62970 - "PATCH /api/v1/business/settings HTTP/1.1" 409 Conflict
+2026-07-11T05:47:16.017252Z [warning  ] rate_limit_exceeded            request_id=9c06105a-16a3-4702-902c-544a1fbc1d63 retry_after=765 scope=auth.signup
+2026-07-11T05:47:16.022214Z [warning  ] request_completed              duration_ms=39.19 method=POST path=/api/v1/auth/signup request_id=9c06105a-16a3-4702-902c-544a1fbc1d63 status_code=429
+INFO:     127.0.0.1:62970 - "POST /api/v1/auth/signup HTTP/1.1" 429 Too Many Requests
+2026-07-11T05:51:00.839589Z [info     ] login_succeeded                business_id=185fa257-1b19-4e56-b5f3-a2beff194b46 request_id=6ced8f9d-3ca1-45de-bc69-2de14023e965 session_id=f28cc158-813b-46fe-a0b0-861011b1c4f5 user_id=d7ee42fe-6587-45d6-a4d2-7852b36fa9ee
+2026-07-11T05:51:00.863882Z [info     ] request_completed              duration_ms=343.28 method=POST path=/api/v1/auth/login request_id=6ced8f9d-3ca1-45de-bc69-2de14023e965 status_code=200
+INFO:     127.0.0.1:63038 - "POST /api/v1/auth/login HTTP/1.1" 200 OK
+2026-07-11T05:51:00.926091Z [warning  ] request_completed              duration_ms=47.61 method=POST path=/api/v1/products request_id=6e71319e-02b1-48f4-9d81-a5231df7bd2e status_code=422
+INFO:     127.0.0.1:63038 - "POST /api/v1/products HTTP/1.1" 422 Unprocessable Entity
+2026-07-11T05:51:01.001601Z [warning  ] request_completed              duration_ms=61.54 method=POST path=/api/v1/products request_id=0f78bb40-2b0d-4bca-88aa-1c1749115e88 status_code=422
+INFO:     127.0.0.1:63038 - "POST /api/v1/products HTTP/1.1" 422 Unprocessable Entity
+2026-07-11T05:51:01.060662Z [info     ] request_completed              duration_ms=46.11 method=GET path=/api/v1/customers/search request_id=d9418fa4-bb05-4612-97b3-2cf9a7e46d34 status_code=200
+INFO:     127.0.0.1:63038 - "GET /api/v1/customers/search?q=Formula+Customer&limit=5 HTTP/1.1" 200 OK
+2026-07-11T05:51:01.201716Z [info     ] request_completed              duration_ms=110.19 method=GET path=/api/v1/invoices request_id=87e04cd1-76b0-4eb4-8e5a-bf2b244bad1e status_code=200
+INFO:     127.0.0.1:63038 - "GET /api/v1/invoices?search=INV-000001&limit=1 HTTP/1.1" 200 OK
+2026-07-11T05:51:01.336931Z [info     ] request_completed              duration_ms=77.65 method=GET path=/api/v1/invoices/1a75c05b-d977-41ab-b9be-6bf902b90f69 request_id=7becbd4e-ad98-4c26-a4dd-ece9184f7db5 status_code=200
+INFO:     127.0.0.1:63038 - "GET /api/v1/invoices/1a75c05b-d977-41ab-b9be-6bf902b90f69 HTTP/1.1" 200 OK
+2026-07-11T05:51:01.661550Z [info     ] login_succeeded                business_id=8f132fea-7ed4-44ff-b899-ac8e813750fd request_id=2b2f4e6c-de6c-4a04-a89b-c161f34a2c32 session_id=a29aab91-ab47-437c-b2e7-1fe04f65822e user_id=439b1809-90f1-46a2-b12d-029951c92fe6
+2026-07-11T05:51:01.665910Z [info     ] request_completed              duration_ms=303.14 method=POST path=/api/v1/auth/login request_id=2b2f4e6c-de6c-4a04-a89b-c161f34a2c32 status_code=200
+INFO:     127.0.0.1:63038 - "POST /api/v1/auth/login HTTP/1.1" 200 OK
+2026-07-11T05:51:01.728546Z [info     ] request_completed              duration_ms=43.74 method=GET path=/api/v1/customers/search request_id=bc5aedae-b6f9-4a87-82f4-ef9bfbef471d status_code=200
+INFO:     127.0.0.1:63038 - "GET /api/v1/customers/search?q=CUST-000001&limit=1 HTTP/1.1" 200 OK
+2026-07-11T05:51:01.793701Z [warning  ] request_completed              duration_ms=44.72 method=GET path=/api/v1/customers/42fd336c-8e6a-46b6-9ccd-592cf6b41289 request_id=7070a1b2-2297-4b5d-b0cf-d7d01c2a7cab status_code=404
+INFO:     127.0.0.1:63038 - "GET /api/v1/customers/42fd336c-8e6a-46b6-9ccd-592cf6b41289 HTTP/1.1" 404 Not Found
+2026-07-11T05:51:01.892786Z [info     ] request_completed              duration_ms=80.74 method=GET path=/api/v1/search request_id=177f7571-8e1c-4f0b-8842-f94255a5e9a1 status_code=200
+INFO:     127.0.0.1:63038 - "GET /api/v1/search?q=RC4&limit=10 HTTP/1.1" 200 OK
+2026-07-11T05:52:14.751552Z [info     ] login_succeeded                business_id=185fa257-1b19-4e56-b5f3-a2beff194b46 request_id=3479a2ec-519f-4ba2-a391-51ef7521cc47 session_id=1493c783-67c7-4aca-a550-c7042408dd86 user_id=d7ee42fe-6587-45d6-a4d2-7852b36fa9ee
+2026-07-11T05:52:14.774105Z [info     ] request_completed              duration_ms=293.4 method=POST path=/api/v1/auth/login request_id=3479a2ec-519f-4ba2-a391-51ef7521cc47 status_code=200
+INFO:     127.0.0.1:63050 - "POST /api/v1/auth/login HTTP/1.1" 200 OK
+2026-07-11T05:52:14.833636Z [info     ] product_created                product_code=PROD-000004 product_id=bade88f5-e701-49b3-92e2-3a3eb55f4cde request_id=e119920d-40bb-4c9f-8918-ff51e6574c2b tenant_id=185fa257-1b19-4e56-b5f3-a2beff194b46 user_id=d7ee42fe-6587-45d6-a4d2-7852b36fa9ee
+2026-07-11T05:52:14.833636Z [info     ] request_completed              duration_ms=44.12 method=POST path=/api/v1/products request_id=e119920d-40bb-4c9f-8918-ff51e6574c2b status_code=201
+INFO:     127.0.0.1:63050 - "POST /api/v1/products HTTP/1.1" 201 Created
+2026-07-11T05:52:14.895344Z [info     ] request_completed              duration_ms=42.7 method=GET path=/api/v1/customers/search request_id=14ac9421-420d-4020-ad33-2588c68180ea status_code=200
+INFO:     127.0.0.1:63050 - "GET /api/v1/customers/search?q=Formula+Customer&limit=1 HTTP/1.1" 200 OK
+2026-07-11T05:52:14.988770Z [info     ] stock_movement_posted          movement_id=b908d14d-75bb-4414-8da6-e85730704d46 movement_type=OPENING_STOCK product_id=bade88f5-e701-49b3-92e2-3a3eb55f4cde request_id=c3990c58-addf-4693-97e3-297681e743dc tenant_id=185fa257-1b19-4e56-b5f3-a2beff194b46 user_id=d7ee42fe-6587-45d6-a4d2-7852b36fa9ee warehouse_id=6299252a-c182-4233-beab-f51e61468c5f
+2026-07-11T05:52:14.990785Z [info     ] request_completed              duration_ms=74.86 method=POST path=/api/v1/inventory/opening-stock request_id=c3990c58-addf-4693-97e3-297681e743dc status_code=201
+INFO:     127.0.0.1:63050 - "POST /api/v1/inventory/opening-stock HTTP/1.1" 201 Created
+2026-07-11T05:52:15.075221Z [info     ] sale_draft_created             request_id=411b5dc8-2f31-4c20-9e92-5d237ec30b9b sale_id=e4af3ea9-b07b-4211-b488-380a13352b9b sale_number=SALE-000006 tenant_id=185fa257-1b19-4e56-b5f3-a2beff194b46 user_id=d7ee42fe-6587-45d6-a4d2-7852b36fa9ee
+2026-07-11T05:52:15.083448Z [info     ] request_completed              duration_ms=74.11 method=POST path=/api/v1/sales request_id=411b5dc8-2f31-4c20-9e92-5d237ec30b9b status_code=201
+INFO:     127.0.0.1:63050 - "POST /api/v1/sales HTTP/1.1" 201 Created
+2026-07-11T05:52:15.191123Z [info     ] sale_financially_posted        amount=2.50 customer_id=21b76291-d526-4282-8b0f-447cec3d2a89 request_id=1eb2a21b-cbf1-41c5-9c8d-9c1b0ec089d0 sale_id=e4af3ea9-b07b-4211-b488-380a13352b9b tenant_id=185fa257-1b19-4e56-b5f3-a2beff194b46
+2026-07-11T05:52:15.207817Z [info     ] sale_posted                    request_id=1eb2a21b-cbf1-41c5-9c8d-9c1b0ec089d0 sale_id=e4af3ea9-b07b-4211-b488-380a13352b9b sale_number=SALE-000006 tenant_id=185fa257-1b19-4e56-b5f3-a2beff194b46 user_id=d7ee42fe-6587-45d6-a4d2-7852b36fa9ee
+2026-07-11T05:52:15.207817Z [info     ] request_completed              duration_ms=108.73 method=POST path=/api/v1/sales/e4af3ea9-b07b-4211-b488-380a13352b9b/post request_id=1eb2a21b-cbf1-41c5-9c8d-9c1b0ec089d0 status_code=200
+INFO:     127.0.0.1:63050 - "POST /api/v1/sales/e4af3ea9-b07b-4211-b488-380a13352b9b/post HTTP/1.1" 200 OK
+2026-07-11T05:52:15.288172Z [info     ] request_completed              duration_ms=55.85 method=GET path=/api/v1/reports/sales.csv request_id=5bceb086-ed7d-49a3-94fd-a7892328ae78 status_code=200
+INFO:     127.0.0.1:63050 - "GET /api/v1/reports/sales.csv HTTP/1.1" 200 OK
+2026-07-11T05:53:24.955726Z [info     ] login_succeeded                business_id=185fa257-1b19-4e56-b5f3-a2beff194b46 request_id=24cbfe6e-f602-4d9a-a11e-8f793cdb90a7 session_id=fba0da65-5567-48ee-ba51-d2166bb624d6 user_id=d7ee42fe-6587-45d6-a4d2-7852b36fa9ee
+2026-07-11T05:53:24.976999Z [info     ] request_completed              duration_ms=287.3 method=POST path=/api/v1/auth/login request_id=24cbfe6e-f602-4d9a-a11e-8f793cdb90a7 status_code=200
+INFO:     127.0.0.1:63054 - "POST /api/v1/auth/login HTTP/1.1" 200 OK
+2026-07-11T05:53:25.046465Z [info     ] request_completed              duration_ms=46.53 method=GET path=/api/v1/reports/inventory.csv request_id=91babfa1-7242-4ffe-9afe-a327a377876e status_code=200
+INFO:     127.0.0.1:63054 - "GET /api/v1/reports/inventory.csv HTTP/1.1" 200 OK
+2026-07-11T06:02:39.679261Z [info     ] login_succeeded                business_id=185fa257-1b19-4e56-b5f3-a2beff194b46 request_id=61eaa8ec-d356-4d0a-b1c8-35bb182c55ce session_id=288b4ebc-0fb3-44d9-86c6-8f3444d9a551 user_id=d7ee42fe-6587-45d6-a4d2-7852b36fa9ee
+2026-07-11T06:02:39.683801Z [info     ] request_completed              duration_ms=534.39 method=POST path=/api/v1/auth/login request_id=61eaa8ec-d356-4d0a-b1c8-35bb182c55ce status_code=200
+INFO:     127.0.0.1:64146 - "POST /api/v1/auth/login HTTP/1.1" 200 OK
+2026-07-11T06:02:39.780655Z [info     ] customer_created               customer_code=CUST-000004 customer_id=a9c65196-3e5e-46f7-8a2c-b6c3ca3e504c request_id=25a74d32-ddf8-4d24-a4a8-5753318bb213 tenant_id=185fa257-1b19-4e56-b5f3-a2beff194b46 user_id=d7ee42fe-6587-45d6-a4d2-7852b36fa9ee
+2026-07-11T06:02:39.780655Z [info     ] request_completed              duration_ms=75.49 method=POST path=/api/v1/customers request_id=25a74d32-ddf8-4d24-a4a8-5753318bb213 status_code=201
+INFO:     127.0.0.1:64146 - "POST /api/v1/customers HTTP/1.1" 201 Created
+2026-07-11T06:02:39.851477Z [info     ] product_created                product_code=PROD-000005 product_id=3804c867-d420-4bd2-a1c0-381efd028bca request_id=93fcd22f-35a0-427c-9fe6-1ca8e22b6e11 tenant_id=185fa257-1b19-4e56-b5f3-a2beff194b46 user_id=d7ee42fe-6587-45d6-a4d2-7852b36fa9ee
+2026-07-11T06:02:39.853493Z [info     ] request_completed              duration_ms=52.27 method=POST path=/api/v1/products request_id=93fcd22f-35a0-427c-9fe6-1ca8e22b6e11 status_code=201
+INFO:     127.0.0.1:64146 - "POST /api/v1/products HTTP/1.1" 201 Created
+2026-07-11T06:02:39.986116Z [info     ] request_completed              duration_ms=114.85 method=GET path=/api/v1/search request_id=56b18e21-3015-4ea3-84de-1e0e2d76221c status_code=200
+INFO:     127.0.0.1:64146 - "GET /api/v1/search?q=%E0%B4%AE%E0%B4%B2%E0%B4%AF%E0%B4%BE%E0%B4%B3%E0%B4%82&limit=10 HTTP/1.1" 200 OK
+2026-07-11T06:02:40.073018Z [info     ] request_completed              duration_ms=73.04 method=GET path=/api/v1/search request_id=84509b65-5c6f-4213-ba89-2ea0dced236f status_code=200
+INFO:     127.0.0.1:64146 - "GET /api/v1/search?q=%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9&limit=10 HTTP/1.1" 200 OK
+2026-07-11T06:02:40.170509Z [info     ] request_completed              duration_ms=75.09 method=GET path=/api/v1/search request_id=409ec634-d3a1-46bb-8041-63b05a01242b status_code=200
+INFO:     127.0.0.1:64146 - "GET /api/v1/search?q=%E0%A4%B9%E0%A4%BF%E0%A4%A8%E0%A5%8D%E0%A4%A6%E0%A5%80&limit=10 HTTP/1.1" 200 OK
+2026-07-11T06:02:40.249162Z [warning  ] request_completed              duration_ms=52.47 method=GET path=/api/v1/search request_id=77944cd3-f326-434a-8680-b817bd5493fe status_code=422
+INFO:     127.0.0.1:64146 - "GET /api/v1/search?q=%F0%9F%A5%AD&limit=10 HTTP/1.1" 422 Unprocessable Entity
+2026-07-11T06:02:40.351945Z [info     ] request_completed              duration_ms=82.5 method=GET path=/api/v1/search request_id=b487d61f-45b9-464a-96d1-14b306a00f38 status_code=200
+INFO:     127.0.0.1:64146 - "GET /api/v1/search?q=1783749759&limit=10 HTTP/1.1" 200 OK

@@ -1,0 +1,6 @@
+127.0.0.1 - - [28/Jun/2026 12:20:09] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [28/Jun/2026 12:20:11] "GET /_expo/static/js/web/entry-2d24439dd8dbf8a3bea23ff0f49e9f44.js HTTP/1.1" 200 -
+127.0.0.1 - - [28/Jun/2026 12:20:12] code 404, message File not found
+127.0.0.1 - - [28/Jun/2026 12:20:12] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [28/Jun/2026 12:21:42] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [28/Jun/2026 12:21:43] "GET /_expo/static/js/web/entry-2d24439dd8dbf8a3bea23ff0f49e9f44.js HTTP/1.1" 200 -

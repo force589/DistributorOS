@@ -1,0 +1,4 @@
+env: load .env
+env: export EXPO_PUBLIC_API_URL
+Starting project at C:\Users\firas\Documents\Codex\2026-06-27\distributoros-prompt-0-architecture-planning-important\apps\mobile
+Expo Autolinking module resolution enabled

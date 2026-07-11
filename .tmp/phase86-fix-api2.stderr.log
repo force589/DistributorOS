@@ -1,0 +1,5 @@
+#< CLIXML
+INFO:     Started server process [21096]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://[::]:8000 (Press CTRL+C to quit)

@@ -1,0 +1,8 @@
+
+> distributoros@0.1.0 mobile:web
+> npm run web --workspace @distributoros/mobile --port 8081
+
+
+> @distributoros/mobile@0.1.0 web
+> expo start --web 8081
+
