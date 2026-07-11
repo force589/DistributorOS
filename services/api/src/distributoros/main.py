@@ -22,6 +22,8 @@ def create_app(settings: Settings | None = None) -> FastAPI:
 
     @asynccontextmanager
     async def lifespan(_: FastAPI) -> AsyncIterator[None]:
+        if active_settings.environment in {"preview", "production"}:
+            await database.validate_runtime_role_supports_rls()
         yield
         await database.dispose()
 

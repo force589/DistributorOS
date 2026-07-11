@@ -10,6 +10,8 @@ from pydantic import BaseModel
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncConnection, AsyncEngine
 
+from distributoros.core.database import set_internal_maintenance_context
+
 
 class CustomerBalanceIdentity(BaseModel):
     tenant_id: UUID
@@ -108,6 +110,7 @@ class LedgerReconciliationService:
             await connection.execute(
                 text("SET TRANSACTION ISOLATION LEVEL REPEATABLE READ READ ONLY")
             )
+            await set_internal_maintenance_context(connection)
             report = await self._report(connection)
         self.logger.info(
             "ledger_reconciliation_completed",
@@ -120,6 +123,7 @@ class LedgerReconciliationService:
     async def rebuild(self) -> LedgerRebuildResult:
         async with self.engine.connect() as connection, connection.begin():
             await connection.execute(text("SET TRANSACTION ISOLATION LEVEL SERIALIZABLE"))
+            await set_internal_maintenance_context(connection)
             await connection.execute(text("LOCK TABLE customer_ledger_entries IN SHARE MODE"))
             await connection.execute(
                 text("LOCK TABLE customer_balance_projections IN ACCESS EXCLUSIVE MODE")

@@ -113,6 +113,7 @@ def upgrade() -> None:
 
     tenant_id = "NULLIF(current_setting('app.current_tenant_id', true), '')::uuid"
     user_id = "NULLIF(current_setting('app.current_user_id', true), '')::uuid"
+    maintenance = "current_setting('app.internal_maintenance', true) = 'true'"
 
     for table in ("businesses", "memberships", "auth_sessions"):
         op.execute(f'ALTER TABLE "{table}" ENABLE ROW LEVEL SECURITY')
@@ -121,20 +122,23 @@ def upgrade() -> None:
     op.execute(
         f"""
         CREATE POLICY businesses_insert ON businesses
-        FOR INSERT TO distributoros_app
-        WITH CHECK (id = {tenant_id})
+        FOR INSERT
+        WITH CHECK ({maintenance} OR id = {tenant_id})
         """
     )
     op.execute(  # noqa: S608 -- SQL fragments below are constants, never user input.
         f"""
         CREATE POLICY businesses_select ON businesses
-        FOR SELECT TO distributoros_app
+        FOR SELECT
         USING (
-            id = {tenant_id}
-            AND EXISTS (
-                SELECT 1 FROM memberships
-                WHERE memberships.business_id = businesses.id
-                AND memberships.user_id = {user_id}
+            {maintenance}
+            OR (
+                id = {tenant_id}
+                AND EXISTS (
+                    SELECT 1 FROM memberships
+                    WHERE memberships.business_id = businesses.id
+                    AND memberships.user_id = {user_id}
+                )
             )
         )
         """
@@ -142,31 +146,25 @@ def upgrade() -> None:
     op.execute(
         f"""
         CREATE POLICY memberships_select ON memberships
-        FOR SELECT TO distributoros_app
-        USING (user_id = {user_id})
+        FOR SELECT
+        USING ({maintenance} OR user_id = {user_id})
         """
     )
     op.execute(
         f"""
         CREATE POLICY memberships_insert ON memberships
-        FOR INSERT TO distributoros_app
-        WITH CHECK (user_id = {user_id} AND business_id = {tenant_id})
+        FOR INSERT
+        WITH CHECK ({maintenance} OR (user_id = {user_id} AND business_id = {tenant_id}))
         """
     )
     op.execute(
         f"""
         CREATE POLICY auth_sessions_user_access ON auth_sessions
-        FOR ALL TO distributoros_app
-        USING (user_id = {user_id})
-        WITH CHECK (user_id = {user_id})
+        FOR ALL
+        USING ({maintenance} OR user_id = {user_id})
+        WITH CHECK ({maintenance} OR user_id = {user_id})
         """
     )
-
-    op.execute("GRANT SELECT, INSERT ON businesses TO distributoros_app")
-    op.execute("GRANT SELECT, INSERT ON memberships TO distributoros_app")
-    op.execute("GRANT SELECT, INSERT ON users TO distributoros_app")
-    op.execute("GRANT SELECT, INSERT, UPDATE ON auth_sessions TO distributoros_app")
-
 
 def downgrade() -> None:
     op.execute("DROP POLICY IF EXISTS businesses_select ON businesses")

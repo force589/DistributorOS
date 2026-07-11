@@ -254,6 +254,7 @@ def upgrade() -> None:
 
     tenant_setting = "NULLIF(current_setting('app.current_tenant_id', true), '')::uuid"
     user_setting = "NULLIF(current_setting('app.current_user_id', true), '')::uuid"
+    maintenance = "current_setting('app.internal_maintenance', true) = 'true'"
     membership = (
         "EXISTS (SELECT 1 FROM memberships "
         "WHERE memberships.business_id = tenant_id "
@@ -265,14 +266,13 @@ def upgrade() -> None:
         op.execute(  # noqa: S608 -- migration names are fixed constants.
             f"""
             CREATE POLICY {table}_tenant_access ON {table}
-            FOR ALL TO distributoros_app
-            USING (tenant_id = {tenant_setting} AND {membership})
-            WITH CHECK (tenant_id = {tenant_setting} AND {membership})
+            FOR ALL
+            USING ({maintenance} OR (tenant_id = {tenant_setting} AND {membership}))
+            WITH CHECK ({maintenance} OR (tenant_id = {tenant_setting} AND {membership}))
             """
         )
 
-    op.execute("GRANT SELECT, INSERT ON customer_ledger_entries TO distributoros_app")
-    op.execute("GRANT SELECT, INSERT, UPDATE ON customer_balance_projections TO distributoros_app")
+    op.execute("SELECT set_config('app.internal_maintenance', 'true', true)")
 
     op.execute(
         """

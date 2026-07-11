@@ -355,6 +355,7 @@ def upgrade() -> None:
 
     tenant_id = "NULLIF(current_setting('app.current_tenant_id', true), '')::uuid"
     user_id = "NULLIF(current_setting('app.current_user_id', true), '')::uuid"
+    maintenance = "current_setting('app.internal_maintenance', true) = 'true'"
     membership_check = (
         "EXISTS (SELECT 1 FROM memberships "
         "WHERE memberships.business_id = tenant_id "
@@ -367,38 +368,39 @@ def upgrade() -> None:
         op.execute(  # noqa: S608 -- migration table and policy names are constants.
             f"""
             CREATE POLICY {table}_tenant_access ON {table}
-            FOR ALL TO distributoros_app
-            USING (tenant_id = {tenant_id} AND {membership_check})
-            WITH CHECK (tenant_id = {tenant_id} AND {membership_check})
+            FOR ALL
+            USING ({maintenance} OR (tenant_id = {tenant_id} AND {membership_check}))
+            WITH CHECK ({maintenance} OR (tenant_id = {tenant_id} AND {membership_check}))
             """
         )
     op.execute(
         f"""
         CREATE POLICY sale_items_tenant_access ON sale_items
-        FOR ALL TO distributoros_app
+        FOR ALL
         USING (
-            EXISTS (
-                SELECT 1 FROM sales
-                WHERE sales.id = sale_items.sale_id
-                AND sales.tenant_id = {tenant_id}
-                AND {membership_check}
+            {maintenance}
+            OR (
+                EXISTS (
+                    SELECT 1 FROM sales
+                    WHERE sales.id = sale_items.sale_id
+                    AND sales.tenant_id = {tenant_id}
+                    AND {membership_check}
+                )
             )
         )
         WITH CHECK (
-            EXISTS (
-                SELECT 1 FROM sales
-                WHERE sales.id = sale_items.sale_id
-                AND sales.tenant_id = {tenant_id}
-                AND {membership_check}
+            {maintenance}
+            OR (
+                EXISTS (
+                    SELECT 1 FROM sales
+                    WHERE sales.id = sale_items.sale_id
+                    AND sales.tenant_id = {tenant_id}
+                    AND {membership_check}
+                )
             )
         )
         """
     )
-
-    op.execute("GRANT SELECT, INSERT, UPDATE ON sale_code_counters TO distributoros_app")
-    op.execute("GRANT SELECT, INSERT, UPDATE ON sales TO distributoros_app")
-    op.execute("GRANT SELECT, INSERT, UPDATE, DELETE ON sale_items TO distributoros_app")
-
 
 def downgrade() -> None:
     op.execute("DROP POLICY IF EXISTS sale_items_tenant_access ON sale_items")

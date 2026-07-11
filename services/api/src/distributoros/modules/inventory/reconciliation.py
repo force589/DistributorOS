@@ -8,6 +8,8 @@ from pydantic import BaseModel
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncConnection, AsyncEngine
 
+from distributoros.core.database import set_internal_maintenance_context
+
 
 class BalanceIdentity(BaseModel):
     tenant_id: UUID
@@ -95,6 +97,7 @@ class InventoryReconciliationService:
             await connection.execute(
                 text("SET TRANSACTION ISOLATION LEVEL REPEATABLE READ READ ONLY")
             )
+            await set_internal_maintenance_context(connection)
             report = await self._report(connection)
         self.logger.info(
             "inventory_reconciliation_completed",
@@ -109,6 +112,7 @@ class InventoryReconciliationService:
     async def rebuild(self) -> RebuildResult:
         async with self.engine.connect() as connection, connection.begin():
             await connection.execute(text("SET TRANSACTION ISOLATION LEVEL SERIALIZABLE"))
+            await set_internal_maintenance_context(connection)
             # Inventory posting writes movement history before its projection. Taking locks in
             # the same order avoids partial snapshots and prevents a concurrent post from being
             # lost while the projection table is replaced.

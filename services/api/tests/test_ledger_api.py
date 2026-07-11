@@ -11,6 +11,7 @@ from sqlalchemy.exc import DBAPIError
 from sqlalchemy.ext.asyncio import create_async_engine
 
 from distributoros.core.config import Settings
+from distributoros.core.database import set_internal_maintenance_context
 
 
 async def _signup(client: AsyncClient, suffix: str) -> dict[str, str]:
@@ -261,6 +262,7 @@ async def test_ledger_failure_rolls_back_inventory_and_sale(
     assert test_settings.database_admin_url is not None
     engine = create_async_engine(test_settings.database_admin_url)
     async with engine.begin() as connection:
+        await set_internal_maintenance_context(connection)
         await connection.execute(
             text(
                 """
@@ -287,6 +289,7 @@ async def test_ledger_failure_rolls_back_inventory_and_sale(
         assert "forced ledger failure" not in response.text
     finally:
         async with engine.begin() as connection:
+            await set_internal_maintenance_context(connection)
             await connection.execute(
                 text(
                     "DROP TRIGGER IF EXISTS test_reject_ledger_insert "
@@ -321,6 +324,7 @@ async def test_missing_projection_is_reported_as_corrupt_state(
     assert test_settings.database_admin_url is not None
     engine = create_async_engine(test_settings.database_admin_url)
     async with engine.begin() as connection:
+        await set_internal_maintenance_context(connection)
         await connection.execute(
             text(
                 "DELETE FROM customer_balance_projections "
@@ -354,6 +358,7 @@ async def test_ledger_entries_cannot_be_updated_or_deleted(
     engine = create_async_engine(test_settings.database_admin_url)
     with pytest.raises(DBAPIError):
         async with engine.begin() as connection:
+            await set_internal_maintenance_context(connection)
             await connection.execute(
                 text(
                     "UPDATE customer_ledger_entries SET debit = 1 "
@@ -363,11 +368,13 @@ async def test_ledger_entries_cannot_be_updated_or_deleted(
             )
     with pytest.raises(DBAPIError):
         async with engine.begin() as connection:
+            await set_internal_maintenance_context(connection)
             await connection.execute(
                 text("DELETE FROM customer_ledger_entries WHERE reference_id = :sale_id"),
                 {"sale_id": sale["id"]},
             )
     async with engine.connect() as connection:
+        await set_internal_maintenance_context(connection)
         count = await connection.scalar(
             text("SELECT count(*) FROM customer_ledger_entries WHERE reference_id = :sale_id"),
             {"sale_id": sale["id"]},

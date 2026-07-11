@@ -3,6 +3,7 @@ from sqlalchemy import text
 from sqlalchemy.ext.asyncio import create_async_engine
 
 from distributoros.core.config import Settings
+from distributoros.core.database import set_internal_maintenance_context
 
 
 async def test_ten_thousand_plus_customers_and_products_remain_paginated_and_searchable(
@@ -29,6 +30,7 @@ async def test_ten_thousand_plus_customers_and_products_remain_paginated_and_sea
     engine = create_async_engine(admin_url)
     try:
         async with engine.begin() as connection:
+            await set_internal_maintenance_context(connection)
             await connection.execute(
                 text(
                     """

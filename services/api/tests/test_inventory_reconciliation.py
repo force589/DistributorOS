@@ -11,6 +11,7 @@ from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncEngine, create_async_engine
 
 from distributoros.core.config import Settings
+from distributoros.core.database import set_internal_maintenance_context
 from distributoros.modules.inventory.reconcile_cli import _run
 from distributoros.modules.inventory.reconciliation import (
     InventoryReconciliationService,
@@ -102,6 +103,7 @@ async def _add_warehouse(
 ) -> UUID:
     warehouse_id = uuid4()
     async with engine.begin() as connection:
+        await set_internal_maintenance_context(connection)
         await connection.execute(
             text(
                 """
@@ -152,6 +154,7 @@ async def test_hundreds_of_movements_are_aggregated_in_postgresql(
     await _post(client, headers, "opening-stock", product["id"], "10")
 
     async with admin_engine.begin() as connection:
+        await set_internal_maintenance_context(connection)
         await connection.execute(
             text(
                 """
@@ -308,6 +311,7 @@ async def test_projection_comparison_reports_missing_extra_and_mismatch(
 
     tenant_id = session["user"]["business"]["id"]
     async with admin_engine.begin() as connection:
+        await set_internal_maintenance_context(connection)
         await connection.execute(
             text(
                 "UPDATE stock_balances SET available_quantity = 9 "
@@ -362,6 +366,7 @@ async def test_explicit_rebuild_replaces_projections_without_changing_movements(
     await _post(client, headers, "stock-receipts", product["id"], "2")
     tenant_id = session["user"]["business"]["id"]
     async with admin_engine.begin() as connection:
+        await set_internal_maintenance_context(connection)
         before_movements = (
             await connection.execute(
                 text("SELECT id, quantity FROM stock_movements ORDER BY id")
@@ -391,6 +396,7 @@ async def test_explicit_rebuild_replaces_projections_without_changing_movements(
     assert result.deleted_projection_count == 2
     assert result.created_projection_count == 1
     async with admin_engine.connect() as connection:
+        await set_internal_maintenance_context(connection)
         after_movements = (
             await connection.execute(
                 text("SELECT id, quantity FROM stock_movements ORDER BY id")
@@ -413,6 +419,7 @@ async def test_rebuild_and_concurrent_posts_finish_consistently(
     product = await _product(client, headers, "Concurrent Rebuild")
     await _post(client, headers, "opening-stock", product["id"], "1")
     async with admin_engine.begin() as connection:
+        await set_internal_maintenance_context(connection)
         await connection.execute(
             text("UPDATE stock_balances SET available_quantity = 0")
         )
@@ -444,6 +451,7 @@ async def test_negative_movement_total_is_reported_and_blocks_rebuild(
     product = await _product(client, headers, "Negative History")
     warehouse = await _warehouse(client, headers)
     async with admin_engine.begin() as connection:
+        await set_internal_maintenance_context(connection)
         await connection.execute(
             text(
                 """
@@ -483,7 +491,17 @@ async def test_invalid_product_and_warehouse_references_are_reported(
     invalid_product = uuid4()
     invalid_warehouse = uuid4()
     async with admin_engine.begin() as connection:
-        await connection.execute(text("ALTER TABLE stock_movements DISABLE TRIGGER ALL"))
+        await set_internal_maintenance_context(connection)
+        await connection.execute(text("ALTER TABLE stock_movements DISABLE TRIGGER USER"))
+        await connection.execute(
+            text(
+                "ALTER TABLE stock_movements "
+                "DROP CONSTRAINT fk_stock_movements_product_id_products"
+            )
+        )
+        await connection.execute(
+            text("ALTER TABLE stock_movements DROP CONSTRAINT fk_stock_movements_tenant_warehouse")
+        )
         await connection.execute(
             text(
                 """
@@ -505,7 +523,31 @@ async def test_invalid_product_and_warehouse_references_are_reported(
                 "user_id": session["user"]["id"],
             },
         )
-        await connection.execute(text("ALTER TABLE stock_movements ENABLE TRIGGER ALL"))
+        await connection.execute(
+            text(
+                """
+                ALTER TABLE stock_movements
+                ADD CONSTRAINT fk_stock_movements_product_id_products
+                FOREIGN KEY (product_id)
+                REFERENCES products(id)
+                ON DELETE RESTRICT
+                NOT VALID
+                """
+            )
+        )
+        await connection.execute(
+            text(
+                """
+                ALTER TABLE stock_movements
+                ADD CONSTRAINT fk_stock_movements_tenant_warehouse
+                FOREIGN KEY (tenant_id, warehouse_id)
+                REFERENCES warehouses(tenant_id, id)
+                ON DELETE RESTRICT
+                NOT VALID
+                """
+            )
+        )
+        await connection.execute(text("ALTER TABLE stock_movements ENABLE TRIGGER USER"))
 
     report = await reconciler.reconcile()
     assert report.invalid_product_references[0].movement_id == movement_id
@@ -526,7 +568,14 @@ async def test_invalid_projection_references_are_reported_and_rebuildable(
     invalid_product = uuid4()
     invalid_warehouse = uuid4()
     async with admin_engine.begin() as connection:
-        await connection.execute(text("ALTER TABLE stock_balances DISABLE TRIGGER ALL"))
+        await set_internal_maintenance_context(connection)
+        await connection.execute(text("ALTER TABLE stock_balances DISABLE TRIGGER USER"))
+        await connection.execute(
+            text("ALTER TABLE stock_balances DROP CONSTRAINT fk_stock_balances_product_id_products")
+        )
+        await connection.execute(
+            text("ALTER TABLE stock_balances DROP CONSTRAINT fk_stock_balances_tenant_warehouse")
+        )
         await connection.execute(
             text(
                 """
@@ -544,7 +593,31 @@ async def test_invalid_projection_references_are_reported_and_rebuildable(
                 "warehouse_id": invalid_warehouse,
             },
         )
-        await connection.execute(text("ALTER TABLE stock_balances ENABLE TRIGGER ALL"))
+        await connection.execute(
+            text(
+                """
+                ALTER TABLE stock_balances
+                ADD CONSTRAINT fk_stock_balances_product_id_products
+                FOREIGN KEY (product_id)
+                REFERENCES products(id)
+                ON DELETE RESTRICT
+                NOT VALID
+                """
+            )
+        )
+        await connection.execute(
+            text(
+                """
+                ALTER TABLE stock_balances
+                ADD CONSTRAINT fk_stock_balances_tenant_warehouse
+                FOREIGN KEY (tenant_id, warehouse_id)
+                REFERENCES warehouses(tenant_id, id)
+                ON DELETE RESTRICT
+                NOT VALID
+                """
+            )
+        )
+        await connection.execute(text("ALTER TABLE stock_balances ENABLE TRIGGER USER"))
 
     report = await reconciler.reconcile()
     assert report.invalid_product_references[0].source == "projection"
@@ -576,6 +649,7 @@ async def test_cli_report_returns_discrepancy_exit_code(
     product = await _product(client, headers, "CLI Extra Projection")
     warehouse = await _warehouse(client, headers)
     async with admin_engine.begin() as connection:
+        await set_internal_maintenance_context(connection)
         await connection.execute(
             text(
                 """

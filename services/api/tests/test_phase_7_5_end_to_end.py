@@ -8,6 +8,7 @@ from sqlalchemy import text
 from sqlalchemy.ext.asyncio import create_async_engine
 
 from distributoros.core.config import Settings
+from distributoros.core.database import set_internal_maintenance_context
 from distributoros.modules.inventory.reconciliation import InventoryReconciliationService
 from distributoros.modules.ledger.reconciliation import LedgerReconciliationService
 
@@ -530,6 +531,7 @@ async def test_phase_7_5_complete_release_journey(
         ledger_rebuild = await LedgerReconciliationService(engine).rebuild()
         assert ledger_rebuild.after.is_consistent
         async with engine.begin() as connection:
+            await set_internal_maintenance_context(connection)
             orphan_counts = await connection.execute(
                 text(
                     """

@@ -53,31 +53,27 @@ def upgrade() -> None:
 
     tenant_id = "NULLIF(current_setting('app.current_tenant_id', true), '')::uuid"
     user_id = "NULLIF(current_setting('app.current_user_id', true), '')::uuid"
+    maintenance = "current_setting('app.internal_maintenance', true) = 'true'"
     op.execute(
         f"""
         CREATE POLICY businesses_update ON businesses
-        FOR UPDATE TO distributoros_app
+        FOR UPDATE
         USING (
-            id = {tenant_id}
-            AND EXISTS (
-                SELECT 1 FROM memberships
-                WHERE memberships.business_id = businesses.id
-                AND memberships.user_id = {user_id}
+            {maintenance}
+            OR (
+                id = {tenant_id}
+                AND EXISTS (
+                    SELECT 1 FROM memberships
+                    WHERE memberships.business_id = businesses.id
+                    AND memberships.user_id = {user_id}
+                )
             )
         )
-        WITH CHECK (id = {tenant_id})
+        WITH CHECK ({maintenance} OR id = {tenant_id})
         """
     )
-    op.execute(
-        "GRANT UPDATE (business_name, currency, language, theme) ON businesses TO distributoros_app"
-    )
-
 
 def downgrade() -> None:
-    op.execute(
-        "REVOKE UPDATE (business_name, currency, language, theme) "
-        "ON businesses FROM distributoros_app"
-    )
     op.execute("DROP POLICY IF EXISTS businesses_update ON businesses")
     op.drop_constraint(op.f("ck_invoices_supported_currency"), "invoices", type_="check")
     op.create_check_constraint(

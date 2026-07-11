@@ -9,6 +9,7 @@ from sqlalchemy.exc import DBAPIError
 from sqlalchemy.ext.asyncio import create_async_engine
 
 from distributoros.core.config import Settings
+from distributoros.core.database import set_internal_maintenance_context
 from distributoros.modules.identity.security import decode_access_token
 from distributoros.modules.inventory.reconciliation import InventoryReconciliationService
 
@@ -369,6 +370,7 @@ async def test_projection_can_be_rebuilt_from_movements(
     assert test_settings.database_admin_url is not None
     engine = create_async_engine(test_settings.database_admin_url)
     async with engine.begin() as connection:
+        await set_internal_maintenance_context(connection)
         balance = await connection.execute(
             text(
                 "UPDATE stock_balances SET available_quantity = 999 "
@@ -398,6 +400,7 @@ async def test_archived_warehouse_is_rejected(
     assert test_settings.database_admin_url is not None
     engine = create_async_engine(test_settings.database_admin_url)
     async with engine.begin() as connection:
+        await set_internal_maintenance_context(connection)
         await connection.execute(
             text(
                 "INSERT INTO warehouses "
@@ -434,17 +437,20 @@ async def test_stock_movements_cannot_be_updated_or_deleted(
     engine = create_async_engine(test_settings.database_admin_url)
     with pytest.raises(DBAPIError):
         async with engine.begin() as connection:
+            await set_internal_maintenance_context(connection)
             await connection.execute(
                 text("UPDATE stock_movements SET quantity = 6 WHERE id = :id"),
                 {"id": movement_id},
             )
     with pytest.raises(DBAPIError):
         async with engine.begin() as connection:
+            await set_internal_maintenance_context(connection)
             await connection.execute(
                 text("DELETE FROM stock_movements WHERE id = :id"),
                 {"id": movement_id},
             )
     async with engine.begin() as connection:
+        await set_internal_maintenance_context(connection)
         quantity = await connection.scalar(
             text("SELECT quantity FROM stock_movements WHERE id = :id"),
             {"id": movement_id},

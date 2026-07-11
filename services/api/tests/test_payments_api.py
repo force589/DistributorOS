@@ -9,6 +9,7 @@ from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncEngine, create_async_engine
 
 from distributoros.core.config import Settings
+from distributoros.core.database import set_internal_maintenance_context
 from distributoros.modules.ledger.reconciliation import LedgerReconciliationService
 
 
@@ -524,6 +525,7 @@ async def test_payment_reconciliation_and_projection_rebuild(
         assert clean.is_consistent
         assert clean.entry_count == 2
         async with engine.begin() as connection:
+            await set_internal_maintenance_context(connection)
             await connection.execute(
                 text(
                     """

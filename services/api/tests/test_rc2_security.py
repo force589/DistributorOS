@@ -7,6 +7,7 @@ from sqlalchemy import text
 from sqlalchemy.ext.asyncio import create_async_engine
 
 from distributoros.core.config import Settings
+from distributoros.core.database import set_internal_maintenance_context
 from distributoros.main import create_app
 
 
@@ -32,6 +33,7 @@ async def _reset_token(settings: Settings) -> str:
     engine = create_async_engine(settings.database_admin_url)
     try:
         async with engine.connect() as connection:
+            await set_internal_maintenance_context(connection)
             reset_url = await connection.scalar(
                 text(
                     "SELECT payload->>'reset_url' FROM outbox_events "

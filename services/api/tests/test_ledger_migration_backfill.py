@@ -8,6 +8,7 @@ from sqlalchemy import text
 from sqlalchemy.ext.asyncio import create_async_engine
 
 from distributoros.core.config import Settings
+from distributoros.core.database import set_internal_maintenance_context
 
 
 async def _draft(client: AsyncClient, suffix: str) -> tuple[dict[str, Any], dict[str, str]]:
@@ -67,6 +68,7 @@ async def test_migration_backfills_posted_and_voided_phase_5a_sales(
         assert test_settings.database_admin_url is not None
         engine = create_async_engine(test_settings.database_admin_url)
         async with engine.begin() as connection:
+            await set_internal_maintenance_context(connection)
             await connection.execute(
                 text(
                     """
@@ -106,6 +108,7 @@ async def test_migration_backfills_posted_and_voided_phase_5a_sales(
 
         engine = create_async_engine(test_settings.database_admin_url)
         async with engine.connect() as connection:
+            await set_internal_maintenance_context(connection)
             posted_entries = (
                 await connection.execute(
                     text(

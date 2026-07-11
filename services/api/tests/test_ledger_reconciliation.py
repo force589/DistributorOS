@@ -5,6 +5,7 @@ from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncEngine, create_async_engine
 
 from distributoros.core.config import Settings
+from distributoros.core.database import set_internal_maintenance_context
 from distributoros.modules.ledger.reconciliation import LedgerReconciliationService
 
 
@@ -87,6 +88,7 @@ async def test_projection_rebuild_uses_immutable_ledger_history(
         assert before.entry_count == 1
         assert before.is_consistent
         async with engine.begin() as connection:
+            await set_internal_maintenance_context(connection)
             await connection.execute(
                 text(
                     """
@@ -107,6 +109,7 @@ async def test_projection_rebuild_uses_immutable_ledger_history(
         rebuilt = await service.rebuild()
         assert rebuilt.after.is_consistent
         async with engine.connect() as connection:
+            await set_internal_maintenance_context(connection)
             assert await connection.scalar(
                 text("SELECT count(*) FROM customer_ledger_entries")
             ) == immutable_count

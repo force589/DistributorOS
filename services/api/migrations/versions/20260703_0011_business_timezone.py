@@ -26,9 +26,6 @@ def upgrade() -> None:
             nullable=False,
         ),
     )
-    op.execute("GRANT UPDATE (timezone) ON businesses TO distributoros_app")
-
 
 def downgrade() -> None:
-    op.execute("REVOKE UPDATE (timezone) ON businesses FROM distributoros_app")
     op.drop_column("businesses", "timezone")

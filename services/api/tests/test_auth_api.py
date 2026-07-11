@@ -4,6 +4,7 @@ from sqlalchemy import text
 from sqlalchemy.ext.asyncio import create_async_engine
 
 from distributoros.core.config import Settings
+from distributoros.core.database import set_internal_maintenance_context
 
 SIGNUP = {
     "business_name": "Fresh Route Distributors",
@@ -180,6 +181,7 @@ async def test_registration_persists_business_user_and_membership(
     assert test_settings.database_admin_url is not None
     engine = create_async_engine(test_settings.database_admin_url)
     async with engine.connect() as connection:
+        await set_internal_maintenance_context(connection)
         counts = (
             await connection.execute(
                 text(

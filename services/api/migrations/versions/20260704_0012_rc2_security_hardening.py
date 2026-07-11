@@ -96,11 +96,6 @@ def upgrade() -> None:
     op.create_index(op.f("ix_outbox_events_event_type"), "outbox_events", ["event_type"])
     op.create_index(op.f("ix_outbox_events_available_at"), "outbox_events", ["available_at"])
 
-    op.execute("GRANT UPDATE ON users TO distributoros_app")
-    op.execute("GRANT SELECT, INSERT, UPDATE ON password_reset_tokens TO distributoros_app")
-    op.execute("GRANT SELECT, INSERT, UPDATE, DELETE ON request_rate_limits TO distributoros_app")
-    op.execute("GRANT SELECT, INSERT ON outbox_events TO distributoros_app")
-
 
 def downgrade() -> None:
     op.drop_index(op.f("ix_outbox_events_available_at"), table_name="outbox_events")

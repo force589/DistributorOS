@@ -11,6 +11,7 @@ from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import create_async_engine
 
 from distributoros.core.config import Settings
+from distributoros.core.database import set_internal_maintenance_context
 
 
 async def _signup(
@@ -373,6 +374,7 @@ async def test_void_rejects_a_missing_inventory_projection(
     assert test_settings.database_admin_url is not None
     engine = create_async_engine(test_settings.database_admin_url)
     async with engine.begin() as connection:
+        await set_internal_maintenance_context(connection)
         await connection.execute(
             text("DELETE FROM stock_balances WHERE product_id = :product_id"),
             {"product_id": product["id"]},
@@ -434,6 +436,7 @@ async def test_default_warehouse_cannot_be_archived_and_sales_continue(
     with pytest.raises(IntegrityError):
         try:
             async with engine.begin() as connection:
+                await set_internal_maintenance_context(connection)
                 await connection.execute(
                     text(
                         """

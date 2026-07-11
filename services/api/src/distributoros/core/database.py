@@ -1,4 +1,5 @@
 from collections.abc import AsyncIterator
+from typing import Any
 from uuid import UUID
 
 from fastapi import Request
@@ -27,6 +28,26 @@ class Database:
     async def dispose(self) -> None:
         await self.engine.dispose()
 
+    async def validate_runtime_role_supports_rls(self) -> None:
+        async with self.engine.connect() as connection:
+            role = (
+                await connection.execute(
+                    text(
+                        """
+                        SELECT rolsuper, rolbypassrls
+                        FROM pg_roles
+                        WHERE rolname = current_user
+                        """
+                    )
+                )
+            ).mappings().one()
+        if role["rolsuper"] or role["rolbypassrls"]:
+            raise RuntimeError(
+                "DATABASE_URL must not use a PostgreSQL superuser or BYPASSRLS role. "
+                "Use the managed database owner/application role so Row Level Security "
+                "cannot be bypassed."
+            )
+
 
 async def get_session(request: Request) -> AsyncIterator[AsyncSession]:
     database: Database = request.app.state.database
@@ -45,4 +66,10 @@ async def set_tenant_context(session: AsyncSession, business_id: UUID) -> None:
     await session.execute(
         text("SELECT set_config('app.current_tenant_id', :business_id, true)"),
         {"business_id": str(business_id)},
+    )
+
+
+async def set_internal_maintenance_context(connection: Any) -> None:
+    await connection.execute(
+        text("SELECT set_config('app.internal_maintenance', 'true', true)")
     )
