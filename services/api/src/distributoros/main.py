@@ -66,3 +66,6 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         return {"status": "ready"}
 
     return app
+
+
+app = create_app()
