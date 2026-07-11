@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "distributoros-api"
 version = "0.8.0"
 description = "DistributorOS modular multi-tenant API"
-requires-python = ">=3.12,<3.14"
+requires-python = ">=3.12,<3.15"
 dependencies = [
   "alembic>=1.16,<2",
   "asyncpg>=0.30,<1",

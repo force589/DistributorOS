@@ -34,3 +34,15 @@ Web Bundled 608ms node_modules\expo-router\entry.js (1 module)
 › Detected a change in metro.config.js. Restart the server to see the new results.
 › Detected a change in metro.config.js. Restart the server to see the new results.
 › Detected a change in metro.config.js. Restart the server to see the new results.
+λ Bundled 2556704ms node_modules\@expo\cli\node_modules\@expo\router-server\node\render.js (1 module)
+λ Bundled 20786ms node_modules\@expo\cli\node_modules\@expo\router-server\node\render.js (1 module)
+Web Bundled 2615300ms node_modules\expo-router\entry.js (1 module)
+Web Bundled 79397ms node_modules\expo-router\entry.js (1 module)
+λ Bundled 2609729ms node_modules\@expo\cli\node_modules\@expo\router-server\node\render.js (1 module)
+Web Bundled 2610647ms node_modules\expo-router\entry.js (1 module)
+Web Bundled 4698ms node_modules\expo-router\entry.js (1054 modules)
+Web  INFO  %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+Web  LOG  Running application "main" with appParams:
+ {"hydrate": undefined, "rootTag": "#root"} 
+Development-level warnings: ON.
+Performance optimizations: OFF.
