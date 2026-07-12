@@ -6,7 +6,6 @@ from fastapi import Request
 from sqlalchemy import text
 from sqlalchemy.engine import make_url
 from sqlalchemy.ext.asyncio import (
-    AsyncConnection,
     AsyncEngine,
     AsyncSession,
     async_sessionmaker,
@@ -62,7 +61,50 @@ class Database:
                     )
                 )
             ).mappings().one()
-            unforced_rls_table_count = await connection.scalar(
+            managed_provider = self._is_managed_postgres(role["is_neon_managed_role"])
+            rls_status = (
+                await connection.execute(
+                    text(
+                        """
+                        WITH rls_tables AS (
+                            SELECT
+                                relation.oid,
+                                relation.oid::regclass::text AS table_name,
+                                relation.relforcerowsecurity,
+                                row_security_active(relation.oid::regclass) AS rls_active
+                            FROM pg_class relation
+                            JOIN pg_namespace namespace
+                              ON namespace.oid = relation.relnamespace
+                            WHERE namespace.nspname = 'public'
+                              AND relation.relkind IN ('r', 'p')
+                              AND relation.relrowsecurity
+                        )
+                        SELECT
+                            count(*) AS rls_table_count,
+                            count(*) FILTER (
+                                WHERE NOT relforcerowsecurity
+                            ) AS unforced_rls_table_count,
+                            count(*) FILTER (
+                                WHERE NOT rls_active
+                            ) AS inactive_rls_table_count,
+                            coalesce(
+                                array_agg(table_name ORDER BY table_name) FILTER (
+                                    WHERE NOT relforcerowsecurity
+                                ),
+                                ARRAY[]::text[]
+                            ) AS unforced_rls_tables,
+                            coalesce(
+                                array_agg(table_name ORDER BY table_name) FILTER (
+                                    WHERE NOT rls_active
+                                ),
+                                ARRAY[]::text[]
+                            ) AS inactive_rls_tables
+                        FROM rls_tables
+                        """
+                    )
+                )
+            ).mappings().one()
+            app_table_count = await connection.scalar(
                 text(
                     """
                     SELECT count(*)
@@ -71,16 +113,9 @@ class Database:
                       ON namespace.oid = relation.relnamespace
                     WHERE namespace.nspname = 'public'
                       AND relation.relkind IN ('r', 'p')
-                      AND relation.relrowsecurity
-                      AND NOT relation.relforcerowsecurity
+                      AND relation.relname NOT LIKE 'alembic_%'
                     """
                 )
-            )
-            managed_provider = self._is_managed_postgres(role["is_neon_managed_role"])
-            rls_probe_passed = (
-                await self._runtime_role_enforces_rls(connection)
-                if role["rolbypassrls"] and managed_provider
-                else True
             )
         if role["rolsuper"]:
             raise RuntimeError(
@@ -93,16 +128,29 @@ class Database:
                 "DATABASE_URL must not use a BYPASSRLS role on self-hosted PostgreSQL. "
                 "Use a dedicated application role so Row Level Security cannot be bypassed."
             )
-        if role["rolbypassrls"] and not rls_probe_passed:
+        if app_table_count and not rls_status["rls_table_count"]:
             raise RuntimeError(
-                "The managed PostgreSQL role reports BYPASSRLS and an active Row Level "
-                "Security probe confirmed that tenant policies can be bypassed. "
-                "Use a role without effective BYPASSRLS before starting the API."
+                "No Row Level Security tables were found in the public schema. "
+                "Run Alembic migrations before starting the API."
             )
-        if unforced_rls_table_count:
+        if rls_status["unforced_rls_table_count"]:
+            tables = ", ".join(rls_status["unforced_rls_tables"])
             raise RuntimeError(
                 "All public tables with Row Level Security enabled must also use "
-                "FORCE ROW LEVEL SECURITY before starting the API."
+                f"FORCE ROW LEVEL SECURITY before starting the API. Missing: {tables}."
+            )
+        if rls_status["inactive_rls_table_count"]:
+            tables = ", ".join(rls_status["inactive_rls_tables"])
+            if managed_provider:
+                raise RuntimeError(
+                    "The managed PostgreSQL runtime role can bypass Row Level Security "
+                    f"on migrated application tables: {tables}. Use a role whose effective "
+                    "permissions keep row_security_active(...) true for every RLS table."
+                )
+            raise RuntimeError(
+                "The PostgreSQL runtime role can bypass Row Level Security on migrated "
+                f"application tables: {tables}. Use a non-superuser, non-BYPASSRLS "
+                "application role and keep FORCE ROW LEVEL SECURITY enabled."
             )
 
     def _is_managed_postgres(self, is_neon_managed_role: bool) -> bool:
@@ -111,60 +159,6 @@ class Database:
             host == suffix.removeprefix(".") or host.endswith(suffix)
             for suffix in MANAGED_POSTGRES_HOST_SUFFIXES
         )
-
-    async def _runtime_role_enforces_rls(self, connection: AsyncConnection) -> bool:
-        probe_tenant_id = "00000000-0000-0000-0000-000000000001"
-        other_tenant_id = "00000000-0000-0000-0000-000000000002"
-        await connection.execute(
-            text(
-                """
-                CREATE TEMP TABLE distributoros_rls_probe (
-                    tenant_id uuid NOT NULL
-                ) ON COMMIT DROP
-                """
-            )
-        )
-        await connection.execute(
-            text(
-                """
-                INSERT INTO distributoros_rls_probe (tenant_id)
-                VALUES (:probe_tenant_id), (:other_tenant_id)
-                """
-            ),
-            {
-                "probe_tenant_id": probe_tenant_id,
-                "other_tenant_id": other_tenant_id,
-            },
-        )
-        await connection.execute(
-            text("ALTER TABLE distributoros_rls_probe ENABLE ROW LEVEL SECURITY")
-        )
-        await connection.execute(
-            text("ALTER TABLE distributoros_rls_probe FORCE ROW LEVEL SECURITY")
-        )
-        await connection.execute(
-            text(
-                """
-                CREATE POLICY distributoros_rls_probe_tenant
-                ON distributoros_rls_probe
-                FOR SELECT
-                USING (
-                    tenant_id =
-                    NULLIF(current_setting('app.current_tenant_id', true), '')::uuid
-                )
-                """
-            )
-        )
-        await connection.execute(
-            text("SELECT set_config('app.current_tenant_id', :tenant_id, true)"),
-            {"tenant_id": probe_tenant_id},
-        )
-        visible_count = await connection.scalar(
-            text("SELECT count(*) FROM distributoros_rls_probe")
-        )
-        await connection.execute(text("DROP TABLE distributoros_rls_probe"))
-        return int(visible_count or 0) == 1
-
 
 async def get_session(request: Request) -> AsyncIterator[AsyncSession]:
     database: Database = request.app.state.database
