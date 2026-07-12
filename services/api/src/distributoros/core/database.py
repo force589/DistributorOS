@@ -2,6 +2,7 @@ from collections.abc import AsyncIterator
 from typing import Any
 from uuid import UUID
 
+import structlog
 from fastapi import Request
 from sqlalchemy import text
 from sqlalchemy.engine import make_url
@@ -11,6 +12,8 @@ from sqlalchemy.ext.asyncio import (
     async_sessionmaker,
     create_async_engine,
 )
+
+logger = structlog.get_logger("distributoros.database")
 
 MANAGED_POSTGRES_HOST_SUFFIXES = (
     ".neon.tech",
@@ -71,7 +74,12 @@ class Database:
                                 relation.oid,
                                 relation.oid::regclass::text AS table_name,
                                 relation.relforcerowsecurity,
-                                row_security_active(relation.oid::regclass) AS rls_active
+                                row_security_active(relation.oid::regclass) AS rls_active,
+                                EXISTS (
+                                    SELECT 1
+                                    FROM pg_policy policy
+                                    WHERE policy.polrelid = relation.oid
+                                ) AS has_policy
                             FROM pg_class relation
                             JOIN pg_namespace namespace
                               ON namespace.oid = relation.relnamespace
@@ -85,6 +93,9 @@ class Database:
                                 WHERE NOT relforcerowsecurity
                             ) AS unforced_rls_table_count,
                             count(*) FILTER (
+                                WHERE NOT has_policy
+                            ) AS policyless_rls_table_count,
+                            count(*) FILTER (
                                 WHERE NOT rls_active
                             ) AS inactive_rls_table_count,
                             coalesce(
@@ -93,6 +104,12 @@ class Database:
                                 ),
                                 ARRAY[]::text[]
                             ) AS unforced_rls_tables,
+                            coalesce(
+                                array_agg(table_name ORDER BY table_name) FILTER (
+                                    WHERE NOT has_policy
+                                ),
+                                ARRAY[]::text[]
+                            ) AS policyless_rls_tables,
                             coalesce(
                                 array_agg(table_name ORDER BY table_name) FILTER (
                                     WHERE NOT rls_active
@@ -139,18 +156,30 @@ class Database:
                 "All public tables with Row Level Security enabled must also use "
                 f"FORCE ROW LEVEL SECURITY before starting the API. Missing: {tables}."
             )
-        if rls_status["inactive_rls_table_count"]:
+        if rls_status["policyless_rls_table_count"]:
+            tables = ", ".join(rls_status["policyless_rls_tables"])
+            raise RuntimeError(
+                "Every public Row Level Security table must have at least one policy "
+                f"before starting the API. Missing policies: {tables}."
+            )
+        if (
+            rls_status["inactive_rls_table_count"]
+            and not (managed_provider and role["rolbypassrls"])
+        ):
             tables = ", ".join(rls_status["inactive_rls_tables"])
-            if managed_provider:
-                raise RuntimeError(
-                    "The managed PostgreSQL runtime role can bypass Row Level Security "
-                    f"on migrated application tables: {tables}. Use a role whose effective "
-                    "permissions keep row_security_active(...) true for every RLS table."
-                )
             raise RuntimeError(
                 "The PostgreSQL runtime role can bypass Row Level Security on migrated "
                 f"application tables: {tables}. Use a non-superuser, non-BYPASSRLS "
                 "application role and keep FORCE ROW LEVEL SECURITY enabled."
+            )
+        if managed_provider and role["rolbypassrls"]:
+            logger.warning(
+                "managed_postgres_bypassrls_role_allowed",
+                host=self.host,
+                reason=(
+                    "Managed PostgreSQL provider role inherits BYPASSRLS; "
+                    "runtime validation is limited to schema RLS invariants."
+                ),
             )
 
     def _is_managed_postgres(self, is_neon_managed_role: bool) -> bool:
