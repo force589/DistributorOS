@@ -26,6 +26,7 @@ const errorKeys: Record<string, ErrorTranslationKey> = {
   AUTHENTICATION_REQUIRED: 'errors.sessionExpired',
   BUSINESS_ACCESS_REQUIRED: 'errors.businessAccess',
   FORBIDDEN: 'errors.forbidden',
+  ORIGIN_REQUIRED: 'errors.forbidden',
   UNTRUSTED_ORIGIN: 'errors.forbidden',
   NOT_FOUND: 'errors.notFound',
   NETWORK_ERROR: 'errors.network',

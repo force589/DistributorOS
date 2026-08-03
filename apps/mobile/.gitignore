@@ -1,4 +1,5 @@
 .expo/
+.tmp/
 dist/
 dist-web/
 coverage/

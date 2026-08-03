@@ -16,7 +16,7 @@ export const en = {
     loadingTitle: 'Checking your session',
     loadingMessage: 'DistributorOS is securely restoring your account.',
     errorTitle: 'We could not check your session',
-    errorMessage: 'The server could not be reached. Check your connection and try again.',
+    errorMessage: 'The server could not be reached. If the free server is starting, try again in a moment.',
   },
   login: {
     title: 'Welcome back',
@@ -83,7 +83,7 @@ export const en = {
     businessAccess: 'Your account is not connected to this business. Contact support for access.',
     forbidden: 'You do not have permission to perform this action.',
     notFound: 'The requested information was not found. Refresh and try again.',
-    network: 'The server could not be reached. Check your connection and try again.',
+    network: 'The server could not be reached. If the free server is starting, try again in a moment.',
     server: 'The server could not complete this request. Please try again.',
     validation: 'Check the highlighted information and try again.',
     currencyChangeRestricted: 'Currency cannot be changed after financial transactions exist. Keep the current currency to preserve historical amounts.',

@@ -261,6 +261,7 @@ export interface ApiClientOptions {
   baseUrl: string;
   platform: 'android' | 'ios' | 'web' | string;
   fetchImplementation?: typeof fetch;
+  startupRetryDelaysMs?: readonly number[];
 }
 
 type UnauthorizedHandler = () => Promise<string | null>;
@@ -272,11 +273,13 @@ export class ApiClient {
   private readonly baseUrl: string;
   private readonly platform: string;
   private readonly fetchImplementation: typeof fetch;
+  private readonly startupRetryDelaysMs: readonly number[];
 
   constructor(options: ApiClientOptions) {
     this.baseUrl = options.baseUrl.replace(/\/$/, '');
     this.platform = options.platform;
     this.fetchImplementation = (options.fetchImplementation ?? fetch).bind(globalThis);
+    this.startupRetryDelaysMs = options.startupRetryDelaysMs ?? [400, 1200];
   }
 
   setAccessToken(token: string | null): void {
@@ -1132,20 +1135,7 @@ export class ApiClient {
     init: RequestInit,
     retryAfterUnauthorized: boolean,
   ): Promise<T> {
-    let response: Response;
-    try {
-      response = await this.fetchImplementation(`${this.baseUrl}${path}`, {
-        ...init,
-        credentials: 'include',
-        headers: this.headers(init.headers),
-      });
-    } catch {
-      throw new ApiError(
-        0,
-        'NETWORK_ERROR',
-        'The server could not be reached. Check your connection and try again.',
-      );
-    }
+    const response = await this.fetchResponse(path, init);
 
     if (response.status === 401 && retryAfterUnauthorized && this.unauthorizedHandler) {
       const refreshedToken = await this.refreshAccessToken();
@@ -1167,20 +1157,7 @@ export class ApiClient {
     init: RequestInit,
     retryAfterUnauthorized: boolean,
   ): Promise<ArrayBuffer> {
-    let response: Response;
-    try {
-      response = await this.fetchImplementation(`${this.baseUrl}${path}`, {
-        ...init,
-        credentials: 'include',
-        headers: this.headers(init.headers),
-      });
-    } catch {
-      throw new ApiError(
-        0,
-        'NETWORK_ERROR',
-        'The server could not be reached. Check your connection and try again.',
-      );
-    }
+    const response = await this.fetchResponse(path, init);
 
     if (response.status === 401 && retryAfterUnauthorized && this.unauthorizedHandler) {
       const refreshedToken = await this.refreshAccessToken();
@@ -1202,20 +1179,7 @@ export class ApiClient {
     init: RequestInit,
     retryAfterUnauthorized: boolean,
   ): Promise<string> {
-    let response: Response;
-    try {
-      response = await this.fetchImplementation(`${this.baseUrl}${path}`, {
-        ...init,
-        credentials: 'include',
-        headers: this.headers(init.headers),
-      });
-    } catch {
-      throw new ApiError(
-        0,
-        'NETWORK_ERROR',
-        'The server could not be reached. Check your connection and try again.',
-      );
-    }
+    const response = await this.fetchResponse(path, init);
 
     if (response.status === 401 && retryAfterUnauthorized && this.unauthorizedHandler) {
       const refreshedToken = await this.refreshAccessToken();
@@ -1230,6 +1194,69 @@ export class ApiClient {
     }
 
     return response.text();
+  }
+
+  private async fetchResponse(path: string, init: RequestInit): Promise<Response> {
+    const url = `${this.baseUrl}${path}`;
+    const requestInit: RequestInit = {
+      ...init,
+      credentials: 'include',
+      headers: this.headers(init.headers),
+    };
+    const retryable = this.isSafeStartupRetry(init);
+    const delays = retryable ? [0, ...this.startupRetryDelaysMs] : [0];
+    for (let attempt = 0; attempt < delays.length; attempt += 1) {
+      const delayMs = delays[attempt] ?? 0;
+      if (delayMs > 0) {
+        await this.delay(delayMs);
+      }
+      try {
+        const response = await this.fetchImplementation(url, requestInit);
+        if (
+          retryable &&
+          this.isStartupUnavailable(response) &&
+          attempt < delays.length - 1
+        ) {
+          continue;
+        }
+        return response;
+      } catch (error) {
+        if (this.isAbortError(error)) {
+          throw error;
+        }
+        if (!retryable || attempt === delays.length - 1) {
+          throw new ApiError(
+            0,
+            'NETWORK_ERROR',
+            'The server could not be reached. If the free server is starting, try again in a moment.',
+          );
+        }
+      }
+    }
+    throw new ApiError(
+      0,
+      'NETWORK_ERROR',
+      'The server could not be reached. If the free server is starting, try again in a moment.',
+    );
+  }
+
+  private isSafeStartupRetry(init: RequestInit): boolean {
+    const method = (init.method ?? 'GET').toUpperCase();
+    return method === 'GET' || method === 'HEAD';
+  }
+
+  private isStartupUnavailable(response: Response): boolean {
+    return [502, 503, 504].includes(response.status);
+  }
+
+  private isAbortError(error: unknown): boolean {
+    return error instanceof Error && error.name === 'AbortError';
+  }
+
+  private delay(milliseconds: number): Promise<void> {
+    return new Promise((resolve) => {
+      setTimeout(resolve, milliseconds);
+    });
   }
 
   private headers(input: HeadersInit | undefined): Headers {

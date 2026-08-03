@@ -59,6 +59,38 @@ describe('ApiClient', () => {
     expect(failure).toMatchObject({ status: 403, code: 'FORBIDDEN', requestId: 'request-1' });
   });
 
+  it('retries safe startup reads when the free API is temporarily unavailable', async () => {
+    const fetchImplementation = vi.fn<typeof fetch>()
+      .mockResolvedValueOnce(jsonResponse(503, {}))
+      .mockResolvedValueOnce(jsonResponse(200, { user: { id: '1' } }));
+    const client = new ApiClient({
+      baseUrl: 'https://api.example.com/api/v1',
+      platform: 'web',
+      fetchImplementation,
+      startupRetryDelaysMs: [0],
+    });
+
+    await expect(client.me()).resolves.toEqual({ user: { id: '1' } });
+
+    expect(fetchImplementation).toHaveBeenCalledTimes(2);
+  });
+
+  it('does not retry non-idempotent writes during startup failures', async () => {
+    const fetchImplementation = vi.fn<typeof fetch>().mockRejectedValue(new Error('offline'));
+    const client = new ApiClient({
+      baseUrl: 'https://api.example.com/api/v1',
+      platform: 'web',
+      fetchImplementation,
+      startupRetryDelaysMs: [0, 0],
+    });
+
+    await expect(
+      client.login({ email: 'owner@example.com', password: 'secure-password' }),
+    ).rejects.toMatchObject({ code: 'NETWORK_ERROR' });
+
+    expect(fetchImplementation).toHaveBeenCalledTimes(1);
+  });
+
   it('uses the authenticated business settings endpoints', async () => {
     const fetchImplementation = vi.fn<typeof fetch>().mockImplementation(() =>
       Promise.resolve(
