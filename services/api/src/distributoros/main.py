@@ -18,7 +18,12 @@ from distributoros.core.middleware import RequestContextMiddleware
 def create_app(settings: Settings | None = None) -> FastAPI:
     active_settings = settings or get_settings()
     configure_logging(active_settings.environment)
-    database = Database(active_settings.database_url)
+    database = Database(
+        active_settings.database_url,
+        pool_size=active_settings.database_pool_size,
+        max_overflow=active_settings.database_max_overflow,
+        pool_recycle_seconds=active_settings.database_pool_recycle_seconds,
+    )
 
     @asynccontextmanager
     async def lifespan(_: FastAPI) -> AsyncIterator[None]:

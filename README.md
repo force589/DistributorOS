@@ -26,7 +26,7 @@ Requirements: Node.js 24+, Python 3.12, and Docker.
 7. Start the outbox worker with `distributoros-outbox-worker` when testing password-reset email delivery.
 8. Start Expo with `npm run mobile:start`.
 
-The Android emulator normally needs `http://10.0.2.2:8000/api/v1`; iOS can use `http://localhost:8000/api/v1`; web uses `/api/v1` through the Metro development proxy. Preview and production use separately configured absolute HTTPS URLs. See `docs/deployment.md` and `docs/backup-and-restore.md`.
+The public-beta frontend environment points Android, iOS, and web builds at the deployed HTTPS API. If you intentionally run a local backend, override the `apps/mobile/.env` API URLs for your device or emulator. See `docs/deployment-free-tier.md`, `docs/deployment.md`, and `docs/backup-and-restore.md`.
 
 ## Verification
 

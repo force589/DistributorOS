@@ -63,7 +63,7 @@ def _set_refresh_cookie(
         max_age=settings.refresh_token_days * 24 * 60 * 60,
         httponly=True,
         secure=settings.cookie_secure,
-        samesite="lax",
+        samesite=settings.cookie_samesite,
         path="/api/v1/auth",
     )
 
@@ -73,13 +73,24 @@ def _delete_refresh_cookie(response: Response, settings: Settings) -> None:
         key=REFRESH_COOKIE_NAME,
         httponly=True,
         secure=settings.cookie_secure,
-        samesite="lax",
+        samesite=settings.cookie_samesite,
         path="/api/v1/auth",
     )
 
 
 def _validate_cookie_origin(origin: str | None, settings: Settings, transport: str) -> None:
-    if transport == "cookie" and origin is not None and origin not in settings.cors_origins:
+    if transport != "cookie":
+        return
+    if settings.environment in {"preview", "production"} and origin is None:
+        raise AppError(
+            status_code=403,
+            code="ORIGIN_REQUIRED",
+            message=(
+                "This browser session request could not be verified. "
+                "Return to DistributorOS and try again."
+            ),
+        )
+    if origin is not None and origin not in settings.cors_origins:
         raise AppError(
             status_code=403,
             code="UNTRUSTED_ORIGIN",

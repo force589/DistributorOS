@@ -2,10 +2,8 @@ from collections.abc import AsyncIterator
 from typing import Any
 from uuid import UUID
 
-import structlog
 from fastapi import Request
 from sqlalchemy import text
-from sqlalchemy.engine import make_url
 from sqlalchemy.ext.asyncio import (
     AsyncEngine,
     AsyncSession,
@@ -13,26 +11,23 @@ from sqlalchemy.ext.asyncio import (
     create_async_engine,
 )
 
-logger = structlog.get_logger("distributoros.database")
-
-MANAGED_POSTGRES_HOST_SUFFIXES = (
-    ".neon.tech",
-    ".render.com",
-    ".supabase.co",
-    ".pooler.supabase.com",
-    ".railway.internal",
-    ".rlwy.net",
-)
-
 
 class Database:
-    def __init__(self, url: str) -> None:
+    def __init__(
+        self,
+        url: str,
+        *,
+        pool_size: int = 3,
+        max_overflow: int = 2,
+        pool_recycle_seconds: int = 1800,
+    ) -> None:
         self.url = url
-        self.host = make_url(url).host or ""
         self.engine: AsyncEngine = create_async_engine(
             url,
             pool_pre_ping=True,
-            pool_recycle=1800,
+            pool_size=pool_size,
+            max_overflow=max_overflow,
+            pool_recycle=pool_recycle_seconds,
         )
         self.session_factory = async_sessionmaker(
             self.engine,
@@ -51,20 +46,13 @@ class Database:
                         """
                         SELECT
                             rolsuper,
-                            rolbypassrls,
-                            EXISTS (
-                                SELECT 1
-                                FROM pg_roles neon_role
-                                WHERE neon_role.rolname = 'neon_superuser'
-                                  AND pg_has_role(current_user, neon_role.oid, 'member')
-                            ) AS is_neon_managed_role
+                            rolbypassrls
                         FROM pg_roles
                         WHERE rolname = current_user
                         """
                     )
                 )
             ).mappings().one()
-            managed_provider = self._is_managed_postgres(role["is_neon_managed_role"])
             rls_status = (
                 await connection.execute(
                     text(
@@ -74,6 +62,8 @@ class Database:
                                 relation.oid,
                                 relation.oid::regclass::text AS table_name,
                                 relation.relforcerowsecurity,
+                                pg_get_userbyid(relation.relowner) = current_user
+                                  AS runtime_role_owns_table,
                                 row_security_active(relation.oid::regclass) AS rls_active,
                                 EXISTS (
                                     SELECT 1
@@ -96,6 +86,9 @@ class Database:
                                 WHERE NOT has_policy
                             ) AS policyless_rls_table_count,
                             count(*) FILTER (
+                                WHERE runtime_role_owns_table
+                            ) AS runtime_owned_rls_table_count,
+                            count(*) FILTER (
                                 WHERE NOT rls_active
                             ) AS inactive_rls_table_count,
                             coalesce(
@@ -110,6 +103,12 @@ class Database:
                                 ),
                                 ARRAY[]::text[]
                             ) AS policyless_rls_tables,
+                            coalesce(
+                                array_agg(table_name ORDER BY table_name) FILTER (
+                                    WHERE runtime_role_owns_table
+                                ),
+                                ARRAY[]::text[]
+                            ) AS runtime_owned_rls_tables,
                             coalesce(
                                 array_agg(table_name ORDER BY table_name) FILTER (
                                     WHERE NOT rls_active
@@ -140,10 +139,13 @@ class Database:
                 "Use an application/database-owner role so Row Level Security "
                 "cannot be bypassed."
             )
-        if role["rolbypassrls"] and not managed_provider:
+        if role["rolbypassrls"]:
             raise RuntimeError(
-                "DATABASE_URL must not use a BYPASSRLS role on self-hosted PostgreSQL. "
-                "Use a dedicated application role so Row Level Security cannot be bypassed."
+                "DATABASE_URL must not use a BYPASSRLS role. Use a dedicated "
+                "non-BYPASSRLS application role so Row Level Security cannot be bypassed. "
+                "On managed PostgreSQL providers such as Neon, use the provider owner/admin "
+                "role only for DATABASE_ADMIN_URL and migrations, then create a SQL-managed "
+                "runtime role with ordinary table privileges for DATABASE_URL."
             )
         if app_table_count and not rls_status["rls_table_count"]:
             raise RuntimeError(
@@ -162,32 +164,21 @@ class Database:
                 "Every public Row Level Security table must have at least one policy "
                 f"before starting the API. Missing policies: {tables}."
             )
-        if (
-            rls_status["inactive_rls_table_count"]
-            and not (managed_provider and role["rolbypassrls"])
-        ):
+        if rls_status["runtime_owned_rls_table_count"]:
+            tables = ", ".join(rls_status["runtime_owned_rls_tables"])
+            raise RuntimeError(
+                "DATABASE_URL must not use the owner of RLS-protected application "
+                f"tables: {tables}. Use a separate migration role for schema ownership "
+                "and a least-privilege runtime role for the API."
+            )
+        if rls_status["inactive_rls_table_count"]:
             tables = ", ".join(rls_status["inactive_rls_tables"])
             raise RuntimeError(
                 "The PostgreSQL runtime role can bypass Row Level Security on migrated "
                 f"application tables: {tables}. Use a non-superuser, non-BYPASSRLS "
                 "application role and keep FORCE ROW LEVEL SECURITY enabled."
             )
-        if managed_provider and role["rolbypassrls"]:
-            logger.warning(
-                "managed_postgres_bypassrls_role_allowed",
-                host=self.host,
-                reason=(
-                    "Managed PostgreSQL provider role inherits BYPASSRLS; "
-                    "runtime validation is limited to schema RLS invariants."
-                ),
-            )
 
-    def _is_managed_postgres(self, is_neon_managed_role: bool) -> bool:
-        host = self.host.lower()
-        return is_neon_managed_role or any(
-            host == suffix.removeprefix(".") or host.endswith(suffix)
-            for suffix in MANAGED_POSTGRES_HOST_SUFFIXES
-        )
 
 async def get_session(request: Request) -> AsyncIterator[AsyncSession]:
     database: Database = request.app.state.database

@@ -93,8 +93,13 @@ async def process_outbox_batch(
 async def _run(*, once: bool, poll_seconds: float) -> None:
     settings = get_settings()
     configure_logging(settings.environment)
-    database_url = settings.database_admin_url or settings.database_url
-    engine = create_async_engine(database_url, pool_pre_ping=True, pool_recycle=1800)
+    engine = create_async_engine(
+        settings.database_url,
+        pool_pre_ping=True,
+        pool_size=settings.database_pool_size,
+        max_overflow=settings.database_max_overflow,
+        pool_recycle=settings.database_pool_recycle_seconds,
+    )
     sessions = async_sessionmaker(engine, expire_on_commit=False)
     try:
         while True:

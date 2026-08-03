@@ -16,5 +16,11 @@ __pycache__/
 .ruff_cache/
 .venv/
 *.egg-info/
+.docker-codex/
+backups/
+*.dump
+*.backup
+*.sql.gz
+*.pgdump
 .DS_Store
 Thumbs.db

@@ -1,0 +1,10 @@
+-- Superseded by the numbered Supabase deployment scripts.
+--
+-- Do not run this compatibility file directly.
+--
+-- Use:
+--   1. infra/supabase/01-bootstrap-roles.sql
+--   2. Alembic migrations as distributoros_migrator
+--   3. infra/supabase/02-post-migration-grants.sql
+--   4. infra/supabase/03-verify-rls-admin.sql
+--   5. infra/supabase/04-verify-rls-runtime.sql

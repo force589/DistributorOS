@@ -1,0 +1,43 @@
+name: DistributorOS manual database migration
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "GitHub environment containing protected database secrets"
+        required: true
+        default: "staging"
+        type: choice
+        options:
+          - staging
+          - production
+
+permissions:
+  contents: read
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    env:
+      ENVIRONMENT: preview
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      DATABASE_MIGRATION_URL: ${{ secrets.DATABASE_MIGRATION_URL }}
+      JWT_SECRET: ${{ secrets.JWT_SECRET }}
+      CORS_ORIGINS: '["https://placeholder.pages.dev"]'
+      COOKIE_SECURE: "true"
+      COOKIE_SAMESITE: none
+      PASSWORD_RESET_URL_BASE: https://placeholder.pages.dev/reset-password
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+      - name: Install API package
+        run: python -m pip install -e "./services/api[dev]"
+      - name: Validate required secrets
+        run: python -c "import os; missing=[name for name in ('DATABASE_URL','DATABASE_MIGRATION_URL','JWT_SECRET') if not os.environ.get(name)]; raise SystemExit('Missing required secrets: '+', '.join(missing) if missing else 0)"
+      - name: Run Alembic migrations
+        working-directory: services/api
+        run: alembic upgrade head

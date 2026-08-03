@@ -23,15 +23,17 @@ jobs:
           --health-cmd "pg_isready -U postgres -d distributoros_test"
           --health-interval 5s --health-timeout 5s --health-retries 20
     env:
-      TEST_DATABASE_URL: postgresql+asyncpg://distributoros_app:test-app-password@localhost:5432/distributoros_test
-      TEST_DATABASE_ADMIN_URL: postgresql+asyncpg://postgres:test-admin-password@localhost:5432/distributoros_test
-      DATABASE_URL: postgresql+asyncpg://distributoros_app:test-app-password@localhost:5432/distributoros_test
-      DATABASE_ADMIN_URL: postgresql+asyncpg://postgres:test-admin-password@localhost:5432/distributoros_test
+      TEST_DATABASE_URL: postgresql+asyncpg://distributoros_runtime:test-runtime-password@localhost:5432/distributoros_test
+      TEST_DATABASE_ADMIN_URL: postgresql+asyncpg://distributoros_migrator:test-migrator-password@localhost:5432/distributoros_test
+      TEST_DATABASE_BOOTSTRAP_URL: postgresql+asyncpg://postgres:test-admin-password@localhost:5432/postgres
+      DATABASE_URL: postgresql+asyncpg://distributoros_runtime:test-runtime-password@localhost:5432/distributoros_test
+      DATABASE_MIGRATION_URL: postgresql+asyncpg://distributoros_migrator:test-migrator-password@localhost:5432/distributoros_test
+      DATABASE_ADMIN_URL: postgresql+asyncpg://distributoros_migrator:test-migrator-password@localhost:5432/distributoros_test
       JWT_SECRET: ci-only-secret-that-is-longer-than-thirty-two-characters
-      EXPO_PUBLIC_APP_ENV: development
-      EXPO_PUBLIC_WEB_API_URL: /api/v1
-      EXPO_PUBLIC_ANDROID_API_URL: http://10.0.2.2:8000/api/v1
-      EXPO_PUBLIC_IOS_API_URL: http://localhost:8000/api/v1
+      EXPO_PUBLIC_APP_ENV: production
+      EXPO_PUBLIC_WEB_API_URL: https://distributoros-api.onrender.com/api/v1
+      EXPO_PUBLIC_ANDROID_API_URL: https://distributoros-api.onrender.com/api/v1
+      EXPO_PUBLIC_IOS_API_URL: https://distributoros-api.onrender.com/api/v1
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -44,12 +46,17 @@ jobs:
           cache: pip
       - run: npm ci
       - run: python -m pip install -e "./services/api[dev]"
-      - name: Provision application database role
+      - name: Provision migration and runtime database roles
         env:
           PGPASSWORD: test-admin-password
-        run: >-
-          psql -h localhost -U postgres -d distributoros_test -v ON_ERROR_STOP=1
-          -c "CREATE ROLE distributoros_app LOGIN PASSWORD 'test-app-password' NOSUPERUSER NOCREATEDB NOCREATEROLE NOINHERIT;"
+        run: |
+          psql -h localhost -U postgres -d distributoros_test -v ON_ERROR_STOP=1 <<'SQL'
+          CREATE ROLE distributoros_migrator LOGIN PASSWORD 'test-migrator-password' NOSUPERUSER NOBYPASSRLS;
+          CREATE ROLE distributoros_runtime LOGIN PASSWORD 'test-runtime-password' NOSUPERUSER NOBYPASSRLS;
+          ALTER SCHEMA public OWNER TO distributoros_migrator;
+          GRANT CONNECT ON DATABASE distributoros_test TO distributoros_migrator, distributoros_runtime;
+          GRANT USAGE, CREATE ON SCHEMA public TO distributoros_migrator;
+          SQL
       - run: python -m ruff check src migrations tests
         working-directory: services/api
       - run: python -m mypy src
@@ -63,7 +70,5 @@ jobs:
         working-directory: services/api
       - run: npm run api:generate
       - run: git diff --exit-code packages/api-client/openapi.json packages/api-client/src/schema.d.ts
-      - run: npx expo export --platform web --output-dir ../../dist/web
-        working-directory: apps/mobile
+      - run: npm run export:web --workspace @distributoros/mobile
       - run: docker build -f services/api/Dockerfile services/api
-

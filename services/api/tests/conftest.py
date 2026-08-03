@@ -16,16 +16,16 @@ from sqlalchemy.ext.asyncio import create_async_engine
 
 from distributoros.core.config import Settings, get_settings
 from distributoros.core.database import set_internal_maintenance_context
-from distributoros.main import create_app
 
 TEST_DATABASE_URL = os.getenv(
     "TEST_DATABASE_URL",
-    "postgresql+asyncpg://distributoros_test_owner:test-owner-password@localhost:5432/"
+    "postgresql+asyncpg://distributoros_test_runtime:test-runtime-password@localhost:5432/"
     "distributoros_test_managed",
 )
 TEST_DATABASE_ADMIN_URL = os.getenv(
     "TEST_DATABASE_ADMIN_URL",
-    TEST_DATABASE_URL,
+    "postgresql+asyncpg://distributoros_test_migrator:test-migrator-password@localhost:5432/"
+    "distributoros_test_managed",
 )
 TEST_DATABASE_BOOTSTRAP_URL = os.getenv(
     "TEST_DATABASE_BOOTSTRAP_URL",
@@ -45,8 +45,11 @@ ROOT_TABLES = (
 )
 
 os.environ.setdefault("DATABASE_URL", TEST_DATABASE_URL)
+os.environ.setdefault("DATABASE_MIGRATION_URL", TEST_DATABASE_ADMIN_URL)
 os.environ.setdefault("DATABASE_ADMIN_URL", TEST_DATABASE_ADMIN_URL)
 os.environ.setdefault("JWT_SECRET", TEST_JWT_SECRET)
+
+from distributoros.main import create_app  # noqa: E402
 
 
 def _quote_identifier(identifier: str) -> str:
@@ -66,43 +69,60 @@ def _asyncpg_kwargs(url: str) -> dict[str, object]:
     }
 
 
-async def _ensure_managed_test_database(bootstrap_url: str, managed_url: str) -> None:
-    """Create a local non-superuser owner database for RLS regression tests.
+async def _ensure_managed_test_database(
+    bootstrap_url: str,
+    migration_url: str,
+    runtime_url: str,
+) -> None:
+    """Create local non-superuser migration/runtime roles for RLS regression tests.
 
     PostgreSQL Docker's POSTGRES_USER is a superuser and therefore bypasses RLS.
     Managed providers such as Neon, Render PostgreSQL, Supabase, and Railway expose
-    non-superuser owner/application roles. The regression suite must run with that
-    managed-provider shape so direct RLS assertions are meaningful.
+    non-superuser owner/application roles. The regression suite must run with a
+    managed-provider shape where migrations own schema objects and the API uses a
+    separate runtime role so direct RLS assertions are meaningful.
     """
 
-    managed = make_url(managed_url)
-    if managed.username is None or managed.password is None or managed.database is None:
+    migration = make_url(migration_url)
+    runtime = make_url(runtime_url)
+    if migration.username is None or migration.password is None or migration.database is None:
+        raise ValueError("TEST_DATABASE_ADMIN_URL must include user, password, and database.")
+    if runtime.username is None or runtime.password is None or runtime.database is None:
         raise ValueError("TEST_DATABASE_URL must include user, password, and database.")
-    role_name = _quote_identifier(managed.username)
-    database_name = _quote_identifier(managed.database)
+    if migration.database != runtime.database:
+        raise ValueError("TEST_DATABASE_ADMIN_URL and TEST_DATABASE_URL must target the same DB.")
+    migration_role = _quote_identifier(migration.username)
+    runtime_role = _quote_identifier(runtime.username)
+    database_name = _quote_identifier(runtime.database)
     conn = await asyncpg.connect(**_asyncpg_kwargs(bootstrap_url))
     try:
-        password_literal = await conn.fetchval("SELECT quote_literal($1)", managed.password)
-        role_exists = await conn.fetchval(
-            "SELECT EXISTS (SELECT 1 FROM pg_roles WHERE rolname = $1)",
-            managed.username,
-        )
-        if not role_exists:
-            await conn.execute(
-                "CREATE ROLE "
-                f"{role_name} LOGIN NOSUPERUSER NOBYPASSRLS PASSWORD {password_literal}",
+        for role in (migration, runtime):
+            assert role.username is not None
+            assert role.password is not None
+            password_literal = await conn.fetchval("SELECT quote_literal($1)", role.password)
+            quoted_role = _quote_identifier(role.username)
+            role_exists = await conn.fetchval(
+                "SELECT EXISTS (SELECT 1 FROM pg_roles WHERE rolname = $1)",
+                role.username,
             )
-        else:
-            await conn.execute(
-                "ALTER ROLE "
-                f"{role_name} WITH LOGIN NOSUPERUSER NOBYPASSRLS PASSWORD {password_literal}",
-            )
+            if not role_exists:
+                await conn.execute(
+                    "CREATE ROLE "
+                    f"{quoted_role} LOGIN NOSUPERUSER NOBYPASSRLS PASSWORD {password_literal}",
+                )
+            else:
+                await conn.execute(
+                    "ALTER ROLE "
+                    f"{quoted_role} WITH LOGIN NOSUPERUSER NOBYPASSRLS "
+                    f"PASSWORD {password_literal}",
+                )
         await conn.execute(
             "SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = $1",
-            managed.database,
+            runtime.database,
         )
         await conn.execute(f"DROP DATABASE IF EXISTS {database_name}")
-        await conn.execute(f"CREATE DATABASE {database_name} OWNER {role_name}")
+        await conn.execute(f"CREATE DATABASE {database_name} OWNER {migration_role}")
+        await conn.execute(f"GRANT CONNECT ON DATABASE {database_name} TO {runtime_role}")
     finally:
         await conn.close()
 
@@ -138,6 +158,29 @@ async def _truncate_existing_data(admin_url: str) -> None:
     await engine.dispose()
 
 
+async def _grant_runtime_privileges(admin_url: str, runtime_url: str) -> None:
+    runtime = make_url(runtime_url).username
+    if not runtime or admin_url == runtime_url:
+        return
+    quoted_runtime = _quote_identifier(runtime)
+    engine = create_async_engine(admin_url)
+    async with engine.begin() as connection:
+        await connection.execute(text(f"GRANT USAGE ON SCHEMA public TO {quoted_runtime}"))
+        await connection.execute(
+            text(
+                "GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public "
+                f"TO {quoted_runtime}"
+            )
+        )
+        await connection.execute(
+            text(
+                "GRANT USAGE, SELECT, UPDATE ON ALL SEQUENCES IN SCHEMA public "
+                f"TO {quoted_runtime}"
+            )
+        )
+    await engine.dispose()
+
+
 @pytest.fixture(scope="session")
 def test_settings() -> Settings:
     return Settings(
@@ -154,16 +197,25 @@ def test_settings() -> Settings:
 @pytest.fixture(scope="session", autouse=True)
 def migrated_database(test_settings: Settings) -> Iterator[None]:
     os.environ["DATABASE_URL"] = test_settings.database_url
+    os.environ["DATABASE_MIGRATION_URL"] = test_settings.database_admin_url or ""
     os.environ["DATABASE_ADMIN_URL"] = test_settings.database_admin_url or ""
     os.environ["JWT_SECRET"] = TEST_JWT_SECRET
     get_settings.cache_clear()
     if BOOTSTRAP_MANAGED_TEST_DATABASE:
-        asyncio.run(_ensure_managed_test_database(TEST_DATABASE_BOOTSTRAP_URL, TEST_DATABASE_URL))
+        asyncio.run(
+            _ensure_managed_test_database(
+                TEST_DATABASE_BOOTSTRAP_URL,
+                TEST_DATABASE_ADMIN_URL,
+                TEST_DATABASE_URL,
+            )
+        )
     if test_settings.database_admin_url is not None:
         asyncio.run(_truncate_existing_data(test_settings.database_admin_url))
     config = Config("alembic.ini")
     command.downgrade(config, "base")
     command.upgrade(config, "head")
+    if test_settings.database_admin_url is not None:
+        asyncio.run(_grant_runtime_privileges(test_settings.database_admin_url, TEST_DATABASE_URL))
     yield
 
 

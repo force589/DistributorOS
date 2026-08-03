@@ -68,3 +68,74 @@ def test_production_configuration_rejects_insecure_web_defaults() -> None:
         raise AssertionError("Production settings should reject localhost CORS origins")
 
     assert "must not contain local development origins" in message
+
+
+def test_postgres_urls_accept_provider_sslmode_and_normalize_driver() -> None:
+    settings = Settings(
+        environment="development",
+        database_url="postgres://runtime:secret@db.example.com:5432/distributoros?sslmode=require",
+        database_migration_url=(
+            "postgresql://migrator:secret@db.example.com:5432/distributoros?sslmode=require"
+        ),
+        jwt_secret=SecretStr("a-development-secret-longer-than-thirty-two-characters"),
+    )
+
+    assert settings.database_url == (
+        "postgresql+asyncpg://runtime:secret@db.example.com:5432/distributoros?ssl=require"
+    )
+    assert settings.database_migration_url == (
+        "postgresql+asyncpg://migrator:secret@db.example.com:5432/distributoros?ssl=require"
+    )
+
+
+def test_preview_configuration_rejects_wildcard_cors_with_credentials() -> None:
+    try:
+        Settings(
+            environment="preview",
+            database_url="postgresql+asyncpg://runtime:secret@database/distributoros",
+            jwt_secret=SecretStr("a-preview-secret-longer-than-thirty-two-characters"),
+            cookie_secure=True,
+            password_reset_url_base="https://app.example.com/reset-password",
+            cors_origins=["*"],
+        )
+    except ValidationError as exc:
+        message = str(exc)
+    else:
+        raise AssertionError("Preview settings should reject wildcard CORS origins")
+
+    assert "must not contain wildcard origins" in message
+
+
+def test_cross_site_cookie_requires_secure_none_pairing() -> None:
+    try:
+        Settings(
+            environment="development",
+            database_url="postgresql+asyncpg://runtime:secret@database/distributoros",
+            jwt_secret=SecretStr("a-development-secret-longer-than-thirty-two-characters"),
+            cookie_secure=False,
+            cookie_samesite="none",
+        )
+    except ValidationError as exc:
+        message = str(exc)
+    else:
+        raise AssertionError("SameSite=None must require Secure cookies")
+
+    assert "COOKIE_SAMESITE=none requires COOKIE_SECURE=true" in message
+
+
+def test_preview_configuration_requires_https_origins_and_reset_url() -> None:
+    try:
+        Settings(
+            environment="preview",
+            database_url="postgresql+asyncpg://runtime:secret@database/distributoros",
+            jwt_secret=SecretStr("a-preview-secret-longer-than-thirty-two-characters"),
+            cookie_secure=True,
+            cors_origins=["https://app.example.com", "http://preview.example.com"],
+            password_reset_url_base="https://app.example.com/reset-password",
+        )
+    except ValidationError as exc:
+        message = str(exc)
+    else:
+        raise AssertionError("Preview settings should require HTTPS CORS origins")
+
+    assert "CORS_ORIGINS must use HTTPS origins" in message

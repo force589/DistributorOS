@@ -1,0 +1,7 @@
+-- Superseded by the numbered Supabase verification scripts.
+--
+-- Do not run this compatibility file directly.
+--
+-- Use:
+--   1. infra/supabase/03-verify-rls-admin.sql
+--   2. infra/supabase/04-verify-rls-runtime.sql

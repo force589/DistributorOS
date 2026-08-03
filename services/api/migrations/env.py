@@ -34,7 +34,11 @@ if config.config_file_name is not None:
 settings = get_settings()
 config.set_main_option(
     "sqlalchemy.url",
-    (settings.database_admin_url or settings.database_url).replace("%", "%%"),
+    (
+        settings.database_migration_url
+        or settings.database_admin_url
+        or settings.database_url
+    ).replace("%", "%%"),
 )
 target_metadata = Base.metadata
 

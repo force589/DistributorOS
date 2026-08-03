@@ -1,0 +1,45 @@
+services:
+  - type: web
+    name: distributoros-api
+    runtime: docker
+    plan: free
+    rootDir: services/api
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /health/ready
+    autoDeployTrigger: off
+    envVars:
+      - key: ENVIRONMENT
+        value: preview
+      - key: DATABASE_URL
+        sync: false
+      - key: DATABASE_MIGRATION_URL
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: CORS_ORIGINS
+        sync: false
+      - key: COOKIE_SECURE
+        value: "true"
+      - key: COOKIE_SAMESITE
+        value: none
+      - key: PASSWORD_RESET_URL_BASE
+        sync: false
+      - key: SMTP_HOST
+        sync: false
+      - key: SMTP_USERNAME
+        sync: false
+      - key: SMTP_PASSWORD
+        sync: false
+      - key: SMTP_FROM_EMAIL
+        sync: false
+      - key: DATABASE_POOL_SIZE
+        value: "3"
+      - key: DATABASE_MAX_OVERFLOW
+        value: "2"
+      - key: DATABASE_POOL_RECYCLE_SECONDS
+        value: "1800"
+      - key: INVOICE_PDF_ROOT
+        value: /tmp/distributoros-invoices
+      - key: RATE_LIMIT_ENABLED
+        value: "true"
