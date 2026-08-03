@@ -3,13 +3,21 @@ import { Platform } from 'react-native';
 export type AppEnvironment = 'development' | 'preview' | 'production';
 
 const appEnvironment = (process.env.EXPO_PUBLIC_APP_ENV ?? 'development') as AppEnvironment;
-const apiUrl = Platform.OS === 'android'
-  ? process.env.EXPO_PUBLIC_ANDROID_API_URL
-  : Platform.OS === 'ios'
-    ? process.env.EXPO_PUBLIC_IOS_API_URL
-    : Platform.OS === 'web'
-      ? process.env.EXPO_PUBLIC_WEB_API_URL
-      : process.env.EXPO_PUBLIC_API_URL;
+
+export function resolveApiUrl(platform: string): string | undefined {
+  if (platform === 'android') {
+    return process.env.EXPO_PUBLIC_ANDROID_API_URL ?? process.env.EXPO_PUBLIC_API_URL;
+  }
+  if (platform === 'ios') {
+    return process.env.EXPO_PUBLIC_IOS_API_URL ?? process.env.EXPO_PUBLIC_API_URL;
+  }
+  if (platform === 'web') {
+    return process.env.EXPO_PUBLIC_API_URL ?? process.env.EXPO_PUBLIC_WEB_API_URL;
+  }
+  return process.env.EXPO_PUBLIC_API_URL;
+}
+
+const apiUrl = resolveApiUrl(Platform.OS);
 
 if (!['development', 'preview', 'production'].includes(appEnvironment)) {
   throw new Error(
