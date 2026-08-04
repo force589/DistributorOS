@@ -1,10 +1,11 @@
 import pytest
-from httpx import AsyncClient
+from httpx import ASGITransport, AsyncClient
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import create_async_engine
 
 from distributoros.core.config import Settings
 from distributoros.core.database import set_internal_maintenance_context
+from distributoros.main import create_app
 
 SIGNUP = {
     "business_name": "Fresh Route Distributors",
@@ -159,6 +160,54 @@ async def test_web_session_uses_http_only_cookie(client: AsyncClient) -> None:
     )
     assert refreshed.status_code == 200
     assert refreshed.json()["refresh_token"] is None
+
+
+async def test_preview_web_session_cookie_is_cross_site_safe(test_settings: Settings) -> None:
+    preview_settings = test_settings.model_copy(
+        update={
+            "environment": "preview",
+            "cors_origins": ["https://distributoros.pages.dev"],
+            "cookie_secure": True,
+            "cookie_samesite": "lax",
+            "password_reset_url_base": "https://distributoros.pages.dev/reset-password",
+        },
+    )
+    application = create_app(preview_settings)
+    try:
+        transport = ASGITransport(app=application, raise_app_exceptions=False)
+        async with AsyncClient(
+            transport=transport,
+            base_url="https://distributoros-api.onrender.com",
+        ) as preview_client:
+            signup = await preview_client.post(
+                "/api/v1/auth/signup",
+                json=SIGNUP,
+                headers={
+                    "X-Client-Platform": "web",
+                    "Origin": "https://distributoros.pages.dev",
+                },
+            )
+
+            assert signup.status_code == 201
+            assert signup.json()["refresh_token"] is None
+            cookie = signup.headers["set-cookie"]
+            assert "HttpOnly" in cookie
+            assert "Secure" in cookie
+            assert "SameSite=none" in cookie
+
+            refreshed = await preview_client.post(
+                "/api/v1/auth/refresh",
+                json={},
+                headers={
+                    "X-Client-Platform": "web",
+                    "Origin": "https://distributoros.pages.dev",
+                },
+            )
+
+            assert refreshed.status_code == 200
+            assert refreshed.json()["refresh_token"] is None
+    finally:
+        await application.state.database.dispose()
 
 
 async def test_api_errors_have_request_ids_and_friendly_404(client: AsyncClient) -> None:

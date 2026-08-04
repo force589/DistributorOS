@@ -12,6 +12,7 @@ import { AppPreferencesProvider, useTheme } from '@/design/theme';
 import {
   AuthProvider,
   canAccessProtectedRoutes,
+  isSessionRestorePending,
   useAuth,
 } from '@/features/auth/AuthContext';
 
@@ -20,7 +21,7 @@ function RootNavigator() {
   const { status, retrySessionCheck } = useAuth();
   const theme = useTheme();
 
-  if (status === 'checking') {
+  if (isSessionRestorePending(status)) {
     return (
       <FullScreenState
         loading

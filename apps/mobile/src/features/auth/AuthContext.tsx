@@ -70,6 +70,10 @@ export function canAccessProtectedRoutes(status: AuthStatus): boolean {
   return status === 'authenticated';
 }
 
+export function isSessionRestorePending(status: AuthStatus): boolean {
+  return status === 'checking';
+}
+
 export function AuthProvider({ children }: PropsWithChildren) {
   const queryClient = useQueryClient();
   const [status, setStatus] = useState<AuthStatus>('checking');

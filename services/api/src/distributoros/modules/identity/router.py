@@ -1,4 +1,4 @@
-from typing import Annotated
+from typing import Annotated, Literal
 
 from fastapi import APIRouter, Body, Cookie, Depends, Header, Request, Response, status
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -63,7 +63,7 @@ def _set_refresh_cookie(
         max_age=settings.refresh_token_days * 24 * 60 * 60,
         httponly=True,
         secure=settings.cookie_secure,
-        samesite=settings.cookie_samesite,
+        samesite=_refresh_cookie_samesite(settings),
         path="/api/v1/auth",
     )
 
@@ -73,9 +73,21 @@ def _delete_refresh_cookie(response: Response, settings: Settings) -> None:
         key=REFRESH_COOKIE_NAME,
         httponly=True,
         secure=settings.cookie_secure,
-        samesite=settings.cookie_samesite,
+        samesite=_refresh_cookie_samesite(settings),
         path="/api/v1/auth",
     )
+
+
+def _refresh_cookie_samesite(settings: Settings) -> Literal["lax", "strict", "none"]:
+    """Use cross-site-safe browser refresh cookies on hosted web deployments.
+
+    Cloudflare Pages and Render are different sites, so browser refresh requests
+    need SameSite=None. Security is preserved by Secure+HttpOnly cookies and the
+    Origin allowlist enforced before cookie-backed auth endpoints run.
+    """
+    if settings.environment in {"preview", "production"}:
+        return "none"
+    return settings.cookie_samesite
 
 
 def _validate_cookie_origin(origin: str | None, settings: Settings, transport: str) -> None:

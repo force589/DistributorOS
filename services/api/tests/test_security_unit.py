@@ -3,6 +3,7 @@ from uuid import uuid4
 from pydantic import SecretStr, ValidationError
 
 from distributoros.core.config import Settings
+from distributoros.modules.identity.router import _refresh_cookie_samesite
 from distributoros.modules.identity.schemas import SignupRequest
 from distributoros.modules.identity.security import (
     create_access_token,
@@ -121,6 +122,20 @@ def test_cross_site_cookie_requires_secure_none_pairing() -> None:
         raise AssertionError("SameSite=None must require Secure cookies")
 
     assert "COOKIE_SAMESITE=none requires COOKIE_SECURE=true" in message
+
+
+def test_hosted_web_refresh_cookie_uses_samesite_none() -> None:
+    settings = Settings(
+        environment="preview",
+        database_url="postgresql+asyncpg://runtime:secret@database/distributoros",
+        jwt_secret=SecretStr("a-preview-secret-longer-than-thirty-two-characters"),
+        cors_origins=["https://distributoros.pages.dev"],
+        cookie_secure=True,
+        cookie_samesite="lax",
+        password_reset_url_base="https://distributoros.pages.dev/reset-password",
+    )
+
+    assert _refresh_cookie_samesite(settings) == "none"
 
 
 def test_preview_configuration_requires_https_origins_and_reset_url() -> None:

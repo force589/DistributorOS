@@ -41,6 +41,36 @@ describe('ApiClient', () => {
     }
   });
 
+  it('uses credentialed browser auth requests so HttpOnly refresh cookies can persist', async () => {
+    const authBody = {
+      access_token: 'access-token',
+      refresh_token: null,
+      token_type: 'bearer',
+      expires_in: 900,
+      user: { id: 'user-1', business: { id: 'business-1' } },
+    };
+    const fetchImplementation = vi.fn<typeof fetch>().mockImplementation(() =>
+      Promise.resolve(jsonResponse(200, authBody)),
+    );
+    const client = new ApiClient({
+      baseUrl: 'https://api.example.com/api/v1',
+      platform: 'web',
+      fetchImplementation,
+    });
+
+    await client.login({ email: 'owner@example.com', password: 'secure-password' });
+    await client.refresh(null);
+
+    expect(fetchImplementation.mock.calls.map((call) => call[0])).toEqual([
+      'https://api.example.com/api/v1/auth/login',
+      'https://api.example.com/api/v1/auth/refresh',
+    ]);
+    for (const [, init] of fetchImplementation.mock.calls) {
+      expect(init?.credentials).toBe('include');
+      expect((init?.headers as Headers).get('X-Client-Platform')).toBe('web');
+    }
+  });
+
   it('maps API failures centrally', async () => {
     const fetchImplementation = vi.fn<typeof fetch>().mockResolvedValue(
       jsonResponse(403, {
