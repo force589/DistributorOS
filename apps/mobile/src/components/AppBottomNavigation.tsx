@@ -1,6 +1,7 @@
 import { type Href, usePathname, useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 
+import { appIcons, type AppIconName } from '@/design/icons';
 import { BottomNavigation } from '@/design-system';
 import {
   getActivePrimaryNavigationKey,
@@ -9,12 +10,12 @@ import {
   type PrimaryNavigationKey,
 } from '@/navigation/primaryNavigation';
 
-const items: { key: PrimaryNavigationKey; icon: string; translationKey: string }[] = [
-  { key: 'home', icon: '🏠', translationKey: 'navigation.home' },
-  { key: 'sales', icon: '💰', translationKey: 'navigation.sales' },
-  { key: 'customers', icon: '👥', translationKey: 'navigation.customers' },
-  { key: 'products', icon: '📦', translationKey: 'navigation.products' },
-  { key: 'more', icon: '☰', translationKey: 'navigation.more' },
+const items: { key: PrimaryNavigationKey; icon: AppIconName; translationKey: string }[] = [
+  { key: 'home', icon: appIcons.home, translationKey: 'navigation.home' },
+  { key: 'sales', icon: appIcons.sales, translationKey: 'navigation.sales' },
+  { key: 'customers', icon: appIcons.customers, translationKey: 'navigation.customers' },
+  { key: 'products', icon: appIcons.products, translationKey: 'navigation.products' },
+  { key: 'more', icon: appIcons.more, translationKey: 'navigation.more' },
 ];
 
 export function AppBottomNavigation({

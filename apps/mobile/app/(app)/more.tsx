@@ -5,18 +5,19 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
 
 import { ScreenHeader } from '@/components/ScreenHeader';
+import { appIcons, type AppIconName } from '@/design/icons';
 import { useResponsiveLayout } from '@/design/responsive';
 import { useTheme } from '@/design/theme';
 import { Card, Divider, NavigationListItem } from '@/design-system';
 
-const destinations = [
-  { key: 'inventory', icon: '📦', href: '/inventory' },
-  { key: 'payments', icon: '💳', href: '/payments' },
-  { key: 'invoices', icon: '🧾', href: '/invoices' },
-  { key: 'reports', icon: '📊', href: '/reports' },
-  { key: 'search', icon: '🔍', href: '/search' },
-  { key: 'settings', icon: '⚙️', href: '/settings' },
-] as const;
+const destinations: { key: string; icon: AppIconName; href: Href }[] = [
+  { key: 'inventory', icon: appIcons.inventory, href: '/inventory' },
+  { key: 'payments', icon: appIcons.payments, href: '/payments' },
+  { key: 'invoices', icon: appIcons.invoices, href: '/invoices' },
+  { key: 'reports', icon: appIcons.reports, href: '/reports' },
+  { key: 'search', icon: appIcons.search, href: '/search' },
+  { key: 'settings', icon: appIcons.settings, href: '/settings' },
+];
 
 export default function MoreScreen() {
   const { t } = useTranslation();

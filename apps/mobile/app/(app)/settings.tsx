@@ -15,6 +15,7 @@ import { ConfirmationDialog } from '@/components/ConfirmationDialog';
 import { FeedbackBanner } from '@/components/FeedbackBanner';
 import { FormField } from '@/components/FormField';
 import { ScreenHeader } from '@/components/ScreenHeader';
+import { appIcons, type AppIconName } from '@/design/icons';
 import { useResponsiveLayout } from '@/design/responsive';
 import { usePreferences, useTheme } from '@/design/theme';
 import {
@@ -175,7 +176,7 @@ export default function SettingsScreen() {
 
           <SettingsSection
             description={t('settings.businessDescription')}
-            symbol="B"
+            icon={appIcons.business}
             title={t('settings.businessSection')}
           >
           <FormField
@@ -232,7 +233,7 @@ export default function SettingsScreen() {
 
           <SettingsSection
             description={t('settings.appearanceDescription')}
-            symbol="◐"
+            icon={appIcons.appearance}
             title={t('settings.appearanceSection')}
           >
           <RadioOptions>
@@ -251,7 +252,7 @@ export default function SettingsScreen() {
 
           <SettingsSection
             description={t('settings.languageHelp')}
-            symbol="A"
+            icon={appIcons.language}
             title={t('settings.languageSection')}
           >
           <RadioOptions>
@@ -270,7 +271,7 @@ export default function SettingsScreen() {
 
           <SettingsSection
             description={t('settings.accountDescription')}
-            symbol="@"
+            icon={appIcons.account}
             title={t('settings.accountSection')}
           >
           <ListItem subtitle={user?.email ?? ''} title={t('settings.accountEmail')} />
@@ -321,12 +322,12 @@ export default function SettingsScreen() {
 function SettingsSection({
   title,
   description,
-  symbol,
+  icon,
   children,
 }: {
   title: string;
   description: string;
-  symbol: string;
+  icon: AppIconName;
   children: ReactNode;
 }) {
   const theme = useTheme();
@@ -340,7 +341,7 @@ function SettingsSection({
           padding: theme.spacing.lg,
         }}
       >
-        <SectionIcon symbol={symbol} />
+        <SectionIcon icon={icon} />
         <View style={{ flex: 1, gap: theme.spacing.xs }}>
           <Text
             accessibilityRole="header"

@@ -14,6 +14,7 @@ import { useTranslation } from 'react-i18next';
 
 import { apiClient } from '@/api/client';
 import { FullScreenState } from '@/components/FullScreenState';
+import { appIcons, type AppIconName } from '@/design/icons';
 import { StyleSheet as ThemedStyleSheet } from '@/design/stylesheet';
 import { colors, radii, spacing } from '@/design/tokens';
 import { useResponsiveLayout } from '@/design/responsive';
@@ -27,14 +28,14 @@ import {
   formatQuantity,
 } from '@/features/insights/formatting';
 
-const quickActions = [
-  { key: 'customers', icon: '👥', href: '/customers' },
-  { key: 'products', icon: '📦', href: '/products' },
-  { key: 'inventory', icon: '📦', href: '/inventory' },
-  { key: 'sales', icon: '💰', href: '/sales' },
-  { key: 'payments', icon: '💳', href: '/payments' },
-  { key: 'invoices', icon: '🧾', href: '/invoices' },
-] as const;
+const quickActions: { key: string; icon: AppIconName; href: Href }[] = [
+  { key: 'customers', icon: appIcons.customers, href: '/customers' },
+  { key: 'products', icon: appIcons.products, href: '/products' },
+  { key: 'inventory', icon: appIcons.inventory, href: '/inventory' },
+  { key: 'sales', icon: appIcons.sales, href: '/sales' },
+  { key: 'payments', icon: appIcons.payments, href: '/payments' },
+  { key: 'invoices', icon: appIcons.invoices, href: '/invoices' },
+];
 
 export default function DashboardScreen() {
   const { t } = useTranslation();

@@ -11,6 +11,8 @@ import {
   type ViewStyle,
 } from 'react-native';
 
+import { Icon } from '@/components/Icon';
+import { appIcons, type AppIconName } from '@/design/icons';
 import { useTheme } from '@/design/theme';
 
 type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'destructive';
@@ -113,7 +115,60 @@ export function Divider() {
   return <View style={{ backgroundColor: theme.colors.border, height: 1, width: '100%' }} />;
 }
 
-export function SectionIcon({ symbol }: { symbol: string }) {
+export function IconButton({
+  accessibilityHint,
+  accessibilityLabel,
+  disabled = false,
+  icon,
+  onPress,
+  size = 48,
+  testID,
+}: {
+  accessibilityHint?: string;
+  accessibilityLabel: string;
+  disabled?: boolean;
+  icon: AppIconName;
+  onPress: () => void;
+  size?: number;
+  testID?: string;
+}) {
+  const theme = useTheme();
+  const [focused, setFocused] = useState(false);
+  return (
+    <Pressable
+      accessibilityHint={accessibilityHint}
+      accessibilityLabel={accessibilityLabel}
+      accessibilityRole="button"
+      accessibilityState={{ disabled }}
+      disabled={disabled}
+      hitSlop={6}
+      onBlur={() => setFocused(false)}
+      onFocus={() => setFocused(true)}
+      onPress={onPress}
+      style={({ pressed }) => [
+        {
+          alignItems: 'center',
+          backgroundColor: pressed ? theme.colors.primarySubtle : theme.colors.surfaceElevated,
+          borderColor: focused ? theme.colors.primary : theme.colors.border,
+          borderRadius: theme.radii.full,
+          borderWidth: 1,
+          height: Math.max(size, 44),
+          justifyContent: 'center',
+          minHeight: 44,
+          minWidth: 44,
+          opacity: disabled ? 0.56 : 1,
+          width: Math.max(size, 44),
+        },
+        theme.elevations.md,
+      ]}
+      testID={testID}
+    >
+      <Icon color={theme.colors.primary} name={icon} size="lg" />
+    </Pressable>
+  );
+}
+
+export function SectionIcon({ icon }: { icon: AppIconName }) {
   const theme = useTheme();
   return (
     <View
@@ -128,12 +183,7 @@ export function SectionIcon({ symbol }: { symbol: string }) {
         width: 40,
       }}
     >
-      <Text
-        allowFontScaling={false}
-        style={[theme.typography.heading, { color: theme.colors.primary }]}
-      >
-        {symbol}
-      </Text>
+      <Icon color={theme.colors.primary} name={icon} size="lg" />
     </View>
   );
 }
@@ -440,7 +490,7 @@ export function ActionCard({
   style,
   testID,
 }: {
-  icon: string;
+  icon: AppIconName;
   title: string;
   description: string;
   onPress: () => void;
@@ -474,14 +524,7 @@ export function ActionCard({
       ]}
       testID={testID}
     >
-      <Text
-        accessibilityElementsHidden
-        allowFontScaling={false}
-        importantForAccessibility="no"
-        style={{ fontSize: 30, lineHeight: 38 }}
-      >
-        {icon}
-      </Text>
+      <Icon color={theme.colors.primary} name={icon} size="xl" />
       <View style={{ gap: theme.spacing.xs }}>
         <Text style={[theme.typography.heading, { color: theme.colors.text }]}>{title}</Text>
         <Text style={[theme.typography.caption, { color: theme.colors.textMuted }]}>
@@ -499,7 +542,7 @@ export function NavigationListItem({
   onPress,
   testID,
 }: {
-  icon: string;
+  icon: AppIconName;
   title: string;
   subtitle?: string;
   onPress: () => void;
@@ -529,14 +572,7 @@ export function NavigationListItem({
       })}
       testID={testID}
     >
-      <Text
-        accessibilityElementsHidden
-        allowFontScaling={false}
-        importantForAccessibility="no"
-        style={{ fontSize: 26, lineHeight: 34 }}
-      >
-        {icon}
-      </Text>
+      <Icon color={theme.colors.primary} name={icon} size="lg" />
       <View style={{ flex: 1, gap: theme.spacing.xs }}>
         <Text style={[theme.typography.body, { color: theme.colors.text, fontWeight: '700' }]}>
           {title}
@@ -547,13 +583,7 @@ export function NavigationListItem({
           </Text>
         ) : null}
       </View>
-      <Text
-        accessibilityElementsHidden
-        importantForAccessibility="no"
-        style={[theme.typography.heading, { color: theme.colors.textMuted }]}
-      >
-        ›
-      </Text>
+      <Icon color={theme.colors.textMuted} name={appIcons.chevronRight} size="md" />
     </Pressable>
   );
 }
@@ -576,7 +606,7 @@ export function BottomNavigation({
   items,
   bottomInset = 0,
 }: {
-  items: { key: string; icon: string; label: string; selected?: boolean; onPress: () => void }[];
+  items: { key: string; icon: AppIconName; label: string; selected?: boolean; onPress: () => void }[];
   bottomInset?: number;
 }) {
   const theme = useTheme();
@@ -614,7 +644,7 @@ function BottomNavigationItem({
   selected = false,
   onPress,
 }: {
-  icon: string;
+  icon: AppIconName;
   label: string;
   selected?: boolean;
   onPress: () => void;
@@ -645,14 +675,11 @@ function BottomNavigationItem({
         paddingHorizontal: theme.spacing.xs,
       })}
     >
-      <Text
-        accessibilityElementsHidden
-        allowFontScaling={false}
-        importantForAccessibility="no"
-        style={{ fontSize: 21, lineHeight: 25 }}
-      >
-        {icon}
-      </Text>
+      <Icon
+        color={selected ? theme.colors.primary : theme.colors.textMuted}
+        name={icon}
+        size="lg"
+      />
       <Text
         numberOfLines={1}
         style={[
@@ -682,4 +709,5 @@ export function StatusTag({ label, status }: { label: string; status: 'success' 
   return <Badge label={label} tone={status} />;
 }
 
-export { StyleSheet };
+export { Icon, StyleSheet };
+export type { AppIconName };

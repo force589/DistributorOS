@@ -1,6 +1,5 @@
-import { Pressable, Text } from 'react-native';
-
-import { useTheme } from '@/design/theme';
+import { appIcons } from '@/design/icons';
+import { IconButton } from '@/design-system';
 
 export function SettingsButton({
   label,
@@ -11,38 +10,13 @@ export function SettingsButton({
   hint: string;
   onPress: () => void;
 }) {
-  const theme = useTheme();
   return (
-    <Pressable
+    <IconButton
       accessibilityHint={hint}
       accessibilityLabel={label}
-      accessibilityRole="button"
-      hitSlop={6}
+      icon={appIcons.settings}
       onPress={onPress}
-      style={({ pressed }) => [
-        {
-          alignItems: 'center',
-          backgroundColor: theme.colors.surfaceElevated,
-          borderColor: theme.colors.border,
-          borderRadius: theme.radii.full,
-          borderWidth: 1,
-          height: 48,
-          justifyContent: 'center',
-          opacity: pressed ? 0.76 : 1,
-          width: 48,
-        },
-        theme.elevations.md,
-      ]}
       testID="global-settings-button"
-    >
-      <Text
-        accessibilityElementsHidden
-        allowFontScaling={false}
-        importantForAccessibility="no"
-        style={{ color: theme.colors.primary, fontSize: 25, lineHeight: 30 }}
-      >
-        ⚙
-      </Text>
-    </Pressable>
+    />
   );
 }
