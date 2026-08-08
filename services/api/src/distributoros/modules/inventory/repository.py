@@ -95,18 +95,42 @@ class InventoryRepository:
         warehouse_id: UUID,
         delta: Decimal,
     ) -> tuple[Decimal, datetime] | None:
-        existing = (
+        row = (
             await self.session.execute(
                 text(
                     """
-                    UPDATE stock_balances
-                    SET available_quantity = available_quantity + :delta,
-                        updated_at = now()
-                    WHERE tenant_id = :tenant_id
-                      AND product_id = :product_id
-                      AND warehouse_id = :warehouse_id
-                      AND available_quantity + :delta >= 0
-                    RETURNING available_quantity, updated_at
+                    WITH updated AS (
+                        UPDATE stock_balances
+                        SET available_quantity = available_quantity + :delta,
+                            updated_at = now()
+                        WHERE tenant_id = :tenant_id
+                          AND product_id = :product_id
+                          AND warehouse_id = :warehouse_id
+                          AND available_quantity + :delta >= 0
+                        RETURNING available_quantity, updated_at
+                    ),
+                    inserted AS (
+                        INSERT INTO stock_balances (
+                            tenant_id, product_id, warehouse_id,
+                            available_quantity, updated_at
+                        )
+                        SELECT
+                            :tenant_id, :product_id, :warehouse_id, :delta, now()
+                        WHERE :delta >= 0
+                          AND NOT EXISTS (SELECT 1 FROM updated)
+                        ON CONFLICT (tenant_id, product_id, warehouse_id)
+                        DO UPDATE SET
+                            available_quantity = stock_balances.available_quantity
+                                + EXCLUDED.available_quantity,
+                            updated_at = now()
+                        WHERE stock_balances.available_quantity
+                            + EXCLUDED.available_quantity >= 0
+                        RETURNING available_quantity, updated_at
+                    )
+                    SELECT available_quantity, updated_at FROM updated
+                    UNION ALL
+                    SELECT available_quantity, updated_at FROM inserted
+                    LIMIT 1
                     """
                 ),
                 {
@@ -117,43 +141,12 @@ class InventoryRepository:
                 },
             )
         ).one_or_none()
-        if existing is not None:
+        if row is not None:
             return (
-                cast(Decimal, existing.available_quantity),
-                cast(datetime, existing.updated_at),
+                cast(Decimal, row.available_quantity),
+                cast(datetime, row.updated_at),
             )
-        if delta < 0:
-            return None
-        inserted = (
-            await self.session.execute(
-                text(
-                    """
-                    INSERT INTO stock_balances (
-                        tenant_id, product_id, warehouse_id,
-                        available_quantity, updated_at
-                    ) VALUES (
-                        :tenant_id, :product_id, :warehouse_id, :delta, now()
-                    )
-                    ON CONFLICT (tenant_id, product_id, warehouse_id)
-                    DO UPDATE SET
-                        available_quantity = stock_balances.available_quantity
-                            + EXCLUDED.available_quantity,
-                        updated_at = now()
-                    RETURNING available_quantity, updated_at
-                    """
-                ),
-                {
-                    "tenant_id": tenant_id,
-                    "product_id": product_id,
-                    "warehouse_id": warehouse_id,
-                    "delta": delta,
-                },
-            )
-        ).one()
-        return (
-            cast(Decimal, inserted.available_quantity),
-            cast(datetime, inserted.updated_at),
-        )
+        return None
 
     async def get_stock(
         self, *, tenant_id: UUID, product_id: UUID, warehouse_id: UUID

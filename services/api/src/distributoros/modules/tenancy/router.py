@@ -1,4 +1,4 @@
-from typing import Annotated
+from typing import Annotated, cast
 
 from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -9,6 +9,9 @@ from distributoros.modules.tenancy.models import Business
 from distributoros.modules.tenancy.schemas import (
     BusinessSettingsResponse,
     BusinessSettingsUpdateRequest,
+    CurrencyCode,
+    LanguageCode,
+    ThemePreference,
 )
 from distributoros.modules.tenancy.service import BusinessSettingsService
 
@@ -18,9 +21,9 @@ router = APIRouter(prefix="/business", tags=["Business Settings"])
 def _response(business: Business) -> BusinessSettingsResponse:
     return BusinessSettingsResponse(
         business_name=business.business_name,
-        currency=business.currency,
-        language=business.language,
-        theme=business.theme,
+        currency=cast(CurrencyCode, business.currency),
+        language=cast(LanguageCode, business.language),
+        theme=cast(ThemePreference, business.theme),
         timezone=business.timezone,
     )
 

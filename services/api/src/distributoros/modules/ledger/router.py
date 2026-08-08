@@ -1,6 +1,6 @@
 from datetime import date
 from decimal import Decimal
-from typing import Annotated
+from typing import Annotated, Literal, cast
 from uuid import UUID
 
 from fastapi import APIRouter, Depends, Query
@@ -13,6 +13,7 @@ from distributoros.modules.ledger.repository import LedgerListRow
 from distributoros.modules.ledger.schemas import (
     CustomerFinancialSummaryResponse,
     LedgerEntryResponse,
+    LedgerEntryType,
     LedgerEntryTypeFilter,
     LedgerListResponse,
 )
@@ -24,8 +25,8 @@ router = APIRouter(prefix="/customers", tags=["Customer Ledger"])
 def _entry_response(row: LedgerListRow) -> LedgerEntryResponse:
     return LedgerEntryResponse(
         id=row.id,
-        entry_type=row.entry_type,
-        reference_type=row.reference_type,
+        entry_type=cast(LedgerEntryType, row.entry_type),
+        reference_type=cast(Literal["SALE", "PAYMENT"], row.reference_type),
         reference_id=row.reference_id,
         reference=row.reference,
         debit=row.debit,

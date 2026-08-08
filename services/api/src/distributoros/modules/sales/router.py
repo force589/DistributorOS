@@ -1,5 +1,5 @@
 from datetime import date
-from typing import Annotated
+from typing import Annotated, cast
 from uuid import UUID
 
 from fastapi import APIRouter, Depends, Header, Query, status
@@ -17,6 +17,7 @@ from distributoros.modules.sales.schemas import (
     SaleMutationResponse,
     SaleResponse,
     SaleSort,
+    SaleStatus,
     SaleStatusFilter,
     SaleUpdateRequest,
 )
@@ -32,7 +33,7 @@ def _sale_response(details: SaleDetails) -> SaleResponse:
         sale_number=sale.sale_number,
         customer_id=sale.customer_id,
         customer_name=details.customer_name,
-        status=sale.status,
+        status=cast(SaleStatus, sale.status),
         subtotal=sale.subtotal,
         created_at=sale.created_at,
         created_by=sale.created_by,
@@ -48,7 +49,7 @@ def _list_item(row: SaleListRow) -> SaleListItemResponse:
         sale_number=sale.sale_number,
         customer_id=sale.customer_id,
         customer_name=row.customer_name,
-        status=sale.status,
+        status=cast(SaleStatus, sale.status),
         subtotal=sale.subtotal,
         item_count=row.item_count,
         created_at=sale.created_at,
@@ -87,6 +88,7 @@ async def _list_sales(
 ) -> SaleListResponse:
     page, next_cursor = await SalesService(session).list_sales(
         tenant_id=principal.business.id,
+        timezone=principal.business.timezone,
         sale_status=sale_status,
         sale_sort=sale_sort,
         search=search.strip() if search and search.strip() else None,

@@ -78,6 +78,7 @@ export default function RootLayout() {
           queries: {
             queryKeyHashFn: businessQueryHash,
             retry: 1,
+            staleTime: 30_000,
             refetchOnWindowFocus: false,
           },
           mutations: { retry: false },

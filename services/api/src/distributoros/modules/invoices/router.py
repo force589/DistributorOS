@@ -1,5 +1,5 @@
 from datetime import date
-from typing import Annotated
+from typing import Annotated, cast
 from uuid import UUID
 
 from fastapi import APIRouter, Depends, Header, Query, Response, status
@@ -18,6 +18,7 @@ from distributoros.modules.invoices.schemas import (
     InvoiceMutationResponse,
     InvoiceResponse,
     InvoiceSort,
+    InvoiceStatus,
     InvoiceStatusFilter,
 )
 from distributoros.modules.invoices.service import InvoicesService
@@ -33,7 +34,7 @@ def _invoice_response(details: InvoiceDetails) -> InvoiceResponse:
         sale_id=invoice.sale_id,
         sale_number=invoice.sale_number_snapshot,
         customer_id=invoice.customer_id,
-        status=invoice.status,
+        status=cast(InvoiceStatus, invoice.status),
         issue_date=invoice.issue_date,
         currency=invoice.currency,
         subtotal=invoice.subtotal,
@@ -64,7 +65,7 @@ def _list_item(row: InvoiceListRow) -> InvoiceListItemResponse:
         sale_number=invoice.sale_number_snapshot,
         customer_id=invoice.customer_id,
         customer_name=invoice.customer_name_snapshot,
-        status=invoice.status,
+        status=cast(InvoiceStatus, invoice.status),
         issue_date=invoice.issue_date,
         currency=invoice.currency,
         grand_total=invoice.grand_total,

@@ -8,7 +8,7 @@ from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from distributoros.core.config import Settings
-from distributoros.core.database import set_tenant_context, set_user_context
+from distributoros.core.database import set_request_context, set_tenant_context, set_user_context
 from distributoros.core.errors import AppError
 from distributoros.core.outbox import OutboxEvent
 from distributoros.modules.identity.models import AuthSession, PasswordResetToken, User
@@ -79,8 +79,7 @@ class AuthService:
         )
         membership = Membership(business_id=business.id, user_id=user.id, role="owner")
 
-        await set_user_context(self.session, user.id)
-        await set_tenant_context(self.session, business.id)
+        await set_request_context(self.session, user_id=user.id, business_id=business.id)
         self.identity.add_user(user)
         self.tenancy.add_business(business)
         try:

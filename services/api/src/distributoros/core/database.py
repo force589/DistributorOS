@@ -200,6 +200,19 @@ async def set_tenant_context(session: AsyncSession, business_id: UUID) -> None:
     )
 
 
+async def set_request_context(session: AsyncSession, *, user_id: UUID, business_id: UUID) -> None:
+    await session.execute(
+        text(
+            """
+            SELECT
+                set_config('app.current_user_id', :user_id, true),
+                set_config('app.current_tenant_id', :business_id, true)
+            """
+        ),
+        {"user_id": str(user_id), "business_id": str(business_id)},
+    )
+
+
 async def set_internal_maintenance_context(connection: Any) -> None:
     await connection.execute(
         text("SELECT set_config('app.internal_maintenance', 'true', true)")

@@ -110,33 +110,29 @@ class InvoicesRepository:
     async def source_for_sale(
         self, tenant_id: UUID, sale_id: UUID, *, for_update: bool = False
     ) -> SaleInvoiceSource | None:
-        sale_statement = select(Sale).where(Sale.tenant_id == tenant_id, Sale.id == sale_id)
+        sale_statement = (
+            select(Sale, Customer, CustomerLedgerEntry)
+            .join(
+                Customer,
+                (Customer.tenant_id == Sale.tenant_id)
+                & (Customer.id == Sale.customer_id),
+            )
+            .join(
+                CustomerLedgerEntry,
+                (CustomerLedgerEntry.tenant_id == Sale.tenant_id)
+                & (CustomerLedgerEntry.customer_id == Sale.customer_id)
+                & (CustomerLedgerEntry.reference_type == "SALE")
+                & (CustomerLedgerEntry.reference_id == Sale.id)
+                & (CustomerLedgerEntry.entry_type == "SALE"),
+            )
+            .where(Sale.tenant_id == tenant_id, Sale.id == sale_id)
+        )
         if for_update:
-            sale_statement = sale_statement.with_for_update()
-        sale = cast(Sale | None, await self.session.scalar(sale_statement))
-        if sale is None:
+            sale_statement = sale_statement.with_for_update(of=Sale)
+        source_row = (await self.session.execute(sale_statement)).one_or_none()
+        if source_row is None:
             return None
-        customer = cast(
-            Customer | None,
-            await self.session.scalar(
-                select(Customer).where(
-                    Customer.tenant_id == tenant_id,
-                    Customer.id == sale.customer_id,
-                )
-            ),
-        )
-        ledger_entry = cast(
-            CustomerLedgerEntry | None,
-            await self.session.scalar(
-                select(CustomerLedgerEntry).where(
-                    CustomerLedgerEntry.tenant_id == tenant_id,
-                    CustomerLedgerEntry.customer_id == sale.customer_id,
-                    CustomerLedgerEntry.reference_type == "SALE",
-                    CustomerLedgerEntry.reference_id == sale.id,
-                    CustomerLedgerEntry.entry_type == "SALE",
-                )
-            ),
-        )
+        sale, customer, ledger_entry = source_row
         items = list(
             (
                 await self.session.scalars(
@@ -146,8 +142,6 @@ class InvoicesRepository:
                 )
             ).all()
         )
-        if customer is None or ledger_entry is None:
-            return None
         return SaleInvoiceSource(
             sale=sale,
             customer=customer,
@@ -242,10 +236,33 @@ class InvoicesRepository:
         return value or Decimal("0.00")
 
     async def details(self, tenant_id: UUID, invoice: Invoice) -> InvoiceDetails:
+        allocated = (
+            select(func.coalesce(func.sum(PaymentAllocation.allocated_amount), Decimal("0.00")))
+            .join(
+                Payment,
+                (Payment.id == PaymentAllocation.payment_id)
+                & (Payment.tenant_id == PaymentAllocation.tenant_id),
+            )
+            .where(
+                PaymentAllocation.tenant_id == tenant_id,
+                PaymentAllocation.invoice_id == invoice.id,
+                Payment.status == "POSTED",
+            )
+            .scalar_subquery()
+        )
+        summary = (
+            await self.session.execute(
+                select(Business.business_name, allocated.label("allocated_amount")).where(
+                    Business.id == tenant_id
+                )
+            )
+        ).one_or_none()
+        if summary is None:
+            raise RuntimeError("Invoice business could not be loaded.")
         return InvoiceDetails(
             invoice=invoice,
-            business_name=await self.business_name(tenant_id),
-            allocated_amount=await self.allocated_amount(tenant_id, invoice.id),
+            business_name=str(summary.business_name),
+            allocated_amount=cast(Decimal, summary.allocated_amount),
             items=await self.invoice_items(tenant_id, invoice.id),
         )
 

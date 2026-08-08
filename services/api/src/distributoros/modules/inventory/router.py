@@ -1,4 +1,4 @@
-from typing import Annotated
+from typing import Annotated, cast
 from uuid import UUID
 
 from fastapi import APIRouter, Depends, Header, Query, status
@@ -32,7 +32,7 @@ def _movement_response(row: MovementRow) -> StockMovementResponse:
         product_name=row.product.name,
         warehouse_id=movement.warehouse_id,
         warehouse_name=row.warehouse.name,
-        movement_type=movement.movement_type,
+        movement_type=cast(MovementType, movement.movement_type),
         quantity=movement.quantity,
         unit=movement.unit,
         reference_type=movement.reference_type,

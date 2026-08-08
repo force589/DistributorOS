@@ -160,18 +160,24 @@ class SalesRepository:
         self.add_items(items)
 
     async def details(self, tenant_id: UUID, sale: Sale) -> SaleDetails:
-        customer_name = await self.session.scalar(
-            select(Customer.name).where(
-                Customer.tenant_id == tenant_id,
-                Customer.id == sale.customer_id,
+        rows = (
+            await self.session.execute(
+                select(Customer.name, SaleItem)
+                .select_from(Customer)
+                .outerjoin(SaleItem, SaleItem.sale_id == sale.id)
+                .where(
+                    Customer.tenant_id == tenant_id,
+                    Customer.id == sale.customer_id,
+                )
+                .order_by(SaleItem.line_number.asc().nulls_last())
             )
-        )
-        if customer_name is None:
+        ).all()
+        if not rows:
             raise RuntimeError("Sale customer could not be loaded.")
         return SaleDetails(
             sale=sale,
-            customer_name=str(customer_name),
-            items=await self.get_items(sale.id),
+            customer_name=str(rows[0][0]),
+            items=[row[1] for row in rows if row[1] is not None],
         )
 
     async def list_sales(

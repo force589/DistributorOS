@@ -360,28 +360,6 @@ class PaymentsService:
         )
         if projection is None:
             raise FinancialPostingService._corrupt_state()
-        targets = await self.repository.allocation_targets(
-            tenant_id=tenant_id,
-            customer_id=customer_id,
-            entry_ids=ledger_ids,
-        )
-        invoice_targets = await self.repository.invoice_allocation_targets(
-            tenant_id=tenant_id,
-            customer_id=customer_id,
-            invoice_ids=invoice_ids,
-        )
-        missing = (ledger_ids - targets.keys()) or (invoice_ids - invoice_targets.keys())
-        if missing:
-            raise AppError(
-                status_code=404,
-                code="PAYMENT_ALLOCATION_TARGET_NOT_FOUND",
-                message="One allocation target was not found or is not issued for this customer.",
-                field_errors={
-                    "allocations": (
-                        "Select issued invoices or open ledger entries from this customer."
-                    )
-                },
-            )
         validated: list[ValidatedPaymentAllocation] = []
         for index, allocation in enumerate(request.allocations):
             if allocation.invoice_id is not None:

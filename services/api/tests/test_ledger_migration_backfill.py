@@ -3,6 +3,7 @@ from typing import Any
 
 from alembic import command
 from alembic.config import Config
+from conftest import _grant_runtime_privileges
 from httpx import AsyncClient
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import create_async_engine
@@ -104,6 +105,11 @@ async def test_migration_backfills_posted_and_voided_phase_5a_sales(
             )
         await engine.dispose()
         await asyncio.to_thread(command.upgrade, config, "head")
+        assert test_settings.database_admin_url is not None
+        await _grant_runtime_privileges(
+            test_settings.database_admin_url,
+            test_settings.database_url,
+        )
         downgraded = False
 
         engine = create_async_engine(test_settings.database_admin_url)
@@ -154,3 +160,8 @@ async def test_migration_backfills_posted_and_voided_phase_5a_sales(
     finally:
         if downgraded:
             await asyncio.to_thread(command.upgrade, config, "head")
+            assert test_settings.database_admin_url is not None
+            await _grant_runtime_privileges(
+                test_settings.database_admin_url,
+                test_settings.database_url,
+            )

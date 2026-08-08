@@ -173,12 +173,13 @@ class InventoryService:
             raise self._insufficient_stock()
         await self.session.flush()
         movement_row = await self.repository.movement_row(tenant_id, movement.id)
-        stock = await self.repository.get_stock(
-            tenant_id=tenant_id,
-            product_id=product.id,
-            warehouse_id=warehouse.id,
+        stock = StockRow(
+            product=product,
+            warehouse=warehouse,
+            available_quantity=balance[0],
+            updated_at=balance[1],
         )
-        if movement_row is None or stock is None:
+        if movement_row is None:
             raise RuntimeError("Posted inventory operation could not be reloaded.")
         self.logger.info(
             "stock_movement_posted",

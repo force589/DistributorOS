@@ -1,4 +1,4 @@
-from typing import Annotated, Literal
+from typing import Annotated, Literal, cast
 
 from fastapi import APIRouter, Body, Cookie, Depends, Header, Request, Response, status
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -23,6 +23,8 @@ from distributoros.modules.identity.schemas import (
     UserResponse,
 )
 from distributoros.modules.identity.service import AuthResult, AuthService, normalize_transport
+from distributoros.modules.tenancy.models import Business
+from distributoros.modules.tenancy.schemas import CurrencyCode, LanguageCode, ThemePreference
 
 router = APIRouter(prefix="/auth", tags=["Authentication"])
 REFRESH_COOKIE_NAME = "distributoros_refresh"
@@ -40,15 +42,19 @@ def _response_from_result(result: AuthResult) -> AuthResponse:
         user=UserResponse(
             id=result.user.id,
             email=result.user.email,
-            business=BusinessResponse(
-                id=result.business.id,
-                business_name=result.business.business_name,
-                currency=result.business.currency,
-                language=result.business.language,
-                theme=result.business.theme,
-                timezone=result.business.timezone,
-            ),
+            business=_business_response(result.business),
         ),
+    )
+
+
+def _business_response(business: Business) -> BusinessResponse:
+    return BusinessResponse(
+        id=business.id,
+        business_name=business.business_name,
+        currency=cast(CurrencyCode, business.currency),
+        language=cast(LanguageCode, business.language),
+        theme=cast(ThemePreference, business.theme),
+        timezone=business.timezone,
     )
 
 
@@ -267,14 +273,7 @@ async def me(principal: Annotated[Principal, Depends(get_current_principal)]) ->
         user=UserResponse(
             id=principal.user.id,
             email=principal.user.email,
-            business=BusinessResponse(
-                id=principal.business.id,
-                business_name=principal.business.business_name,
-                currency=principal.business.currency,
-                language=principal.business.language,
-                theme=principal.business.theme,
-                timezone=principal.business.timezone,
-            ),
+            business=_business_response(principal.business),
         )
     )
 

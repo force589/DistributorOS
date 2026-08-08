@@ -40,7 +40,11 @@ async def dashboard(
     principal: Annotated[Principal, Depends(get_current_principal)],
     session: Annotated[AsyncSession, Depends(get_session)],
 ) -> DashboardResponse:
-    return await _service(session).dashboard(principal.business.id)
+    return await _service(session).dashboard(
+        principal.business.id,
+        timezone=principal.business.timezone,
+        currency=principal.business.currency,
+    )
 
 
 @router.get("/search", response_model=GlobalSearchResponse)

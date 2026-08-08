@@ -4,16 +4,15 @@ from typing import Annotated
 
 from fastapi import Depends
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
+from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from distributoros.core.config import Settings, get_settings
-from distributoros.core.database import get_session, set_tenant_context, set_user_context
+from distributoros.core.database import get_session, set_request_context
 from distributoros.core.errors import AppError
 from distributoros.modules.identity.models import AuthSession, User
-from distributoros.modules.identity.repository import IdentityRepository
 from distributoros.modules.identity.security import decode_access_token
 from distributoros.modules.tenancy.models import Business, Membership
-from distributoros.modules.tenancy.repository import TenancyRepository
 
 bearer_scheme = HTTPBearer(auto_error=False)
 
@@ -38,20 +37,35 @@ async def get_current_principal(
     except ValueError as exc:
         raise _authentication_error() from exc
 
-    await set_user_context(session, claims.user_id)
-    identity = IdentityRepository(session)
-    tenancy = TenancyRepository(session)
-    auth_session = await identity.get_session(claims.session_id)
-    if (
-        auth_session is None
-        or auth_session.user_id != claims.user_id
-        or auth_session.business_id != claims.business_id
-        or auth_session.revoked_at is not None
-        or auth_session.expires_at <= datetime.now(UTC)
-    ):
+    await set_request_context(
+        session,
+        user_id=claims.user_id,
+        business_id=claims.business_id,
+    )
+    row = (
+        await session.execute(
+            select(AuthSession, Membership, User, Business)
+            .join(
+                Membership,
+                (Membership.business_id == AuthSession.business_id)
+                & (Membership.user_id == AuthSession.user_id),
+                isouter=True,
+            )
+            .join(User, User.id == AuthSession.user_id)
+            .join(Business, Business.id == AuthSession.business_id)
+            .where(
+                AuthSession.id == claims.session_id,
+                AuthSession.user_id == claims.user_id,
+                AuthSession.business_id == claims.business_id,
+                AuthSession.revoked_at.is_(None),
+                AuthSession.expires_at > datetime.now(UTC),
+            )
+        )
+    ).one_or_none()
+    if row is None:
         raise _authentication_error()
 
-    membership = await tenancy.get_membership(claims.user_id, claims.business_id)
+    auth_session, membership, user, business = row
     if membership is None:
         raise AppError(
             status_code=403,
@@ -61,12 +75,6 @@ async def get_current_principal(
                 "Ask a business owner to restore access."
             ),
         )
-
-    await set_tenant_context(session, claims.business_id)
-    user = await identity.get_user(claims.user_id)
-    business = await tenancy.get_business(claims.business_id)
-    if user is None or business is None:
-        raise _authentication_error()
     return Principal(
         user=user,
         business=business,

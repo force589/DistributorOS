@@ -1,6 +1,6 @@
 from datetime import date
 from decimal import Decimal
-from typing import Annotated
+from typing import Annotated, cast
 from uuid import UUID
 
 from fastapi import APIRouter, Depends, Header, Query, status
@@ -17,10 +17,12 @@ from distributoros.modules.payments.schemas import (
     PaymentCreateRequest,
     PaymentListItemResponse,
     PaymentListResponse,
+    PaymentMethod,
     PaymentMethodFilter,
     PaymentMutationResponse,
     PaymentResponse,
     PaymentSort,
+    PaymentStatus,
     PaymentStatusFilter,
 )
 from distributoros.modules.payments.service import PaymentsService
@@ -53,10 +55,10 @@ def _payment_response(details: PaymentDetails) -> PaymentResponse:
         customer_name=details.customer_name,
         payment_date=payment.payment_date,
         amount=payment.amount,
-        payment_method=payment.payment_method,
+        payment_method=cast(PaymentMethod, payment.payment_method),
         reference_number=payment.reference_number,
         notes=payment.notes,
-        status=payment.status,
+        status=cast(PaymentStatus, payment.status),
         created_at=payment.created_at,
         created_by=payment.created_by,
         allocated_amount=details.allocated_amount,
@@ -75,9 +77,9 @@ def _list_item(row: PaymentListRow) -> PaymentListItemResponse:
         customer_name=row.customer_name,
         payment_date=payment.payment_date,
         amount=payment.amount,
-        payment_method=payment.payment_method,
+        payment_method=cast(PaymentMethod, payment.payment_method),
         reference_number=payment.reference_number,
-        status=payment.status,
+        status=cast(PaymentStatus, payment.status),
         created_at=payment.created_at,
         allocated_amount=row.allocated_amount,
         unallocated_amount=unallocated if unallocated > 0 else Decimal("0.00"),

@@ -11,7 +11,6 @@ from uuid import UUID, uuid4
 from zoneinfo import ZoneInfo
 
 import structlog
-from sqlalchemy import select
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -30,7 +29,6 @@ from distributoros.modules.sales.schemas import (
     SaleStatusFilter,
     SaleUpdateRequest,
 )
-from distributoros.modules.tenancy.models import Business
 
 
 @dataclass(frozen=True)
@@ -61,6 +59,7 @@ class SalesService:
         customer = await self._require_customer(tenant_id, request.customer_id)
         lines = await self._calculate_lines(tenant_id, request.items)
         sale: Sale | None = None
+        items: list[SaleItem] = []
         try:
             async with self.session.begin_nested():
                 sale = Sale(
@@ -77,7 +76,8 @@ class SalesService:
                 )
                 self.repository.add_sale(sale)
                 await self.session.flush()
-                self.repository.add_items(self._items_for_sale(sale.id, lines))
+                items = self._items_for_sale(sale.id, lines)
+                self.repository.add_items(items)
                 await self.session.flush()
         except IntegrityError as exc:
             if _constraint_name(exc) == "uq_sales_tenant_create_idempotency":
@@ -90,7 +90,7 @@ class SalesService:
             raise
         if sale is None:
             raise RuntimeError("Sale creation did not produce a sale.")
-        details = await self.repository.details(tenant_id, sale)
+        details = SaleDetails(sale=sale, customer_name=customer.name, items=items)
         self.logger.info(
             "sale_draft_created",
             tenant_id=str(tenant_id),
@@ -204,7 +204,7 @@ class SalesService:
                 code="SALE_ALREADY_VOIDED",
                 message="This sale has already been voided and cannot be posted.",
             )
-        await self._require_customer(tenant_id, sale.customer_id)
+        customer = await self._require_customer(tenant_id, sale.customer_id)
         items = await self.repository.get_items(sale.id)
         if not items:
             raise AppError(
@@ -263,7 +263,7 @@ class SalesService:
         sale.post_idempotency_key = key
         sale.updated_at = datetime.now(UTC)
         await self.session.flush()
-        details = await self.repository.details(tenant_id, sale)
+        details = SaleDetails(sale=sale, customer_name=customer.name, items=items)
         self.logger.info(
             "sale_posted",
             tenant_id=str(tenant_id),
@@ -397,6 +397,7 @@ class SalesService:
         self,
         *,
         tenant_id: UUID,
+        timezone: str,
         sale_status: SaleStatusFilter,
         sale_sort: SaleSort,
         search: str | None,
@@ -404,10 +405,7 @@ class SalesService:
         limit: int,
         cursor: str | None,
     ) -> tuple[SalePage, str | None]:
-        timezone = await self.session.scalar(
-            select(Business.timezone).where(Business.id == tenant_id)
-        )
-        date_from, date_to = _date_range(sale_date, str(timezone or "Asia/Kolkata"))
+        date_from, date_to = _date_range(sale_date, timezone)
         cursor_created, cursor_id = self._decode_cursor(
             cursor,
             sale_status=sale_status,

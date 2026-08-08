@@ -7,7 +7,7 @@ import json
 from dataclasses import dataclass
 from datetime import date, datetime, timedelta
 from decimal import Decimal
-from typing import Any, Literal
+from typing import Any, Literal, cast
 from uuid import UUID
 from zoneinfo import ZoneInfo
 
@@ -41,6 +41,7 @@ from distributoros.modules.insights.schemas import (
     SalesReportResponse,
     SalesReportRowResponse,
     SalesReportSort,
+    SearchResultType,
     TopSellingProductResponse,
 )
 
@@ -70,8 +71,9 @@ class InsightsService:
     def __init__(self, session: AsyncSession) -> None:
         self.session = session
 
-    async def dashboard(self, tenant_id: UUID) -> DashboardResponse:
-        timezone = await self._business_timezone(tenant_id)
+    async def dashboard(
+        self, tenant_id: UUID, *, timezone: str, currency: str
+    ) -> DashboardResponse:
         business_date = self._today(timezone)
         collections = await self._dashboard_collections(tenant_id)
         metrics = (
@@ -163,7 +165,7 @@ class InsightsService:
         return DashboardResponse(
             business_date=business_date,
             timezone=timezone,
-            currency=await self._business_currency(tenant_id),
+            currency=currency,
             today_sales=self._metric("Today's Sales", metrics["today_sales"], "money"),
             today_collections=self._metric(
                 "Today's Collections", metrics["today_collections"], "money"
@@ -373,176 +375,197 @@ class InsightsService:
         limit = self._limit(limit_per_group, default=5, maximum=10)
         term = self._search_term(normalized)
         params = {"tenant_id": tenant_id, "term": term, "limit": limit}
+        rows = await self._rows(
+            """
+            WITH customer_results AS (
+                SELECT
+                  1 AS group_order,
+                  (row_number() OVER (ORDER BY lower(name), id))::integer AS position,
+                  'customer' AS entity_type,
+                  id,
+                  name AS title,
+                  COALESCE(phone, email) AS subtitle,
+                  customer_code AS reference,
+                  '/customers/' || customer_code AS detail_path
+                FROM customers
+                WHERE tenant_id = :tenant_id
+                  AND archived = false
+                  AND (
+                    lower(name) LIKE :term ESCAPE '\\'
+                    OR lower(customer_code) LIKE :term ESCAPE '\\'
+                    OR lower(COALESCE(phone, '')) LIKE :term ESCAPE '\\'
+                    OR lower(COALESCE(email, '')) LIKE :term ESCAPE '\\'
+                  )
+                ORDER BY lower(name), id
+                LIMIT :limit
+            ),
+            product_results AS (
+                SELECT
+                  2 AS group_order,
+                  (row_number() OVER (ORDER BY lower(name), id))::integer AS position,
+                  'product' AS entity_type,
+                  id,
+                  name AS title,
+                  COALESCE(sku, barcode) AS subtitle,
+                  product_code AS reference,
+                  '/products/' || product_code AS detail_path
+                FROM products
+                WHERE tenant_id = :tenant_id
+                  AND archived = false
+                  AND (
+                    lower(name) LIKE :term ESCAPE '\\'
+                    OR lower(product_code) LIKE :term ESCAPE '\\'
+                    OR lower(COALESCE(sku, '')) LIKE :term ESCAPE '\\'
+                    OR lower(COALESCE(barcode, '')) LIKE :term ESCAPE '\\'
+                  )
+                ORDER BY lower(name), id
+                LIMIT :limit
+            ),
+            sale_results AS (
+                SELECT
+                  3 AS group_order,
+                  (row_number() OVER (ORDER BY sale.created_at DESC, sale.id DESC))::integer
+                    AS position,
+                  'sale' AS entity_type,
+                  sale.id,
+                  sale.sale_number AS title,
+                  customer.name AS subtitle,
+                  sale.status AS reference,
+                  '/sales/' || sale.sale_number AS detail_path
+                FROM sales sale
+                JOIN customers customer
+                  ON customer.tenant_id = sale.tenant_id
+                 AND customer.id = sale.customer_id
+                WHERE sale.tenant_id = :tenant_id
+                  AND (
+                    lower(sale.sale_number) LIKE :term ESCAPE '\\'
+                    OR lower(customer.name) LIKE :term ESCAPE '\\'
+                  )
+                ORDER BY sale.created_at DESC, sale.id DESC
+                LIMIT :limit
+            ),
+            invoice_results AS (
+                SELECT
+                  4 AS group_order,
+                  (row_number() OVER (ORDER BY created_at DESC, id DESC))::integer AS position,
+                  'invoice' AS entity_type,
+                  id,
+                  invoice_number AS title,
+                  customer_name_snapshot AS subtitle,
+                  status AS reference,
+                  '/invoices/' || invoice_number AS detail_path
+                FROM invoices
+                WHERE tenant_id = :tenant_id
+                  AND (
+                    lower(invoice_number) LIKE :term ESCAPE '\\'
+                    OR lower(sale_number_snapshot) LIKE :term ESCAPE '\\'
+                    OR lower(customer_name_snapshot) LIKE :term ESCAPE '\\'
+                  )
+                ORDER BY created_at DESC, id DESC
+                LIMIT :limit
+            ),
+            payment_results AS (
+                SELECT
+                  5 AS group_order,
+                  (row_number() OVER (
+                    ORDER BY payment.created_at DESC, payment.id DESC
+                  ))::integer AS position,
+                  'payment' AS entity_type,
+                  payment.id,
+                  payment.payment_number AS title,
+                  customer.name AS subtitle,
+                  payment.status AS reference,
+                  '/payments/' || payment.payment_number AS detail_path
+                FROM payments payment
+                JOIN customers customer
+                  ON customer.tenant_id = payment.tenant_id
+                 AND customer.id = payment.customer_id
+                WHERE payment.tenant_id = :tenant_id
+                  AND (
+                    lower(payment.payment_number) LIKE :term ESCAPE '\\'
+                    OR lower(COALESCE(payment.reference_number, '')) LIKE :term ESCAPE '\\'
+                    OR lower(customer.name) LIKE :term ESCAPE '\\'
+                  )
+                ORDER BY payment.created_at DESC, payment.id DESC
+                LIMIT :limit
+            ),
+            inventory_results AS (
+                SELECT
+                  6 AS group_order,
+                  (row_number() OVER (ORDER BY lower(product.name), product.id))::integer
+                    AS position,
+                  'inventory' AS entity_type,
+                  product.id,
+                  product.name AS title,
+                  COALESCE(SUM(balance.available_quantity), 0)::text || ' ' || product.unit
+                    AS subtitle,
+                  product.product_code AS reference,
+                  '/inventory/' || product.product_code AS detail_path
+                FROM products product
+                LEFT JOIN stock_balances balance
+                  ON balance.tenant_id = product.tenant_id
+                 AND balance.product_id = product.id
+                WHERE product.tenant_id = :tenant_id
+                  AND product.archived = false
+                  AND (
+                    lower(product.name) LIKE :term ESCAPE '\\'
+                    OR lower(product.product_code) LIKE :term ESCAPE '\\'
+                    OR lower(COALESCE(product.sku, '')) LIKE :term ESCAPE '\\'
+                    OR lower(COALESCE(product.barcode, '')) LIKE :term ESCAPE '\\'
+                  )
+                GROUP BY product.id, product.product_code, product.name, product.unit
+                ORDER BY lower(product.name), product.id
+                LIMIT :limit
+            )
+            SELECT group_order, position, entity_type, id, title, subtitle, reference, detail_path
+            FROM customer_results
+            UNION ALL
+            SELECT group_order, position, entity_type, id, title, subtitle, reference, detail_path
+            FROM product_results
+            UNION ALL
+            SELECT group_order, position, entity_type, id, title, subtitle, reference, detail_path
+            FROM sale_results
+            UNION ALL
+            SELECT group_order, position, entity_type, id, title, subtitle, reference, detail_path
+            FROM invoice_results
+            UNION ALL
+            SELECT group_order, position, entity_type, id, title, subtitle, reference, detail_path
+            FROM payment_results
+            UNION ALL
+            SELECT group_order, position, entity_type, id, title, subtitle, reference, detail_path
+            FROM inventory_results
+            ORDER BY group_order, position
+            """,
+            params,
+        )
+        grouped: dict[str, list[GlobalSearchItemResponse]] = {
+            "customer": [],
+            "product": [],
+            "sale": [],
+            "invoice": [],
+            "payment": [],
+            "inventory": [],
+        }
+        for row in rows:
+            entity_type = str(row["entity_type"])
+            grouped[entity_type].append(
+                GlobalSearchItemResponse(
+                    id=row["id"],
+                    type=cast(SearchResultType, entity_type),
+                    title=str(row["title"]),
+                    subtitle=str(row["subtitle"]) if row["subtitle"] is not None else None,
+                    reference=str(row["reference"]),
+                    detail_path=str(row["detail_path"]),
+                )
+            )
         return GlobalSearchResponse(
             query=normalized,
-            customers=[
-                GlobalSearchItemResponse(
-                    id=row["id"],
-                    type="customer",
-                    title=row["name"],
-                    subtitle=row["phone"] or row["email"],
-                    reference=row["customer_code"],
-                    detail_path=f"/customers/{row['customer_code']}",
-                )
-                for row in await self._rows(
-                    """
-                    SELECT id, customer_code, name, phone, email
-                    FROM customers
-                    WHERE tenant_id = :tenant_id
-                      AND archived = false
-                      AND (
-                        lower(name) LIKE :term ESCAPE '\\'
-                        OR lower(customer_code) LIKE :term ESCAPE '\\'
-                        OR lower(COALESCE(phone, '')) LIKE :term ESCAPE '\\'
-                        OR lower(COALESCE(email, '')) LIKE :term ESCAPE '\\'
-                      )
-                    ORDER BY lower(name), id
-                    LIMIT :limit
-                    """,
-                    params,
-                )
-            ],
-            products=[
-                GlobalSearchItemResponse(
-                    id=row["id"],
-                    type="product",
-                    title=row["name"],
-                    subtitle=row["sku"] or row["barcode"],
-                    reference=row["product_code"],
-                    detail_path=f"/products/{row['product_code']}",
-                )
-                for row in await self._rows(
-                    """
-                    SELECT id, product_code, name, sku, barcode
-                    FROM products
-                    WHERE tenant_id = :tenant_id
-                      AND archived = false
-                      AND (
-                        lower(name) LIKE :term ESCAPE '\\'
-                        OR lower(product_code) LIKE :term ESCAPE '\\'
-                        OR lower(COALESCE(sku, '')) LIKE :term ESCAPE '\\'
-                        OR lower(COALESCE(barcode, '')) LIKE :term ESCAPE '\\'
-                      )
-                    ORDER BY lower(name), id
-                    LIMIT :limit
-                    """,
-                    params,
-                )
-            ],
-            sales=[
-                GlobalSearchItemResponse(
-                    id=row["id"],
-                    type="sale",
-                    title=row["sale_number"],
-                    subtitle=row["customer_name"],
-                    reference=row["status"],
-                    detail_path=f"/sales/{row['sale_number']}",
-                )
-                for row in await self._rows(
-                    """
-                    SELECT sale.id, sale.sale_number, sale.status, customer.name AS customer_name
-                    FROM sales sale
-                    JOIN customers customer
-                      ON customer.tenant_id = sale.tenant_id
-                     AND customer.id = sale.customer_id
-                    WHERE sale.tenant_id = :tenant_id
-                      AND (
-                        lower(sale.sale_number) LIKE :term ESCAPE '\\'
-                        OR lower(customer.name) LIKE :term ESCAPE '\\'
-                      )
-                    ORDER BY sale.created_at DESC, sale.id DESC
-                    LIMIT :limit
-                    """,
-                    params,
-                )
-            ],
-            invoices=[
-                GlobalSearchItemResponse(
-                    id=row["id"],
-                    type="invoice",
-                    title=row["invoice_number"],
-                    subtitle=row["customer_name_snapshot"],
-                    reference=row["status"],
-                    detail_path=f"/invoices/{row['invoice_number']}",
-                )
-                for row in await self._rows(
-                    """
-                    SELECT id, invoice_number, customer_name_snapshot, status
-                    FROM invoices
-                    WHERE tenant_id = :tenant_id
-                      AND (
-                        lower(invoice_number) LIKE :term ESCAPE '\\'
-                        OR lower(sale_number_snapshot) LIKE :term ESCAPE '\\'
-                        OR lower(customer_name_snapshot) LIKE :term ESCAPE '\\'
-                      )
-                    ORDER BY created_at DESC, id DESC
-                    LIMIT :limit
-                    """,
-                    params,
-                )
-            ],
-            payments=[
-                GlobalSearchItemResponse(
-                    id=row["id"],
-                    type="payment",
-                    title=row["payment_number"],
-                    subtitle=row["customer_name"],
-                    reference=row["status"],
-                    detail_path=f"/payments/{row['payment_number']}",
-                )
-                for row in await self._rows(
-                    """
-                    SELECT payment.id, payment.payment_number, payment.status,
-                           customer.name AS customer_name
-                    FROM payments payment
-                    JOIN customers customer
-                      ON customer.tenant_id = payment.tenant_id
-                     AND customer.id = payment.customer_id
-                    WHERE payment.tenant_id = :tenant_id
-                      AND (
-                        lower(payment.payment_number) LIKE :term ESCAPE '\\'
-                        OR lower(COALESCE(payment.reference_number, '')) LIKE :term ESCAPE '\\'
-                        OR lower(customer.name) LIKE :term ESCAPE '\\'
-                      )
-                    ORDER BY payment.created_at DESC, payment.id DESC
-                    LIMIT :limit
-                    """,
-                    params,
-                )
-            ],
-            inventory=[
-                GlobalSearchItemResponse(
-                    id=row["product_id"],
-                    type="inventory",
-                    title=row["product_name"],
-                    subtitle=f"{row['current_stock']} {row['unit']}",
-                    reference=row["product_code"],
-                    detail_path=f"/inventory/{row['product_code']}",
-                )
-                for row in await self._rows(
-                    """
-                    SELECT product.id AS product_id, product.product_code,
-                           product.name AS product_name, product.unit,
-                           COALESCE(SUM(balance.available_quantity), 0) AS current_stock
-                    FROM products product
-                    LEFT JOIN stock_balances balance
-                      ON balance.tenant_id = product.tenant_id
-                     AND balance.product_id = product.id
-                    WHERE product.tenant_id = :tenant_id
-                      AND product.archived = false
-                      AND (
-                        lower(product.name) LIKE :term ESCAPE '\\'
-                        OR lower(product.product_code) LIKE :term ESCAPE '\\'
-                        OR lower(COALESCE(product.sku, '')) LIKE :term ESCAPE '\\'
-                        OR lower(COALESCE(product.barcode, '')) LIKE :term ESCAPE '\\'
-                      )
-                    GROUP BY product.id, product.product_code, product.name, product.unit
-                    ORDER BY lower(product.name), product.id
-                    LIMIT :limit
-                    """,
-                    params,
-                )
-            ],
+            customers=grouped["customer"],
+            products=grouped["product"],
+            sales=grouped["sale"],
+            invoices=grouped["invoice"],
+            payments=grouped["payment"],
+            inventory=grouped["inventory"],
         )
 
     async def sales_report(

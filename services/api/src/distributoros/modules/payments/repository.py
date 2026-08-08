@@ -3,10 +3,10 @@ from __future__ import annotations
 from dataclasses import dataclass
 from datetime import date, datetime
 from decimal import Decimal
-from typing import cast
+from typing import Any, cast
 from uuid import UUID
 
-from sqlalchemy import func, not_, or_, select, text, tuple_
+from sqlalchemy import func, literal, not_, or_, select, text, tuple_
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import aliased
 
@@ -165,24 +165,26 @@ class PaymentsRepository:
         )
 
     async def details(self, tenant_id: UUID, payment: Payment) -> PaymentDetails:
-        customer_name = await self.session.scalar(
-            select(Customer.name).where(
-                Customer.tenant_id == tenant_id,
-                Customer.id == payment.customer_id,
-            )
+        allocated = (
+            self._effective_allocated_amount_expression(tenant_id, payment.id)
+            if payment.status == "POSTED"
+            else select(literal(Decimal("0.00"))).scalar_subquery()
         )
-        if customer_name is None:
+        summary = (
+            await self.session.execute(
+                select(Customer.name, allocated.label("allocated_amount")).where(
+                    Customer.tenant_id == tenant_id,
+                    Customer.id == payment.customer_id,
+                )
+            )
+        ).one_or_none()
+        if summary is None:
             raise RuntimeError("Payment customer could not be loaded.")
         allocations = await self.allocations_for_payment(tenant_id, payment.id)
-        allocated = (
-            await self.effective_allocated_amount(tenant_id, payment.id)
-            if payment.status == "POSTED"
-            else Decimal("0.00")
-        )
         return PaymentDetails(
             payment=payment,
-            customer_name=str(customer_name),
-            allocated_amount=allocated,
+            customer_name=str(summary.name),
+            allocated_amount=cast(Decimal, summary.allocated_amount),
             allocations=allocations,
         )
 
@@ -228,6 +230,12 @@ class PaymentsRepository:
         ]
 
     async def effective_allocated_amount(self, tenant_id: UUID, payment_id: UUID) -> Decimal:
+        value = await self.session.scalar(
+            self._effective_allocated_amount_expression(tenant_id, payment_id)
+        )
+        return value or Decimal("0.00")
+
+    def _effective_allocated_amount_expression(self, tenant_id: UUID, payment_id: UUID) -> Any:
         reversal = aliased(CustomerLedgerEntry)
         is_reversed = (
             select(reversal.id)
@@ -240,7 +248,7 @@ class PaymentsRepository:
             )
             .exists()
         )
-        value = await self.session.scalar(
+        return (
             select(func.coalesce(func.sum(PaymentAllocation.allocated_amount), Decimal("0.00")))
             .join(
                 CustomerLedgerEntry,
@@ -257,8 +265,8 @@ class PaymentsRepository:
                 not_(is_reversed),
                 or_(PaymentAllocation.invoice_id.is_(None), Invoice.status == "ISSUED"),
             )
+            .scalar_subquery()
         )
-        return value or Decimal("0.00")
 
     async def allocation_targets(
         self,
