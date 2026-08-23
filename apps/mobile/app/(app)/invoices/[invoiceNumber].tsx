@@ -19,6 +19,7 @@ import { PrimaryButton } from '@/components/PrimaryButton';
 import { ScreenHeader } from '@/components/ScreenHeader';
 import { StyleSheet as ThemedStyleSheet } from '@/design/stylesheet';
 import { colors, radii, spacing } from '@/design/tokens';
+import { HeadingText } from '@/design-system';
 import { getInvoiceErrorTranslationKey } from '@/features/invoices/errorMessages';
 import {
   formatInvoiceDate,
@@ -165,7 +166,7 @@ export default function InvoiceDetailsScreen() {
           <FeedbackBanner message={t('invoices.details.voidNotice')} />
         ) : null}
         <View style={styles.card}>
-          <Text accessibilityRole="header" style={styles.invoiceNumber}>{invoice.invoice_number}</Text>
+          <HeadingText level={2} style={styles.invoiceNumber}>{invoice.invoice_number}</HeadingText>
           <DetailRow label={t('invoices.details.status')} value={t(invoiceStatusKeys[invoice.status])} />
           <DetailRow label={t('invoices.details.saleNumber')} value={invoice.sale_number} />
           <DetailRow

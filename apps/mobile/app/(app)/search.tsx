@@ -19,6 +19,7 @@ import { FeedbackBanner } from '@/components/FeedbackBanner';
 import { ScreenHeader } from '@/components/ScreenHeader';
 import { StyleSheet as ThemedStyleSheet } from '@/design/stylesheet';
 import { colors, radii, spacing } from '@/design/tokens';
+import { HeadingText } from '@/design-system';
 import { getInsightsErrorTranslationKey } from '@/features/insights/errorMessages';
 import { useDebouncedValue } from '@/hooks/useDebouncedValue';
 
@@ -79,26 +80,26 @@ export default function GlobalSearchScreen() {
         ) : null}
         {!debounced ? (
           <View style={styles.empty}>
-            <Text accessibilityRole="header" style={styles.emptyTitle}>
+            <HeadingText level={2} style={styles.emptyTitle}>
               {t('insights.search.startTitle')}
-            </Text>
+            </HeadingText>
             <Text style={styles.emptyMessage}>{t('insights.search.startMessage')}</Text>
           </View>
         ) : null}
         {debounced && search.isSuccess && !hasResults ? (
           <View style={styles.empty}>
-            <Text accessibilityRole="header" style={styles.emptyTitle}>
+            <HeadingText level={2} style={styles.emptyTitle}>
               {t('insights.search.emptyTitle')}
-            </Text>
+            </HeadingText>
             <Text style={styles.emptyMessage}>{t('insights.search.emptyMessage')}</Text>
           </View>
         ) : null}
         {search.data ? (
           groups.map((group) => (
             <View key={group} style={styles.section}>
-              <Text accessibilityRole="header" style={styles.sectionTitle}>
+              <HeadingText level={2} style={styles.sectionTitle}>
                 {t(`insights.search.groups.${group}`)}
-              </Text>
+              </HeadingText>
               {search.data[group].length ? search.data[group].map((item) => (
                 <Pressable
                   accessibilityRole="button"

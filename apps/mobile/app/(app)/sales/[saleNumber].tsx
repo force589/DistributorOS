@@ -14,6 +14,7 @@ import { PrimaryButton } from '@/components/PrimaryButton';
 import { ScreenHeader } from '@/components/ScreenHeader';
 import { StyleSheet as ThemedStyleSheet } from '@/design/stylesheet';
 import { colors, radii, spacing } from '@/design/tokens';
+import { HeadingText } from '@/design-system';
 import { productUnitKeys } from '@/features/products/formatting';
 import { getSaleErrorTranslationKey } from '@/features/sales/errorMessages';
 import { formatInr, formatSaleDate, saleStatusKeys } from '@/features/sales/formatting';
@@ -114,7 +115,7 @@ export default function SaleDetailsScreen() {
         ) : null}
         {sale.status === 'VOID' ? <FeedbackBanner message={t('sales.details.voidNotice')} /> : null}
         <View style={styles.card}>
-          <Text accessibilityRole="header" style={styles.saleNumber}>{sale.sale_number}</Text>
+          <HeadingText level={2} style={styles.saleNumber}>{sale.sale_number}</HeadingText>
           <DetailRow label={t('sales.details.customer')} value={sale.customer_name} />
           <DetailRow label={t('sales.details.status')} value={t(saleStatusKeys[sale.status])} />
           <DetailRow

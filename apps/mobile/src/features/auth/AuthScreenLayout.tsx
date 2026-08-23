@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
 
 import { useTheme } from '@/design/theme';
-import { Card } from '@/design-system';
+import { Card, HeadingText } from '@/design-system';
 
 interface AuthScreenLayoutProps extends PropsWithChildren {
   title: string;
@@ -24,7 +24,7 @@ export function AuthScreenLayout({ title, subtitle, children }: AuthScreenLayout
           </View>
           <Card style={{ gap: theme.spacing.lg }}>
             <View style={{ gap: theme.spacing.sm }}>
-              <Text accessibilityRole="header" style={[theme.typography.title, { color: theme.colors.text }]}>{title}</Text>
+              <HeadingText level={1} style={[theme.typography.title, { color: theme.colors.text }]}>{title}</HeadingText>
               <Text style={[theme.typography.body, { color: theme.colors.textMuted }]}>{subtitle}</Text>
             </View>
             {children}

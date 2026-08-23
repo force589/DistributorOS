@@ -1,6 +1,6 @@
 import { type Href, useRouter } from 'expo-router';
+import { Fragment } from 'react';
 import {
-  Pressable,
   ScrollView,
   Text,
   View,
@@ -9,8 +9,10 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
 
 import { ScreenHeader } from '@/components/ScreenHeader';
-import { StyleSheet as ThemedStyleSheet } from '@/design/stylesheet';
-import { colors, radii, spacing } from '@/design/tokens';
+import { appIcons, type AppIconName } from '@/design/icons';
+import { useResponsiveLayout } from '@/design/responsive';
+import { useTheme } from '@/design/theme';
+import { Card, Divider, HeadingText, NavigationListItem } from '@/design-system';
 import {
   reportKinds,
   reportSubtitleKey,
@@ -18,104 +20,71 @@ import {
   type ReportKind,
 } from '@/features/insights/reportDefinitions';
 
+const reportIcons: Record<ReportKind, AppIconName> = {
+  sales: appIcons.sales,
+  payments: appIcons.payments,
+  outstanding: appIcons.customers,
+  inventory: appIcons.inventory,
+  'low-stock': appIcons.reports,
+};
+
 export default function ReportsIndexScreen() {
   const { t } = useTranslation();
   const router = useRouter();
+  const responsive = useResponsiveLayout();
+  const theme = useTheme();
 
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <SafeAreaView style={{ backgroundColor: theme.colors.background, flex: 1 }}>
       <ScreenHeader
         backLabel={t('common.back')}
         onBack={() => router.dismissTo('/(app)')}
         subtitle={t('insights.reports.subtitle')}
         title={t('insights.reports.title')}
       />
-      <ScrollView contentContainerStyle={styles.content}>
-        <View style={styles.intro}>
-          <Text style={styles.introTitle}>{t('insights.reports.readOnlyTitle')}</Text>
-          <Text style={styles.introMessage}>{t('insights.reports.readOnlyMessage')}</Text>
+      <ScrollView
+        contentContainerStyle={{
+          alignItems: 'center',
+          gap: theme.spacing.md,
+          paddingBottom: theme.spacing.xxl,
+          paddingHorizontal: responsive.isPhone ? theme.spacing.md : theme.spacing.lg,
+          paddingTop: theme.spacing.lg,
+        }}
+      >
+        <View style={{ gap: theme.spacing.md, maxWidth: 760, width: '100%' }}>
+          <Card style={{ gap: theme.spacing.sm }}>
+            <HeadingText level={2} style={[theme.typography.heading, { color: theme.colors.text }]}>
+              {t('insights.reports.readOnlyTitle')}
+            </HeadingText>
+            <Text style={[theme.typography.body, { color: theme.colors.textMuted }]}>
+              {t('insights.reports.readOnlyMessage')}
+            </Text>
+          </Card>
+          <Card style={{ overflow: 'hidden', padding: theme.spacing.sm }}>
+            {reportKinds.map((kind, index) => (
+              <Fragment key={kind}>
+                <ReportRow
+                  kind={kind}
+                  onPress={() => router.push(`/reports/${kind}` as Href)}
+                />
+                {index < reportKinds.length - 1 ? <Divider /> : null}
+              </Fragment>
+            ))}
+          </Card>
         </View>
-        {reportKinds.map((kind) => (
-          <ReportCard
-            key={kind}
-            kind={kind}
-            onPress={() => router.push(`/reports/${kind}` as Href)}
-          />
-        ))}
       </ScrollView>
     </SafeAreaView>
   );
 }
 
-function ReportCard({ kind, onPress }: { kind: ReportKind; onPress: () => void }) {
+function ReportRow({ kind, onPress }: { kind: ReportKind; onPress: () => void }) {
   const { t } = useTranslation();
   return (
-    <Pressable accessibilityRole="button" onPress={onPress} style={styles.card}>
-      <View style={styles.cardText}>
-        <Text style={styles.cardTitle}>{t(reportTitleKey(kind))}</Text>
-        <Text style={styles.cardSubtitle}>{t(reportSubtitleKey(kind))}</Text>
-      </View>
-      <Text style={styles.open}>{t('insights.reports.open')}</Text>
-    </Pressable>
+    <NavigationListItem
+      icon={reportIcons[kind]}
+      onPress={onPress}
+      subtitle={t(reportSubtitleKey(kind))}
+      title={t(reportTitleKey(kind))}
+    />
   );
 }
-
-const styles = ThemedStyleSheet.create({
-  safeArea: {
-    backgroundColor: colors.background,
-    flex: 1,
-  },
-  content: {
-    gap: spacing.md,
-    padding: spacing.lg,
-    paddingBottom: spacing.xxl,
-  },
-  intro: {
-    backgroundColor: colors.surface,
-    borderColor: colors.border,
-    borderRadius: radii.lg,
-    borderWidth: 1,
-    gap: spacing.sm,
-    padding: spacing.lg,
-  },
-  introTitle: {
-    color: colors.text,
-    fontSize: 18,
-    fontWeight: '800',
-  },
-  introMessage: {
-    color: colors.textMuted,
-    fontSize: 14,
-    lineHeight: 20,
-  },
-  card: {
-    alignItems: 'center',
-    backgroundColor: colors.surface,
-    borderColor: colors.border,
-    borderRadius: radii.lg,
-    borderWidth: 1,
-    flexDirection: 'row',
-    gap: spacing.md,
-    justifyContent: 'space-between',
-    padding: spacing.lg,
-  },
-  cardText: {
-    flex: 1,
-    gap: spacing.xs,
-  },
-  cardTitle: {
-    color: colors.text,
-    fontSize: 18,
-    fontWeight: '800',
-  },
-  cardSubtitle: {
-    color: colors.textMuted,
-    fontSize: 14,
-    lineHeight: 20,
-  },
-  open: {
-    color: colors.primary,
-    fontSize: 14,
-    fontWeight: '800',
-  },
-});

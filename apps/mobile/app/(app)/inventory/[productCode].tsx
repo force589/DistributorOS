@@ -11,6 +11,7 @@ import { PrimaryButton } from '@/components/PrimaryButton';
 import { ScreenHeader } from '@/components/ScreenHeader';
 import { StyleSheet as ThemedStyleSheet } from '@/design/stylesheet';
 import { colors, radii, spacing } from '@/design/tokens';
+import { HeadingText } from '@/design-system';
 import {
   formatInventoryDate,
   formatStockQuantity,
@@ -99,7 +100,7 @@ export default function CurrentStockDetailsScreen() {
           <FeedbackBanner message={t('inventory.operations.success')} tone="success" />
         ) : null}
         <View style={styles.card}>
-          <Text accessibilityRole="header" style={styles.name}>{product.name}</Text>
+          <HeadingText level={2} style={styles.name}>{product.name}</HeadingText>
           <View style={styles.details}>
             {details.map(([label, value]) => (
               <View key={label} style={styles.detailRow}>
@@ -110,9 +111,9 @@ export default function CurrentStockDetailsScreen() {
           </View>
         </View>
         <View style={styles.card}>
-          <Text accessibilityRole="header" style={styles.sectionTitle}>
+          <HeadingText level={2} style={styles.sectionTitle}>
             {t('inventory.details.operationsTitle')}
-          </Text>
+          </HeadingText>
           {operations.map(({ operation, key }) => (
             <PrimaryButton
               key={operation}

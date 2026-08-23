@@ -20,6 +20,7 @@ import { FullScreenState } from '@/components/FullScreenState';
 import { ScreenHeader } from '@/components/ScreenHeader';
 import { StyleSheet as ThemedStyleSheet } from '@/design/stylesheet';
 import { colors, radii, spacing } from '@/design/tokens';
+import { HeadingText } from '@/design-system';
 import { getSaleErrorTranslationKey } from '@/features/sales/errorMessages';
 import {
   formatInr,
@@ -103,9 +104,8 @@ export default function SalesListScreen() {
     <SafeAreaView style={styles.safeArea}>
       <ScreenHeader
         actionLabel={t('sales.list.create')}
-        backLabel={t('common.back')}
+        level="primary"
         onAction={() => router.push('/sales/new')}
-        onBack={() => router.dismissTo('/(app)')}
         subtitle={t('sales.list.subtitle')}
         title={t('sales.list.title')}
       />
@@ -167,9 +167,9 @@ export default function SalesListScreen() {
         keyExtractor={saleRowKey}
         ListEmptyComponent={
           <View style={styles.empty}>
-            <Text accessibilityRole="header" style={styles.emptyTitle}>
+            <HeadingText level={2} style={styles.emptyTitle}>
               {t(filtered ? 'sales.list.noResultsTitle' : 'sales.list.emptyTitle')}
-            </Text>
+            </HeadingText>
             <Text style={styles.emptyMessage}>
               {t(filtered ? 'sales.list.noResultsMessage' : 'sales.list.emptyMessage')}
             </Text>

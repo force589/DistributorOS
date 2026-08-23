@@ -20,6 +20,7 @@ import { FullScreenState } from '@/components/FullScreenState';
 import { ScreenHeader } from '@/components/ScreenHeader';
 import { StyleSheet as ThemedStyleSheet } from '@/design/stylesheet';
 import { colors, radii, spacing } from '@/design/tokens';
+import { HeadingText } from '@/design-system';
 import { getLedgerErrorTranslationKey } from '@/features/ledger/errorMessages';
 import {
   formatLedgerDate,
@@ -207,9 +208,9 @@ export default function CustomerLedgerScreen() {
         keyExtractor={(entry) => entry.id}
         ListEmptyComponent={
           <View style={styles.empty}>
-            <Text accessibilityRole="header" style={styles.emptyTitle}>
+            <HeadingText level={2} style={styles.emptyTitle}>
               {t(filtered ? 'ledger.list.noResultsTitle' : 'ledger.list.emptyTitle')}
-            </Text>
+            </HeadingText>
             <Text style={styles.emptyMessage}>
               {t(filtered ? 'ledger.list.noResultsMessage' : 'ledger.list.emptyMessage')}
             </Text>

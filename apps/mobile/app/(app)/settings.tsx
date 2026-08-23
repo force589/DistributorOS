@@ -22,6 +22,7 @@ import {
   Button,
   Card,
   Divider,
+  HeadingText,
   ListItem,
   RadioListItem,
   SectionIcon,
@@ -343,12 +344,12 @@ function SettingsSection({
       >
         <SectionIcon icon={icon} />
         <View style={{ flex: 1, gap: theme.spacing.xs }}>
-          <Text
-            accessibilityRole="header"
+          <HeadingText
+            level={2}
             style={[theme.typography.heading, { color: theme.colors.text }]}
           >
             {title}
-          </Text>
+          </HeadingText>
           <Text style={[theme.typography.caption, { color: theme.colors.textMuted }]}>
             {description}
           </Text>

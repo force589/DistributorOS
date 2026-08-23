@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { AppBottomNavigation } from '@/components/AppBottomNavigation';
 import { SettingsButton } from '@/components/SettingsButton';
 import { useTheme } from '@/design/theme';
+import { shouldShowGlobalSettingsButton } from '@/navigation/settingsVisibility';
 import { UnsavedChangesProvider, useUnsavedChanges } from '@/navigation/UnsavedChangesContext';
 
 export default function AppLayout() {
@@ -23,7 +24,6 @@ function AppLayoutContent() {
   const insets = useSafeAreaInsets();
   const theme = useTheme();
   const { guardNavigation } = useUnsavedChanges();
-  const isSettings = pathname === '/settings';
 
   return (
     <View style={{ backgroundColor: theme.colors.background, flex: 1 }}>
@@ -31,7 +31,7 @@ function AppLayoutContent() {
         <Stack screenOptions={{ headerShown: false }} />
       </View>
       <AppBottomNavigation bottomInset={insets.bottom} onNavigate={guardNavigation} />
-      {!isSettings ? (
+      {shouldShowGlobalSettingsButton(pathname) ? (
         <View
           style={{
             pointerEvents: 'box-none',

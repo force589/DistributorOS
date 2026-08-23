@@ -1,7 +1,15 @@
 import { fireEvent, render } from '@testing-library/react-native';
 
 import { appIcons } from '@/design/icons';
-import { ActionCard, BottomNavigation, IconButton, NavigationListItem } from '@/design-system';
+import {
+  ActionCard,
+  BottomNavigation,
+  HeadingText,
+  Icon,
+  IconButton,
+  NavigationListItem,
+  SectionHeader,
+} from '@/design-system';
 
 describe('commercial navigation controls', () => {
   it('exposes a persistent, accessible selected bottom-navigation destination', async () => {
@@ -58,6 +66,18 @@ describe('commercial navigation controls', () => {
     expect(onPress).toHaveBeenCalledTimes(1);
   });
 
+  it('hides decorative vector icons from accessibility consumers', async () => {
+    const screen = await render(<Icon name={appIcons.reports} />);
+    const [iconProps] = findProps(
+      screen.toJSON(),
+      (props) => props.accessible === false,
+    );
+
+    expect(iconProps?.accessible).toBe(false);
+    expect(iconProps?.accessibilityElementsHidden).toBe(true);
+    expect(iconProps?.importantForAccessibility).toBe('no-hide-descendants');
+  });
+
   it('requires an accessible label for icon-only actions', async () => {
     const onPress = jest.fn();
     const screen = await render(
@@ -71,5 +91,36 @@ describe('commercial navigation controls', () => {
     fireEvent.press(screen.getByRole('button', { name: 'Open settings' }));
 
     expect(onPress).toHaveBeenCalledTimes(1);
+    expect(findProps(screen.toJSON(), (props) => props['aria-hidden'] === true).length).toBeGreaterThan(0);
+  });
+
+  it('gives reusable section headings explicit hierarchy levels', async () => {
+    const screen = await render(<SectionHeader title="Recent Sales" />);
+    const heading = screen.getByRole('header', { name: 'Recent Sales' });
+
+    expect(heading.props['aria-level']).toBe(2);
+  });
+
+  it('allows explicit primary screen headings', async () => {
+    const screen = await render(
+      <HeadingText level={1}>
+        Dashboard
+      </HeadingText>,
+    );
+
+    expect(screen.getByRole('header', { name: 'Dashboard' }).props['aria-level']).toBe(1);
   });
 });
+
+function findProps(node: unknown, predicate: (props: Record<string, unknown>) => boolean): Record<string, unknown>[] {
+  if (!node || typeof node !== 'object') return [];
+  if (Array.isArray(node)) return node.flatMap((child) => findProps(child, predicate));
+  const props = 'props' in node && node.props && typeof node.props === 'object'
+    ? node.props as Record<string, unknown>
+    : {};
+  const children = 'children' in node ? node.children : undefined;
+  return [
+    ...(predicate(props) ? [props] : []),
+    ...findProps(children, predicate),
+  ];
+}

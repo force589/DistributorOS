@@ -27,7 +27,7 @@ export default function MoreScreen() {
 
   return (
     <SafeAreaView style={{ backgroundColor: theme.colors.background, flex: 1 }}>
-      <ScreenHeader subtitle={t('more.subtitle')} title={t('more.title')} />
+      <ScreenHeader level="primary" subtitle={t('more.subtitle')} title={t('more.title')} />
       <ScrollView
         contentContainerStyle={{
           alignItems: 'center',

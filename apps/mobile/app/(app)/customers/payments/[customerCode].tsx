@@ -16,6 +16,7 @@ import { FullScreenState } from '@/components/FullScreenState';
 import { ScreenHeader } from '@/components/ScreenHeader';
 import { StyleSheet as ThemedStyleSheet } from '@/design/stylesheet';
 import { colors, radii, spacing } from '@/design/tokens';
+import { HeadingText } from '@/design-system';
 import { getPaymentErrorTranslationKey } from '@/features/payments/errorMessages';
 import { formatInr, paymentRowKey } from '@/features/payments/formatting';
 import { PaymentListRow } from '@/features/payments/PaymentListRow';
@@ -162,9 +163,9 @@ export default function CustomerPaymentHistoryScreen() {
         keyExtractor={paymentRowKey}
         ListEmptyComponent={
           <View style={styles.empty}>
-            <Text accessibilityRole="header" style={styles.emptyTitle}>
+            <HeadingText level={2} style={styles.emptyTitle}>
               {t('payments.customerHistory.emptyTitle')}
-            </Text>
+            </HeadingText>
             <Text style={styles.emptyMessage}>{t('payments.customerHistory.emptyMessage')}</Text>
           </View>
         }

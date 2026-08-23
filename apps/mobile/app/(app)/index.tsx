@@ -19,7 +19,7 @@ import { StyleSheet as ThemedStyleSheet } from '@/design/stylesheet';
 import { colors, radii, spacing } from '@/design/tokens';
 import { useResponsiveLayout } from '@/design/responsive';
 import { useTheme } from '@/design/theme';
-import { ActionCard, SectionHeader } from '@/design-system';
+import { ActionCard, HeadingText, SectionHeader } from '@/design-system';
 import { useAuth } from '@/features/auth/AuthContext';
 import { getInsightsErrorTranslationKey } from '@/features/insights/errorMessages';
 import {
@@ -98,7 +98,7 @@ export default function DashboardScreen() {
         <View style={{ gap: theme.spacing.lg, maxWidth: responsive.contentMaxWidth, width: '100%' }}>
           <View style={[styles.header, { paddingRight: theme.spacing.xxxl }]}>
             <View>
-              <Text style={[styles.brand, { color: theme.colors.primary }]}>{t('brand.name')}</Text>
+              <HeadingText level={1} style={[styles.brand, { color: theme.colors.primary }]}>{t('brand.name')}</HeadingText>
               <Text style={[styles.subtitle, { color: theme.colors.textMuted }]}>
                 {t('insights.dashboard.subtitle', {
                   business: user?.business.business_name,
@@ -218,7 +218,7 @@ function ActivitySection({
   const { t } = useTranslation();
   return (
     <View style={styles.section}>
-      <Text accessibilityRole="header" style={styles.sectionTitle}>{title}</Text>
+      <HeadingText level={2} style={styles.sectionTitle}>{title}</HeadingText>
       {items.length ? items.map((item) => {
         const status = t(`${statusGroup}.status.${camelStatus(item.status)}`);
         return (
@@ -247,9 +247,9 @@ function InventoryActivity({ dashboard }: { dashboard: Dashboard }) {
   const { t } = useTranslation();
   return (
     <View style={styles.section}>
-      <Text accessibilityRole="header" style={styles.sectionTitle}>
+      <HeadingText level={2} style={styles.sectionTitle}>
         {t('insights.dashboard.recentInventory')}
-      </Text>
+      </HeadingText>
       {dashboard.recent_inventory_activity.length ? dashboard.recent_inventory_activity.map((item) => (
         <View key={item.id} style={styles.row}>
           <View style={styles.rowText}>
@@ -276,9 +276,9 @@ function TopSelling({ dashboard }: { dashboard: Dashboard }) {
   const { t } = useTranslation();
   return (
     <View style={styles.section}>
-      <Text accessibilityRole="header" style={styles.sectionTitle}>
+      <HeadingText level={2} style={styles.sectionTitle}>
         {t('insights.dashboard.topSellingProducts')}
-      </Text>
+      </HeadingText>
       {dashboard.top_selling_products.length ? dashboard.top_selling_products.map((item) => (
         <View key={item.product_id} style={styles.row}>
           <View style={styles.rowText}>
@@ -305,9 +305,9 @@ function Outstanding({
   const { t } = useTranslation();
   return (
     <View style={styles.section}>
-      <Text accessibilityRole="header" style={styles.sectionTitle}>
+      <HeadingText level={2} style={styles.sectionTitle}>
         {t('insights.dashboard.highestOutstandingCustomers')}
-      </Text>
+      </HeadingText>
       {dashboard.highest_outstanding_customers.length ? dashboard.highest_outstanding_customers.map((item) => (
         <Pressable
           accessibilityRole="button"

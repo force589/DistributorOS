@@ -21,6 +21,7 @@ import { PrimaryButton } from '@/components/PrimaryButton';
 import { ScreenHeader } from '@/components/ScreenHeader';
 import { StyleSheet as ThemedStyleSheet } from '@/design/stylesheet';
 import { colors, radii, spacing } from '@/design/tokens';
+import { HeadingText } from '@/design-system';
 import { getProductErrorTranslationKey } from '@/features/products/errorMessages';
 import { formatInr, productUnitKeys } from '@/features/products/formatting';
 import { useDebouncedValue } from '@/hooks/useDebouncedValue';
@@ -110,9 +111,8 @@ export default function ProductListScreen() {
     <SafeAreaView style={styles.safeArea}>
       <ScreenHeader
         actionLabel={t('products.list.create')}
-        backLabel={t('common.back')}
+        level="primary"
         onAction={() => router.push('/products/new')}
-        onBack={() => router.dismissTo('/(app)')}
         subtitle={t('products.list.subtitle')}
         title={t('products.list.title')}
       />
@@ -196,9 +196,9 @@ export default function ProductListScreen() {
         keyExtractor={(product) => product.product_code}
         ListEmptyComponent={
           <View style={styles.empty}>
-            <Text accessibilityRole="header" style={styles.emptyTitle}>
+            <HeadingText level={2} style={styles.emptyTitle}>
               {emptyTitle}
-            </Text>
+            </HeadingText>
             <Text style={styles.emptyMessage}>{emptyMessage}</Text>
             {!debouncedSearch && status !== 'archived' ? (
               <PrimaryButton

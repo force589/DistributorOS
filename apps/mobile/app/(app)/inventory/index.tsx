@@ -19,6 +19,7 @@ import { FullScreenState } from '@/components/FullScreenState';
 import { ScreenHeader } from '@/components/ScreenHeader';
 import { StyleSheet as ThemedStyleSheet } from '@/design/stylesheet';
 import { colors, radii, spacing } from '@/design/tokens';
+import { HeadingText } from '@/design-system';
 import { getInventoryErrorTranslationKey } from '@/features/inventory/errorMessages';
 import {
   formatStockQuantity,
@@ -89,9 +90,8 @@ export default function InventoryListScreen() {
     <SafeAreaView style={styles.safeArea}>
       <ScreenHeader
         actionLabel={t('inventory.list.history')}
-        backLabel={t('common.back')}
+        level="primary"
         onAction={() => router.push('/inventory/history')}
-        onBack={() => router.dismissTo('/(app)')}
         subtitle={t('inventory.list.subtitle')}
         title={t('inventory.list.title')}
       />
@@ -123,7 +123,7 @@ export default function InventoryListScreen() {
         keyExtractor={(item) => item.product_code}
         ListEmptyComponent={
           <View style={styles.empty}>
-            <Text accessibilityRole="header" style={styles.emptyTitle}>{emptyTitle}</Text>
+            <HeadingText level={2} style={styles.emptyTitle}>{emptyTitle}</HeadingText>
             <Text style={styles.emptyMessage}>{emptyMessage}</Text>
           </View>
         }

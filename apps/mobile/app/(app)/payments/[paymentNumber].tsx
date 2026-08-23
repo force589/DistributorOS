@@ -14,6 +14,7 @@ import { PrimaryButton } from '@/components/PrimaryButton';
 import { ScreenHeader } from '@/components/ScreenHeader';
 import { StyleSheet as ThemedStyleSheet } from '@/design/stylesheet';
 import { colors, radii, spacing } from '@/design/tokens';
+import { HeadingText } from '@/design-system';
 import { getPaymentErrorTranslationKey } from '@/features/payments/errorMessages';
 import {
   formatInr,
@@ -111,7 +112,7 @@ export default function PaymentDetailsScreen() {
           <FeedbackBanner message={t('payments.details.voidNotice')} />
         ) : null}
         <View style={styles.card}>
-          <Text accessibilityRole="header" style={styles.paymentNumber}>{payment.payment_number}</Text>
+          <HeadingText level={2} style={styles.paymentNumber}>{payment.payment_number}</HeadingText>
           <DetailRow label={t('payments.details.customer')} value={payment.customer_name} />
           <DetailRow label={t('payments.details.status')} value={t(paymentStatusKeys[payment.status])} />
           <DetailRow

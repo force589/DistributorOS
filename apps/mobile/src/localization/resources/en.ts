@@ -1183,7 +1183,7 @@ export const en = {
     reports: {
       title: 'Reports',
       subtitle: 'Read-only business reports with filters, sorting, pagination, and CSV export.',
-      readOnlyTitle: 'Phase 8 reports are read-only',
+      readOnlyTitle: 'Reports are read-only summaries',
       readOnlyMessage: 'Reports summarize existing records only. They never create, edit, or post business data.',
       open: 'Open',
       invalidTitle: 'Report not found',

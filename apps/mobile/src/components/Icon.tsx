@@ -30,10 +30,13 @@ export function Icon({
   const resolvedSize = resolveIconSize(size);
   const accessibilityProps = decorative
     ? {
+        'aria-hidden': true,
+        accessible: false,
         accessibilityElementsHidden: true,
-        importantForAccessibility: 'no' as const,
+        importantForAccessibility: 'no-hide-descendants' as const,
       }
     : {
+        accessible: true,
         accessibilityLabel,
         accessibilityRole: 'image' as const,
       };

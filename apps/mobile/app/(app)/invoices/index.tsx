@@ -20,6 +20,7 @@ import { FullScreenState } from '@/components/FullScreenState';
 import { ScreenHeader } from '@/components/ScreenHeader';
 import { StyleSheet as ThemedStyleSheet } from '@/design/stylesheet';
 import { colors, radii, spacing } from '@/design/tokens';
+import { HeadingText } from '@/design-system';
 import { getInvoiceErrorTranslationKey } from '@/features/invoices/errorMessages';
 import { invoiceRowKey, invoiceStatusKeys } from '@/features/invoices/formatting';
 import { InvoiceListRow } from '@/features/invoices/InvoiceListRow';
@@ -99,9 +100,8 @@ export default function InvoicesListScreen() {
     <SafeAreaView style={styles.safeArea}>
       <ScreenHeader
         actionLabel={t('invoices.list.create')}
-        backLabel={t('common.back')}
+        level="primary"
         onAction={() => router.push('/invoices/new')}
-        onBack={() => router.dismissTo('/(app)')}
         subtitle={t('invoices.list.subtitle')}
         title={t('invoices.list.title')}
       />
@@ -162,9 +162,9 @@ export default function InvoicesListScreen() {
         keyExtractor={invoiceRowKey}
         ListEmptyComponent={
           <View style={styles.empty}>
-            <Text accessibilityRole="header" style={styles.emptyTitle}>
+            <HeadingText level={2} style={styles.emptyTitle}>
               {t(filtered ? 'invoices.list.noResultsTitle' : 'invoices.list.emptyTitle')}
-            </Text>
+            </HeadingText>
             <Text style={styles.emptyMessage}>
               {t(filtered ? 'invoices.list.noResultsMessage' : 'invoices.list.emptyMessage')}
             </Text>

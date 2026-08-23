@@ -16,6 +16,7 @@ import { FullScreenState } from '@/components/FullScreenState';
 import { ScreenHeader } from '@/components/ScreenHeader';
 import { StyleSheet as ThemedStyleSheet } from '@/design/stylesheet';
 import { colors, spacing } from '@/design/tokens';
+import { HeadingText } from '@/design-system';
 import { getInvoiceErrorTranslationKey } from '@/features/invoices/errorMessages';
 import { invoiceRowKey } from '@/features/invoices/formatting';
 import { InvoiceListRow } from '@/features/invoices/InvoiceListRow';
@@ -127,9 +128,9 @@ export default function CustomerInvoiceHistoryScreen() {
         keyExtractor={invoiceRowKey}
         ListEmptyComponent={
           <View style={styles.empty}>
-            <Text accessibilityRole="header" style={styles.emptyTitle}>
+            <HeadingText level={2} style={styles.emptyTitle}>
               {t('invoices.customerHistory.emptyTitle')}
-            </Text>
+            </HeadingText>
             <Text style={styles.emptyMessage}>{t('invoices.customerHistory.emptyMessage')}</Text>
           </View>
         }

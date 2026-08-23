@@ -18,6 +18,7 @@ import { PrimaryButton } from '@/components/PrimaryButton';
 import { ScreenHeader } from '@/components/ScreenHeader';
 import { StyleSheet as ThemedStyleSheet } from '@/design/stylesheet';
 import { colors, radii, spacing } from '@/design/tokens';
+import { HeadingText } from '@/design-system';
 import { getCustomerErrorTranslationKey } from '@/features/customers/errorMessages';
 import { getLedgerErrorTranslationKey } from '@/features/ledger/errorMessages';
 import { formatLedgerDate } from '@/features/ledger/formatting';
@@ -153,9 +154,9 @@ export default function CustomerDetailsScreen() {
         {feedback ? <FeedbackBanner message={feedback} tone="success" /> : null}
         {error ? <FeedbackBanner message={error} /> : null}
         <View style={styles.card}>
-          <Text accessibilityRole="header" style={styles.name}>
+          <HeadingText level={2} style={styles.name}>
             {customer.name}
-          </Text>
+          </HeadingText>
           <View style={styles.details}>
             {details
               .filter(([, value]) => Boolean(value))

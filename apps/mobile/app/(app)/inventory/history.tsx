@@ -18,6 +18,7 @@ import { FullScreenState } from '@/components/FullScreenState';
 import { ScreenHeader } from '@/components/ScreenHeader';
 import { StyleSheet as ThemedStyleSheet } from '@/design/stylesheet';
 import { colors, radii, spacing } from '@/design/tokens';
+import { HeadingText } from '@/design-system';
 import { getInventoryErrorTranslationKey } from '@/features/inventory/errorMessages';
 import {
   formatInventoryDate,
@@ -139,7 +140,7 @@ export default function InventoryHistoryScreen() {
         keyExtractor={(item) => item.id}
         ListEmptyComponent={
           <View style={styles.empty}>
-            <Text accessibilityRole="header" style={styles.emptyTitle}>{emptyTitle}</Text>
+            <HeadingText level={2} style={styles.emptyTitle}>{emptyTitle}</HeadingText>
             <Text style={styles.emptyMessage}>{emptyMessage}</Text>
           </View>
         }

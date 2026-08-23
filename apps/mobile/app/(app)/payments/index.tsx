@@ -20,6 +20,7 @@ import { FullScreenState } from '@/components/FullScreenState';
 import { ScreenHeader } from '@/components/ScreenHeader';
 import { StyleSheet as ThemedStyleSheet } from '@/design/stylesheet';
 import { colors, radii, spacing } from '@/design/tokens';
+import { HeadingText } from '@/design-system';
 import { getPaymentErrorTranslationKey } from '@/features/payments/errorMessages';
 import {
   paymentMethodKeys,
@@ -106,9 +107,8 @@ export default function PaymentsListScreen() {
     <SafeAreaView style={styles.safeArea}>
       <ScreenHeader
         actionLabel={t('payments.list.create')}
-        backLabel={t('common.back')}
+        level="primary"
         onAction={() => router.push('/payments/new')}
-        onBack={() => router.dismissTo('/(app)')}
         subtitle={t('payments.list.subtitle')}
         title={t('payments.list.title')}
       />
@@ -179,9 +179,9 @@ export default function PaymentsListScreen() {
         keyExtractor={paymentRowKey}
         ListEmptyComponent={
           <View style={styles.empty}>
-            <Text accessibilityRole="header" style={styles.emptyTitle}>
+            <HeadingText level={2} style={styles.emptyTitle}>
               {t(filtered ? 'payments.list.noResultsTitle' : 'payments.list.emptyTitle')}
-            </Text>
+            </HeadingText>
             <Text style={styles.emptyMessage}>
               {t(filtered ? 'payments.list.noResultsMessage' : 'payments.list.emptyMessage')}
             </Text>

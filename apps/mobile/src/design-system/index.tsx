@@ -7,6 +7,7 @@ import {
   Text,
   TextInput,
   type TextInputProps,
+  type TextProps,
   View,
   type ViewStyle,
 } from 'react-native';
@@ -16,6 +17,20 @@ import { appIcons, type AppIconName } from '@/design/icons';
 import { useTheme } from '@/design/theme';
 
 type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'destructive';
+type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
+
+export function HeadingText({
+  level = 2,
+  ...props
+}: TextProps & { level?: HeadingLevel }) {
+  return (
+    <Text
+      accessibilityRole="header"
+      {...({ 'aria-level': level } as { 'aria-level': HeadingLevel })}
+      {...props}
+    />
+  );
+}
 
 export function Button({
   label,
@@ -347,9 +362,9 @@ export function Dialog({
         }}
       >
         <Card style={{ gap: theme.spacing.md, maxWidth: 480, width: '100%' }}>
-          <Text accessibilityRole="header" style={[theme.typography.heading, { color: theme.colors.text }]}>
+          <HeadingText level={1} style={[theme.typography.heading, { color: theme.colors.text }]}>
             {title}
-          </Text>
+          </HeadingText>
           {message ? <Text style={[theme.typography.body, { color: theme.colors.textMuted }]}>{message}</Text> : null}
           {children}
         </Card>
@@ -404,7 +419,7 @@ function StateLayout({ title, message, children }: { title: string; message: str
   const theme = useTheme();
   return (
     <View style={{ alignItems: 'center', gap: theme.spacing.md, justifyContent: 'center', minHeight: 220, padding: theme.spacing.xl }}>
-      <Text accessibilityRole="header" style={[theme.typography.heading, { color: theme.colors.text, textAlign: 'center' }]}>{title}</Text>
+      <HeadingText level={1} style={[theme.typography.heading, { color: theme.colors.text, textAlign: 'center' }]}>{title}</HeadingText>
       <Text style={[theme.typography.body, { color: theme.colors.textMuted, textAlign: 'center' }]}>{message}</Text>
       {children}
     </View>
@@ -429,11 +444,11 @@ export function SkeletonLoader({ accessibilityLabel, width = '100%', height = 18
   return <View accessibilityLabel={accessibilityLabel} style={{ backgroundColor: theme.colors.surfaceSubtle, borderRadius: theme.radii.sm, height, width }} />;
 }
 
-export function SectionHeader({ title, actionLabel, onAction }: { title: string; actionLabel?: string; onAction?: () => void }) {
+export function SectionHeader({ title, actionLabel, onAction, headingLevel = 2 }: { title: string; actionLabel?: string; onAction?: () => void; headingLevel?: HeadingLevel }) {
   const theme = useTheme();
   return (
     <View style={{ alignItems: 'center', flexDirection: 'row', justifyContent: 'space-between', minHeight: 44 }}>
-      <Text accessibilityRole="header" style={[theme.typography.heading, { color: theme.colors.text }]}>{title}</Text>
+      <HeadingText level={headingLevel} style={[theme.typography.heading, { color: theme.colors.text }]}>{title}</HeadingText>
       {actionLabel && onAction ? <Button label={actionLabel} onPress={onAction} variant="ghost" /> : null}
     </View>
   );
@@ -594,7 +609,7 @@ export function TopBar({ title, subtitle, leading, trailing }: { title: string; 
     <View style={{ alignItems: 'center', backgroundColor: theme.colors.surface, borderBottomColor: theme.colors.border, borderBottomWidth: 1, flexDirection: 'row', gap: theme.spacing.md, minHeight: 64, paddingHorizontal: theme.spacing.lg, paddingVertical: theme.spacing.sm }}>
       {leading}
       <View style={{ flex: 1 }}>
-        <Text accessibilityRole="header" style={[theme.typography.heading, { color: theme.colors.text }]}>{title}</Text>
+        <HeadingText level={1} style={[theme.typography.heading, { color: theme.colors.text }]}>{title}</HeadingText>
         {subtitle ? <Text style={[theme.typography.caption, { color: theme.colors.textMuted }]}>{subtitle}</Text> : null}
       </View>
       {trailing}
