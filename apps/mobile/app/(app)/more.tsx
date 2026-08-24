@@ -36,7 +36,7 @@ export default function MoreScreen() {
           paddingTop: theme.spacing.lg,
         }}
       >
-        <View style={{ maxWidth: 760, width: '100%' }}>
+        <View style={{ maxWidth: responsive.isDesktop ? 980 : 760, width: '100%' }}>
           <Card style={{ overflow: 'hidden', padding: theme.spacing.sm }}>
             {destinations.map((destination, index) => (
               <Fragment key={destination.key}>

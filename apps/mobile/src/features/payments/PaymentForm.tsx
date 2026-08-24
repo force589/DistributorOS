@@ -16,6 +16,7 @@ import { FormField } from '@/components/FormField';
 import { PrimaryButton } from '@/components/PrimaryButton';
 import { StyleSheet as ThemedStyleSheet } from '@/design/stylesheet';
 import { colors, radii, spacing } from '@/design/tokens';
+import { FilterChipGroup } from '@/design-system';
 import { businessDateIso } from '@/formatting/presentation';
 import { useDebouncedValue } from '@/hooks/useDebouncedValue';
 
@@ -227,29 +228,20 @@ export function PaymentForm({
         </View>
 
         <View style={styles.methodGroup}>
-          <Text style={styles.sectionTitle}>{t('payments.form.paymentMethod')}</Text>
           {errorFor('payment_method') ? (
             <Text style={styles.error}>{errorFor('payment_method')}</Text>
           ) : null}
-          <ScrollView contentContainerStyle={styles.chips} horizontal showsHorizontalScrollIndicator={false}>
-            {methods.map((method) => (
-              <Pressable
-                key={method}
-                accessibilityRole="button"
-                accessibilityState={{ selected: draft.paymentMethod === method }}
-                onPress={() => updateDraft({ paymentMethod: method }, 'payment_method')}
-                style={[styles.chip, draft.paymentMethod === method && styles.selectedChip]}
-              >
-                <Text style={[
-                  styles.chipText,
-                  draft.paymentMethod === method && styles.selectedChipText,
-                ]}
-                >
-                  {t(paymentMethodKeys[method])}
-                </Text>
-              </Pressable>
-            ))}
-          </ScrollView>
+          <FilterChipGroup
+            label={t('payments.form.paymentMethod')}
+            onSelect={(value) =>
+              updateDraft({ paymentMethod: value as PaymentCreateRequest['payment_method'] }, 'payment_method')}
+            options={methods.map((method) => ({
+              label: t(paymentMethodKeys[method]),
+              value: method,
+            }))}
+            selected={draft.paymentMethod}
+            testIDPrefix="payment-form-method"
+          />
         </View>
 
         <FormField
@@ -458,7 +450,7 @@ const styles = ThemedStyleSheet.create({
   },
   optionSelected: { backgroundColor: colors.primary, borderColor: colors.primary },
   optionLabel: { color: colors.text, fontSize: 15, fontWeight: '700' },
-  optionLabelSelected: { color: colors.surface },
+  optionLabelSelected: { color: colors.textInverse },
   optionDetail: { color: colors.textMuted, fontSize: 12 },
   selectedText: { color: colors.success, fontSize: 14, fontWeight: '700' },
   error: { color: colors.danger, fontSize: 13 },
@@ -466,19 +458,6 @@ const styles = ThemedStyleSheet.create({
   fieldRow: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing.md },
   field: { flex: 1, minWidth: 180 },
   methodGroup: { gap: spacing.sm },
-  chips: { gap: spacing.sm },
-  chip: {
-    borderColor: colors.border,
-    borderRadius: 999,
-    borderWidth: 1,
-    paddingHorizontal: spacing.md,
-    justifyContent: 'center',
-    minHeight: 44,
-    paddingVertical: spacing.sm,
-  },
-  selectedChip: { backgroundColor: colors.primary, borderColor: colors.primary },
-  chipText: { color: colors.text, fontSize: 13, fontWeight: '700' },
-  selectedChipText: { color: colors.surface },
   allocations: { gap: spacing.sm },
   loadingRow: { alignItems: 'center', flexDirection: 'row', gap: spacing.sm },
   allocationRow: {

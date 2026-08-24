@@ -6,7 +6,6 @@ import {
   ActivityIndicator,
   FlatList,
   Pressable,
-  ScrollView,
   Text,
   TextInput,
   View,
@@ -21,7 +20,7 @@ import { PrimaryButton } from '@/components/PrimaryButton';
 import { ScreenHeader } from '@/components/ScreenHeader';
 import { StyleSheet as ThemedStyleSheet } from '@/design/stylesheet';
 import { colors, radii, spacing } from '@/design/tokens';
-import { HeadingText } from '@/design-system';
+import { FilterChipGroup, HeadingText, ListSkeleton } from '@/design-system';
 import { getCustomerErrorTranslationKey } from '@/features/customers/errorMessages';
 import { useDebouncedValue } from '@/hooks/useDebouncedValue';
 
@@ -72,11 +71,18 @@ export default function CustomerListScreen() {
 
   if (query.isPending) {
     return (
-      <FullScreenState
-        loading
-        message={t('customers.list.loadingMessage')}
-        title={t('customers.list.loadingTitle')}
-      />
+      <SafeAreaView style={styles.safeArea}>
+        <ScreenHeader
+          actionLabel={t('customers.list.create')}
+          level="primary"
+          onAction={() => router.push('/customers/new')}
+          subtitle={t('customers.list.subtitle')}
+          title={t('customers.list.title')}
+        />
+        <ListSkeleton
+          accessibilityLabel={`${t('customers.list.loadingTitle')}. ${t('customers.list.loadingMessage')}`}
+        />
+      </SafeAreaView>
     );
   }
   if (query.isError && customers.length === 0) {
@@ -126,50 +132,36 @@ export default function CustomerListScreen() {
             <Text style={styles.loadingMoreText}>{t('customers.list.updating')}</Text>
           </View>
         ) : null}
-        <Text style={styles.controlLabel}>{t('customers.list.filterLabel')}</Text>
-        <ScrollView
-          contentContainerStyle={styles.chipRow}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-        >
-          {statuses.map((option) => (
-            <FilterChip
-              key={option}
-              active={status === option}
-              label={
-                option === 'all'
-                  ? t('customers.filters.all')
-                  : option === 'active'
-                    ? t('customers.filters.active')
-                    : t('customers.filters.archived')
-              }
-              onPress={() => setStatus(option)}
-            />
-          ))}
-        </ScrollView>
-        <Text style={styles.controlLabel}>{t('customers.list.sortLabel')}</Text>
-        <ScrollView
-          contentContainerStyle={styles.chipRow}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-        >
-          {sorts.map((option) => (
-            <FilterChip
-              key={option}
-              active={sort === option}
-              label={
-                option === 'newest'
-                  ? t('customers.sorts.newest')
-                  : option === 'oldest'
-                    ? t('customers.sorts.oldest')
-                    : option === 'name_asc'
-                      ? t('customers.sorts.nameAsc')
-                      : t('customers.sorts.nameDesc')
-              }
-              onPress={() => setSort(option)}
-            />
-          ))}
-        </ScrollView>
+        <FilterChipGroup
+          label={t('customers.list.filterLabel')}
+          onSelect={(value) => setStatus(value as CustomerStatus)}
+          options={statuses.map((option) => ({
+            label: option === 'all'
+              ? t('customers.filters.all')
+              : option === 'active'
+                ? t('customers.filters.active')
+                : t('customers.filters.archived'),
+            value: option,
+          }))}
+          selected={status}
+          testIDPrefix="customer-status"
+        />
+        <FilterChipGroup
+          label={t('customers.list.sortLabel')}
+          onSelect={(value) => setSort(value as CustomerSort)}
+          options={sorts.map((option) => ({
+            label: option === 'newest'
+              ? t('customers.sorts.newest')
+              : option === 'oldest'
+                ? t('customers.sorts.oldest')
+                : option === 'name_asc'
+                  ? t('customers.sorts.nameAsc')
+                  : t('customers.sorts.nameDesc'),
+            value: option,
+          }))}
+          selected={sort}
+          testIDPrefix="customer-sort"
+        />
       </View>
       {query.isFetchNextPageError ? (
         <View style={styles.inlineError}>
@@ -222,27 +214,6 @@ export default function CustomerListScreen() {
   );
 }
 
-function FilterChip({
-  active,
-  label,
-  onPress,
-}: {
-  active: boolean;
-  label: string;
-  onPress: () => void;
-}) {
-  return (
-    <Pressable
-      accessibilityRole="button"
-      accessibilityState={{ selected: active }}
-      onPress={onPress}
-      style={[styles.chip, active && styles.activeChip]}
-    >
-      <Text style={[styles.chipText, active && styles.activeChipText]}>{label}</Text>
-    </Pressable>
-  );
-}
-
 function CustomerRow({ customer, onPress }: { customer: Customer; onPress: () => void }) {
   const { t } = useTranslation();
   return (
@@ -278,20 +249,6 @@ const styles = ThemedStyleSheet.create({
     minHeight: 48,
     paddingHorizontal: spacing.md,
   },
-  controlLabel: { color: colors.textMuted, fontSize: 13, fontWeight: '700' },
-  chipRow: { gap: spacing.sm },
-  chip: {
-    borderColor: colors.border,
-    borderRadius: 999,
-    borderWidth: 1,
-    paddingHorizontal: spacing.md,
-    justifyContent: 'center',
-    minHeight: 44,
-    paddingVertical: spacing.sm,
-  },
-  activeChip: { backgroundColor: colors.primary, borderColor: colors.primary },
-  chipText: { color: colors.text, fontSize: 14, fontWeight: '600' },
-  activeChipText: { color: colors.surface },
   inlineError: { gap: spacing.sm, padding: spacing.md },
   list: { gap: spacing.md, padding: spacing.md },
   emptyList: { flexGrow: 1 },

@@ -3,6 +3,7 @@ import {
   ActivityIndicator,
   Modal,
   Pressable,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -439,9 +440,91 @@ export function LoadingState({ title, message }: { title: string; message: strin
   return <StateLayout title={title} message={message}><ActivityIndicator color={theme.colors.primary} size="large" /></StateLayout>;
 }
 
-export function SkeletonLoader({ accessibilityLabel, width = '100%', height = 18 }: { accessibilityLabel: string; width?: ViewStyle['width']; height?: number }) {
+export function SkeletonLoader({
+  accessibilityLabel,
+  hidden = false,
+  width = '100%',
+  height = 18,
+}: {
+  accessibilityLabel?: string;
+  hidden?: boolean;
+  width?: ViewStyle['width'];
+  height?: number;
+}) {
   const theme = useTheme();
-  return <View accessibilityLabel={accessibilityLabel} style={{ backgroundColor: theme.colors.surfaceSubtle, borderRadius: theme.radii.sm, height, width }} />;
+  return (
+    <View
+      accessibilityElementsHidden={hidden}
+      accessibilityLabel={accessibilityLabel}
+      importantForAccessibility={hidden ? 'no-hide-descendants' : undefined}
+      {...(hidden ? { 'aria-hidden': true } as { 'aria-hidden': boolean } : {})}
+      style={{ backgroundColor: theme.colors.surfaceSubtle, borderRadius: theme.radii.sm, height, width }}
+    />
+  );
+}
+
+export function SkeletonRow({
+  lines = 3,
+}: {
+  lines?: number;
+}) {
+  const theme = useTheme();
+  return (
+    <Card style={{ gap: theme.spacing.sm, padding: theme.spacing.md }}>
+      <SkeletonLoader hidden height={18} width="48%" />
+      {Array.from({ length: lines - 1 }).map((_, index) => (
+        <SkeletonLoader
+          hidden
+          height={14}
+          key={index}
+          width={index % 2 === 0 ? '72%' : '36%'}
+        />
+      ))}
+    </Card>
+  );
+}
+
+export function SkeletonCardGrid({
+  cards = 6,
+  columns = 2,
+}: {
+  cards?: number;
+  columns?: number;
+}) {
+  const theme = useTheme();
+  const width = columns >= 4 ? '23.5%' : columns === 3 ? '31%' : columns === 2 ? '47.5%' : '100%';
+  return (
+    <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: theme.spacing.md }}>
+      {Array.from({ length: cards }).map((_, index) => (
+        <Card key={index} style={{ gap: theme.spacing.sm, minHeight: 112, padding: theme.spacing.md, width }}>
+          <SkeletonLoader hidden height={16} width="64%" />
+          <SkeletonLoader hidden height={28} width="42%" />
+        </Card>
+      ))}
+    </View>
+  );
+}
+
+export function ListSkeleton({
+  accessibilityLabel,
+  rows = 5,
+}: {
+  accessibilityLabel: string;
+  rows?: number;
+}) {
+  const theme = useTheme();
+  return (
+    <View
+      accessible
+      accessibilityLabel={accessibilityLabel}
+      accessibilityRole="progressbar"
+      style={{ gap: theme.spacing.md, padding: theme.spacing.md }}
+    >
+      {Array.from({ length: rows }).map((_, index) => (
+        <SkeletonRow key={index} lines={index % 2 === 0 ? 3 : 2} />
+      ))}
+    </View>
+  );
 }
 
 export function SectionHeader({ title, actionLabel, onAction, headingLevel = 2 }: { title: string; actionLabel?: string; onAction?: () => void; headingLevel?: HeadingLevel }) {
@@ -450,6 +533,75 @@ export function SectionHeader({ title, actionLabel, onAction, headingLevel = 2 }
     <View style={{ alignItems: 'center', flexDirection: 'row', justifyContent: 'space-between', minHeight: 44 }}>
       <HeadingText level={headingLevel} style={[theme.typography.heading, { color: theme.colors.text }]}>{title}</HeadingText>
       {actionLabel && onAction ? <Button label={actionLabel} onPress={onAction} variant="ghost" /> : null}
+    </View>
+  );
+}
+
+export function FilterChipGroup({
+  label,
+  onSelect,
+  options,
+  selected,
+  testIDPrefix,
+}: {
+  label: string;
+  onSelect: (value: string) => void;
+  options: { value: string; label: string }[];
+  selected: string;
+  testIDPrefix?: string;
+}) {
+  const theme = useTheme();
+  const [focused, setFocused] = useState<string | null>(null);
+  return (
+    <View style={{ gap: theme.spacing.xs }}>
+      <Text style={[theme.typography.caption, { color: theme.colors.textMuted, fontWeight: '700' }]}>
+        {label}
+      </Text>
+      <ScrollView
+        contentContainerStyle={{ gap: theme.spacing.sm }}
+        horizontal
+        keyboardShouldPersistTaps="handled"
+        showsHorizontalScrollIndicator={false}
+      >
+        {options.map((option) => {
+          const active = selected === option.value;
+          return (
+            <Pressable
+              accessibilityRole="button"
+              accessibilityState={{ selected: active }}
+              key={option.value}
+              onBlur={() => setFocused((current) => (current === option.value ? null : current))}
+              onFocus={() => setFocused(option.value)}
+              onPress={() => onSelect(option.value)}
+              style={({ pressed }) => ({
+                backgroundColor: active ? theme.colors.primary : pressed ? theme.colors.primarySubtle : theme.colors.surface,
+                borderColor: focused === option.value || active ? theme.colors.primary : theme.colors.border,
+                borderRadius: theme.radii.full,
+                borderWidth: 1,
+                justifyContent: 'center',
+                minHeight: 38,
+                opacity: pressed ? 0.82 : 1,
+                paddingHorizontal: theme.spacing.md,
+                paddingVertical: theme.spacing.xs,
+              })}
+              testID={testIDPrefix ? `${testIDPrefix}-${option.value}` : undefined}
+            >
+              <Text
+                style={[
+                  theme.typography.label,
+                  {
+                    color: active ? theme.colors.textInverse : theme.colors.text,
+                    fontSize: 13,
+                    fontWeight: '700',
+                  },
+                ]}
+              >
+                {option.label}
+              </Text>
+            </Pressable>
+          );
+        })}
+      </ScrollView>
     </View>
   );
 }

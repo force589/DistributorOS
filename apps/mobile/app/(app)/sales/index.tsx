@@ -6,7 +6,6 @@ import {
   ActivityIndicator,
   FlatList,
   Pressable,
-  ScrollView,
   Text,
   TextInput,
   View,
@@ -20,7 +19,7 @@ import { FullScreenState } from '@/components/FullScreenState';
 import { ScreenHeader } from '@/components/ScreenHeader';
 import { StyleSheet as ThemedStyleSheet } from '@/design/stylesheet';
 import { colors, radii, spacing } from '@/design/tokens';
-import { HeadingText } from '@/design-system';
+import { FilterChipGroup, HeadingText, ListSkeleton } from '@/design-system';
 import { getSaleErrorTranslationKey } from '@/features/sales/errorMessages';
 import {
   formatInr,
@@ -81,11 +80,18 @@ export default function SalesListScreen() {
 
   if (query.isPending) {
     return (
-      <FullScreenState
-        loading
-        message={t('sales.list.loadingMessage')}
-        title={t('sales.list.loadingTitle')}
-      />
+      <SafeAreaView style={styles.safeArea}>
+        <ScreenHeader
+          actionLabel={t('sales.list.create')}
+          level="primary"
+          onAction={() => router.push('/sales/new')}
+          subtitle={t('sales.list.subtitle')}
+          title={t('sales.list.title')}
+        />
+        <ListSkeleton
+          accessibilityLabel={`${t('sales.list.loadingTitle')}. ${t('sales.list.loadingMessage')}`}
+        />
+      </SafeAreaView>
     );
   }
   if (query.isError && sales.length === 0) {
@@ -131,23 +137,25 @@ export default function SalesListScreen() {
           value={date}
         />
         {dateError ? <Text style={styles.error}>{t('sales.validation.dateInvalid')}</Text> : null}
-        <FilterRow
+        <FilterChipGroup
           label={t('sales.list.filterLabel')}
+          onSelect={(value) => setStatus(value as SaleStatus)}
           options={statuses.map((value) => ({
             value,
             label: value === 'all' ? t('sales.filters.all') : t(saleStatusKeys[value]),
           }))}
           selected={status}
-          onSelect={(value) => setStatus(value as SaleStatus)}
+          testIDPrefix="sale-status"
         />
-        <FilterRow
+        <FilterChipGroup
           label={t('sales.list.sortLabel')}
+          onSelect={(value) => setSort(value as SaleSort)}
           options={sorts.map((value) => ({
             value,
             label: t(value === 'newest' ? 'sales.sorts.newest' : 'sales.sorts.oldest'),
           }))}
           selected={sort}
-          onSelect={(value) => setSort(value as SaleSort)}
+          testIDPrefix="sale-sort"
         />
         {query.isFetching && !query.isFetchingNextPage ? (
           <View style={styles.updating}>
@@ -192,34 +200,6 @@ export default function SalesListScreen() {
         )}
       />
     </SafeAreaView>
-  );
-}
-
-function FilterRow({ label, onSelect, options, selected }: {
-  label: string;
-  onSelect: (value: string) => void;
-  options: { value: string; label: string }[];
-  selected: string;
-}) {
-  return (
-    <View style={styles.filterGroup}>
-      <Text style={styles.filterLabel}>{label}</Text>
-      <ScrollView contentContainerStyle={styles.chips} horizontal showsHorizontalScrollIndicator={false}>
-        {options.map((option) => (
-          <Pressable
-            key={option.value}
-            accessibilityRole="button"
-            accessibilityState={{ selected: selected === option.value }}
-            onPress={() => onSelect(option.value)}
-            style={[styles.chip, selected === option.value && styles.selectedChip]}
-          >
-            <Text style={[styles.chipText, selected === option.value && styles.selectedChipText]}>
-              {option.label}
-            </Text>
-          </Pressable>
-        ))}
-      </ScrollView>
-    </View>
   );
 }
 
@@ -268,21 +248,6 @@ const styles = ThemedStyleSheet.create({
     paddingHorizontal: spacing.md,
   },
   error: { color: colors.danger, fontSize: 13 },
-  filterGroup: { gap: spacing.xs },
-  filterLabel: { color: colors.textMuted, fontSize: 12, fontWeight: '700' },
-  chips: { gap: spacing.sm },
-  chip: {
-    borderColor: colors.border,
-    borderRadius: 999,
-    borderWidth: 1,
-    paddingHorizontal: spacing.md,
-    justifyContent: 'center',
-    minHeight: 44,
-    paddingVertical: spacing.sm,
-  },
-  selectedChip: { backgroundColor: colors.primary, borderColor: colors.primary },
-  chipText: { color: colors.text, fontSize: 13, fontWeight: '700' },
-  selectedChipText: { color: colors.surface },
   updating: { alignItems: 'center', flexDirection: 'row', gap: spacing.sm },
   muted: { color: colors.textMuted, fontSize: 13 },
   inlineError: { padding: spacing.md },

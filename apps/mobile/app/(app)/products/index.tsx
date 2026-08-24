@@ -6,7 +6,6 @@ import {
   ActivityIndicator,
   FlatList,
   Pressable,
-  ScrollView,
   Text,
   TextInput,
   View,
@@ -21,7 +20,7 @@ import { PrimaryButton } from '@/components/PrimaryButton';
 import { ScreenHeader } from '@/components/ScreenHeader';
 import { StyleSheet as ThemedStyleSheet } from '@/design/stylesheet';
 import { colors, radii, spacing } from '@/design/tokens';
-import { HeadingText } from '@/design-system';
+import { FilterChipGroup, HeadingText, ListSkeleton } from '@/design-system';
 import { getProductErrorTranslationKey } from '@/features/products/errorMessages';
 import { formatInr, productUnitKeys } from '@/features/products/formatting';
 import { useDebouncedValue } from '@/hooks/useDebouncedValue';
@@ -78,11 +77,18 @@ export default function ProductListScreen() {
 
   if (query.isPending) {
     return (
-      <FullScreenState
-        loading
-        message={t('products.list.loadingMessage')}
-        title={t('products.list.loadingTitle')}
-      />
+      <SafeAreaView style={styles.safeArea}>
+        <ScreenHeader
+          actionLabel={t('products.list.create')}
+          level="primary"
+          onAction={() => router.push('/products/new')}
+          subtitle={t('products.list.subtitle')}
+          title={t('products.list.title')}
+        />
+        <ListSkeleton
+          accessibilityLabel={`${t('products.list.loadingTitle')}. ${t('products.list.loadingMessage')}`}
+        />
+      </SafeAreaView>
     );
   }
   if (query.isError && products.length === 0) {
@@ -132,51 +138,39 @@ export default function ProductListScreen() {
             <Text style={styles.mutedText}>{t('products.list.updating')}</Text>
           </View>
         ) : null}
-        <Text style={styles.controlLabel}>{t('products.list.filterLabel')}</Text>
-        <ScrollView
-          contentContainerStyle={styles.chipRow}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-        >
-          {statuses.map((option) => (
-            <FilterChip
-              key={option}
-              active={status === option}
-              label={
-                option === 'all'
-                  ? t('products.filters.all')
-                  : option === 'active'
-                    ? t('products.filters.active')
-                    : t('products.filters.archived')
-              }
-              onPress={() => setStatus(option)}
-            />
-          ))}
-        </ScrollView>
-        <Text style={styles.controlLabel}>{t('products.list.sortLabel')}</Text>
-        <ScrollView
-          contentContainerStyle={styles.chipRow}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-        >
-          {sorts.map((option) => (
-            <FilterChip
-              key={option}
-              active={sort === option}
-              label={t(
-                {
-                  newest: 'products.sorts.newest',
-                  oldest: 'products.sorts.oldest',
-                  name_asc: 'products.sorts.nameAsc',
-                  name_desc: 'products.sorts.nameDesc',
-                  price_asc: 'products.sorts.priceAsc',
-                  price_desc: 'products.sorts.priceDesc',
-                }[option],
-              )}
-              onPress={() => setSort(option)}
-            />
-          ))}
-        </ScrollView>
+        <FilterChipGroup
+          label={t('products.list.filterLabel')}
+          onSelect={(value) => setStatus(value as ProductStatus)}
+          options={statuses.map((option) => ({
+            label: option === 'all'
+              ? t('products.filters.all')
+              : option === 'active'
+                ? t('products.filters.active')
+                : t('products.filters.archived'),
+            value: option,
+          }))}
+          selected={status}
+          testIDPrefix="product-status"
+        />
+        <FilterChipGroup
+          label={t('products.list.sortLabel')}
+          onSelect={(value) => setSort(value as ProductSort)}
+          options={sorts.map((option) => ({
+            label: t(
+              {
+                newest: 'products.sorts.newest',
+                oldest: 'products.sorts.oldest',
+                name_asc: 'products.sorts.nameAsc',
+                name_desc: 'products.sorts.nameDesc',
+                price_asc: 'products.sorts.priceAsc',
+                price_desc: 'products.sorts.priceDesc',
+              }[option],
+            ),
+            value: option,
+          }))}
+          selected={sort}
+          testIDPrefix="product-sort"
+        />
       </View>
       {query.isFetchNextPageError ? (
         <InlineError
@@ -240,27 +234,6 @@ function InlineError({ message, onRetry }: { message: string; onRetry: () => voi
   );
 }
 
-function FilterChip({
-  active,
-  label,
-  onPress,
-}: {
-  active: boolean;
-  label: string;
-  onPress: () => void;
-}) {
-  return (
-    <Pressable
-      accessibilityRole="button"
-      accessibilityState={{ selected: active }}
-      onPress={onPress}
-      style={[styles.chip, active && styles.activeChip]}
-    >
-      <Text style={[styles.chipText, active && styles.activeChipText]}>{label}</Text>
-    </Pressable>
-  );
-}
-
 function ProductRow({
   product,
   language,
@@ -307,20 +280,6 @@ const styles = ThemedStyleSheet.create({
     paddingHorizontal: spacing.md,
   },
   updating: { alignItems: 'center', flexDirection: 'row', gap: spacing.sm },
-  controlLabel: { color: colors.textMuted, fontSize: 13, fontWeight: '700' },
-  chipRow: { gap: spacing.sm },
-  chip: {
-    borderColor: colors.border,
-    borderRadius: 999,
-    borderWidth: 1,
-    paddingHorizontal: spacing.md,
-    justifyContent: 'center',
-    minHeight: 44,
-    paddingVertical: spacing.sm,
-  },
-  activeChip: { backgroundColor: colors.primary, borderColor: colors.primary },
-  chipText: { color: colors.text, fontSize: 14, fontWeight: '600' },
-  activeChipText: { color: colors.surface },
   inlineError: { gap: spacing.sm, padding: spacing.md },
   list: { gap: spacing.md, padding: spacing.md },
   emptyList: { flexGrow: 1 },

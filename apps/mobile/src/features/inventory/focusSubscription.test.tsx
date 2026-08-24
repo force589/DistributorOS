@@ -4,6 +4,7 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import { render } from '@testing-library/react-native';
 
 import InventoryListScreen from '../../../app/(app)/inventory';
+import { UnsavedChangesProvider } from '../../navigation/UnsavedChangesContext';
 
 const mockUseIsFocused = jest.fn();
 
@@ -26,7 +27,11 @@ describe('inventory query focus subscription', () => {
   it.each([false, true])('subscribes only when the inventory screen focus is %s', async (focused) => {
     mockUseIsFocused.mockReturnValue(focused);
 
-    await render(<InventoryListScreen />);
+    await render(
+      <UnsavedChangesProvider>
+        <InventoryListScreen />
+      </UnsavedChangesProvider>,
+    );
 
     expect(useInfiniteQuery).toHaveBeenCalledWith(
       expect.objectContaining({ subscribed: focused }),

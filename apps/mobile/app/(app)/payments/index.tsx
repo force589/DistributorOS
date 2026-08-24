@@ -5,8 +5,6 @@ import { useMemo, useRef, useState } from 'react';
 import {
   ActivityIndicator,
   FlatList,
-  Pressable,
-  ScrollView,
   Text,
   TextInput,
   View,
@@ -20,7 +18,7 @@ import { FullScreenState } from '@/components/FullScreenState';
 import { ScreenHeader } from '@/components/ScreenHeader';
 import { StyleSheet as ThemedStyleSheet } from '@/design/stylesheet';
 import { colors, radii, spacing } from '@/design/tokens';
-import { HeadingText } from '@/design-system';
+import { FilterChipGroup, HeadingText, ListSkeleton } from '@/design-system';
 import { getPaymentErrorTranslationKey } from '@/features/payments/errorMessages';
 import {
   paymentMethodKeys,
@@ -84,11 +82,18 @@ export default function PaymentsListScreen() {
 
   if (query.isPending) {
     return (
-      <FullScreenState
-        loading
-        message={t('payments.list.loadingMessage')}
-        title={t('payments.list.loadingTitle')}
-      />
+      <SafeAreaView style={styles.safeArea}>
+        <ScreenHeader
+          actionLabel={t('payments.list.create')}
+          level="primary"
+          onAction={() => router.push('/payments/new')}
+          subtitle={t('payments.list.subtitle')}
+          title={t('payments.list.title')}
+        />
+        <ListSkeleton
+          accessibilityLabel={`${t('payments.list.loadingTitle')}. ${t('payments.list.loadingMessage')}`}
+        />
+      </SafeAreaView>
     );
   }
   if (query.isError && payments.length === 0) {
@@ -134,32 +139,35 @@ export default function PaymentsListScreen() {
           value={date}
         />
         {dateError ? <Text style={styles.error}>{t('payments.validation.dateInvalid')}</Text> : null}
-        <FilterRow
+        <FilterChipGroup
           label={t('payments.list.filterLabel')}
+          onSelect={(value) => setStatus(value as PaymentStatus)}
           options={statuses.map((value) => ({
             value,
             label: value === 'all' ? t('payments.filters.all') : t(paymentStatusKeys[value]),
           }))}
           selected={status}
-          onSelect={(value) => setStatus(value as PaymentStatus)}
+          testIDPrefix="payment-status"
         />
-        <FilterRow
+        <FilterChipGroup
           label={t('payments.list.methodLabel')}
+          onSelect={(value) => setMethod(value as PaymentMethod)}
           options={methods.map((value) => ({
             value,
             label: value === 'all' ? t('payments.methods.all') : t(paymentMethodKeys[value]),
           }))}
           selected={method}
-          onSelect={(value) => setMethod(value as PaymentMethod)}
+          testIDPrefix="payment-method"
         />
-        <FilterRow
+        <FilterChipGroup
           label={t('payments.list.sortLabel')}
+          onSelect={(value) => setSort(value as PaymentSort)}
           options={sorts.map((value) => ({
             value,
             label: t(value === 'newest' ? 'payments.sorts.newest' : 'payments.sorts.oldest'),
           }))}
           selected={sort}
-          onSelect={(value) => setSort(value as PaymentSort)}
+          testIDPrefix="payment-sort"
         />
         {query.isFetching && !query.isFetchingNextPage ? (
           <View style={styles.updating}>
@@ -207,34 +215,6 @@ export default function PaymentsListScreen() {
   );
 }
 
-function FilterRow({ label, onSelect, options, selected }: {
-  label: string;
-  onSelect: (value: string) => void;
-  options: { value: string; label: string }[];
-  selected: string;
-}) {
-  return (
-    <View style={styles.filterGroup}>
-      <Text style={styles.filterLabel}>{label}</Text>
-      <ScrollView contentContainerStyle={styles.chips} horizontal showsHorizontalScrollIndicator={false}>
-        {options.map((option) => (
-          <Pressable
-            key={option.value}
-            accessibilityRole="button"
-            accessibilityState={{ selected: selected === option.value }}
-            onPress={() => onSelect(option.value)}
-            style={[styles.chip, selected === option.value && styles.selectedChip]}
-          >
-            <Text style={[styles.chipText, selected === option.value && styles.selectedChipText]}>
-              {option.label}
-            </Text>
-          </Pressable>
-        ))}
-      </ScrollView>
-    </View>
-  );
-}
-
 const styles = ThemedStyleSheet.create({
   safeArea: { backgroundColor: colors.background, flex: 1 },
   controls: {
@@ -254,21 +234,6 @@ const styles = ThemedStyleSheet.create({
     paddingHorizontal: spacing.md,
   },
   error: { color: colors.danger, fontSize: 13 },
-  filterGroup: { gap: spacing.xs },
-  filterLabel: { color: colors.textMuted, fontSize: 12, fontWeight: '700' },
-  chips: { gap: spacing.sm },
-  chip: {
-    borderColor: colors.border,
-    borderRadius: 999,
-    borderWidth: 1,
-    paddingHorizontal: spacing.md,
-    justifyContent: 'center',
-    minHeight: 44,
-    paddingVertical: spacing.sm,
-  },
-  selectedChip: { backgroundColor: colors.primary, borderColor: colors.primary },
-  chipText: { color: colors.text, fontSize: 13, fontWeight: '700' },
-  selectedChipText: { color: colors.surface },
   updating: { alignItems: 'center', flexDirection: 'row', gap: spacing.sm },
   muted: { color: colors.textMuted, fontSize: 13 },
   inlineError: { padding: spacing.md },

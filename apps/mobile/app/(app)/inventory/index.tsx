@@ -19,7 +19,7 @@ import { FullScreenState } from '@/components/FullScreenState';
 import { ScreenHeader } from '@/components/ScreenHeader';
 import { StyleSheet as ThemedStyleSheet } from '@/design/stylesheet';
 import { colors, radii, spacing } from '@/design/tokens';
-import { HeadingText } from '@/design-system';
+import { HeadingText, ListSkeleton } from '@/design-system';
 import { getInventoryErrorTranslationKey } from '@/features/inventory/errorMessages';
 import {
   formatStockQuantity,
@@ -62,11 +62,18 @@ export default function InventoryListScreen() {
 
   if (query.isPending) {
     return (
-      <FullScreenState
-        loading
-        message={t('inventory.list.loadingMessage')}
-        title={t('inventory.list.loadingTitle')}
-      />
+      <SafeAreaView style={styles.safeArea}>
+        <ScreenHeader
+          actionLabel={t('inventory.list.history')}
+          level="primary"
+          onAction={() => router.push('/inventory/history')}
+          subtitle={t('inventory.list.subtitle')}
+          title={t('inventory.list.title')}
+        />
+        <ListSkeleton
+          accessibilityLabel={`${t('inventory.list.loadingTitle')}. ${t('inventory.list.loadingMessage')}`}
+        />
+      </SafeAreaView>
     );
   }
   if (query.isError && stock.length === 0) {

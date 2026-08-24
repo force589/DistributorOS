@@ -4,9 +4,11 @@ import { appIcons } from '@/design/icons';
 import {
   ActionCard,
   BottomNavigation,
+  FilterChipGroup,
   HeadingText,
   Icon,
   IconButton,
+  ListSkeleton,
   NavigationListItem,
   SectionHeader,
 } from '@/design-system';
@@ -109,6 +111,36 @@ describe('commercial navigation controls', () => {
     );
 
     expect(screen.getByRole('header', { name: 'Dashboard' }).props['aria-level']).toBe(1);
+  });
+
+  it('renders compact filter chips with an accessible selected state', async () => {
+    const onSelect = jest.fn();
+    const screen = await render(
+      <FilterChipGroup
+        label="Status"
+        onSelect={onSelect}
+        options={[
+          { label: 'All', value: 'all' },
+          { label: 'Archived', value: 'archived' },
+        ]}
+        selected="all"
+        testIDPrefix="status"
+      />,
+    );
+
+    expect(screen.getByRole('button', { name: 'All' }).props.accessibilityState).toEqual({
+      selected: true,
+    });
+    fireEvent.press(screen.getByRole('button', { name: 'Archived' }));
+
+    expect(onSelect).toHaveBeenCalledWith('archived');
+  });
+
+  it('announces one list-level skeleton instead of every decorative row', async () => {
+    const screen = await render(<ListSkeleton accessibilityLabel="Loading customers" rows={3} />);
+
+    expect(screen.getByRole('progressbar', { name: 'Loading customers' })).toBeTruthy();
+    expect(findProps(screen.toJSON(), (props) => props['aria-hidden'] === true).length).toBeGreaterThan(0);
   });
 });
 

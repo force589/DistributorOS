@@ -23,7 +23,6 @@ import {
   ActivityIndicator,
   FlatList,
   Pressable,
-  ScrollView,
   Text,
   TextInput,
   View,
@@ -38,7 +37,7 @@ import { PrimaryButton } from '@/components/PrimaryButton';
 import { ScreenHeader } from '@/components/ScreenHeader';
 import { StyleSheet as ThemedStyleSheet } from '@/design/stylesheet';
 import { colors, radii, spacing } from '@/design/tokens';
-import { HeadingText } from '@/design-system';
+import { FilterChipGroup, HeadingText, ListSkeleton } from '@/design-system';
 import { csvFilename, saveCsvFile } from '@/features/insights/csvExport';
 import { getInsightsErrorTranslationKey } from '@/features/insights/errorMessages';
 import {
@@ -215,11 +214,19 @@ export default function ReportDetailScreen() {
 
   if (query.isPending && !dateErrorKey) {
     return (
-      <FullScreenState
-        loading
-        message={t('insights.reports.loadingMessage')}
-        title={t('insights.reports.loadingTitle')}
-      />
+      <SafeAreaView style={styles.safeArea}>
+        <ScreenHeader
+          actionLabel={t('insights.reports.exportCsv')}
+          backLabel={t('common.back')}
+          onBack={() => router.dismissTo('/reports' as Href)}
+          subtitle={t(reportSubtitleKey(reportKind))}
+          title={t(reportTitleKey(reportKind))}
+        />
+        <ListSkeleton
+          accessibilityLabel={`${t('insights.reports.loadingTitle')}. ${t('insights.reports.loadingMessage')}`}
+          rows={6}
+        />
+      </SafeAreaView>
     );
   }
 
@@ -261,14 +268,15 @@ export default function ReportDetailScreen() {
         />
         {isDatedReport(reportKind) ? (
           <>
-            <FilterRow
+            <FilterChipGroup
               label={t('insights.reports.periodLabel')}
+              onSelect={(value) => setPeriod(value as ReportPeriod)}
               options={reportPeriods.map((value) => ({
                 label: t(`insights.reports.periods.${periodKey(value)}`),
                 value,
               }))}
               selected={period ?? 'all'}
-              onSelect={(value) => setPeriod(value as ReportPeriod)}
+              testIDPrefix="report-period"
             />
             {period === 'custom' ? (
               <View style={styles.dateRow}>
@@ -296,8 +304,9 @@ export default function ReportDetailScreen() {
                 />
               </View>
             ) : null}
-            <FilterRow
+            <FilterChipGroup
               label={t('insights.reports.statusLabel')}
+              onSelect={(value) => setStatus(value as ReportStatus)}
               options={(reportKind === 'payments' ? paymentStatuses : salesStatuses).map(
                 (value) => ({
                   label: t(`insights.reports.status.${statusKey(value)}`),
@@ -305,47 +314,51 @@ export default function ReportDetailScreen() {
                 }),
               )}
               selected={effectiveStatus}
-              onSelect={(value) => setStatus(value as ReportStatus)}
+              testIDPrefix="report-status"
             />
-            <FilterRow
+            <FilterChipGroup
               label={t('insights.reports.sortLabel')}
+              onSelect={(value) => setDatedSort(value as SalesReportSort)}
               options={datedReportSorts.map((value) => ({
                 label: t(`insights.reports.sorts.${sortKey(value)}`),
                 value,
               }))}
               selected={datedSort ?? 'newest'}
-              onSelect={(value) => setDatedSort(value as SalesReportSort)}
+              testIDPrefix="report-sort"
             />
           </>
         ) : reportKind === 'outstanding' ? (
-          <FilterRow
+          <FilterChipGroup
             label={t('insights.reports.sortLabel')}
+            onSelect={(value) => setOutstandingSort(value as OutstandingReportSort)}
             options={outstandingReportSorts.map((value) => ({
               label: t(`insights.reports.sorts.${sortKey(value)}`),
               value,
             }))}
             selected={outstandingSort}
-            onSelect={(value) => setOutstandingSort(value as OutstandingReportSort)}
+            testIDPrefix="report-sort"
           />
         ) : reportKind === 'inventory' ? (
-          <FilterRow
+          <FilterChipGroup
             label={t('insights.reports.sortLabel')}
+            onSelect={(value) => setInventorySort(value as InventoryReportSort)}
             options={inventoryReportSorts.map((value) => ({
               label: t(`insights.reports.sorts.${sortKey(value)}`),
               value,
             }))}
             selected={inventorySort}
-            onSelect={(value) => setInventorySort(value as InventoryReportSort)}
+            testIDPrefix="report-sort"
           />
         ) : (
-          <FilterRow
+          <FilterChipGroup
             label={t('insights.reports.sortLabel')}
+            onSelect={(value) => setLowStockSort(value as LowStockReportSort)}
             options={lowStockReportSorts.map((value) => ({
               label: t(`insights.reports.sorts.${sortKey(value)}`),
               value,
             }))}
             selected={lowStockSort}
-            onSelect={(value) => setLowStockSort(value as LowStockReportSort)}
+            testIDPrefix="report-sort"
           />
         )}
         {dateErrorKey ? <FeedbackBanner message={t(dateErrorKey)} /> : null}
@@ -520,39 +533,6 @@ function openReportRow(
   }
 }
 
-function FilterRow({
-  label,
-  onSelect,
-  options,
-  selected,
-}: {
-  label: string;
-  onSelect: (value: string) => void;
-  options: { value: string; label: string }[];
-  selected: string;
-}) {
-  return (
-    <View style={styles.filterGroup}>
-      <Text style={styles.filterLabel}>{label}</Text>
-      <ScrollView contentContainerStyle={styles.chips} horizontal showsHorizontalScrollIndicator={false}>
-        {options.map((option) => (
-          <Pressable
-            accessibilityRole="button"
-            accessibilityState={{ selected: selected === option.value }}
-            key={option.value}
-            onPress={() => onSelect(option.value)}
-            style={[styles.chip, selected === option.value && styles.selectedChip]}
-          >
-            <Text style={[styles.chipText, selected === option.value && styles.selectedChipText]}>
-              {option.label}
-            </Text>
-          </Pressable>
-        ))}
-      </ScrollView>
-    </View>
-  );
-}
-
 function ReportRowCard({
   kind,
   onPress,
@@ -670,38 +650,6 @@ const styles = ThemedStyleSheet.create({
   },
   dateInput: {
     flex: 1,
-  },
-  filterGroup: {
-    gap: spacing.xs,
-  },
-  filterLabel: {
-    color: colors.textMuted,
-    fontSize: 12,
-    fontWeight: '700',
-  },
-  chips: {
-    gap: spacing.sm,
-  },
-  chip: {
-    borderColor: colors.border,
-    borderRadius: 999,
-    borderWidth: 1,
-    paddingHorizontal: spacing.md,
-    justifyContent: 'center',
-    minHeight: 44,
-    paddingVertical: spacing.sm,
-  },
-  selectedChip: {
-    backgroundColor: colors.primary,
-    borderColor: colors.primary,
-  },
-  chipText: {
-    color: colors.text,
-    fontSize: 13,
-    fontWeight: '700',
-  },
-  selectedChipText: {
-    color: colors.surface,
   },
   updating: {
     alignItems: 'center',

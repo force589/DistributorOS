@@ -19,7 +19,13 @@ import { StyleSheet as ThemedStyleSheet } from '@/design/stylesheet';
 import { colors, radii, spacing } from '@/design/tokens';
 import { useResponsiveLayout } from '@/design/responsive';
 import { useTheme } from '@/design/theme';
-import { ActionCard, HeadingText, SectionHeader } from '@/design-system';
+import {
+  ActionCard,
+  HeadingText,
+  SectionHeader,
+  SkeletonCardGrid,
+  SkeletonLoader,
+} from '@/design-system';
 import { useAuth } from '@/features/auth/AuthContext';
 import { getInsightsErrorTranslationKey } from '@/features/insights/errorMessages';
 import {
@@ -50,13 +56,7 @@ export default function DashboardScreen() {
   });
 
   if (dashboard.isPending) {
-    return (
-      <FullScreenState
-        loading
-        message={t('insights.dashboard.loadingMessage')}
-        title={t('insights.dashboard.loadingTitle')}
-      />
-    );
+    return <DashboardLoadingScreen />;
   }
 
   if (dashboard.isError) {
@@ -186,6 +186,79 @@ export default function DashboardScreen() {
           <InventoryActivity dashboard={data} />
           <TopSelling dashboard={data} />
           <Outstanding dashboard={data} onPress={(customerCode) => router.push(`/customers/${customerCode}`)} />
+        </View>
+      </ScrollView>
+    </SafeAreaView>
+  );
+}
+
+function DashboardLoadingScreen() {
+  const { t } = useTranslation();
+  const theme = useTheme();
+  const responsive = useResponsiveLayout();
+  const router = useRouter();
+  const quickActionWidth =
+    responsive.quickActionColumns === 4
+      ? '23.5%'
+      : responsive.quickActionColumns === 3
+        ? '31%'
+        : '47.5%';
+  const metricColumns = responsive.isDesktop ? 3 : responsive.isTablet ? 2 : 1;
+
+  return (
+    <SafeAreaView style={[styles.safeArea, { backgroundColor: theme.colors.background }]}>
+      <ScrollView
+        contentContainerStyle={{
+          alignItems: 'center',
+          paddingBottom: theme.spacing.xxl,
+          paddingHorizontal: responsive.isPhone ? theme.spacing.md : theme.spacing.lg,
+          paddingTop: responsive.isPhone ? theme.spacing.md : theme.spacing.lg,
+        }}
+      >
+        <View style={{ gap: theme.spacing.lg, maxWidth: responsive.contentMaxWidth, width: '100%' }}>
+          <View style={[styles.header, { paddingRight: theme.spacing.xxxl }]}>
+            <View style={{ flex: 1 }}>
+              <HeadingText level={1} style={[styles.brand, { color: theme.colors.primary }]}>
+                {t('brand.name')}
+              </HeadingText>
+              <Text style={[styles.subtitle, { color: theme.colors.textMuted }]}>
+                {t('insights.dashboard.loadingMessage')}
+              </Text>
+            </View>
+          </View>
+
+          <View
+            accessible
+            accessibilityLabel={`${t('insights.dashboard.loadingTitle')}. ${t('insights.dashboard.loadingMessage')}`}
+            accessibilityRole="progressbar"
+          >
+            <SkeletonCardGrid cards={9} columns={metricColumns} />
+          </View>
+
+          <View style={{ gap: theme.spacing.sm }}>
+            <SectionHeader title={t('home.quickActions')} />
+            <View style={styles.actionGrid}>
+              {quickActions.map((action) => (
+                <ActionCard
+                  description={t(`home.modules.${action.key}.description`)}
+                  icon={action.icon}
+                  key={action.key}
+                  onPress={() => router.navigate(action.href as Href)}
+                  style={{ width: quickActionWidth }}
+                  testID={`quick-action-${action.key}`}
+                  title={t(`home.modules.${action.key}.title`)}
+                />
+              ))}
+            </View>
+          </View>
+
+          {Array.from({ length: 4 }).map((_, index) => (
+            <View key={index} style={styles.section}>
+              <SkeletonLoader hidden height={18} width="36%" />
+              <SkeletonLoader hidden height={16} width="72%" />
+              <SkeletonLoader hidden height={16} width="54%" />
+            </View>
+          ))}
         </View>
       </ScrollView>
     </SafeAreaView>

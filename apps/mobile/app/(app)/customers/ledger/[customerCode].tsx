@@ -6,7 +6,6 @@ import {
   ActivityIndicator,
   FlatList,
   Pressable,
-  ScrollView,
   Text,
   TextInput,
   View,
@@ -20,7 +19,7 @@ import { FullScreenState } from '@/components/FullScreenState';
 import { ScreenHeader } from '@/components/ScreenHeader';
 import { StyleSheet as ThemedStyleSheet } from '@/design/stylesheet';
 import { colors, radii, spacing } from '@/design/tokens';
-import { HeadingText } from '@/design-system';
+import { FilterChipGroup, HeadingText, ListSkeleton } from '@/design-system';
 import { getLedgerErrorTranslationKey } from '@/features/ledger/errorMessages';
 import {
   formatLedgerDate,
@@ -114,11 +113,17 @@ export default function CustomerLedgerScreen() {
   }
   if (ledgerQuery.isPending) {
     return (
-      <FullScreenState
-        loading
-        message={t('ledger.list.loadingMessage')}
-        title={t('ledger.list.loadingTitle')}
-      />
+      <SafeAreaView style={styles.safeArea}>
+        <ScreenHeader
+          backLabel={t('common.back')}
+          onBack={() => router.dismissTo(`/customers/${customerCode}`)}
+          subtitle={`${customerQuery.data.name} · ${t('ledger.list.subtitle')}`}
+          title={t('ledger.list.title')}
+        />
+        <ListSkeleton
+          accessibilityLabel={`${t('ledger.list.loadingTitle')}. ${t('ledger.list.loadingMessage')}`}
+        />
+      </SafeAreaView>
     );
   }
   if (ledgerQuery.isError && entries.length === 0) {
@@ -162,34 +167,16 @@ export default function CustomerLedgerScreen() {
           value={date}
         />
         {dateError ? <Text style={styles.error}>{t('ledger.validation.dateInvalid')}</Text> : null}
-        <View style={styles.filterGroup}>
-          <Text style={styles.filterLabel}>{t('ledger.list.typeLabel')}</Text>
-          <ScrollView
-            contentContainerStyle={styles.chips}
-            horizontal
-            showsHorizontalScrollIndicator={false}
-          >
-            {entryTypes.map((value) => (
-              <Pressable
-                key={value}
-                accessibilityRole="button"
-                accessibilityState={{ selected: entryType === value }}
-                onPress={() => setEntryType(value)}
-                style={[styles.chip, entryType === value && styles.selectedChip]}
-              >
-                <Text
-                  style={[styles.chipText, entryType === value && styles.selectedChipText]}
-                >
-                  {t(
-                    value === 'all'
-                      ? 'ledger.filters.all'
-                      : ledgerEntryTypeKeys[value],
-                  )}
-                </Text>
-              </Pressable>
-            ))}
-          </ScrollView>
-        </View>
+        <FilterChipGroup
+          label={t('ledger.list.typeLabel')}
+          onSelect={(value) => setEntryType(value as LedgerEntryType)}
+          options={entryTypes.map((value) => ({
+            label: t(value === 'all' ? 'ledger.filters.all' : ledgerEntryTypeKeys[value]),
+            value,
+          }))}
+          selected={entryType}
+          testIDPrefix="ledger-type"
+        />
         {ledgerQuery.isFetching && !ledgerQuery.isFetchingNextPage ? (
           <View style={styles.updating}>
             <ActivityIndicator color={colors.primary} size="small" />
@@ -315,21 +302,6 @@ const styles = ThemedStyleSheet.create({
     paddingHorizontal: spacing.md,
   },
   error: { color: colors.danger, fontSize: 13 },
-  filterGroup: { gap: spacing.xs },
-  filterLabel: { color: colors.textMuted, fontSize: 12, fontWeight: '700' },
-  chips: { gap: spacing.sm },
-  chip: {
-    borderColor: colors.border,
-    borderRadius: 999,
-    borderWidth: 1,
-    paddingHorizontal: spacing.md,
-    justifyContent: 'center',
-    minHeight: 44,
-    paddingVertical: spacing.sm,
-  },
-  selectedChip: { backgroundColor: colors.primary, borderColor: colors.primary },
-  chipText: { color: colors.text, fontSize: 13, fontWeight: '700' },
-  selectedChipText: { color: colors.surface },
   updating: { alignItems: 'center', flexDirection: 'row', gap: spacing.sm },
   muted: { color: colors.textMuted, fontSize: 13 },
   inlineError: { padding: spacing.md },

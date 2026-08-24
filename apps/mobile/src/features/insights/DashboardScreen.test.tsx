@@ -100,6 +100,23 @@ describe('dashboard navigation redesign', () => {
     expect(mockNavigate).toHaveBeenCalledTimes(destinations.length);
     expect(useQuery).toHaveBeenCalledTimes(1);
   });
+
+  it('keeps quick actions reachable while dashboard data is loading', async () => {
+    jest.mocked(useQuery).mockReturnValue({
+      isError: false,
+      isFetching: true,
+      isPending: true,
+      isRefetching: false,
+      refetch: jest.fn(),
+    } as unknown as ReturnType<typeof useQuery>);
+
+    const screen = await render(<DashboardScreen />);
+
+    expect(screen.getByText('Quick Actions')).toBeTruthy();
+    await fireEvent.press(screen.getByRole('button', { name: 'Customers' }));
+
+    expect(mockNavigate).toHaveBeenCalledWith('/customers');
+  });
 });
 
 function collectText(node: unknown): string[] {

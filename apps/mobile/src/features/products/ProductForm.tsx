@@ -227,6 +227,6 @@ const styles = ThemedStyleSheet.create({
   },
   selectedUnitChip: { backgroundColor: colors.primary, borderColor: colors.primary },
   unitChipText: { color: colors.text, fontSize: 14, fontWeight: '600' },
-  selectedUnitChipText: { color: colors.surface },
+  selectedUnitChipText: { color: colors.textInverse },
   error: { color: colors.danger, fontSize: 13 },
 });

@@ -427,7 +427,7 @@ const styles = ThemedStyleSheet.create({
   },
   optionSelected: { backgroundColor: colors.primary, borderColor: colors.primary },
   optionLabel: { color: colors.text, fontSize: 15, fontWeight: '700' },
-  optionLabelSelected: { color: colors.surface },
+  optionLabelSelected: { color: colors.textInverse },
   optionDetail: { color: colors.textMuted, fontSize: 12 },
   selectedText: { color: colors.success, fontSize: 14, fontWeight: '700' },
   error: { color: colors.danger, fontSize: 13 },

@@ -5,8 +5,6 @@ import { useMemo, useRef, useState } from 'react';
 import {
   ActivityIndicator,
   FlatList,
-  Pressable,
-  ScrollView,
   Text,
   TextInput,
   View,
@@ -20,7 +18,7 @@ import { FullScreenState } from '@/components/FullScreenState';
 import { ScreenHeader } from '@/components/ScreenHeader';
 import { StyleSheet as ThemedStyleSheet } from '@/design/stylesheet';
 import { colors, radii, spacing } from '@/design/tokens';
-import { HeadingText } from '@/design-system';
+import { FilterChipGroup, HeadingText, ListSkeleton } from '@/design-system';
 import { getInvoiceErrorTranslationKey } from '@/features/invoices/errorMessages';
 import { invoiceRowKey, invoiceStatusKeys } from '@/features/invoices/formatting';
 import { InvoiceListRow } from '@/features/invoices/InvoiceListRow';
@@ -77,11 +75,18 @@ export default function InvoicesListScreen() {
 
   if (query.isPending) {
     return (
-      <FullScreenState
-        loading
-        message={t('invoices.list.loadingMessage')}
-        title={t('invoices.list.loadingTitle')}
-      />
+      <SafeAreaView style={styles.safeArea}>
+        <ScreenHeader
+          actionLabel={t('invoices.list.create')}
+          level="primary"
+          onAction={() => router.push('/invoices/new')}
+          subtitle={t('invoices.list.subtitle')}
+          title={t('invoices.list.title')}
+        />
+        <ListSkeleton
+          accessibilityLabel={`${t('invoices.list.loadingTitle')}. ${t('invoices.list.loadingMessage')}`}
+        />
+      </SafeAreaView>
     );
   }
   if (query.isError && invoices.length === 0) {
@@ -126,23 +131,25 @@ export default function InvoicesListScreen() {
           value={date}
         />
         {dateError ? <Text style={styles.error}>{t('invoices.validation.dateInvalid')}</Text> : null}
-        <FilterRow
+        <FilterChipGroup
           label={t('invoices.list.filterLabel')}
+          onSelect={(value) => setStatus(value as InvoiceStatus)}
           options={statuses.map((value) => ({
             value,
             label: value === 'all' ? t('invoices.filters.all') : t(invoiceStatusKeys[value]),
           }))}
           selected={status}
-          onSelect={(value) => setStatus(value as InvoiceStatus)}
+          testIDPrefix="invoice-status"
         />
-        <FilterRow
+        <FilterChipGroup
           label={t('invoices.list.sortLabel')}
+          onSelect={(value) => setSort(value as InvoiceSort)}
           options={sorts.map((value) => ({
             value,
             label: t(value === 'newest' ? 'invoices.sorts.newest' : 'invoices.sorts.oldest'),
           }))}
           selected={sort}
-          onSelect={(value) => setSort(value as InvoiceSort)}
+          testIDPrefix="invoice-sort"
         />
         {query.isFetching && !query.isFetchingNextPage ? (
           <View style={styles.updating}>
@@ -190,34 +197,6 @@ export default function InvoicesListScreen() {
   );
 }
 
-function FilterRow({ label, onSelect, options, selected }: {
-  label: string;
-  onSelect: (value: string) => void;
-  options: { value: string; label: string }[];
-  selected: string;
-}) {
-  return (
-    <View style={styles.filterGroup}>
-      <Text style={styles.filterLabel}>{label}</Text>
-      <ScrollView contentContainerStyle={styles.chips} horizontal showsHorizontalScrollIndicator={false}>
-        {options.map((option) => (
-          <Pressable
-            key={option.value}
-            accessibilityRole="button"
-            accessibilityState={{ selected: selected === option.value }}
-            onPress={() => onSelect(option.value)}
-            style={[styles.chip, selected === option.value && styles.selectedChip]}
-          >
-            <Text style={[styles.chipText, selected === option.value && styles.selectedChipText]}>
-              {option.label}
-            </Text>
-          </Pressable>
-        ))}
-      </ScrollView>
-    </View>
-  );
-}
-
 const styles = ThemedStyleSheet.create({
   safeArea: { backgroundColor: colors.background, flex: 1 },
   controls: {
@@ -237,21 +216,6 @@ const styles = ThemedStyleSheet.create({
     paddingHorizontal: spacing.md,
   },
   error: { color: colors.danger, fontSize: 13 },
-  filterGroup: { gap: spacing.xs },
-  filterLabel: { color: colors.textMuted, fontSize: 12, fontWeight: '700' },
-  chips: { gap: spacing.sm },
-  chip: {
-    borderColor: colors.border,
-    borderRadius: 999,
-    borderWidth: 1,
-    paddingHorizontal: spacing.md,
-    justifyContent: 'center',
-    minHeight: 44,
-    paddingVertical: spacing.sm,
-  },
-  selectedChip: { backgroundColor: colors.primary, borderColor: colors.primary },
-  chipText: { color: colors.text, fontSize: 13, fontWeight: '700' },
-  selectedChipText: { color: colors.surface },
   updating: { alignItems: 'center', flexDirection: 'row', gap: spacing.sm },
   muted: { color: colors.textMuted, fontSize: 13 },
   inlineError: { padding: spacing.md },

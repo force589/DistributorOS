@@ -51,7 +51,7 @@ export default function ReportsIndexScreen() {
           paddingTop: theme.spacing.lg,
         }}
       >
-        <View style={{ gap: theme.spacing.md, maxWidth: 760, width: '100%' }}>
+        <View style={{ gap: theme.spacing.md, maxWidth: responsive.isDesktop ? 980 : 760, width: '100%' }}>
           <Card style={{ gap: theme.spacing.sm }}>
             <HeadingText level={2} style={[theme.typography.heading, { color: theme.colors.text }]}>
               {t('insights.reports.readOnlyTitle')}
