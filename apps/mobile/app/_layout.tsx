@@ -6,7 +6,7 @@ import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { FullScreenState } from '@/components/FullScreenState';
+import { FullScreenState, SessionRestoreShell } from '@/components/FullScreenState';
 import { businessQueryHash } from '@/api/queryScope';
 import { AppPreferencesProvider, useTheme } from '@/design/theme';
 import {
@@ -23,8 +23,7 @@ function RootNavigator() {
 
   if (isSessionRestorePending(status)) {
     return (
-      <FullScreenState
-        loading
+      <SessionRestoreShell
         message={t('startup.loadingMessage')}
         title={t('startup.loadingTitle')}
       />

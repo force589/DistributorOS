@@ -9,6 +9,7 @@ import {
   Icon,
   IconButton,
   ListSkeleton,
+  ListItem,
   NavigationListItem,
   SectionHeader,
 } from '@/design-system';
@@ -131,9 +132,32 @@ describe('commercial navigation controls', () => {
     expect(screen.getByRole('button', { name: 'All' }).props.accessibilityState).toEqual({
       selected: true,
     });
+    const chipStyle = screen.getByTestId('status-all').props.style;
+    expect(
+      (typeof chipStyle === 'function' ? chipStyle({ pressed: false }) : chipStyle).minHeight,
+    ).toBeGreaterThanOrEqual(44);
     fireEvent.press(screen.getByRole('button', { name: 'Archived' }));
 
     expect(onSelect).toHaveBeenCalledWith('archived');
+  });
+
+  it('separates row titles and subtitles in accessible names', async () => {
+    const onPress = jest.fn();
+    const screen = await render(
+      <ListItem
+        onPress={onPress}
+        subtitle="Update your password and sign out other sessions."
+        title="Change Password"
+      />,
+    );
+
+    fireEvent.press(
+      screen.getByRole('button', {
+        name: 'Change Password. Update your password and sign out other sessions.',
+      }),
+    );
+
+    expect(onPress).toHaveBeenCalledTimes(1);
   });
 
   it('announces one list-level skeleton instead of every decorative row', async () => {

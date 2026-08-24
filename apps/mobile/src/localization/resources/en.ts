@@ -229,6 +229,7 @@ export const en = {
     title: 'Sign out of DistributorOS?',
     message: 'Are you sure you want to sign out?',
     confirm: 'Sign Out',
+    confirmAccessibilityLabel: 'Confirm Sign Out',
     loading: 'Signing Out…',
   },
   unsavedChanges: {

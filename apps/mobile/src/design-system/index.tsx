@@ -34,6 +34,7 @@ export function HeadingText({
 }
 
 export function Button({
+  accessibilityLabel,
   label,
   onPress,
   loading = false,
@@ -42,6 +43,7 @@ export function Button({
   accessibilityHint,
   testID,
 }: {
+  accessibilityLabel?: string;
   label: string;
   onPress: () => void;
   loading?: boolean;
@@ -68,6 +70,7 @@ export function Button({
   return (
     <Pressable
       accessibilityHint={accessibilityHint}
+      accessibilityLabel={accessibilityLabel}
       accessibilityRole="button"
       accessibilityState={{ busy: loading, disabled: unavailable }}
       disabled={unavailable}
@@ -352,8 +355,19 @@ export function Dialog({
 }) {
   const theme = useTheme();
   return (
-    <Modal animationType="fade" onRequestClose={onDismiss} transparent visible={visible}>
+    <Modal
+      accessibilityViewIsModal
+      animationType="fade"
+      onRequestClose={onDismiss}
+      transparent
+      visible={visible}
+    >
       <View
+        accessibilityViewIsModal
+        {...({ 'aria-modal': true, role: 'dialog' } as {
+          'aria-modal': boolean;
+          role: 'dialog';
+        })}
         style={{
           alignItems: 'center',
           backgroundColor: theme.colors.overlay,
@@ -579,7 +593,7 @@ export function FilterChipGroup({
                 borderRadius: theme.radii.full,
                 borderWidth: 1,
                 justifyContent: 'center',
-                minHeight: 38,
+                minHeight: 44,
                 opacity: pressed ? 0.82 : 1,
                 paddingHorizontal: theme.spacing.md,
                 paddingVertical: theme.spacing.xs,
@@ -632,6 +646,7 @@ export function ListItem({
   );
   return onPress ? (
     <Pressable
+      accessibilityLabel={subtitle ? `${title}. ${subtitle}` : title}
       accessibilityHint={accessibilityHint}
       accessibilityRole="button"
       onBlur={() => setFocused(false)}

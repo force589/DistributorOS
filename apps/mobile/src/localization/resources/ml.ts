@@ -245,6 +245,7 @@ const overrides = {
     title: 'DistributorOS-ൽ നിന്ന് സൈൻ ഔട്ട് ചെയ്യണോ?',
     message: 'സൈൻ ഔട്ട് ചെയ്യണമെന്ന് ഉറപ്പാണോ?',
     confirm: 'സൈൻ ഔട്ട്',
+    confirmAccessibilityLabel: 'സൈൻ ഔട്ട് സ്ഥിരീകരിക്കുക',
     loading: 'സൈൻ ഔട്ട് ചെയ്യുന്നു…',
   },
   unsavedChanges: {

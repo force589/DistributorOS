@@ -29,6 +29,10 @@ import {
 } from '@/design-system';
 import { useAuth } from '@/features/auth/AuthContext';
 import { getErrorTranslationKey } from '@/features/auth/errorMessages';
+import {
+  getModalBackgroundAccessibilityProps,
+  getSettingsChangeState,
+} from '@/features/settings/changeState';
 import { useSingleFlightAction } from '@/hooks/useSingleFlightAction';
 import { useDirtyFormGuard } from '@/navigation/UnsavedChangesContext';
 
@@ -63,13 +67,24 @@ export default function SettingsScreen() {
   const { pending: signingOut, run: runLogout } = useSingleFlightAction();
 
   const normalizedName = businessName.trim();
-  const hasChanges =
-    normalizedName !== user?.business.business_name ||
-    currency !== user?.business.currency ||
-    language !== user?.business.language ||
-    themePreference !== user?.business.theme ||
-    timezone.trim() !== user?.business.timezone;
-  useDirtyFormGuard(hasChanges);
+  const currentSettings = {
+    businessName: user?.business.business_name ?? '',
+    currency: user?.business.currency ?? preferences.currency,
+    language: user?.business.language ?? preferences.language,
+    themePreference: user?.business.theme ?? preferences.themePreference,
+    timezone: user?.business.timezone ?? preferences.timezone,
+  };
+  const { hasBusinessProfileChanges, hasChanges } = getSettingsChangeState({
+    current: currentSettings,
+    draft: {
+      businessName,
+      currency,
+      language,
+      themePreference,
+      timezone,
+    },
+  });
+  useDirtyFormGuard(hasBusinessProfileChanges);
 
   const chooseCurrency = (value: CurrencyCode) => {
     setCurrency(value);
@@ -148,165 +163,172 @@ export default function SettingsScreen() {
 
   return (
     <SafeAreaView style={{ backgroundColor: theme.colors.background, flex: 1 }}>
-      <ScreenHeader
-        backLabel={t('common.back')}
-        onBack={() => {
-          if (router.canGoBack()) router.back();
-          else router.replace('/' as Href);
-        }}
-        subtitle={t('settings.subtitle')}
-        title={t('settings.title')}
-      />
-      <ScrollView
-        contentContainerStyle={{
-          alignItems: 'center',
-          paddingBottom: theme.spacing.xxxl,
-          paddingHorizontal: responsive.isPhone ? theme.spacing.md : theme.spacing.lg,
-          paddingTop: responsive.isPhone ? theme.spacing.md : theme.spacing.lg,
-        }}
-        keyboardShouldPersistTaps="handled"
+      <View
+        {...getModalBackgroundAccessibilityProps(confirmingLogout)}
+        style={{ flex: 1 }}
       >
-        <View
-          style={{
-            gap: theme.spacing.lg,
-            maxWidth: responsive.isDesktop ? 980 : 820,
-            width: '100%',
+        <ScreenHeader
+          backLabel={t('common.back')}
+          onBack={() => {
+            if (router.canGoBack()) router.back();
+            else router.replace('/' as Href);
           }}
+          subtitle={t('settings.subtitle')}
+          title={t('settings.title')}
+        />
+        <ScrollView
+          contentContainerStyle={{
+            alignItems: 'center',
+            paddingBottom: theme.spacing.xxxl,
+            paddingHorizontal: responsive.isPhone ? theme.spacing.md : theme.spacing.lg,
+            paddingTop: responsive.isPhone ? theme.spacing.md : theme.spacing.lg,
+          }}
+          keyboardShouldPersistTaps="handled"
+          style={{ flex: 1 }}
         >
-          {feedback ? <FeedbackBanner message={feedback.message} tone={feedback.tone} /> : null}
-
-          <SettingsSection
-            description={t('settings.businessDescription')}
-            icon={appIcons.business}
-            title={t('settings.businessSection')}
+          <View
+            style={{
+              gap: theme.spacing.lg,
+              maxWidth: responsive.isDesktop ? 980 : 820,
+              width: '100%',
+            }}
           >
-          <FormField
-            error={nameError}
-            label={t('settings.businessName')}
-            maxLength={120}
-            onChangeText={(value) => {
-              setBusinessName(value);
-              setNameError(undefined);
-              setFeedback(null);
-            }}
-            placeholder={t('settings.businessNamePlaceholder')}
-            value={businessName}
-          />
-          <Divider />
-          <FormField
-            autoCapitalize="none"
-            autoCorrect={false}
-            error={timezoneError}
-            label={t('settings.timezone')}
-            maxLength={64}
-            onChangeText={(value) => {
-              setTimezone(value);
-              setTimezoneError(undefined);
-              setFeedback(null);
-            }}
-            placeholder={t('settings.timezonePlaceholder')}
-            value={timezone}
-          />
-          <Text style={[theme.typography.caption, { color: theme.colors.textMuted }]}>
-            {t('settings.timezoneHelp')}
-          </Text>
-          <Divider />
-          <View style={{ gap: theme.spacing.xs }}>
-            <Text style={[theme.typography.label, { color: theme.colors.text }]}>
-              {t('settings.currency')}
-            </Text>
+            {feedback ? <FeedbackBanner message={feedback.message} tone={feedback.tone} /> : null}
+
+            <SettingsSection
+              description={t('settings.businessDescription')}
+              icon={appIcons.business}
+              title={t('settings.businessSection')}
+            >
+            <FormField
+              error={nameError}
+              label={t('settings.businessName')}
+              maxLength={120}
+              onChangeText={(value) => {
+                setBusinessName(value);
+                setNameError(undefined);
+                setFeedback(null);
+              }}
+              placeholder={t('settings.businessNamePlaceholder')}
+              value={businessName}
+            />
+            <Divider />
+            <FormField
+              autoCapitalize="none"
+              autoCorrect={false}
+              error={timezoneError}
+              label={t('settings.timezone')}
+              maxLength={64}
+              onChangeText={(value) => {
+                setTimezone(value);
+                setTimezoneError(undefined);
+                setFeedback(null);
+              }}
+              placeholder={t('settings.timezonePlaceholder')}
+              value={timezone}
+            />
             <Text style={[theme.typography.caption, { color: theme.colors.textMuted }]}>
-              {t('settings.currencyHelp')}
+              {t('settings.timezoneHelp')}
             </Text>
+            <Divider />
+            <View style={{ gap: theme.spacing.xs }}>
+              <Text style={[theme.typography.label, { color: theme.colors.text }]}>
+                {t('settings.currency')}
+              </Text>
+              <Text style={[theme.typography.caption, { color: theme.colors.textMuted }]}>
+                {t('settings.currencyHelp')}
+              </Text>
+            </View>
+            <RadioOptions>
+              {currencies.map((code) => (
+                <RadioListItem
+                  key={code}
+                  label={code}
+                  onPress={() => chooseCurrency(code)}
+                  selected={currency === code}
+                  testID={`currency-${code}`}
+                />
+              ))}
+            </RadioOptions>
+            </SettingsSection>
+
+            <SettingsSection
+              description={t('settings.appearanceDescription')}
+              icon={appIcons.appearance}
+              title={t('settings.appearanceSection')}
+            >
+            <RadioOptions>
+              {themes.map((value) => (
+                <RadioListItem
+                  description={t(`settings.themeOptions.${value}`)}
+                  key={value}
+                  label={t(`settings.${value}`)}
+                  onPress={() => chooseTheme(value)}
+                  selected={themePreference === value}
+                  testID={`theme-${value}`}
+                />
+              ))}
+            </RadioOptions>
+            </SettingsSection>
+
+            <SettingsSection
+              description={t('settings.languageHelp')}
+              icon={appIcons.language}
+              title={t('settings.languageSection')}
+            >
+            <RadioOptions>
+              {languages.map((code) => (
+                <RadioListItem
+                  description={t(`settings.languageOptions.${code}`)}
+                  key={code}
+                  label={t(code === 'en' ? 'settings.english' : 'settings.malayalam')}
+                  onPress={() => chooseLanguage(code)}
+                  selected={language === code}
+                  testID={`language-${code}`}
+                />
+              ))}
+            </RadioOptions>
+            </SettingsSection>
+
+            <SettingsSection
+              description={t('settings.accountDescription')}
+              icon={appIcons.account}
+              title={t('settings.accountSection')}
+            >
+            <ListItem subtitle={user?.email ?? ''} title={t('settings.accountEmail')} />
+            <Divider />
+            <ListItem
+              subtitle={user?.business.business_name ?? ''}
+              title={t('settings.accountBusiness')}
+            />
+            <Divider />
+            <ListItem
+              accessibilityHint={t('settings.changePasswordHint')}
+              onPress={() => router.push('/(app)/change-password' as Href)}
+              subtitle={t('settings.changePasswordHint')}
+              title={t('settings.changePassword')}
+            />
+            <Divider />
+            <Button
+              label={t('home.signOut')}
+              onPress={() => setConfirmingLogout(true)}
+              variant="destructive"
+            />
+            </SettingsSection>
+
+            <Button
+              disabled={!hasChanges}
+              label={saving ? t('settings.saving') : t('settings.save')}
+              loading={saving}
+              onPress={() => void save()}
+              testID="save-settings"
+            />
           </View>
-          <RadioOptions>
-            {currencies.map((code) => (
-              <RadioListItem
-                key={code}
-                label={code}
-                onPress={() => chooseCurrency(code)}
-                selected={currency === code}
-                testID={`currency-${code}`}
-              />
-            ))}
-          </RadioOptions>
-          </SettingsSection>
-
-          <SettingsSection
-            description={t('settings.appearanceDescription')}
-            icon={appIcons.appearance}
-            title={t('settings.appearanceSection')}
-          >
-          <RadioOptions>
-            {themes.map((value) => (
-              <RadioListItem
-                description={t(`settings.themeOptions.${value}`)}
-                key={value}
-                label={t(`settings.${value}`)}
-                onPress={() => chooseTheme(value)}
-                selected={themePreference === value}
-                testID={`theme-${value}`}
-              />
-            ))}
-          </RadioOptions>
-          </SettingsSection>
-
-          <SettingsSection
-            description={t('settings.languageHelp')}
-            icon={appIcons.language}
-            title={t('settings.languageSection')}
-          >
-          <RadioOptions>
-            {languages.map((code) => (
-              <RadioListItem
-                description={t(`settings.languageOptions.${code}`)}
-                key={code}
-                label={t(code === 'en' ? 'settings.english' : 'settings.malayalam')}
-                onPress={() => chooseLanguage(code)}
-                selected={language === code}
-                testID={`language-${code}`}
-              />
-            ))}
-          </RadioOptions>
-          </SettingsSection>
-
-          <SettingsSection
-            description={t('settings.accountDescription')}
-            icon={appIcons.account}
-            title={t('settings.accountSection')}
-          >
-          <ListItem subtitle={user?.email ?? ''} title={t('settings.accountEmail')} />
-          <Divider />
-          <ListItem
-            subtitle={user?.business.business_name ?? ''}
-            title={t('settings.accountBusiness')}
-          />
-          <Divider />
-          <ListItem
-            accessibilityHint={t('settings.changePasswordHint')}
-            onPress={() => router.push('/(app)/change-password' as Href)}
-            subtitle={t('settings.changePasswordHint')}
-            title={t('settings.changePassword')}
-          />
-          <Divider />
-          <Button
-            label={t('home.signOut')}
-            onPress={() => setConfirmingLogout(true)}
-            variant="destructive"
-          />
-          </SettingsSection>
-
-          <Button
-            disabled={!hasChanges}
-            label={saving ? t('settings.saving') : t('settings.save')}
-            loading={saving}
-            onPress={() => void save()}
-            testID="save-settings"
-          />
-        </View>
-      </ScrollView>
+        </ScrollView>
+      </View>
       <ConfirmationDialog
         cancelLabel={t('common.cancel')}
+        confirmAccessibilityLabel={t('logout.confirmAccessibilityLabel')}
         confirmLabel={t('logout.confirm')}
         loading={signingOut}
         loadingLabel={t('logout.loading')}
