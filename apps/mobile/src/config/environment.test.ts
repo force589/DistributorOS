@@ -35,6 +35,7 @@ function loadEnvironment(
     EXPO_PUBLIC_APP_ENV: 'production',
     ...values,
   });
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
   return require('./environment') as EnvironmentModule;
 }
 
@@ -45,24 +46,33 @@ afterEach(() => {
 });
 
 describe('API environment configuration', () => {
-  it('loads an absolute API URL from the test environment', () => {
+  it('uses the same-origin API proxy for production web builds', () => {
     const { environment } = loadEnvironment('web', {
       EXPO_PUBLIC_API_URL: 'https://api.example.com/api/v1',
     });
 
-    expect(environment.apiUrl).toMatch(/^https?:\/\//);
+    expect(environment.apiUrl).toBe('/api/v1');
   });
 
-  it('loads web builds from EXPO_PUBLIC_API_URL', () => {
+  it('does not let production web override the same-origin API proxy with an absolute URL', () => {
     const { environment } = loadEnvironment('web', {
-      EXPO_PUBLIC_API_URL: 'https://api.example.com',
+      EXPO_PUBLIC_WEB_API_URL: 'https://api.example.com/api/v1',
     });
 
-    expect(environment.apiUrl).toBe('https://api.example.com');
+    expect(environment.apiUrl).toBe('/api/v1');
   });
 
-  it('rejects missing web API URLs', () => {
-    expect(() => loadEnvironment('web', {})).toThrow(
+  it('loads development web builds from EXPO_PUBLIC_API_URL', () => {
+    const { environment } = loadEnvironment('web', {
+      EXPO_PUBLIC_APP_ENV: 'development',
+      EXPO_PUBLIC_API_URL: 'https://api.example.com/api/v1',
+    });
+
+    expect(environment.apiUrl).toBe('https://api.example.com/api/v1');
+  });
+
+  it('rejects missing development web API URLs', () => {
+    expect(() => loadEnvironment('web', { EXPO_PUBLIC_APP_ENV: 'development' })).toThrow(
       'An API URL is required for the web platform.',
     );
   });

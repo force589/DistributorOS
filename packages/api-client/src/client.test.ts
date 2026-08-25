@@ -53,7 +53,7 @@ describe('ApiClient', () => {
       Promise.resolve(jsonResponse(200, authBody)),
     );
     const client = new ApiClient({
-      baseUrl: 'https://api.example.com/api/v1',
+      baseUrl: '/api/v1',
       platform: 'web',
       fetchImplementation,
     });
@@ -62,8 +62,8 @@ describe('ApiClient', () => {
     await client.refresh(null);
 
     expect(fetchImplementation.mock.calls.map((call) => call[0])).toEqual([
-      'https://api.example.com/api/v1/auth/login',
-      'https://api.example.com/api/v1/auth/refresh',
+      '/api/v1/auth/login',
+      '/api/v1/auth/refresh',
     ]);
     for (const [, init] of fetchImplementation.mock.calls) {
       expect(init?.credentials).toBe('include');

@@ -3,16 +3,21 @@ import { Platform } from 'react-native';
 export type AppEnvironment = 'development' | 'preview' | 'production';
 
 const appEnvironment = (process.env.EXPO_PUBLIC_APP_ENV ?? 'development') as AppEnvironment;
+const isStaticHostedWebEnvironment =
+  appEnvironment === 'preview' || appEnvironment === 'production';
 
 export function resolveApiUrl(platform: string): string | undefined {
+  if (platform === 'web') {
+    if (isStaticHostedWebEnvironment) {
+      return '/api/v1';
+    }
+    return process.env.EXPO_PUBLIC_WEB_API_URL ?? process.env.EXPO_PUBLIC_API_URL;
+  }
   if (platform === 'android') {
     return process.env.EXPO_PUBLIC_ANDROID_API_URL ?? process.env.EXPO_PUBLIC_API_URL;
   }
   if (platform === 'ios') {
     return process.env.EXPO_PUBLIC_IOS_API_URL ?? process.env.EXPO_PUBLIC_API_URL;
-  }
-  if (platform === 'web') {
-    return process.env.EXPO_PUBLIC_API_URL ?? process.env.EXPO_PUBLIC_WEB_API_URL;
   }
   return process.env.EXPO_PUBLIC_API_URL;
 }

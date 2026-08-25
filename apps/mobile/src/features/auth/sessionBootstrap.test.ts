@@ -55,7 +55,7 @@ describe('session restoration', () => {
     expect(storage.setRefreshToken).not.toHaveBeenCalled();
   });
 
-  it('treats direct web protected-route loads as anonymous when cookie refresh fails', async () => {
+  it('treats authoritative web refresh expiry as anonymous', async () => {
     const storage = storageWith(null);
     const api = {
       refresh: jest.fn().mockRejectedValue(new ApiError(401, 'SESSION_EXPIRED', 'Expired')),
@@ -64,6 +64,21 @@ describe('session restoration', () => {
     await expect(restoreSession({ api, storage, platform: 'web' })).resolves.toBeNull();
     expect(api.refresh).toHaveBeenCalledWith(null);
     expect(storage.clearRefreshToken).toHaveBeenCalledTimes(1);
+  });
+
+  it('does not convert temporary web refresh failures into logout', async () => {
+    const storage = storageWith(null);
+    const api = {
+      refresh: jest.fn().mockRejectedValue(
+        new ApiError(0, 'NETWORK_ERROR', 'The server could not be reached.'),
+      ),
+    } as unknown as ApiClient;
+
+    await expect(restoreSession({ api, storage, platform: 'web' })).rejects.toMatchObject({
+      code: 'NETWORK_ERROR',
+    });
+    expect(api.refresh).toHaveBeenCalledWith(null);
+    expect(storage.clearRefreshToken).not.toHaveBeenCalled();
   });
 
   it('clears an expired session without treating it as an anonymous success', async () => {
