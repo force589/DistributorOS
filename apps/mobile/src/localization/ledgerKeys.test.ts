@@ -28,6 +28,7 @@ const requiredKeys = [
   'fields.debit',
   'fields.credit',
   'fields.runningBalance',
+  'fields.openReference',
   'validation.dateInvalid',
   'errors.corruptState',
   'errors.invalidPage',

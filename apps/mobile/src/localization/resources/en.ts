@@ -990,6 +990,7 @@ export const en = {
       runningBalance: 'Running Balance',
       remarks: 'Remarks',
       noRemarks: 'No remarks',
+      openReference: 'Open {{reference}}',
     },
     validation: {
       dateInvalid: 'Enter the ledger date as YYYY-MM-DD.',

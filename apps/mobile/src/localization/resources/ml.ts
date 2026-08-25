@@ -345,7 +345,7 @@ const overrides = {
     summary: { title: 'സാമ്പത്തിക സംഗ്രഹം', outstandingBalance: 'ബാക്കി തുക', availableCredit: 'ലഭ്യമായ ക്രെഡിറ്റ്', totalSales: 'ആകെ വിൽപ്പന', totalPayments: 'ആകെ പേയ്മെന്റുകൾ', viewLedger: 'ലെഡ്ജർ കാണുക', loading: 'സംഗ്രഹം ലോഡ് ചെയ്യുന്നു…' },
     list: { title: 'ഉപഭോക്തൃ ലെഡ്ജർ', searchLabel: 'ലെഡ്ജർ തിരയുക', loadingTitle: 'ലെഡ്ജർ ലോഡ് ചെയ്യുന്നു', errorTitle: 'ലെഡ്ജർ ലോഡ് ചെയ്യാനായില്ല', emptyTitle: 'ലെഡ്ജർ എൻട്രികളില്ല', noResultsTitle: 'ചേരുന്ന എൻട്രികളില്ല' },
     filters: { all: 'എല്ലാ എൻട്രികളും', sale: 'വിൽപ്പന', reversal: 'തിരിച്ചടികൾ', payment: 'പേയ്മെന്റുകൾ', paymentReversal: 'പേയ്മെന്റ് തിരിച്ചടികൾ' },
-    fields: { date: 'തീയതി', type: 'തരം', reference: 'റഫറൻസ്', debit: 'ഡെബിറ്റ്', credit: 'ക്രെഡിറ്റ്', runningBalance: 'നിലവിലെ ബാലൻസ്', remarks: 'കുറിപ്പുകൾ' },
+    fields: { date: 'തീയതി', type: 'തരം', reference: 'റഫറൻസ്', debit: 'ഡെബിറ്റ്', credit: 'ക്രെഡിറ്റ്', runningBalance: 'നിലവിലെ ബാലൻസ്', remarks: 'കുറിപ്പുകൾ', openReference: '{{reference}} തുറക്കുക' },
   },
   insights: {
     dashboard: {

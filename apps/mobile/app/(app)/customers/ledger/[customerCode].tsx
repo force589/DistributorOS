@@ -246,7 +246,16 @@ function LedgerRow({
           <Text style={styles.type}>{t(ledgerEntryTypeKeys[entry.entry_type])}</Text>
           <Text style={styles.muted}>{formatLedgerDate(entry.created_at, language)}</Text>
         </View>
-        <Pressable accessibilityRole="button" onPress={onReference}>
+        <Pressable
+          accessibilityLabel={t('ledger.fields.openReference', { reference: entry.reference })}
+          accessibilityRole="button"
+          hitSlop={4}
+          onPress={onReference}
+          style={({ pressed }) => [
+            styles.referenceButton,
+            pressed && styles.referenceButtonPressed,
+          ]}
+        >
           <Text style={styles.reference}>{entry.reference}</Text>
         </Pressable>
       </View>
@@ -339,6 +348,17 @@ const styles = ThemedStyleSheet.create({
   },
   identity: { flex: 1, gap: spacing.xs },
   type: { color: colors.text, fontSize: 17, fontWeight: '800' },
+  referenceButton: {
+    alignItems: 'center',
+    borderRadius: radii.full,
+    justifyContent: 'center',
+    minHeight: 44,
+    minWidth: 44,
+    paddingHorizontal: spacing.sm,
+  },
+  referenceButtonPressed: {
+    backgroundColor: colors.primarySubtle,
+  },
   reference: { color: colors.primary, fontSize: 14, fontWeight: '800' },
   amounts: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing.md },
   amount: { flex: 1, gap: spacing.xs, minWidth: 120 },
